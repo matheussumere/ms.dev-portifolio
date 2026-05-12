@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matheus Sumere — Desenvolvimento Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f1923;
+      --accent: #2563eb;
+      --accent-light: #3b82f6;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --muted: #64748b;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(15,25,35,0.97); backdrop-filter: blur(8px);
+      padding: 1.1rem 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    .nav-logo { font-family: var(--font-heading); font-size: 1.2rem; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--accent-light); }
+    .nav-cta {
+      background: var(--accent); color: #fff; padding: 0.55rem 1.4rem;
+      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: var(--primary); position: relative; overflow: hidden;
+      padding-top: 5rem;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(37,99,235,0.15) 0%, transparent 70%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 620px; }
+    .hero-eyebrow {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: clamp(2.4rem, 5vw, 3.8rem); color: #fff; line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero h1 span { color: var(--accent-light); }
+    .hero p { color: rgba(255,255,255,0.65); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 500px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 0.9rem 2rem;
+      font-family: var(--font-body); font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-light); }
+    .btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat-number { font-family: var(--font-heading); font-size: 2rem; color: var(--accent-light); }
+    .hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Matheus<span>.</span>dev</a>
+      <a href="#cotacao" class="nav-cta">Solicitar cotação</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Desenvolvimento Web · Sites Profissionais</span>
+        <h1>Seu negócio merece um site que <span>converte</span></h1>
+        <p>Crio sites modernos, rápidos e elegantes para prestadores de serviços locais. Do design à entrega em até 7 dias, com suporte contínuo.</p>
+        <div class="hero-actions">
+          <a href="#cotacao" class="btn btn-primary">Quero meu site</a>
+          <a href="#demos" class="btn btn-outline">Ver exemplos</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-number">7</div>
+            <div class="hero-stat-label">Dias para entrega</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">3+</div>
+            <div class="hero-stat-label">Projetos entregues</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">100%</div>
+            <div class="hero-stat-label">Satisfação garantida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" style="padding:5rem 0; background: var(--surface);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem;">O que ofereço</span>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(1.6rem,3vw,2.4rem);">Produtos disponíveis</h2>
+        <div style="width:40px;height:2px;background:var(--accent);margin:1.2rem auto 0;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);">
+        <div class="card-serv">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">🌐</div>
+          <h3>Landing Page</h3>
+          <p>Site completo com agendamento online, formulário de contato, galeria e integração com WhatsApp.</p>
+          <div class="price-tag">A partir de R$ 800</div>
+        </div>
+        <div class="card-serv">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">🍽️</div>
+          <h3>Cardápio Digital</h3>
+          <p>Cardápio online com categorias, busca, fotos dos pratos e QR Code para impressão.</p>
+          <div class="price-tag">A partir de R$ 500</div>
+        </div>
+        <div class="card-serv">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">🔧</div>
+          <h3>Manutenção Mensal</h3>
+          <p>Atualização de conteúdo, correções, hospedagem e suporte via WhatsApp todo mês.</p>
+          <div class="price-tag">R$ 80 – R$ 150/mês</div>
+        </div>
+        <div class="card-serv">
+          <div style="font-size:1.8rem;margin-bottom:1rem;">📦</div>
+          <h3>Pacote Completo</h3>
+          <p>Landing page + cardápio digital + 3 meses de manutenção. Ideal para restaurantes e bares.</p>
+          <div class="price-tag">Consulte o valor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMOS -->
+  <section id="demos" style="padding:5rem 0; background:var(--bg);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem;">Portfólio</span>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(1.6rem,3vw,2.4rem);">Exemplos reais</h2>
+        <div style="width:40px;height:2px;background:var(--accent);margin:1.2rem auto 0;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
+        <a href="./oficina/" target="_blank" class="demo-card">
+          <div class="demo-thumb" style="background:linear-gradient(135deg,#1c1c1c 0%,#c0392b 100%);">
+            <span>⚙️</span>
+          </div>
+          <div class="demo-info">
+            <div class="demo-title">Oficina Mecânica</div>
+            <div class="demo-sub">Landing page com agendamento</div>
+          </div>
+        </a>
+        <a href="./salao/" target="_blank" class="demo-card">
+          <div class="demo-thumb" style="background:linear-gradient(135deg,#2c2c2c 0%,#b8956a 100%);">
+            <span>✂️</span>
+          </div>
+          <div class="demo-info">
+            <div class="demo-title">Salão de Beleza</div>
+            <div class="demo-sub">Landing page com agendamento</div>
+          </div>
+        </a>
+        <a href="./dentista/" target="_blank" class="demo-card">
+          <div class="demo-thumb" style="background:linear-gradient(135deg,#1a2332 0%,#4a9ebb 100%);">
+            <span>🦷</span>
+          </div>
+          <div class="demo-info">
+            <div class="demo-title">Clínica Odontológica</div>
+            <div class="demo-sub">Landing page com agendamento</div>
+          </div>
+        </a>
+        <a href="./cardapio/" target="_blank" class="demo-card">
+          <div class="demo-thumb" style="background:linear-gradient(135deg,#1a1a1a 0%,#8b6914 100%);">
+            <span>🍽️</span>
+          </div>
+          <div class="demo-info">
+            <div class="demo-title">Cardápio Digital</div>
+            <div class="demo-sub">Com busca e filtros por categoria</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section style="padding:5rem 0; background:var(--primary);">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:3.5rem;">
+        <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-light);display:block;margin-bottom:1rem;">Por que me contratar</span>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;">Simples, rápido e sem enrolação</h2>
+        <div style="width:40px;height:2px;background:var(--accent);margin:1.2rem auto 0;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;">
+        <div class="diff-card">
+          <div class="diff-icon">⚡</div>
+          <h3>Entrega em 7 dias</h3>
+          <p>Do briefing ao site no ar em até uma semana. Sem esperar meses.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">📱</div>
+          <h3>100% responsivo</h3>
+          <p>Funciona perfeitamente em celular, tablet e computador.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">💬</div>
+          <h3>Suporte direto</h3>
+          <p>Atendimento via WhatsApp. Sem ticket, sem fila, sem robô.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">🎨</div>
+          <h3>Design exclusivo</h3>
+          <p>Cada site é adaptado à identidade visual do seu negócio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FORMULÁRIO DE COTAÇÃO -->
+  <section id="cotacao" style="padding:5rem 0; background:var(--bg);">
+    <div class="container">
+      <div style="max-width:640px; margin:0 auto;">
+        <div style="text-align:center; margin-bottom:3rem;">
+          <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1rem;">Vamos conversar</span>
+          <h2 style="font-family:var(--font-heading);font-size:clamp(1.6rem,3vw,2.4rem);">Solicite uma cotação</h2>
+          <p style="color:var(--muted);margin-top:0.75rem;">Preencha o formulário e retorno em até 24h com uma proposta personalizada.</p>
+        </div>
+        <form id="form-cotacao" style="display:flex;flex-direction:column;gap:1.2rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+              <label class="flabel">Nome</label>
+              <input class="finput" name="name" type="text" placeholder="Seu nome completo" required>
+            </div>
+            <div>
+              <label class="flabel">WhatsApp</label>
+              <input class="finput" name="phone" type="tel" placeholder="(19) 99999-9999" required>
+            </div>
+          </div>
+          <div>
+            <label class="flabel">E-mail</label>
+            <input class="finput" name="email" type="email" placeholder="seu@email.com" required>
+          </div>
+          <div>
+            <label class="flabel">Tipo de negócio</label>
+            <input class="finput" name="business" type="text" placeholder="Ex: Salão de beleza, restaurante, clínica..." required>
+          </div>
+          <div>
+            <label class="flabel">Produto de interesse</label>
+            <select class="finput" name="product" required>
+              <option value="">Selecione</option>
+              <option>Landing Page</option>
+              <option>Cardápio Digital</option>
+              <option>Landing Page + Cardápio</option>
+              <option>Manutenção de site existente</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div>
+            <label class="flabel">Quanto pretende investir?</label>
+            <select class="finput" name="budget" required>
+              <option value="">Selecione uma faixa</option>
+              <option>Até R$ 500</option>
+              <option>R$ 500 – R$ 1.000</option>
+              <option>R$ 1.000 – R$ 2.000</option>
+              <option>Acima de R$ 2.000</option>
+              <option>Ainda não sei, quero uma indicação</option>
+            </select>
+          </div>
+          <div>
+            <label class="flabel">Prazo desejado</label>
+            <select class="finput" name="deadline">
+              <option value="">Selecione</option>
+              <option>O mais rápido possível</option>
+              <option>Dentro de 2 semanas</option>
+              <option>Dentro de 1 mês</option>
+              <option>Sem pressa</option>
+            </select>
+          </div>
+          <div>
+            <label class="flabel">Conte mais sobre o seu projeto</label>
+            <textarea class="finput" name="message" rows="4" placeholder="Descreva seu negócio, o que você precisa e qualquer detalhe importante..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:1.1rem;font-size:0.85rem;">Enviar solicitação</button>
+          <div id="form-feedback" style="display:none;padding:1rem;text-align:center;font-size:0.85rem;"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO DIRETO -->
+  <section style="padding:4rem 0; background:var(--accent);">
+    <div class="container" style="text-align:center;">
+      <h2 style="font-family:var(--font-heading);font-size:1.8rem;color:#fff;margin-bottom:0.75rem;">Prefere falar direto?</h2>
+      <p style="color:rgba(255,255,255,0.8);margin-bottom:2rem;">Estou disponível pelo WhatsApp ou e-mail.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://wa.me/5519978075689" target="_blank" class="btn" style="background:#fff;color:var(--accent);">💬 WhatsApp</a>
+        <a href="mailto:matheussumere@gmail.com" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff;">✉️ E-mail</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--primary);color:rgba(255,255,255,0.4);text-align:center;padding:2.5rem;font-size:0.8rem;letter-spacing:0.05em;">
+    <p>© 2026 Matheus Sumere · Desenvolvimento Web · <a href="mailto:matheussumere@gmail.com" style="color:rgba(255,255,255,0.4);text-decoration:none;">matheussumere@gmail.com</a> · <a href="tel:+5519978075689" style="color:rgba(255,255,255,0.4);text-decoration:none;">(19) 97807-5689</a></p>
+  </footer>
+
+
+  <style>
+    .card-serv {
+      background: var(--surface); padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+    .card-serv:hover { background: #f1f5f9; }
+    .card-serv h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .card-serv p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+    .price-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.06em; color: var(--accent);
+      border-bottom: 2px solid var(--accent); padding-bottom: 0.1rem;
+    }
+    .demo-card {
+      text-decoration: none; color: inherit;
+      border: 1px solid var(--border); overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .demo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    .demo-thumb {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .demo-info { padding: 1.2rem 1.5rem; background: var(--surface); }
+    .demo-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .demo-sub { font-size: 0.8rem; color: var(--muted); }
+    .diff-card { text-align: center; }
+    .diff-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .diff-card h3 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .diff-card p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.6; }
+    .flabel {
+      display: block; font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem;
+    }
+    .finput {
+      width: 100%; padding: 0.8rem 1rem;
+      border: 1px solid var(--border); background: var(--surface);
+      font-family: var(--font-body); font-size: 0.9rem; color: var(--primary);
+      outline: none; transition: border-color 0.2s;
+    }
+    .finput:focus { border-color: var(--accent); }
+    textarea.finput { resize: vertical; }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 1.5rem; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+  <script>
+    document.getElementById('form-cotacao').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(this));
+      const msg = `Olá Matheus! Tenho interesse em um site.\n\n` +
+        `Nome: ${data.name}\nE-mail: ${data.email}\nNegócio: ${data.business}\n` +
+        `Produto: ${data.product}\nInvestimento: ${data.budget}\nPrazo: ${data.deadline}\n\n${data.message}`;
+      window.open(`https://wa.me/5519978075689?text=${encodeURIComponent(msg)}`, '_blank');
+      const fb = document.getElementById('form-feedback');
+      fb.style.display = 'block';
+      fb.style.cssText += 'background:#f0faf0;color:#2d7a2d;border:1px solid #c3e6c3;';
+      fb.textContent = '✓ Redirecionando para o WhatsApp...';
+    });
+  </script>
+</body>
+</html>
