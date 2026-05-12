@@ -58,7 +58,7 @@
 
 /* ── Switcher UI ───────────────────────────── */
 .theme-switcher {
-  position: fixed; bottom: 2rem; left: 2rem; z-index: 500;
+  position: fixed; bottom: 5rem; left: 2rem; z-index: 600;
   display: flex; flex-direction: column; gap: 0.4rem;
   align-items: flex-start;
 }
