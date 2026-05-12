@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bistrot Maison — Cardápio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Config do cliente ── */
+    :root {
+      --color-primary: #1a1a1a;
+      --color-accent: #8b6914;
+      --color-bg: #faf9f6;
+      --color-surface: #ffffff;
+      --color-border: #ece9e0;
+      --color-muted: #6b6b6b;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-primary); -webkit-font-smoothing: antialiased; }
+
+    /* ── Header ── */
+    header {
+      background: var(--color-primary); color: #fff;
+      text-align: center; padding: 3rem 1.5rem 2rem;
+    }
+    .header-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.75rem; }
+    header h1 { font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 3rem); font-weight: 400; margin-bottom: 0.5rem; }
+    .header-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+
+    /* ── Filtros de categoria ── */
+    .categories {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--color-surface); border-bottom: 1px solid var(--color-border);
+      padding: 0 1rem; overflow-x: auto;
+      display: flex; gap: 0; white-space: nowrap;
+      scrollbar-width: none;
+    }
+    .categories::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      padding: 1rem 1.5rem; background: none; border: none;
+      font-family: var(--font-body); font-size: 0.75rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-muted); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .cat-btn.active { color: var(--color-primary); border-bottom-color: var(--color-accent); }
+    .cat-btn:hover { color: var(--color-primary); }
+
+    /* ── Busca ── */
+    .search-bar { padding: 1.5rem; max-width: 600px; margin: 0 auto; }
+    .search-input {
+      width: 100%; padding: 0.85rem 1.2rem;
+      border: 1px solid var(--color-border); background: var(--color-surface);
+      font-family: var(--font-body); font-size: 0.9rem; color: var(--color-primary);
+      outline: none; transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--color-accent); }
+    .search-input::placeholder { color: #bbb; }
+
+    /* ── Seções do cardápio ── */
+    main { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    .menu-section { margin-bottom: 3rem; }
+    .menu-section[data-category] { display: block; }
+    .menu-section.hidden { display: none; }
+
+    .section-title {
+      font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400;
+      padding: 1.5rem 0 1rem;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
+
+    /* ── Cards de item ── */
+    .menu-grid { display: grid; gap: 1px; background: var(--color-border); }
+    .menu-item {
+      background: var(--color-surface); padding: 1.5rem;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+      transition: background 0.15s;
+    }
+    .menu-item:hover { background: #fdfcf8; }
+    .item-info { flex: 1; }
+    .item-name { font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .item-desc { font-size: 0.85rem; color: var(--color-muted); line-height: 1.5; }
+    .item-tags { display: flex; gap: 0.4rem; margin-top: 0.6rem; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.5rem; border: 1px solid var(--color-border); color: var(--color-muted);
+    }
+    .tag.veg { border-color: #4caf50; color: #4caf50; }
+    .tag.hot { border-color: #e53935; color: #e53935; }
+    .tag.new { border-color: var(--color-accent); color: var(--color-accent); }
+    .item-price {
+      font-family: var(--font-heading); font-size: 1.1rem;
+      color: var(--color-accent); white-space: nowrap; padding-top: 0.1rem;
+    }
+
+    /* ── Empty state ── */
+    .empty-state { text-align: center; padding: 4rem 1rem; color: var(--color-muted); }
+    .empty-state p { font-size: 0.9rem; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--color-primary); color: rgba(255,255,255,0.4);
+      text-align: center; padding: 2rem; font-size: 0.8rem; letter-spacing: 0.05em;
+    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="header-eyebrow">Cardápio Digital</p>
+    <h1>Bistrot Maison</h1>
+    <p class="header-sub">Cozinha francesa contemporânea · Aberto todos os dias</p>
+  </header>
+
+  <nav class="categories">
+    <button class="cat-btn active" data-filter="all">Todos</button>
+    <button class="cat-btn" data-filter="entradas">Entradas</button>
+    <button class="cat-btn" data-filter="principais">Pratos Principais</button>
+    <button class="cat-btn" data-filter="massas">Massas</button>
+    <button class="cat-btn" data-filter="sobremesas">Sobremesas</button>
+    <button class="cat-btn" data-filter="bebidas">Bebidas</button>
+  </nav>
+
+  <div class="search-bar">
+    <input class="search-input" type="search" id="search" placeholder="Buscar no cardápio...">
+  </div>
+
+  <main id="menu">
+
+    <!-- Entradas -->
+    <section class="menu-section" data-category="entradas">
+      <h2 class="section-title">Entradas</h2>
+      <div class="menu-grid">
+        <div class="menu-item" data-name="Sopa de Cebola Gratinada">
+          <div class="item-info">
+            <div class="item-name">Sopa de Cebola Gratinada</div>
+            <div class="item-desc">Caldo de carne, cebola caramelizada, croutons e queijo gruyère gratinado.</div>
+            <div class="item-tags"><span class="tag">Clássico</span></div>
+          </div>
+          <div class="item-price">R$ 38</div>
+        </div>
+        <div class="menu-item" data-name="Terrine de Foie Gras">
+          <div class="item-info">
+            <div class="item-name">Terrine de Foie Gras</div>
+            <div class="item-desc">Foie gras de pato, geleia de figo, brioche tostado e flor de sal.</div>
+            <div class="item-tags"><span class="tag new">Novo</span></div>
+          </div>
+          <div class="item-price">R$ 72</div>
+        </div>
+        <div class="menu-item" data-name="Salada Niçoise">
+          <div class="item-info">
+            <div class="item-name">Salada Niçoise</div>
+            <div class="item-desc">Atum selado, ovos, azeitonas, feijão verde, tomate e vinagrete de mostarda Dijon.</div>
+            <div class="item-tags"><span class="tag veg">Sem glúten</span></div>
+          </div>
+          <div class="item-price">R$ 52</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pratos Principais -->
+    <section class="menu-section" data-category="principais">
+      <h2 class="section-title">Pratos Principais</h2>
+      <div class="menu-grid">
+        <div class="menu-item" data-name="Confit de Canard">
+          <div class="item-info">
+            <div class="item-name">Confit de Canard</div>
+            <div class="item-desc">Coxa de pato confitada, lentilhas du Puy, laranja e molho de vinho tinto.</div>
+            <div class="item-tags"><span class="tag">Chef recomenda</span></div>
+          </div>
+          <div class="item-price">R$ 98</div>
+        </div>
+        <div class="menu-item" data-name="Steak au Poivre">
+          <div class="item-info">
+            <div class="item-name">Steak au Poivre</div>
+            <div class="item-desc">Filé mignon, crosta de pimenta verde, molho de conhaque e batatas dauphine.</div>
+            <div class="item-tags"><span class="tag hot">Apimentado</span></div>
+          </div>
+          <div class="item-price">R$ 115</div>
+        </div>
+        <div class="menu-item" data-name="Salmão à la Grenobloise">
+          <div class="item-info">
+            <div class="item-name">Salmão à la Grenobloise</div>
+            <div class="item-desc">Salmão grelhado, manteiga noisette, alcaparras, limão e croutons.</div>
+            <div class="item-tags"><span class="tag veg">Sem glúten</span><span class="tag new">Novo</span></div>
+          </div>
+          <div class="item-price">R$ 88</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Massas -->
+    <section class="menu-section" data-category="massas">
+      <h2 class="section-title">Massas</h2>
+      <div class="menu-grid">
+        <div class="menu-item" data-name="Tagliatelle aux Truffes">
+          <div class="item-info">
+            <div class="item-name">Tagliatelle aux Truffes</div>
+            <div class="item-desc">Massa fresca, creme de trufa negra, parmesão 24 meses e azeite trufado.</div>
+            <div class="item-tags"><span class="tag veg">Vegetariano</span></div>
+          </div>
+          <div class="item-price">R$ 82</div>
+        </div>
+        <div class="menu-item" data-name="Gnocchi à la Parisienne">
+          <div class="item-info">
+            <div class="item-name">Gnocchi à la Parisienne</div>
+            <div class="item-desc">Gnocchi de pâte à choux, molho béchamel, queijo comté e ervas frescas.</div>
+            <div class="item-tags"><span class="tag veg">Vegetariano</span></div>
+          </div>
+          <div class="item-price">R$ 68</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobremesas -->
+    <section class="menu-section" data-category="sobremesas">
+      <h2 class="section-title">Sobremesas</h2>
+      <div class="menu-grid">
+        <div class="menu-item" data-name="Crème Brûlée">
+          <div class="item-info">
+            <div class="item-name">Crème Brûlée</div>
+            <div class="item-desc">Creme de baunilha de Madagascar, caramelizado na hora.</div>
+            <div class="item-tags"><span class="tag">Clássico</span></div>
+          </div>
+          <div class="item-price">R$ 32</div>
+        </div>
+        <div class="menu-item" data-name="Tarte Tatin">
+          <div class="item-info">
+            <div class="item-name">Tarte Tatin</div>
+            <div class="item-desc">Torta invertida de maçã caramelizada, massa folhada e sorvete de creme.</div>
+            <div class="item-tags"><span class="tag">Quente</span></div>
+          </div>
+          <div class="item-price">R$ 38</div>
+        </div>
+        <div class="menu-item" data-name="Mousse au Chocolat">
+          <div class="item-info">
+            <div class="item-name">Mousse au Chocolat</div>
+            <div class="item-desc">Chocolate Valrhona 70%, mousse aerada, flor de sal e tuile de amêndoas.</div>
+            <div class="item-tags"><span class="tag veg">Vegetariano</span></div>
+          </div>
+          <div class="item-price">R$ 35</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bebidas -->
+    <section class="menu-section" data-category="bebidas">
+      <h2 class="section-title">Bebidas</h2>
+      <div class="menu-grid">
+        <div class="menu-item" data-name="Kir Royal">
+          <div class="item-info">
+            <div class="item-name">Kir Royal</div>
+            <div class="item-desc">Champagne brut e licor de cassis.</div>
+          </div>
+          <div class="item-price">R$ 42</div>
+        </div>
+        <div class="menu-item" data-name="Limonada Provençal">
+          <div class="item-info">
+            <div class="item-name">Limonada Provençal</div>
+            <div class="item-desc">Limão siciliano, lavanda, mel e água com gás.</div>
+            <div class="item-tags"><span class="tag veg">Sem álcool</span></div>
+          </div>
+          <div class="item-price">R$ 22</div>
+        </div>
+        <div class="menu-item" data-name="Café Allongé">
+          <div class="item-info">
+            <div class="item-name">Café Allongé</div>
+            <div class="item-desc">Espresso alongado, grão de origem única, torrado artesanalmente.</div>
+          </div>
+          <div class="item-price">R$ 14</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="empty-state" id="empty-state" style="display:none">
+      <p>Nenhum item encontrado para "<span id="search-term"></span>"</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Bistrot Maison · <a href="tel:+5511999999999">(11) 99999-9999</a> · Cardápio sujeito a alterações sem aviso prévio</p>
+  </footer>
+
+  <script>
+    // ── Filtro por categoria ──
+    const catBtns = document.querySelectorAll('.cat-btn');
+    const sections = document.querySelectorAll('.menu-section');
+
+    catBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        sections.forEach(s => {
+          s.classList.toggle('hidden', filter !== 'all' && s.dataset.category !== filter);
+        });
+        document.getElementById('search').value = '';
+        document.getElementById('empty-state').style.display = 'none';
+      });
+    });
+
+    // ── Busca ──
+    document.getElementById('search').addEventListener('input', function () {
+      const q = this.value.toLowerCase().trim();
+      if (!q) {
+        // Restaura filtro ativo
+        const active = document.querySelector('.cat-btn.active').dataset.filter;
+        sections.forEach(s => s.classList.toggle('hidden', active !== 'all' && s.dataset.category !== active));
+        document.getElementById('empty-state').style.display = 'none';
+        return;
+      }
+
+      // Reseta filtro de categoria visualmente
+      catBtns.forEach(b => b.classList.remove('active'));
+
+      let found = false;
+      sections.forEach(s => {
+        const items = s.querySelectorAll('.menu-item');
+        let sectionVisible = false;
+        items.forEach(item => {
+          const match = item.dataset.name.toLowerCase().includes(q) ||
+                        item.querySelector('.item-desc').textContent.toLowerCase().includes(q);
+          item.style.display = match ? '' : 'none';
+          if (match) sectionVisible = found = true;
+        });
+        s.classList.toggle('hidden', !sectionVisible);
+      });
+
+      const emptyState = document.getElementById('empty-state');
+      emptyState.style.display = found ? 'none' : 'block';
+      document.getElementById('search-term').textContent = this.value;
+    });
+  </script>
+
+</body>
+</html>
