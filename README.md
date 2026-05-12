@@ -9,6 +9,11 @@ Customização rápida via variáveis CSS — troca logo, cores e textos em minu
 |---------|------|-------|
 | Landing Page | [Oficina](./oficina/) · [Salão](./salao/) · [Dentista](./dentista/) | Serviços locais |
 | Cardápio Digital | [Bistrot Maison](./cardapio/) | Restaurantes & bares |
+| Artista / Personalidade | [Sofia Vega](./artista/) | Criadores de conteúdo |
+| Estúdio de Tatuagem | [Black Needle](./tatuagem/) | Estúdios |
+| Templo Religioso | [Igreja Nova Aliança](./templo/) | Igrejas & comunidades |
+| Currículo Pessoal | [Lucas Ferreira](./curriculo/) | Profissionais & devs |
+| Loja em Geral | [Maison Goods](./loja/) | E-commerce local |
 
 ## Funcionalidades
 
@@ -19,21 +24,23 @@ Customização rápida via variáveis CSS — troca logo, cores e textos em minu
 - Design responsivo, estética europeia/minimalista
 
 **Cardápio Digital**
-- Filtro por categoria
-- Busca em tempo real
+- Filtro por categoria e busca em tempo real
 - Tags: vegetariano, apimentado, novidade
+- Galeria de fotos por prato — clique no item para ver mais fotos
+- Carrinho de pedidos com controle de quantidade e campo de observações
+- Envio do pedido formatado direto pelo WhatsApp — sem backend
 - 100% estático, sem dependências externas
 
 ## Como customizar para um cliente
 
-1. Copie a pasta do produto (`oficina/`, `salao/`, etc.)
+1. Copie a pasta do produto (`oficina/`, `salao/`, `cardapio/`, etc.)
 2. Edite as variáveis de cor no `<style>` do HTML:
 ```css
 --color-primary: #1c1c1c;
 --color-accent:  #c0392b;
 --color-bg:      #f8f7f5;
 ```
-3. Atualize o `WL_CONFIG` com os dados do cliente:
+3. Para landing pages, atualize o `WL_CONFIG` com os dados do cliente:
 ```js
 window.WL_CONFIG = {
   emailjs_public_key: 'CHAVE_DO_CLIENTE',
@@ -44,7 +51,11 @@ window.WL_CONFIG = {
   whatsapp: '5511999999999',
 };
 ```
-4. Substitua textos, endereço e telefone no HTML
+4. Para o cardápio, troque o número no topo do script:
+```js
+const WHATSAPP_NUMBER = '5511999999999';
+```
+5. Substitua textos, endereço e telefone no HTML
 
 ## Configurar EmailJS (gratuito até 200 emails/mês)
 
@@ -58,17 +69,24 @@ window.WL_CONFIG = {
 ```
 white-label-portfolio/
 ├── shared/
-│   ├── base.css          # CSS base (tipografia, layout, componentes)
-│   ├── components.css    # Modal, formulários, botão flutuante
-│   └── components.js     # Lógica do modal, EmailJS, fallback WhatsApp
+│   ├── base.css                  # CSS base (tipografia, layout, componentes)
+│   ├── components.css            # Modal, formulários, botão flutuante
+│   └── components.js             # Lógica do modal, EmailJS, fallback WhatsApp
 ├── oficina/index.html
 ├── salao/index.html
 ├── dentista/index.html
 ├── cardapio/index.html
-└── GITHUB-GUIDE.md       # Guia de organização do repositório
+├── artista/index.html
+├── tatuagem/index.html
+├── templo/index.html
+├── curriculo/index.html
+├── loja/index.html
+├── instagram-legendas.txt        # Legendas prontas para Instagram (9 nichos)
+├── whatsapp-mensagens.txt        # Mensagens prontas para prospecção via WhatsApp
+└── GITHUB-GUIDE.md               # Guia de organização do repositório
 ```
 
 ## Contato
 
 Interessado em um site para o seu negócio?  
-📧 seu@email.com · 📱 (11) 99999-9999
+📧 matheussumere@gmail.com · 📱 (19) 97807-5689
