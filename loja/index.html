@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Goods — Loja</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f7f4;
+      --surface: #ffffff;
+      --primary: #1c1814;
+      --accent: #2d5a3d;
+      --accent2: #4a8c5c;
+      --muted: #7a7268;
+      --border: #e8e2d8;
+      --warm: #f0ebe2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Mulish', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; font-weight: 300; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(249,247,244,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+    }
+    .nav-logo { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 300; color: var(--primary); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-center { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-center a { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; }
+    .nav-center a:hover { color: var(--primary); }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-cart { font-size: 0.78rem; font-weight: 600; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
+    .cart-count { background: var(--accent); color: #fff; font-size: 0.6rem; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* HERO — lifestyle, imagem grande com texto sobreposto */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 65px;
+    }
+    .hero-left {
+      background-image: url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=1200&q=80&fit=crop&crop=center');
+      background-size: cover; background-position: center; position: relative;
+    }
+    .hero-left::after { content: ''; position: absolute; inset: 0; background: rgba(28,24,20,0.2); }
+    .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 5rem 5rem; background: var(--warm); }
+    .hero-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+    .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.8; max-width: 380px; margin-bottom: 3rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 1rem 2.5rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--primary); }
+    .btn-outline { border: 1px solid var(--border); color: var(--primary); padding: 1rem 2.5rem; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--primary); }
+
+    /* CATEGORIAS */
+    .categories { padding: 5rem 4rem; background: var(--surface); }
+    .section-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; margin-bottom: 3rem; }
+    .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .cat-item { position: relative; overflow: hidden; cursor: pointer; }
+    .cat-thumb { aspect-ratio: 3/4; background-size: cover; background-position: center; transition: transform 0.5s; }
+    .cat-item:hover .cat-thumb { transform: scale(1.04); }
+    .cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,24,20,0.7) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 1.5rem; }
+    .cat-name { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 300; color: #fff; }
+
+    /* PRODUTOS EM DESTAQUE */
+    .featured { padding: 5rem 4rem; }
+    .featured-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; }
+    .featured-header h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; }
+    .featured-header a { font-size: 0.78rem; font-weight: 600; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .product-card { cursor: pointer; }
+    .product-img { aspect-ratio: 1; background-size: cover; background-position: center; margin-bottom: 1rem; overflow: hidden; position: relative; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    .product-badge { position: absolute; top: 0.75rem; left: 0.75rem; background: var(--accent); color: #fff; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.6rem; }
+    .product-name { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 400; margin-bottom: 0.3rem; }
+    .product-price { font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+    .product-price .old { color: var(--muted); text-decoration: line-through; margin-right: 0.5rem; font-weight: 400; }
+
+    /* BANNER */
+    .banner {
+      margin: 0 4rem; background: var(--accent);
+      display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
+    }
+    .banner-content { padding: 5rem; display: flex; flex-direction: column; justify-content: center; }
+    .banner-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
+    .banner h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 300; color: #fff; line-height: 1.2; margin-bottom: 1.5rem; }
+    .banner h2 em { font-style: italic; }
+    .btn-banner { background: #fff; color: var(--accent); padding: 1rem 2.5rem; font-size: 0.8rem; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.2s; align-self: flex-start; }
+    .btn-banner:hover { background: var(--primary); color: #fff; }
+    .banner-img {
+      background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80&fit=crop');
+      background-size: cover; background-position: center; min-height: 400px;
+    }
+
+    /* NEWSLETTER */
+    .newsletter { padding: 5rem 4rem; background: var(--warm); text-align: center; }
+    .newsletter h2 { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 2.5vw, 2.5rem); font-weight: 300; margin-bottom: 0.75rem; }
+    .newsletter p { color: var(--muted); font-size: 0.875rem; margin-bottom: 2rem; }
+    .newsletter-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
+    .newsletter-input { flex: 1; padding: 0.9rem 1.2rem; border: 1px solid var(--border); background: var(--surface); font-family: 'Mulish', sans-serif; font-size: 0.875rem; outline: none; }
+    .newsletter-input:focus { border-color: var(--accent); }
+    .newsletter-btn { background: var(--accent); color: #fff; padding: 0.9rem 1.8rem; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .newsletter-btn:hover { background: var(--primary); }
+
+    footer { background: var(--primary); color: rgba(255,255,255,0.35); padding: 3rem 4rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer-brand { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 1rem; }
+    .footer-desc { font-size: 0.8rem; line-height: 1.6; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col a { font-size: 0.8rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: rgba(255,255,255,0.7); }
+    .footer-bottom { background: var(--primary); border-top: 1px solid #2a2520; padding: 1.5rem 4rem; text-align: center; font-size: 0.75rem; color: #333; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-center { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { min-height: 50vh; }
+      .hero-right { padding: 3rem 1.5rem; }
+      .categories, .featured, .newsletter { padding: 4rem 1.5rem; }
+      .cat-grid, .products-grid { grid-template-columns: 1fr 1fr; }
+      .banner { margin: 0; grid-template-columns: 1fr; }
+      .banner-content { padding: 3rem 1.5rem; }
+      .banner-img { min-height: 250px; }
+      footer { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+      .footer-bottom { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Maison Goods</a>
+    <ul class="nav-center">
+      <li><a href="#categorias">Categorias</a></li>
+      <li><a href="#destaque">Destaques</a></li>
+      <li><a href="#newsletter">Novidades</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#" class="nav-cart">🛍 Sacola <span class="cart-count">0</span></a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left"></div>
+    <div class="hero-right">
+      <div class="hero-tag">Nova coleção — Outono 2026</div>
+      <h1>Objetos que<br><em>contam histórias</em></h1>
+      <p class="hero-desc">Peças selecionadas com cuidado para transformar seu espaço. Design atemporal, materiais sustentáveis e qualidade que dura.</p>
+      <div class="hero-actions">
+        <a href="#destaque" class="btn-primary">Ver coleção</a>
+        <a href="#categorias" class="btn-outline">Explorar</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="categorias" class="categories">
+    <div class="section-tag">Explore</div>
+    <h2 class="section-title">Categorias</h2>
+    <div class="cat-grid">
+      <div class="cat-item">
+        <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop')"></div>
+        <div class="cat-overlay"><div class="cat-name">Casa & Sala</div></div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop')"></div>
+        <div class="cat-overlay"><div class="cat-name">Cozinha</div></div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop')"></div>
+        <div class="cat-overlay"><div class="cat-name">Quarto</div></div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&fit=crop')"></div>
+        <div class="cat-overlay"><div class="cat-name">Jardim</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="destaque" class="featured">
+    <div class="featured-header">
+      <h2>Em destaque</h2>
+      <a href="#">Ver todos →</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&q=80&fit=crop" alt="Vaso Cerâmica">
+          <span class="product-badge">Novo</span>
+        </div>
+        <div class="product-name">Vaso Cerâmica Artesanal</div>
+        <div class="product-price">R$ 189</div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80&fit=crop" alt="Almofada">
+        </div>
+        <div class="product-name">Almofada Linho Natural</div>
+        <div class="product-price"><span class="old">R$ 120</span>R$ 89</div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&fit=crop" alt="Luminária">
+          <span class="product-badge">-20%</span>
+        </div>
+        <div class="product-name">Luminária Bambu</div>
+        <div class="product-price"><span class="old">R$ 320</span>R$ 256</div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80&fit=crop" alt="Bandeja">
+        </div>
+        <div class="product-name">Bandeja Madeira Maciça</div>
+        <div class="product-price">R$ 145</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="banner">
+    <div class="banner-content">
+      <div class="banner-tag">Sustentabilidade</div>
+      <h2>Feito para <em>durar</em>, pensado para o planeta</h2>
+      <a href="#" class="btn-banner">Conheça nossa missão</a>
+    </div>
+    <div class="banner-img"></div>
+  </div>
+
+  <section id="newsletter" class="newsletter">
+    <h2>Fique por dentro das novidades</h2>
+    <p>Receba lançamentos, promoções exclusivas e inspirações de decoração.</p>
+    <form class="newsletter-form" onsubmit="e=>e.preventDefault()">
+      <input class="newsletter-input" type="email" placeholder="Seu melhor e-mail">
+      <button type="submit" class="newsletter-btn">Inscrever</button>
+    </form>
+  </section>
+
+  <footer>
+    <div>
+      <div class="footer-brand">Maison Goods</div>
+      <p class="footer-desc">Objetos com alma para espaços com personalidade. Entregamos em todo o Brasil.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Loja</h4>
+      <ul>
+        <li><a href="#">Novidades</a></li>
+        <li><a href="#">Promoções</a></li>
+        <li><a href="#">Mais vendidos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ajuda</h4>
+      <ul>
+        <li><a href="#">Frete e entrega</a></li>
+        <li><a href="#">Trocas e devoluções</a></li>
+        <li><a href="#">Fale conosco</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Sobre nós</a></li>
+        <li><a href="#">Sustentabilidade</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2026 Maison Goods · Todos os direitos reservados</div>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucas Ferreira — Desenvolvedor Full Stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --primary: #111;
+      --accent: #ff4d00;
+      --muted: #888;
+      --border: #e0ddd8;
+      --dark: #1a1a1a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem; background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .nav-name { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; color: var(--primary); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-hire { background: var(--accent); color: #fff !important; padding: 0.5rem 1.2rem; }
+
+    /* HERO — assimétrico, nome gigante */
+    .hero {
+      min-height: 100vh; padding-top: 65px;
+      display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    }
+    .hero-left { padding: 4rem; }
+    .hero-status { display: flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero h1 { font-size: clamp(3rem, 6vw, 6rem); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 2rem; }
+    .hero h1 span { color: var(--accent); display: block; }
+    .hero-role { font-size: 1rem; font-weight: 500; color: var(--muted); margin-bottom: 2.5rem; }
+    .hero-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; max-width: 400px; margin-bottom: 3rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-fill { background: var(--primary); color: #fff; padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: background 0.2s; display: inline-block; }
+    .btn-fill:hover { background: var(--accent); }
+    .btn-line { border: 1px solid var(--border); color: var(--primary); padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-line:hover { border-color: var(--primary); }
+
+    .hero-right { padding: 4rem; display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+    .skill-row { background: var(--surface); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .skill-name { font-size: 0.85rem; font-weight: 600; }
+    .skill-bar-wrap { flex: 1; margin: 0 2rem; height: 3px; background: var(--border); }
+    .skill-bar { height: 100%; background: var(--accent); }
+    .skill-pct { font-family: 'Syne Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+
+    /* EXPERIÊNCIA */
+    .experience { padding: 6rem 4rem; background: var(--surface); }
+    .exp-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .exp-header h2 { font-size: clamp(2rem, 3vw, 3rem); font-weight: 800; letter-spacing: -0.02em; }
+    .exp-header span { font-family: 'Syne Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: grid; grid-template-columns: 160px 1fr auto; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+    .exp-period { font-family: 'Syne Mono', monospace; font-size: 0.75rem; color: var(--muted); padding-top: 0.2rem; }
+    .exp-company { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .exp-role { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .exp-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; background: var(--bg); border: 1px solid var(--border); color: var(--muted); }
+
+    /* PROJETOS */
+    .projects { padding: 6rem 4rem; }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .proj-card { background: var(--surface); padding: 2rem; border-top: 3px solid var(--border); transition: border-color 0.2s; }
+    .proj-card:hover { border-top-color: var(--accent); }
+    .proj-num { font-family: 'Syne Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-bottom: 1rem; }
+    .proj-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .proj-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .proj-link { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+
+    /* CONTATO */
+    .contact { background: var(--dark); padding: 6rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .contact-left h2 { font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; color: #fff; line-height: 0.9; margin-bottom: 2rem; }
+    .contact-left h2 span { color: var(--accent); }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+    .c-item { display: flex; gap: 1rem; align-items: center; }
+    .c-label { font-family: 'Syne Mono', monospace; font-size: 0.65rem; color: #555; width: 60px; flex-shrink: 0; }
+    .c-value { font-size: 0.875rem; color: #ccc; }
+    .c-value a { color: #ccc; text-decoration: none; }
+    .c-value a:hover { color: var(--accent); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .finput { width: 100%; padding: 0.85rem 1rem; background: #222; border: 1px solid #333; color: #fff; font-family: 'Syne', sans-serif; font-size: 0.875rem; outline: none; transition: border-color 0.2s; }
+    .finput:focus { border-color: var(--accent); }
+    .finput::placeholder { color: #555; }
+    .submit-btn { background: var(--accent); color: #fff; font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; padding: 1rem; border: none; cursor: pointer; transition: opacity 0.2s; }
+    .submit-btn:hover { opacity: 0.85; }
+
+    footer { background: var(--dark); border-top: 1px solid #222; padding: 1.5rem 4rem; display: flex; justify-content: space-between; font-size: 0.75rem; color: #444; }
+    footer a { color: #444; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, .contact { grid-template-columns: 1fr; }
+      .hero-left, .hero-right { padding: 3rem 1.5rem; }
+      .experience, .projects { padding: 4rem 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .contact { padding: 4rem 1.5rem; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-name">Lucas Ferreira</a>
+    <ul class="nav-links">
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato" class="nav-hire">Contratar</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-status"><span class="status-dot"></span>Disponível para projetos</div>
+      <h1>Lucas<span>Ferreira</span></h1>
+      <div class="hero-role">Desenvolvedor Full Stack · 5 anos de experiência</div>
+      <p class="hero-desc">Especializado em React, Node.js e arquiteturas escaláveis. Transformo ideias em produtos digitais que as pessoas adoram usar.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-fill">Contratar</a>
+        <a href="#projetos" class="btn-line">Ver projetos</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="skill-row">
+        <span class="skill-name">React / Next.js</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+        <span class="skill-pct">92%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Node.js</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+        <span class="skill-pct">88%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">TypeScript</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+        <span class="skill-pct">85%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">PostgreSQL</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">AWS / DevOps</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div>
+        <span class="skill-pct">72%</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia" class="experience">
+    <div class="exp-header">
+      <h2>Experiência</h2>
+      <span>2019 — presente</span>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-period">2022 — presente</div>
+        <div>
+          <div class="exp-company">Startup XYZ</div>
+          <div class="exp-role">Senior Full Stack Developer</div>
+          <div class="exp-tags"><span class="tag">React</span><span class="tag">Node</span><span class="tag">AWS</span><span class="tag">PostgreSQL</span></div>
+        </div>
+        <div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-period">2020 — 2022</div>
+        <div>
+          <div class="exp-company">Agência Digital ABC</div>
+          <div class="exp-role">Full Stack Developer</div>
+          <div class="exp-tags"><span class="tag">Vue.js</span><span class="tag">Laravel</span><span class="tag">MySQL</span></div>
+        </div>
+        <div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-period">2019 — 2020</div>
+        <div>
+          <div class="exp-company">Freelancer</div>
+          <div class="exp-role">Frontend Developer</div>
+          <div class="exp-tags"><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">WordPress</span></div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="projects">
+    <h2 style="font-size:clamp(2rem,3vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem;">Projetos</h2>
+    <p style="color:var(--muted);font-size:0.875rem;">Seleção de trabalhos recentes</p>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-num">001</div>
+        <div class="proj-name">SaaS de Agendamentos</div>
+        <p class="proj-desc">Plataforma completa para gestão de agendamentos com painel admin, notificações e pagamentos.</p>
+        <a href="#" class="proj-link">Ver projeto →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">002</div>
+        <div class="proj-name">E-commerce B2B</div>
+        <p class="proj-desc">Loja virtual com catálogo dinâmico, pedidos em lote e integração com ERP.</p>
+        <a href="#" class="proj-link">Ver projeto →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">003</div>
+        <div class="proj-name">App de Delivery</div>
+        <p class="proj-desc">Aplicativo mobile com rastreamento em tempo real, pagamentos e painel para restaurantes.</p>
+        <a href="#" class="proj-link">Ver projeto →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="contact-left">
+      <h2>Vamos<span>trabalhar</span>juntos</h2>
+      <div class="contact-info">
+        <div class="c-item"><span class="c-label">email</span><span class="c-value"><a href="mailto:lucas@email.com">lucas@email.com</a></span></div>
+        <div class="c-item"><span class="c-label">whats</span><span class="c-value"><a href="https://wa.me/5511999999999">(11) 99999-9999</a></span></div>
+        <div class="c-item"><span class="c-label">github</span><span class="c-value"><a href="#">github.com/lucasferreira</a></span></div>
+        <div class="c-item"><span class="c-label">linkedin</span><span class="c-value"><a href="#">linkedin.com/in/lucasferreira</a></span></div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="sendContact(event)">
+      <input class="finput" name="name" type="text" placeholder="Seu nome" required>
+      <input class="finput" name="email" type="email" placeholder="E-mail" required>
+      <input class="finput" name="subject" type="text" placeholder="Assunto" required>
+      <textarea class="finput" name="message" rows="4" placeholder="Descreva o projeto..." style="resize:vertical"></textarea>
+      <button type="submit" class="submit-btn">Enviar mensagem →</button>
+    </form>
+  </section>
+
+  <footer>
+    <span>© 2026 Lucas Ferreira</span>
+    <span>Feito com ☕ e muito código</span>
+  </footer>
+
+  <script>
+    function sendContact(e) {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(e.target));
+      const msg = `Olá Lucas!\n\nNome: ${d.name}\nE-mail: ${d.email}\nAssunto: ${d.subject}\n\n${d.message}`;
+      window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+</body>
+</html>

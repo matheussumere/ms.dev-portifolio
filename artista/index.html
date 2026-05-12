@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofia Vega — Artista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --accent: #e8c547;
+      --text: #f0ece4;
+      --muted: #666;
+      --border: #1e1e1e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem; mix-blend-mode: difference;
+    }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.1em; color: #fff; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO — magazine editorial */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-rows: 1fr auto;
+      padding: 0; position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&q=80&fit=crop&crop=center');
+      background-size: cover; background-position: center;
+    }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%); }
+    .hero-content {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 3rem 4rem;
+    }
+    .hero-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 14vw, 14rem);
+      line-height: 0.85; letter-spacing: 0.02em; color: #fff;
+      margin-bottom: 2rem;
+    }
+    .hero-bottom {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 3rem; border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-desc { color: rgba(255,255,255,0.6); font-size: 0.875rem; max-width: 400px; line-height: 1.6; }
+    .hero-cta {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.15em;
+      color: var(--bg); background: var(--accent); padding: 0.8rem 2.5rem;
+      text-decoration: none; transition: opacity 0.2s; white-space: nowrap;
+    }
+    .hero-cta:hover { opacity: 0.85; }
+
+    /* SOBRE */
+    .about { display: grid; grid-template-columns: 1fr 1fr; }
+    .about-img {
+      background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80&fit=crop');
+      background-size: cover; background-position: center; min-height: 600px;
+    }
+    .about-text { padding: 6rem 5rem; background: var(--surface); display: flex; flex-direction: column; justify-content: center; }
+    .about-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+    .about-text h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 3vw, 3rem); font-style: italic; line-height: 1.2; margin-bottom: 1.5rem; }
+    .about-text p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; }
+    .about-links { display: flex; gap: 1.5rem; margin-top: 2rem; }
+    .social-link { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--muted); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s; }
+    .social-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* TRABALHOS */
+    .works { padding: 5rem 3rem; }
+    .works-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; }
+    .works-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 6rem); letter-spacing: 0.05em; }
+    .works-header span { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .works-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 4px; }
+    .work-item { overflow: hidden; position: relative; cursor: pointer; }
+    .work-item:first-child { grid-row: span 2; }
+    .work-thumb {
+      width: 100%; aspect-ratio: 1; background: var(--surface);
+      background-size: cover; background-position: center;
+      transition: transform 0.5s ease;
+    }
+    .work-item:first-child .work-thumb { aspect-ratio: 3/4; }
+    .work-item:hover .work-thumb { transform: scale(1.04); }
+    .work-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0);
+      display: flex; align-items: flex-end; padding: 1.5rem;
+      transition: background 0.3s;
+    }
+    .work-item:hover .work-overlay { background: rgba(0,0,0,0.5); }
+    .work-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.08em; color: #fff; opacity: 0; transform: translateY(8px); transition: all 0.3s; }
+    .work-item:hover .work-title { opacity: 1; transform: translateY(0); }
+
+    /* CONTATO */
+    .contact { background: var(--accent); padding: 6rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .contact h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 6rem); color: var(--bg); line-height: 0.9; letter-spacing: 0.02em; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .finput { width: 100%; padding: 0.9rem 0; background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.3); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--bg); outline: none; transition: border-color 0.2s; }
+    .finput::placeholder { color: rgba(0,0,0,0.4); }
+    .finput:focus { border-bottom-color: var(--bg); }
+    .submit-btn { background: var(--bg); color: var(--accent); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.15em; padding: 1rem 2.5rem; border: none; cursor: pointer; align-self: flex-start; transition: opacity 0.2s; margin-top: 0.5rem; }
+    .submit-btn:hover { opacity: 0.85; }
+
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); }
+    footer a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 1.5rem 3rem; }
+      .hero-bottom { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
+      .about, .contact { grid-template-columns: 1fr; }
+      .about-img { min-height: 300px; }
+      .about-text { padding: 3rem 1.5rem; }
+      .works { padding: 3rem 1.5rem; }
+      .works-grid { grid-template-columns: 1fr 1fr; }
+      .work-item:first-child { grid-column: span 2; grid-row: span 1; }
+      .contact { padding: 4rem 1.5rem; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">Sofia Vega</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#trabalhos">Trabalhos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Cantora · Compositora · São Paulo</div>
+      <h1>Sofia<br>Vega</h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-desc">Voz que atravessa gêneros. Artista independente com mais de 10 anos de carreira, shows pelo Brasil e lançamentos internacionais.</p>
+      <a href="#contato" class="hero-cta">Contratar</a>
+    </div>
+  </section>
+
+  <section id="sobre" class="about">
+    <div class="about-img"></div>
+    <div class="about-text">
+      <div class="about-label">Sobre a artista</div>
+      <h2>"A música é o único idioma que todo mundo fala."</h2>
+      <p>Sofia Vega é cantora, compositora e produtora musical. Nascida em São Paulo, começou sua carreira aos 16 anos e desde então acumulou mais de 50 milhões de streams, participações em festivais nacionais e internacionais.</p>
+      <p>Seu som mistura MPB, soul e pop contemporâneo, criando uma identidade única que conquista públicos de todas as idades.</p>
+      <div class="about-links">
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">Spotify</a>
+        <a href="#" class="social-link">YouTube</a>
+        <a href="#" class="social-link">Press Kit</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabalhos" class="works">
+    <div class="works-header">
+      <h2>Trabalhos</h2>
+      <span>Seleção 2024–2025</span>
+    </div>
+    <div class="works-grid">
+      <div class="work-item">
+        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&q=80&fit=crop')"></div>
+        <div class="work-overlay"><div class="work-title">Tour Nacional 2024</div></div>
+      </div>
+      <div class="work-item">
+        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80&fit=crop')"></div>
+        <div class="work-overlay"><div class="work-title">Álbum Raízes</div></div>
+      </div>
+      <div class="work-item">
+        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80&fit=crop')"></div>
+        <div class="work-overlay"><div class="work-title">Festival Verão</div></div>
+      </div>
+      <div class="work-item">
+        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=600&q=80&fit=crop')"></div>
+        <div class="work-overlay"><div class="work-title">Sessão Acústica</div></div>
+      </div>
+      <div class="work-item">
+        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80&fit=crop')"></div>
+        <div class="work-overlay"><div class="work-title">Ensaio Editorial</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <h2>Vamos trabalhar juntos</h2>
+    <form class="contact-form" onsubmit="sendMsg(event)">
+      <input class="finput" name="name" type="text" placeholder="Seu nome" required>
+      <input class="finput" name="email" type="email" placeholder="E-mail" required>
+      <input class="finput" name="subject" type="text" placeholder="Assunto (show, entrevista, parceria...)" required>
+      <textarea class="finput" name="message" rows="3" placeholder="Mensagem" style="resize:vertical"></textarea>
+      <button type="submit" class="submit-btn">Enviar →</button>
+    </form>
+  </section>
+
+  <footer>
+    <span>© 2026 Sofia Vega</span>
+    <span>Assessoria: <a href="mailto:contato@sofiavega.com">contato@sofiavega.com</a></span>
+  </footer>
+
+  <script>
+    function sendMsg(e) {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(e.target));
+      const msg = `Olá Sofia!\n\nNome: ${d.name}\nE-mail: ${d.email}\nAssunto: ${d.subject}\n\n${d.message}`;
+      window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+</body>
+</html>

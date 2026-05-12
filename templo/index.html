@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Igreja Nova Aliança — Comunidade de Fé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f4;
+      --surface: #ffffff;
+      --primary: #2d2416;
+      --accent: #8b6914;
+      --accent2: #c4a35a;
+      --muted: #7a6e5f;
+      --border: #e8e0d0;
+      --light: #f5f0e8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; font-weight: 400; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(250,248,244,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+    }
+    .nav-logo { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--primary); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-visit { background: var(--accent); color: #fff !important; padding: 0.5rem 1.4rem; border-radius: 2px; }
+    .nav-visit:hover { background: var(--primary) !important; }
+
+    /* HERO — sereno, foto de templo com luz */
+    .hero {
+      min-height: 100vh; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding-top: 70px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1438032005730-c779502df39b?w=1600&q=80&fit=crop&crop=center');
+      background-size: cover; background-position: center;
+    }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(45,36,22,0.55) 0%, rgba(45,36,22,0.75) 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; padding: 0 2rem; }
+    .hero-cross { font-size: 2rem; color: var(--accent2); margin-bottom: 1.5rem; display: block; }
+    .hero h1 { font-family: 'Lora', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; line-height: 1.2; margin-bottom: 1.5rem; font-weight: 400; }
+    .hero h1 em { font-style: italic; color: var(--accent2); }
+    .hero-verse { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; line-height: 1.6; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.9rem 2.5rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--primary); }
+    .btn-outline { border: 1px solid rgba(255,255,255,0.5); color: #fff; padding: 0.9rem 2.5rem; font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* PROGRAMAÇÃO */
+    .schedule { padding: 6rem 4rem; background: var(--surface); }
+    .section-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Lora', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 400; margin-bottom: 3rem; }
+    .schedule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .sched-card { background: var(--light); padding: 2rem; border-top: 3px solid var(--accent2); }
+    .sched-day { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .sched-name { font-family: 'Lora', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .sched-time { font-size: 0.85rem; color: var(--muted); }
+    .sched-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.5; }
+
+    /* SOBRE */
+    .about { display: grid; grid-template-columns: 1fr 1fr; }
+    .about-img {
+      background-image: url('https://images.unsplash.com/photo-1519491050282-cf00c82424b4?w=800&q=80&fit=crop');
+      background-size: cover; background-position: center; min-height: 550px;
+    }
+    .about-content { padding: 6rem 5rem; background: var(--primary); color: #fff; display: flex; flex-direction: column; justify-content: center; }
+    .about-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
+    .about-content h2 { font-family: 'Lora', serif; font-size: clamp(1.8rem, 2.5vw, 2.8rem); font-weight: 400; line-height: 1.3; margin-bottom: 1.5rem; }
+    .about-content p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .stat-item .n { font-family: 'Lora', serif; font-size: 2.2rem; color: var(--accent2); }
+    .stat-item .l { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+
+    /* MINISTÉRIOS */
+    .ministries { padding: 6rem 4rem; }
+    .min-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+    .min-card { background: var(--surface); padding: 2.5rem 2rem; text-align: center; transition: background 0.2s; }
+    .min-card:hover { background: var(--light); }
+    .min-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .min-name { font-family: 'Lora', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .min-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* VISITA */
+    .visit { background: var(--accent); padding: 5rem 4rem; text-align: center; }
+    .visit h2 { font-family: 'Lora', serif; font-size: clamp(2rem, 3vw, 3rem); color: #fff; margin-bottom: 1rem; font-weight: 400; }
+    .visit p { color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; font-size: 0.95rem; }
+    .visit-info { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .visit-item { text-align: center; }
+    .visit-item .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem; }
+    .visit-item .value { font-family: 'Lora', serif; font-size: 1.1rem; color: #fff; }
+    .btn-visit { background: #fff; color: var(--accent); padding: 1rem 2.5rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-visit:hover { background: var(--primary); color: #fff; }
+
+    footer { background: var(--primary); color: rgba(255,255,255,0.35); text-align: center; padding: 2.5rem; font-size: 0.8rem; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .about { grid-template-columns: 1fr; }
+      .about-img { min-height: 300px; }
+      .about-content { padding: 3rem 1.5rem; }
+      .schedule, .ministries, .visit { padding: 4rem 1.5rem; }
+      .schedule-grid, .min-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Igreja <span>Nova Aliança</span></a>
+    <ul class="nav-links">
+      <li><a href="#programacao">Programação</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#ministerios">Ministérios</a></li>
+      <li><a href="#visita" class="nav-visit">Visitar</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-cross">✝</span>
+      <h1>Bem-vindo à<br><em>Nova Aliança</em></h1>
+      <p class="hero-verse">"Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito."<br>— João 3:16</p>
+      <div class="hero-actions">
+        <a href="#visita" class="btn-primary">Planejar visita</a>
+        <a href="#programacao" class="btn-outline">Ver programação</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="programacao" class="schedule">
+    <div class="section-tag">Programação semanal</div>
+    <h2 class="section-title">Venha nos encontrar</h2>
+    <div class="schedule-grid">
+      <div class="sched-card">
+        <div class="sched-day">Domingo</div>
+        <div class="sched-name">Culto de Celebração</div>
+        <div class="sched-time">9h00 e 18h00</div>
+        <p class="sched-desc">Louvor, adoração e pregação da Palavra. Toda a família é bem-vinda.</p>
+      </div>
+      <div class="sched-card">
+        <div class="sched-day">Quarta-feira</div>
+        <div class="sched-name">Culto de Ensino</div>
+        <div class="sched-time">19h30</div>
+        <p class="sched-desc">Estudo aprofundado da Bíblia e oração intercessória.</p>
+      </div>
+      <div class="sched-card">
+        <div class="sched-day">Sexta-feira</div>
+        <div class="sched-name">Noite de Jovens</div>
+        <div class="sched-time">20h00</div>
+        <p class="sched-desc">Louvor contemporâneo, palavra e comunhão para jovens e adultos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="about">
+    <div class="about-img"></div>
+    <div class="about-content">
+      <div class="about-tag">Nossa história</div>
+      <h2>Uma comunidade construída sobre amor e fé</h2>
+      <p>A Igreja Nova Aliança foi fundada em 1995 com um grupo de 12 famílias. Hoje somos uma comunidade vibrante que acredita no poder transformador do Evangelho.</p>
+      <p>Nossa missão é amar a Deus, servir às pessoas e impactar nossa cidade com a mensagem de esperança.</p>
+      <div class="stats-row">
+        <div class="stat-item"><div class="n">28+</div><div class="l">Anos</div></div>
+        <div class="stat-item"><div class="n">1.2k</div><div class="l">Membros</div></div>
+        <div class="stat-item"><div class="n">15</div><div class="l">Ministérios</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ministerios" class="ministries">
+    <div class="section-tag">Comunidade</div>
+    <h2 class="section-title">Ministérios</h2>
+    <div class="min-grid">
+      <div class="min-card">
+        <div class="min-icon">🎵</div>
+        <div class="min-name">Louvor</div>
+        <p class="min-desc">Equipe de música e adoração que conduz os cultos semanais.</p>
+      </div>
+      <div class="min-card">
+        <div class="min-icon">👶</div>
+        <div class="min-name">Infantil</div>
+        <p class="min-desc">Ensino bíblico criativo para crianças de 0 a 12 anos.</p>
+      </div>
+      <div class="min-card">
+        <div class="min-icon">🤝</div>
+        <div class="min-name">Social</div>
+        <p class="min-desc">Ações de assistência e impacto na comunidade local.</p>
+      </div>
+      <div class="min-card">
+        <div class="min-icon">📖</div>
+        <div class="min-name">Células</div>
+        <p class="min-desc">Grupos pequenos de estudo e comunhão durante a semana.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visita" class="visit">
+    <h2>Planeje sua primeira visita</h2>
+    <p>Você é esperado. Venha como você é.</p>
+    <div class="visit-info">
+      <div class="visit-item"><div class="label">Endereço</div><div class="value">Rua da Paz, 450 — Centro</div></div>
+      <div class="visit-item"><div class="label">Domingo</div><div class="value">9h00 e 18h00</div></div>
+      <div class="visit-item"><div class="label">Contato</div><div class="value">(11) 99999-9999</div></div>
+    </div>
+    <a href="https://wa.me/5511999999999" target="_blank" class="btn-visit">Falar conosco</a>
+  </section>
+
+  <footer><p>© 2026 Igreja Nova Aliança · <a href="tel:+5511999999999">(11) 99999-9999</a></p></footer>
+
+</body>
+</html>
