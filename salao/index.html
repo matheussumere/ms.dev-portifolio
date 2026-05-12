@@ -4,165 +4,254 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atelier Blanc — Salão de Beleza</title>
-  <link rel="stylesheet" href="../shared/base.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/components.css">
-  <link rel="stylesheet" href="../shared/animations.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <style>
     :root {
-      --color-primary: #2c2c2c;
-      --color-accent: #b8956a;
-      --color-bg: #fdfcfa;
+      --color-primary: #1e1a17;
+      --color-accent: #a07850;
+      --color-bg: #faf8f5;
+      --color-surface: #ffffff;
+      --color-border: #ede8e0;
+      --color-muted: #8a7f74;
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Jost', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-primary); -webkit-font-smoothing: antialiased; font-weight: 300; }
+
+    /* NAV — linha fina, transparente */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.8rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, padding 0.3s;
+    }
+    nav.scrolled { background: rgba(250,248,245,0.97); backdrop-filter: blur(8px); padding: 1.2rem 4rem; border-bottom: 1px solid var(--color-border); }
+    .nav-logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 300; color: #fff; text-decoration: none; letter-spacing: 0.1em; font-style: italic; transition: color 0.3s; }
+    nav.scrolled .nav-logo { color: var(--color-primary); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; font-weight: 400; }
+    nav.scrolled .nav-links a { color: var(--color-muted); }
+    .nav-links a:hover { color: var(--color-accent) !important; }
+    .nav-reserve { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent) !important; border-bottom: 1px solid var(--color-accent); padding-bottom: 1px; }
+
+    /* HERO — imagem à direita, texto à esquerda */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 5rem 6rem;
+      background: var(--color-primary); position: relative;
+    }
+    .hero-left::after {
+      content: ''; position: absolute; top: 0; right: -1px; bottom: 0;
+      width: 1px; background: var(--color-accent); opacity: 0.4;
+    }
+    .hero-season {
+      font-family: var(--font-heading); font-size: 0.85rem; font-style: italic;
+      color: var(--color-accent); letter-spacing: 0.1em; margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: var(--font-heading); font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .hero h1 strong { font-weight: 600; font-style: normal; display: block; color: var(--color-accent); }
+    .hero-desc { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.8; max-width: 360px; margin-bottom: 3rem; }
+    .hero-cta {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #fff; text-decoration: none; padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s;
+    }
+    .hero-cta:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .hero-right {
+      background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80&fit=crop&crop=center');
+      background-size: cover; background-position: center;
+    }
+
+    /* SERVIÇOS — lista vertical elegante */
+    .services { padding: 7rem 0; }
+    .services-inner { max-width: 900px; margin: 0 auto; padding: 0 4rem; }
+    .services-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px solid var(--color-border); }
+    .services-top h2 { font-family: var(--font-heading); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; font-style: italic; }
+    .services-top p { color: var(--color-muted); font-size: 0.85rem; max-width: 260px; text-align: right; line-height: 1.6; }
+    .svc-list { display: flex; flex-direction: column; }
+    .svc-item {
+      display: grid; grid-template-columns: 3rem 1fr auto;
+      align-items: center; gap: 2rem;
+      padding: 2rem 0; border-bottom: 1px solid var(--color-border);
+      transition: all 0.2s; cursor: default;
+    }
+    .svc-item:hover { padding-left: 1rem; }
+    .svc-item:hover .svc-name { color: var(--color-accent); }
+    .svc-n { font-family: var(--font-heading); font-size: 0.85rem; color: var(--color-muted); font-style: italic; }
+    .svc-name { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 400; }
+    .svc-tag { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); border: 1px solid var(--color-border); padding: 0.3rem 0.8rem; }
+
+    /* SOBRE */
+    .about { display: grid; grid-template-columns: 1fr 1fr; }
+    .about-img {
+      background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80&fit=crop');
+      background-size: cover; background-position: center; min-height: 600px;
+    }
+    .about-text { padding: 6rem 5rem; display: flex; flex-direction: column; justify-content: center; background: var(--color-surface); }
+    .about-label { font-family: var(--font-heading); font-style: italic; font-size: 0.9rem; color: var(--color-accent); margin-bottom: 1.5rem; }
+    .about-text h2 { font-family: var(--font-heading); font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; font-style: italic; line-height: 1.2; margin-bottom: 1.5rem; }
+    .about-text p { color: var(--color-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2.5rem; }
+    .stats-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat-el .n { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 300; color: var(--color-accent); }
+    .stat-el .l { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-top: 0.2rem; }
+
+    /* DEPOIMENTOS */
+    .testimonials { background: var(--color-primary); padding: 6rem 4rem; }
+    .test-label { font-family: var(--font-heading); font-style: italic; font-size: 0.9rem; color: var(--color-accent); margin-bottom: 1rem; }
+    .test-title { font-family: var(--font-heading); font-size: clamp(2rem, 3vw, 3rem); font-weight: 300; font-style: italic; color: #fff; margin-bottom: 4rem; }
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    .test-card { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; }
+    .test-text { font-family: var(--font-heading); font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 1.5rem; }
+    .test-author { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); }
+
+    /* CTA */
+    .cta { padding: 6rem 4rem; text-align: center; background: var(--color-bg); border-top: 1px solid var(--color-border); }
+    .cta h2 { font-family: var(--font-heading); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; font-style: italic; margin-bottom: 1rem; }
+    .cta p { color: var(--color-muted); margin-bottom: 2.5rem; font-size: 0.9rem; }
+    .btn-cta {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 1rem 3rem; background: var(--color-primary); color: #fff;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-cta:hover { background: var(--color-accent); }
+
+    footer { background: var(--color-primary); color: rgba(255,255,255,0.3); text-align: center; padding: 2rem; font-size: 0.75rem; letter-spacing: 0.05em; }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, .about { grid-template-columns: 1fr; }
+      .hero-right { min-height: 50vh; }
+      .hero-left { padding: 6rem 2rem 4rem; }
+      .services-inner { padding: 0 1.5rem; }
+      .services-top { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .services-top p { text-align: left; }
+      .svc-item { grid-template-columns: 2rem 1fr; }
+      .svc-tag { display: none; }
+      .about-text { padding: 3rem 2rem; }
+      .test-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .testimonials, .cta { padding: 4rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
   <script>
-    window.WL_CONFIG = {
-      emailjs_public_key: '',
-      emailjs_service_id: '',
-      emailjs_schedule_template: 'template_agendamento',
-      emailjs_contact_template: 'template_contato',
-      business_name: 'Atelier Blanc',
-      whatsapp: '5511999999999',
-    };
+    window.WL_CONFIG = { emailjs_public_key: '', emailjs_service_id: '', emailjs_schedule_template: 'template_agendamento', emailjs_contact_template: 'template_contato', business_name: 'Atelier Blanc', whatsapp: '5511999999999' };
   </script>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Atelier Blanc</a>
-      <ul class="nav-links">
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#sobre">Atelier</a></li>
-        <li><a href="#depoimentos">Clientes</a></li>
-        <li><a href="#" data-modal-open="schedule" class="nav-cta">Reservar</a></li>
-      </ul>
-    </div>
+  <nav id="nav">
+    <a href="#" class="nav-logo">Atelier Blanc</a>
+    <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#sobre">Atelier</a></li>
+      <li><a href="#depoimentos">Clientes</a></li>
+      <li><a href="#" data-modal-open="schedule" class="nav-reserve">Reservar</a></li>
+    </ul>
   </nav>
 
-  <!-- Hero com foto Unsplash -->
   <section class="hero">
-    <!-- Hero: salão de beleza -->
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80&fit=crop&crop=center')"></div>
-    <div class="container">
-      <div class="hero-content reveal">
-        <span class="hero-eyebrow">Salão de Beleza · São Paulo</span>
-        <h1>Beleza com<br>intenção e cuidado</h1>
-        <p>Um espaço pensado para você se sentir bem. Técnicas modernas, produtos premium e um atendimento que respeita o seu tempo.</p>
-        <div class="hero-actions">
-          <a href="#" data-modal-open="schedule" class="btn btn-primary">Reservar horário</a>
-          <a href="#" data-modal-open="contact" class="btn btn-outline">Falar conosco</a>
-        </div>
-      </div>
+    <div class="hero-left">
+      <div class="hero-season">Salão de Beleza · São Paulo</div>
+      <h1>Beleza que<strong>transforma</strong></h1>
+      <p class="hero-desc">Um espaço pensado para você se sentir bem. Técnicas modernas, produtos premium e um atendimento que respeita o seu tempo.</p>
+      <a href="#" data-modal-open="schedule" class="hero-cta">Reservar horário →</a>
     </div>
+    <div class="hero-right"></div>
   </section>
 
-  <!-- Serviços -->
-  <section id="servicos">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow">Especialidades</span>
-        <h2>Serviços exclusivos</h2>
+  <section id="servicos" class="services">
+    <div class="services-inner">
+      <div class="services-top">
+        <h2>Nossos serviços</h2>
         <p>Cada serviço é executado com produtos selecionados e técnicas atualizadas.</p>
-        <div class="divider"></div>
       </div>
-      <div class="services-grid">
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">✂️</div>
-          <h3>Corte & Finalização</h3>
-          <p>Cortes personalizados para o seu tipo de rosto e estilo de vida, com finalização profissional.</p>
+      <div class="svc-list">
+        <div class="svc-item">
+          <span class="svc-n">01</span>
+          <span class="svc-name">Corte & Finalização</span>
+          <span class="svc-tag">Cabelo</span>
         </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon">🎨</div>
-          <h3>Coloração</h3>
-          <p>Técnicas de balayage, mechas, coloração global e correção de cor com marcas premium.</p>
+        <div class="svc-item">
+          <span class="svc-n">02</span>
+          <span class="svc-name">Coloração & Mechas</span>
+          <span class="svc-tag">Cor</span>
         </div>
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon">💆</div>
-          <h3>Tratamentos Capilares</h3>
-          <p>Hidratação profunda, reconstrução e cronograma capilar personalizado.</p>
+        <div class="svc-item">
+          <span class="svc-n">03</span>
+          <span class="svc-name">Tratamentos Capilares</span>
+          <span class="svc-tag">Cuidado</span>
         </div>
-        <div class="service-card reveal reveal-delay-4">
-          <div class="service-icon">💅</div>
-          <h3>Manicure & Pedicure</h3>
-          <p>Esmaltação em gel, nail art e cuidados completos para mãos e pés.</p>
+        <div class="svc-item">
+          <span class="svc-n">04</span>
+          <span class="svc-name">Manicure & Pedicure</span>
+          <span class="svc-tag">Unhas</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sobre -->
   <section id="sobre" class="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <span class="eyebrow" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:1rem;">O atelier</span>
-          <h2>Um espaço criado para o seu bem-estar</h2>
-          <p style="margin-top:1rem;">O Atelier Blanc nasceu da crença de que beleza é autocuidado. Nosso ambiente foi projetado para ser um refúgio — silencioso, elegante e acolhedor. Cada detalhe foi pensado para que você saia renovada.</p>
-          <div class="about-stats">
-            <div><div class="stat-number">8+</div><div class="stat-label">Anos de mercado</div></div>
-            <div><div class="stat-number">2100</div><div class="stat-label">Clientes fiéis</div></div>
-            <div><div class="stat-number">100%</div><div class="stat-label">Produtos veganos</div></div>
-            <div><div class="stat-number">6</div><div class="stat-label">Especialistas</div></div>
-          </div>
-        </div>
-        <div class="about-visual reveal reveal-delay-2">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80&fit=crop" alt="Interior do salão">
-        </div>
+    <div class="about-img"></div>
+    <div class="about-text">
+      <div class="about-label">O atelier</div>
+      <h2>Um refúgio de beleza e bem-estar</h2>
+      <p>O Atelier Blanc nasceu da crença de que beleza é autocuidado. Nosso ambiente foi projetado para ser silencioso, elegante e acolhedor. Cada detalhe foi pensado para que você saia renovada.</p>
+      <div class="stats-2x2">
+        <div class="stat-el"><div class="n">8+</div><div class="l">Anos de mercado</div></div>
+        <div class="stat-el"><div class="n">2.1k</div><div class="l">Clientes fiéis</div></div>
+        <div class="stat-el"><div class="n">100%</div><div class="l">Produtos veganos</div></div>
+        <div class="stat-el"><div class="n">6</div><div class="l">Especialistas</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Depoimentos -->
   <section id="depoimentos" class="testimonials">
-    <div class="testimonials-bg" style="background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&fit=crop')"></div>
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="eyebrow">Clientes</span>
-        <h2>Experiências reais</h2>
-        <div class="divider"></div>
+    <div class="test-label">Clientes</div>
+    <div class="test-title">Experiências reais</div>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="test-text">"Finalmente encontrei um salão que entende o meu cabelo. A Camila ouve, sugere e entrega exatamente o que você quer."</p>
+        <div class="test-author">Beatriz S. — Cliente desde 2019</div>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <p class="testimonial-text">"Finalmente encontrei um salão que entende o meu cabelo. A Camila é incrível — ouve, sugere e entrega exatamente o que você quer."</p>
-          <div class="testimonial-author">Beatriz S. — Cliente desde 2019</div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-2">
-          <p class="testimonial-text">"O ambiente é lindo, o atendimento é impecável e o resultado do balayage superou minhas expectativas. Não troco por nada."</p>
-          <div class="testimonial-author">Juliana R. — Cliente desde 2021</div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-3">
-          <p class="testimonial-text">"Pontualidade, qualidade e um café delicioso enquanto espera. Parece que estou num salão europeu aqui em SP."</p>
-          <div class="testimonial-author">Mariana T. — Cliente desde 2022</div>
-        </div>
+      <div class="test-card">
+        <p class="test-text">"O ambiente é lindo, o atendimento é impecável e o resultado do balayage superou minhas expectativas."</p>
+        <div class="test-author">Juliana R. — Cliente desde 2021</div>
+      </div>
+      <div class="test-card">
+        <p class="test-text">"Pontualidade, qualidade e um café delicioso enquanto espera. Parece que estou num salão europeu aqui em SP."</p>
+        <div class="test-author">Mariana T. — Cliente desde 2022</div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="contato" class="cta-section">
-    <div class="container reveal">
-      <h2>Reserve seu horário</h2>
-      <p>Agenda limitada. Garanta o seu horário com antecedência.</p>
-      <a href="#" data-modal-open="schedule" class="btn btn-primary">Reservar agora</a>
-    </div>
+  <section id="contato" class="cta">
+    <h2>Reserve seu horário</h2>
+    <p>Agenda limitada. Garanta o seu horário com antecedência.</p>
+    <a href="#" data-modal-open="schedule" class="btn-cta">Reservar agora</a>
   </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 Atelier Blanc · Rua Augusta, 890 · <a href="tel:+5511999999999">(11) 99999-9999</a></p>
-    </div>
-  </footer>
+  <footer><p>© 2026 Atelier Blanc · Rua Augusta, 890 · <a href="tel:+5511999999999">(11) 99999-9999</a></p></footer>
 
   <button class="fab" data-modal-open="schedule">📅 Reservar</button>
 
-  <!-- Modal -->
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal">
       <button id="modal-close" class="modal-close">✕</button>
-      <h3>Atelier Blanc</h3>
-      <p class="modal-subtitle">Preencha os dados abaixo e entraremos em contato para confirmar.</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;font-style:italic;">Atelier Blanc</h3>
+      <p class="modal-subtitle">Preencha os dados e confirmamos em breve.</p>
       <div class="modal-tabs">
         <button class="tab-btn active" data-tab="schedule">Agendamento</button>
         <button class="tab-btn" data-tab="contact">Contato</button>
@@ -173,25 +262,10 @@
             <div class="form-group"><label for="s-name">Nome</label><input id="s-name" name="name" type="text" placeholder="Seu nome" required></div>
             <div class="form-group"><label for="s-phone">Telefone</label><input id="s-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required></div>
           </div>
-          <div class="form-group">
-            <label for="s-service">Serviço</label>
-            <select id="s-service" name="service" required>
-              <option value="">Selecione o serviço</option>
-              <option>Corte & Finalização</option><option>Coloração</option>
-              <option>Tratamento Capilar</option><option>Manicure & Pedicure</option><option>Outro</option>
-            </select>
-          </div>
+          <div class="form-group"><label for="s-service">Serviço</label><select id="s-service" name="service" required><option value="">Selecione</option><option>Corte & Finalização</option><option>Coloração</option><option>Tratamento Capilar</option><option>Manicure & Pedicure</option><option>Outro</option></select></div>
           <div class="form-row">
-            <div class="form-group"><label for="s-date">Data preferida</label><input id="s-date" name="date" type="date" required></div>
-            <div class="form-group">
-              <label for="s-time">Horário</label>
-              <select id="s-time" name="time" required>
-                <option value="">Selecione</option>
-                <option>09:00</option><option>10:00</option><option>11:00</option>
-                <option>13:00</option><option>14:00</option><option>15:00</option>
-                <option>16:00</option><option>17:00</option><option>18:00</option>
-              </select>
-            </div>
+            <div class="form-group"><label for="s-date">Data</label><input id="s-date" name="date" type="date" required></div>
+            <div class="form-group"><label for="s-time">Horário</label><select id="s-time" name="time" required><option value="">Selecione</option><option>09:00</option><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option></select></div>
           </div>
           <button type="submit" class="btn-submit">Confirmar reserva</button>
           <div id="feedback-schedule" class="form-feedback"></div>
@@ -213,7 +287,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../shared/components.js"></script>
-  <script src="../shared/animations.js"></script>
   <script src="../shared/themes.js"></script>
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+  </script>
 </body>
 </html>
