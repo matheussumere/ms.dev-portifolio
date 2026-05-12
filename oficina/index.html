@@ -6,6 +6,7 @@
   <title>Müller Auto — Oficina Mecânica</title>
   <link rel="stylesheet" href="../shared/base.css">
   <link rel="stylesheet" href="../shared/components.css">
+  <link rel="stylesheet" href="../shared/animations.css">
   <style>
     :root {
       --color-primary: #1c1c1c;
@@ -16,7 +17,6 @@
 </head>
 <body>
 
-  <!-- Config EmailJS -->
   <script>
     window.WL_CONFIG = {
       emailjs_public_key: 'SUA_PUBLIC_KEY',
@@ -40,10 +40,11 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero com foto Unsplash -->
   <section class="hero">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1600&q=80&auto=format&fit=crop')"></div>
     <div class="container">
-      <div class="hero-content">
+      <div class="hero-content reveal">
         <span class="hero-eyebrow">Oficina Mecânica · Desde 1998</span>
         <h1>Precisão que<br>você pode confiar</h1>
         <p>Diagnóstico computadorizado, mão de obra especializada e transparência total em cada serviço. Seu veículo merece o melhor cuidado.</p>
@@ -58,29 +59,29 @@
   <!-- Serviços -->
   <section id="servicos">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="eyebrow">O que fazemos</span>
         <h2>Serviços especializados</h2>
         <p>Trabalhamos com todas as marcas e modelos, do popular ao importado.</p>
         <div class="divider"></div>
       </div>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-1">
           <div class="service-icon">⚙️</div>
           <h3>Revisão Completa</h3>
           <p>Checagem de 50 itens com relatório detalhado e orçamento sem surpresas.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-2">
           <div class="service-icon">🔧</div>
           <h3>Motor & Câmbio</h3>
           <p>Diagnóstico eletrônico avançado e reparos com peças originais ou de primeira linha.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-3">
           <div class="service-icon">🛞</div>
           <h3>Suspensão & Freios</h3>
           <p>Alinhamento, balanceamento e revisão completa do sistema de frenagem.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-4">
           <div class="service-icon">❄️</div>
           <h3>Ar-Condicionado</h3>
           <p>Recarga, higienização e reparo do sistema de climatização.</p>
@@ -93,40 +94,43 @@
   <section id="sobre" class="about">
     <div class="container">
       <div class="about-grid">
-        <div>
+        <div class="reveal">
           <span class="eyebrow" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:1rem;">Nossa história</span>
           <h2>Mais de 25 anos cuidando do seu veículo</h2>
           <p style="margin-top:1rem;">Fundada em 1998, a Müller Auto nasceu da paixão por mecânica e do compromisso com a honestidade. Cada serviço é executado com rigor técnico e comunicação clara — sem surpresas na hora de pagar.</p>
           <div class="about-stats">
             <div><div class="stat-number">25+</div><div class="stat-label">Anos de experiência</div></div>
-            <div><div class="stat-number">4.8k</div><div class="stat-label">Clientes atendidos</div></div>
+            <div><div class="stat-number">4800</div><div class="stat-label">Clientes atendidos</div></div>
             <div><div class="stat-number">98%</div><div class="stat-label">Satisfação</div></div>
             <div><div class="stat-number">12</div><div class="stat-label">Técnicos certificados</div></div>
           </div>
         </div>
-        <div class="about-visual">Foto da oficina</div>
+        <div class="about-visual reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1632823471565-1ecdf5c6da12?w=800&q=80&auto=format&fit=crop" alt="Mecânico trabalhando">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Depoimentos -->
   <section id="depoimentos" class="testimonials">
+    <div class="testimonials-bg" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80&auto=format&fit=crop')"></div>
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="eyebrow">Clientes</span>
         <h2>O que dizem sobre nós</h2>
         <div class="divider"></div>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-1">
           <p class="testimonial-text">"Levei meu carro com um problema que outras oficinas não conseguiram resolver. Em 2 horas identificaram e resolveram. Transparência total."</p>
           <div class="testimonial-author">Ricardo M. — Honda Civic</div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-2">
           <p class="testimonial-text">"Orçamento honesto, prazo cumprido e carro lavado na entrega. Não levo meu carro em outro lugar há 8 anos."</p>
           <div class="testimonial-author">Fernanda L. — Toyota Corolla</div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-3">
           <p class="testimonial-text">"Profissionalismo de outro nível. Recebi fotos de cada etapa do serviço pelo WhatsApp. Confiança total."</p>
           <div class="testimonial-author">Carlos A. — VW Tiguan</div>
         </div>
@@ -136,7 +140,7 @@
 
   <!-- CTA -->
   <section id="contato" class="cta-section">
-    <div class="container">
+    <div class="container reveal">
       <h2>Agende sua revisão hoje</h2>
       <p>Atendemos de segunda a sábado, das 8h às 18h. Sem fila, sem espera.</p>
       <a href="#" data-modal-open="schedule" class="btn btn-primary">Agendar agora</a>
@@ -149,7 +153,6 @@
     </div>
   </footer>
 
-  <!-- Botão flutuante -->
   <button class="fab" data-modal-open="schedule">📅 Agendar</button>
 
   <!-- Modal -->
@@ -158,41 +161,26 @@
       <button id="modal-close" class="modal-close">✕</button>
       <h3>Müller Auto</h3>
       <p class="modal-subtitle">Preencha os dados abaixo e entraremos em contato para confirmar.</p>
-
       <div class="modal-tabs">
         <button class="tab-btn active" data-tab="schedule">Agendamento</button>
         <button class="tab-btn" data-tab="contact">Contato</button>
       </div>
-
-      <!-- Tab: Agendamento -->
       <div id="tab-schedule" class="tab-panel active">
         <form id="form-schedule">
           <div class="form-row">
-            <div class="form-group">
-              <label for="s-name">Nome</label>
-              <input id="s-name" name="name" type="text" placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-              <label for="s-phone">Telefone</label>
-              <input id="s-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required>
-            </div>
+            <div class="form-group"><label for="s-name">Nome</label><input id="s-name" name="name" type="text" placeholder="Seu nome" required></div>
+            <div class="form-group"><label for="s-phone">Telefone</label><input id="s-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required></div>
           </div>
           <div class="form-group">
             <label for="s-service">Serviço</label>
             <select id="s-service" name="service" required>
               <option value="">Selecione o serviço</option>
-              <option>Revisão Completa</option>
-              <option>Motor & Câmbio</option>
-              <option>Suspensão & Freios</option>
-              <option>Ar-Condicionado</option>
-              <option>Outro</option>
+              <option>Revisão Completa</option><option>Motor & Câmbio</option>
+              <option>Suspensão & Freios</option><option>Ar-Condicionado</option><option>Outro</option>
             </select>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <label for="s-date">Data preferida</label>
-              <input id="s-date" name="date" type="date" required>
-            </div>
+            <div class="form-group"><label for="s-date">Data preferida</label><input id="s-date" name="date" type="date" required></div>
             <div class="form-group">
               <label for="s-time">Horário</label>
               <select id="s-time" name="time" required>
@@ -207,24 +195,13 @@
           <div id="feedback-schedule" class="form-feedback"></div>
         </form>
       </div>
-
-      <!-- Tab: Contato -->
       <div id="tab-contact" class="tab-panel">
         <form id="form-contact">
           <div class="form-row">
-            <div class="form-group">
-              <label for="c-name">Nome</label>
-              <input id="c-name" name="name" type="text" placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-              <label for="c-email">E-mail</label>
-              <input id="c-email" name="email" type="email" placeholder="seu@email.com" required>
-            </div>
+            <div class="form-group"><label for="c-name">Nome</label><input id="c-name" name="name" type="text" placeholder="Seu nome" required></div>
+            <div class="form-group"><label for="c-email">E-mail</label><input id="c-email" name="email" type="email" placeholder="seu@email.com" required></div>
           </div>
-          <div class="form-group">
-            <label for="c-message">Mensagem</label>
-            <textarea id="c-message" name="message" placeholder="Como podemos ajudar?" required></textarea>
-          </div>
+          <div class="form-group"><label for="c-message">Mensagem</label><textarea id="c-message" name="message" placeholder="Como podemos ajudar?" required></textarea></div>
           <button type="submit" class="btn-submit">Enviar mensagem</button>
           <div id="feedback-contact" class="form-feedback"></div>
         </form>
@@ -234,5 +211,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../shared/components.js"></script>
+  <script src="../shared/animations.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <title>Atelier Blanc — Salão de Beleza</title>
   <link rel="stylesheet" href="../shared/base.css">
   <link rel="stylesheet" href="../shared/components.css">
+  <link rel="stylesheet" href="../shared/animations.css">
   <style>
     :root {
       --color-primary: #2c2c2c;
@@ -39,9 +40,11 @@
     </div>
   </nav>
 
+  <!-- Hero com foto Unsplash -->
   <section class="hero">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80&auto=format&fit=crop')"></div>
     <div class="container">
-      <div class="hero-content">
+      <div class="hero-content reveal">
         <span class="hero-eyebrow">Salão de Beleza · São Paulo</span>
         <h1>Beleza com<br>intenção e cuidado</h1>
         <p>Um espaço pensado para você se sentir bem. Técnicas modernas, produtos premium e um atendimento que respeita o seu tempo.</p>
@@ -53,31 +56,32 @@
     </div>
   </section>
 
+  <!-- Serviços -->
   <section id="servicos">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="eyebrow">Especialidades</span>
         <h2>Serviços exclusivos</h2>
         <p>Cada serviço é executado com produtos selecionados e técnicas atualizadas.</p>
         <div class="divider"></div>
       </div>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-1">
           <div class="service-icon">✂️</div>
           <h3>Corte & Finalização</h3>
           <p>Cortes personalizados para o seu tipo de rosto e estilo de vida, com finalização profissional.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-2">
           <div class="service-icon">🎨</div>
           <h3>Coloração</h3>
           <p>Técnicas de balayage, mechas, coloração global e correção de cor com marcas premium.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-3">
           <div class="service-icon">💆</div>
           <h3>Tratamentos Capilares</h3>
           <p>Hidratação profunda, reconstrução e cronograma capilar personalizado.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal reveal-delay-4">
           <div class="service-icon">💅</div>
           <h3>Manicure & Pedicure</h3>
           <p>Esmaltação em gel, nail art e cuidados completos para mãos e pés.</p>
@@ -86,42 +90,47 @@
     </div>
   </section>
 
+  <!-- Sobre -->
   <section id="sobre" class="about">
     <div class="container">
       <div class="about-grid">
-        <div>
+        <div class="reveal">
           <span class="eyebrow" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:1rem;">O atelier</span>
           <h2>Um espaço criado para o seu bem-estar</h2>
           <p style="margin-top:1rem;">O Atelier Blanc nasceu da crença de que beleza é autocuidado. Nosso ambiente foi projetado para ser um refúgio — silencioso, elegante e acolhedor. Cada detalhe foi pensado para que você saia renovada.</p>
           <div class="about-stats">
             <div><div class="stat-number">8+</div><div class="stat-label">Anos de mercado</div></div>
-            <div><div class="stat-number">2.1k</div><div class="stat-label">Clientes fiéis</div></div>
+            <div><div class="stat-number">2100</div><div class="stat-label">Clientes fiéis</div></div>
             <div><div class="stat-number">100%</div><div class="stat-label">Produtos veganos</div></div>
             <div><div class="stat-number">6</div><div class="stat-label">Especialistas</div></div>
           </div>
         </div>
-        <div class="about-visual">Foto do salão</div>
+        <div class="about-visual reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80&auto=format&fit=crop" alt="Interior do salão">
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Depoimentos -->
   <section id="depoimentos" class="testimonials">
+    <div class="testimonials-bg" style="background-image:url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80&auto=format&fit=crop')"></div>
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="eyebrow">Clientes</span>
         <h2>Experiências reais</h2>
         <div class="divider"></div>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-1">
           <p class="testimonial-text">"Finalmente encontrei um salão que entende o meu cabelo. A Camila é incrível — ouve, sugere e entrega exatamente o que você quer."</p>
           <div class="testimonial-author">Beatriz S. — Cliente desde 2019</div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-2">
           <p class="testimonial-text">"O ambiente é lindo, o atendimento é impecável e o resultado do balayage superou minhas expectativas. Não troco por nada."</p>
           <div class="testimonial-author">Juliana R. — Cliente desde 2021</div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card reveal reveal-delay-3">
           <p class="testimonial-text">"Pontualidade, qualidade e um café delicioso enquanto espera. Parece que estou num salão europeu aqui em SP."</p>
           <div class="testimonial-author">Mariana T. — Cliente desde 2022</div>
         </div>
@@ -129,8 +138,9 @@
     </div>
   </section>
 
+  <!-- CTA -->
   <section id="contato" class="cta-section">
-    <div class="container">
+    <div class="container reveal">
       <h2>Reserve seu horário</h2>
       <p>Agenda limitada. Garanta o seu horário com antecedência.</p>
       <a href="#" data-modal-open="schedule" class="btn btn-primary">Reservar agora</a>
@@ -145,45 +155,32 @@
 
   <button class="fab" data-modal-open="schedule">📅 Reservar</button>
 
+  <!-- Modal -->
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal">
       <button id="modal-close" class="modal-close">✕</button>
       <h3>Atelier Blanc</h3>
       <p class="modal-subtitle">Preencha os dados abaixo e entraremos em contato para confirmar.</p>
-
       <div class="modal-tabs">
         <button class="tab-btn active" data-tab="schedule">Agendamento</button>
         <button class="tab-btn" data-tab="contact">Contato</button>
       </div>
-
       <div id="tab-schedule" class="tab-panel active">
         <form id="form-schedule">
           <div class="form-row">
-            <div class="form-group">
-              <label for="s-name">Nome</label>
-              <input id="s-name" name="name" type="text" placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-              <label for="s-phone">Telefone</label>
-              <input id="s-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required>
-            </div>
+            <div class="form-group"><label for="s-name">Nome</label><input id="s-name" name="name" type="text" placeholder="Seu nome" required></div>
+            <div class="form-group"><label for="s-phone">Telefone</label><input id="s-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required></div>
           </div>
           <div class="form-group">
             <label for="s-service">Serviço</label>
             <select id="s-service" name="service" required>
               <option value="">Selecione o serviço</option>
-              <option>Corte & Finalização</option>
-              <option>Coloração</option>
-              <option>Tratamento Capilar</option>
-              <option>Manicure & Pedicure</option>
-              <option>Outro</option>
+              <option>Corte & Finalização</option><option>Coloração</option>
+              <option>Tratamento Capilar</option><option>Manicure & Pedicure</option><option>Outro</option>
             </select>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <label for="s-date">Data preferida</label>
-              <input id="s-date" name="date" type="date" required>
-            </div>
+            <div class="form-group"><label for="s-date">Data preferida</label><input id="s-date" name="date" type="date" required></div>
             <div class="form-group">
               <label for="s-time">Horário</label>
               <select id="s-time" name="time" required>
@@ -198,23 +195,13 @@
           <div id="feedback-schedule" class="form-feedback"></div>
         </form>
       </div>
-
       <div id="tab-contact" class="tab-panel">
         <form id="form-contact">
           <div class="form-row">
-            <div class="form-group">
-              <label for="c-name">Nome</label>
-              <input id="c-name" name="name" type="text" placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-              <label for="c-email">E-mail</label>
-              <input id="c-email" name="email" type="email" placeholder="seu@email.com" required>
-            </div>
+            <div class="form-group"><label for="c-name">Nome</label><input id="c-name" name="name" type="text" placeholder="Seu nome" required></div>
+            <div class="form-group"><label for="c-email">E-mail</label><input id="c-email" name="email" type="email" placeholder="seu@email.com" required></div>
           </div>
-          <div class="form-group">
-            <label for="c-message">Mensagem</label>
-            <textarea id="c-message" name="message" placeholder="Como podemos ajudar?" required></textarea>
-          </div>
+          <div class="form-group"><label for="c-message">Mensagem</label><textarea id="c-message" name="message" placeholder="Como podemos ajudar?" required></textarea></div>
           <button type="submit" class="btn-submit">Enviar mensagem</button>
           <div id="feedback-contact" class="form-feedback"></div>
         </form>
@@ -224,5 +211,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../shared/components.js"></script>
+  <script src="../shared/animations.js"></script>
 </body>
 </html>
