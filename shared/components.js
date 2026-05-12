@@ -1,17 +1,5 @@
-// =============================================
-// WHITE LABEL — Agendamento + Contato (EmailJS)
-// Config: defina WL_CONFIG antes de carregar este script
-// =============================================
-
-// Exemplo de config por página:
-// window.WL_CONFIG = {
-//   emailjs_public_key: 'SUA_PUBLIC_KEY',
-//   emailjs_service_id: 'service_xxx',
-//   emailjs_schedule_template: 'template_agendamento',
-//   emailjs_contact_template: 'template_contato',
-//   business_name: 'Nome do Negócio',
-//   whatsapp: '5511999999999',
-// }
+// Agendamento + Contato (EmailJS)
+// Requer window.WL_CONFIG definido antes do carregamento
 
 document.addEventListener('DOMContentLoaded', () => {
   const cfg = window.WL_CONFIG || {};
