@@ -97,11 +97,11 @@
     .story-modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 1.4rem; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
     /* ── REELS ── */
-    .reels-track { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: thin; scrollbar-color: var(--gold-lt) transparent; }
+    .reels-track { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: thin; scrollbar-color: var(--gold-lt) transparent; scroll-snap-type: x mandatory; }
     .reels-track::-webkit-scrollbar { height: 4px; }
-    .reels-track::-webkit-scrollbar-thumb { background: var(--gold-lt); }
-    .reel-item { flex-shrink: 0; width: 280px; }
-    .reel-item iframe { width: 100%; border: none; border-radius: 0; display: block; }
+    .reels-track::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 2px; }
+    .reel-item { flex-shrink: 0; width: 320px; scroll-snap-align: start; border: 1px solid var(--border); background: var(--bg); }
+    .reel-item iframe { width: 320px; border: none; display: block; }
 
     /* ── SERVIÇOS ── */
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
@@ -221,7 +221,10 @@
     </div>
     <div class="hero-right">
       <!-- Substitua por: <img class="hero-img" src="img/hero.jpg" alt="Give Beauty"> -->
-      <div class="hero-img-placeholder">foto principal</div>
+      <div style="width:100%;height:100%;min-height:500px;background:linear-gradient(160deg,#f5f0e8 0%,#f2d7d9 60%,#e8d5a3 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=85&fit=crop" alt="Give Beauty" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.85;">
+        <div style="position:relative;z-index:1;text-align:center;color:rgba(255,255,255,0.9);font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.15em;text-transform:uppercase;">Give Beauty</div>
+      </div>
     </div>
   </section>
 
@@ -234,11 +237,11 @@
 
   <!-- REELS -->
   <section id="reels" class="section-wrap">
-    <div class="section-label">Reels</div>
-    <h2 class="section-title">No <em>Instagram</em></h2>
+    <div class="section-label">Instagram</div>
+    <h2 class="section-title">Nossos <em>Trabalhos</em></h2>
     <div class="reels-track" id="reels-track"></div>
-    <p style="font-size:0.75rem;color:var(--muted);margin-top:1rem;letter-spacing:0.05em;">
-      Siga <a href="https://instagram.com/" target="_blank" style="color:var(--gold);text-decoration:none;">@give.beauty</a> para mais conteúdo
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.2rem;letter-spacing:0.05em;">
+      Siga <a href="https://www.instagram.com/givebeauty.br/" target="_blank" style="color:var(--gold);text-decoration:none;">@givebeauty.br</a> para mais conteúdo
     </p>
   </section>
 
@@ -268,11 +271,11 @@
         <p>Preencha o formulário e entro em contato para confirmar o horário. Atendimento em Limeira/SP.</p>
         <div class="contact-line">
           <span class="contact-icon">WA</span>
-          <a href="https://wa.me/5519900000000" target="_blank">(19) 9 0000-0000</a>
+          <a href="https://wa.me/5519974289142" target="_blank">(19) 9 7428-9142</a>
         </div>
         <div class="contact-line">
           <span class="contact-icon">IG</span>
-          <a href="https://instagram.com/" target="_blank">@give.beauty</a>
+          <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a>
         </div>
       </div>
       <form id="form-agendar">
@@ -298,11 +301,29 @@
     </div>
   </section>
 
+  <!-- INSTAGRAM PROFILE EMBED -->
+  <section class="section-wrap bg-beige centered">
+    <div class="section-label">Siga no Instagram</div>
+    <h2 class="section-title" style="margin-bottom:2rem;">@<em>givebeauty.br</em></h2>
+    <div style="display:flex;justify-content:center;">
+      <iframe src="https://www.instagram.com/givebeauty.br/embed" width="400" height="480"
+        frameborder="0" scrolling="no" allowtransparency="true" style="border:1px solid var(--border);max-width:100%;"></iframe>
+    </div>
+    <a href="https://www.instagram.com/givebeauty.br/" target="_blank" class="btn-gold" style="display:inline-block;margin-top:1.5rem;">Ver perfil completo →</a>
+  </section>
+
   <footer>
     <span class="footer-logo">Give <em>Beauty</em></span>
     <span>Giovanna Gonçalves · Limeira/SP</span>
-    <span><a href="https://wa.me/5519900000000">(19) 9 0000-0000</a> · <a href="https://instagram.com/">@give.beauty</a></span>
+    <span><a href="https://wa.me/5519974289142">(19) 9 7428-9142</a> · <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a></span>
   </footer>
+
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <a href="https://wa.me/5519974289142?text=Ol%C3%A1%20Giovanna!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
+    target="_blank"
+    style="position:fixed;bottom:2rem;right:2rem;z-index:200;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);text-decoration:none;font-size:1.6rem;transition:transform 0.2s;"
+    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+    aria-label="Agendar pelo WhatsApp">💬</a>
 
   <!-- STORY MODAL -->
   <div class="story-modal" id="story-modal" onclick="closeStoryModal(event)">
@@ -364,28 +385,44 @@
     // CONFIGURAÇÃO — edite aqui
     // ════════════════════════════════════════════
     const CONFIG = {
-      whatsapp: '5519900000000', // número da Giovanna
-      instagram: 'give.beauty',
+      whatsapp: '5519974289142', // número da Giovanna
+      instagram: 'givebeauty.br',
       admin_password: 'givebeauty2026' // troque para uma senha segura
     };
 
     // ── Stories (bolinhas) ──
-    // img: caminho da imagem (use 'img/nome.jpg') ou '' para placeholder
+    // Substitua img por 'img/nome.jpg' quando tiver as fotos reais
     const STORIES = [
-      { label: 'Gel Natural', img: '', emoji: '🌸', title: 'Unhas em Gel Natural', text: 'Resultado impecável com aspecto natural. Duração de até 4 semanas sem lascar.' },
-      { label: 'Alongamento', img: '', emoji: '✨', title: 'Alongamento em Gel', text: 'Comprimento e formato personalizados. Ideal para quem quer unhas longas e resistentes.' },
-      { label: 'Nail Art', img: '', emoji: '🌹', title: 'Nail Art Exclusiva', text: 'Designs únicos criados especialmente para você. Cada detalhe feito à mão.' },
-      { label: 'Manutenção', img: '', emoji: '💅', title: 'Manutenção', text: 'Mantenha suas unhas sempre perfeitas com a manutenção quinzenal ou mensal.' },
-      { label: 'Antes & Depois', img: '', emoji: '🤍', title: 'Transformação', text: 'Veja a diferença que um bom trabalho faz. Resultados reais de clientes reais.' },
+      { label: 'Gel Natural', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop', emoji: '🌸', title: 'Unhas em Gel Natural', text: 'Resultado impecável com aspecto natural. Acabamento brilhoso e duração de até 4 semanas sem lascar.' },
+      { label: 'Alongamento', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=right', emoji: '✨', title: 'Alongamento em Gel', text: 'Comprimento e formato personalizados. Ideal para quem quer unhas longas, resistentes e com visual impecável.' },
+      { label: 'Nail Art', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=top', emoji: '🌹', title: 'Nail Art Exclusiva', text: 'Designs únicos criados especialmente para você. Do minimalista ao elaborado, cada detalhe feito à mão com muito carinho.' },
+      { label: 'Baby Boomer', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=bottom', emoji: '🤍', title: 'Baby Boomer', text: 'A técnica francesa moderna com degradê suave e sofisticado. Clássico, atemporal e elegante para qualquer ocasião.' },
+      { label: 'Antes & Depois', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=left', emoji: '💅', title: 'Transformação', text: 'Veja a diferença que um bom trabalho faz. Resultados reais de clientes reais — porque beleza de verdade não precisa de filtro.' },
     ];
 
-    // ── Reels ──
-    // Cole o código embed do Instagram: Reel → ··· → Incorporar → copie só o src do iframe
-    // Exemplo: 'https://www.instagram.com/reel/CODIGO/embed/'
+    // ── Posts do Instagram (embed) ──
     const REELS = [
-      // { src: 'https://www.instagram.com/reel/SEU_REEL_1/embed/', height: 480 },
-      // { src: 'https://www.instagram.com/reel/SEU_REEL_2/embed/', height: 480 },
-      // { src: 'https://www.instagram.com/reel/SEU_REEL_3/embed/', height: 480 },
+      { src: 'https://www.instagram.com/p/ClywIzSrTQJ/embed/' },
+      { src: 'https://www.instagram.com/p/CywYah7OS4x/embed/' },
+      { src: 'https://www.instagram.com/p/CyWuBhaOMPT/embed/' },
+      { src: 'https://www.instagram.com/p/CyPBJxfO2ky/embed/' },
+      { src: 'https://www.instagram.com/p/CyHT8JouE6k/embed/' },
+      { src: 'https://www.instagram.com/p/CyEvOKyuPwS/embed/' },
+      { src: 'https://www.instagram.com/p/CxYy1V9uOPt/embed/' },
+      { src: 'https://www.instagram.com/p/CxVfNILORL_/embed/' },
+      { src: 'https://www.instagram.com/p/CxSuyJkOeTE/embed/' },
+      { src: 'https://www.instagram.com/p/CwgND6cOZRL/embed/' },
+      { src: 'https://www.instagram.com/p/CvaokTCgkN9/embed/' },
+      { src: 'https://www.instagram.com/p/CvCcdSqOQQb/embed/' },
+      { src: 'https://www.instagram.com/p/Cu95mfXOtOi/embed/' },
+      { src: 'https://www.instagram.com/p/CuvGSnbuz1H/embed/' },
+      { src: 'https://www.instagram.com/p/CusXueEu_Kx/embed/' },
+      { src: 'https://www.instagram.com/p/Ctug1LVudkp/embed/' },
+      { src: 'https://www.instagram.com/p/Ctrw2VzOV5W/embed/' },
+      { src: 'https://www.instagram.com/p/Cte9R9-AqOQ/embed/' },
+      { src: 'https://www.instagram.com/p/Cp3P-tmOhMO/embed/' },
+      { src: 'https://www.instagram.com/p/CpiiIwaOE45/embed/' },
+      { src: 'https://www.instagram.com/p/CpXqIlmODCH/embed/' },
     ];
 
     // ── Serviços ──
@@ -416,13 +453,15 @@
 
     // Reels
     const reelsTrack = document.getElementById('reels-track');
-    if (REELS.length === 0) {
-      reelsTrack.innerHTML = `<p style="font-size:0.82rem;color:var(--muted);padding:1rem 0;">Cole os links dos Reels no array REELS no topo do script para exibi-los aqui.</p>`;
-    } else {
-      REELS.forEach(r => {
-        reelsTrack.innerHTML += `<div class="reel-item"><iframe src="${r.src}" height="${r.height || 480}" scrolling="no" allowtransparency="true" allowfullscreen="true"></iframe></div>`;
-      });
-    }
+    REELS.forEach(r => {
+      reelsTrack.innerHTML += `
+        <div class="reel-item">
+          <iframe src="${r.src}" height="480" scrolling="no"
+            allowtransparency="true" allowfullscreen="true"
+            frameborder="0">
+          </iframe>
+        </div>`;
+    });
 
     // Serviços
     const servicesGrid = document.getElementById('services-grid');
@@ -444,14 +483,17 @@
       localStorage.setItem('gb_posts', JSON.stringify(posts));
     }
     function renderNews() {
-      const posts = loadPosts();
+      const saved = loadPosts();
+      // posts de exemplo enquanto não há posts reais
+      const defaults = [
+        { title: 'Unhas em gel: quanto tempo dura?', excerpt: 'Tire suas dúvidas sobre durabilidade, manutenção e cuidados.', content: 'As unhas em gel duram em média 3 a 4 semanas com os cuidados certos. Evite contato prolongado com água quente, use luvas ao lavar louça e hidrate as cutículas diariamente. A manutenção regular garante que suas unhas fiquem sempre impecáveis.', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop', date: '10 de outubro de 2023' },
+        { title: 'Baby Boomer: a francesa moderna', excerpt: 'Entenda por que essa técnica conquistou todas as mulheres.', content: 'O Baby Boomer é uma evolução da francesa clássica. O degradê suave entre o branco e o rosa cria um efeito sofisticado e natural que combina com qualquer ocasião — do trabalho à festa. É uma das técnicas mais pedidas no estúdio.', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop&crop=right', date: '5 de setembro de 2023' },
+        { title: 'Como cuidar das unhas em casa', excerpt: 'Dicas simples para prolongar a vida das suas unhas.', content: 'Hidrate as cutículas toda noite com óleo de amêndoas ou vitamina E. Evite usar as unhas como ferramenta. Use luvas ao lavar louça. Aplique base fortalecedora se suas unhas forem naturais. Pequenos cuidados fazem toda a diferença no resultado final.', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop&crop=bottom', date: '20 de agosto de 2023' },
+      ];
+      const posts = saved.length ? saved : defaults;
       const grid = document.getElementById('news-grid');
-      if (!posts.length) {
-        grid.innerHTML = `<p style="grid-column:1/-1;font-size:0.85rem;color:var(--muted);padding:1rem 0;">Nenhum post publicado ainda.</p>`;
-        return;
-      }
       grid.innerHTML = posts.slice().reverse().map((p, i) => `
-        <div class="news-card" onclick="openNews(${posts.length - 1 - i})">
+        <div class="news-card" onclick="openNews(${i}, ${JSON.stringify(saved.length ? true : false)})">
           ${p.img ? `<img class="news-card-img" src="${p.img}" alt="${p.title}">` : `<div class="news-card-img-ph">🌸</div>`}
           <div class="news-card-body">
             <div class="news-card-date">${p.date}</div>
@@ -459,6 +501,8 @@
             <div class="news-card-excerpt">${p.excerpt}</div>
           </div>
         </div>`).join('');
+      // guarda referência para o modal
+      window._currentPosts = posts;
     }
     renderNews();
 
@@ -480,7 +524,7 @@
 
     // ── News modal ──
     function openNews(i) {
-      const posts = loadPosts();
+      const posts = window._currentPosts || loadPosts();
       const p = posts[i];
       document.getElementById('news-modal-img-wrap').innerHTML = p.img
         ? `<img class="news-modal-img" src="${p.img}" alt="${p.title}">`
