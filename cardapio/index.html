@@ -106,36 +106,57 @@
     #btn-whatsapp:hover { opacity: 0.9; }
     #btn-clear { width: 100%; background: none; border: none; color: var(--color-muted); font-size: 0.75rem; cursor: pointer; margin-top: 0.5rem; text-decoration: underline; }
 
-    /* Modal galeria — centralizado, animado */
+    /* Modal galeria */
     .gallery-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999;
-      display: flex; align-items: center; justify-content: center; padding: 1rem;
-      visibility: hidden; opacity: 0; transition: opacity 0.2s ease, visibility 0.2s ease;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      box-sizing: border-box;
     }
-    .gallery-overlay.open { visibility: visible; opacity: 1; }
+    .gallery-overlay.open {
+      display: flex;
+    }
     .gallery-box {
-      background: var(--color-surface); width: 100%; max-width: 560px;
-      max-height: 90vh; display: flex; flex-direction: column; overflow: hidden;
-      transform: translateY(20px) scale(0.97); transition: transform 0.25s cubic-bezier(0.34,1.4,0.64,1);
+      background: var(--color-surface);
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: calc(100vh - 2rem);
+      position: relative;
     }
-    .gallery-overlay.open .gallery-box { transform: translateY(0) scale(1); }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-    .gallery-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+    .gallery-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-shrink: 0;
+    }
     .gallery-header h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 400; }
     .gallery-img-wrap { position: relative; overflow: hidden; flex-shrink: 0; }
-    .gallery-main-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .gallery-main-img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .gallery-img-wrap:hover .gallery-main-img { transform: scale(1.04); }
-    .gallery-thumbs { display: flex; gap: 6px; padding: 0.75rem 1.5rem; overflow-x: auto; background: var(--color-bg); flex-shrink: 0; scrollbar-width: none; }
+    .gallery-thumbs { display: flex; gap: 6px; padding: 0.6rem 1.5rem; overflow-x: auto; background: var(--color-bg); flex-shrink: 0; scrollbar-width: none; }
     .gallery-thumbs::-webkit-scrollbar { display: none; }
-    .gallery-thumb { width: 64px; height: 64px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; transition: all 0.2s; }
+    .gallery-thumb { width: 56px; height: 56px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; transition: all 0.2s; }
     .gallery-thumb:hover { opacity: 0.8; }
     .gallery-thumb.active { opacity: 1; border-color: var(--color-accent); }
-    .gallery-info { padding: 0.75rem 1.5rem; flex-shrink: 0; }
+    .gallery-info { padding: 0.75rem 1.5rem 0; flex-shrink: 0; }
     .gallery-desc { font-size: 0.85rem; color: var(--color-muted); line-height: 1.5; }
     .gallery-price-row { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem 1.25rem; flex-shrink: 0; }
     .gallery-price { font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-accent); }
     .gallery-add { background: var(--color-accent); color: #fff; border: none; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.7rem 1.4rem; cursor: pointer; transition: opacity 0.2s; }
     .gallery-add:hover { opacity: 0.85; }
+
+    @media (max-width: 600px) {
+      .gallery-main-img { height: 200px; }
+      .gallery-box { max-height: calc(100vh - 1rem); }
+    }
 
     .empty-state { text-align: center; padding: 4rem 1rem; color: var(--color-muted); }
     footer { background: var(--color-primary); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.8rem; letter-spacing: 0.05em; }
@@ -147,8 +168,6 @@
       .item-right { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; }
       .item-photo-wrap, .item-photo { width: 64px; height: 64px; }
       .cat-btn { padding: 0.85rem 1rem; font-size: 0.7rem; }
-      .gallery-box { max-height: 95vh; }
-      .gallery-main-img { aspect-ratio: 1/1; }
       #cart-bar { flex-wrap: wrap; }
     }
   </style>
@@ -442,6 +461,7 @@
     function addToCart(btn, e) {
       if (e) e.stopPropagation();
       const item = btn.closest('.menu-item');
+      if (!item) return;
       const name = item.dataset.name;
       const price = parseFloat(item.dataset.price);
       cart[name] ? cart[name].qty++ : (cart[name] = { price, qty: 1 });
@@ -533,14 +553,16 @@
         `<img class="gallery-thumb ${i===0?'active':''}" src="${src}" alt="${item.dataset.name} ${i+1}" onclick="setGalleryPhoto(this,'${src}')">`
       ).join('');
       document.getElementById('gallery-add-btn').onclick = () => {
-        addToCart(item.querySelector('.btn-add'), null);
+        const name = item.dataset.name;
+        const price = parseFloat(item.dataset.price);
+        cart[name] ? cart[name].qty++ : (cart[name] = { price, qty: 1 });
+        updateCartBar();
+        const btn = item.querySelector('.btn-add');
+        if (btn) { btn.textContent = '✓ Adicionado'; setTimeout(() => btn.textContent = '+ Adicionar', 1200); }
         closeGallery();
       };
-      const modal = document.getElementById('gallery-modal');
-      modal.classList.add('open');
       document.body.style.overflow = 'hidden';
-      // garante que o modal está visível na viewport atual
-      modal.scrollTop = 0;
+      document.getElementById('gallery-modal').classList.add('open');
     }
 
     function setGalleryPhoto(thumb, src) {
