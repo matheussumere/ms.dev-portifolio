@@ -111,7 +111,15 @@
     .btn-add { background: var(--color-accent); color: #fff; border: none; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.8rem; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
     .btn-add:hover { opacity: 0.85; }
 
-    /* Carrinho flutuante */
+    /* Toast de confirmação */
+    #toast {
+      position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--color-primary); color: #fff;
+      padding: 0.75rem 1.5rem; font-size: 0.82rem; letter-spacing: 0.05em;
+      opacity: 0; transition: opacity 0.25s, transform 0.25s; z-index: 10000;
+      pointer-events: none; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     #cart-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--color-primary); color: #fff; padding: 1rem 1.5rem; display: none; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
     #cart-bar.visible { display: flex; }
     .cart-count { font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-accent); }
@@ -420,6 +428,9 @@
     <p>© 2026 Bistrot Maison · <a href="tel:+5511999999999">(11) 99999-9999</a> · Cardápio sujeito a alterações sem aviso prévio</p>
   </footer>
 
+  <!-- Toast -->
+  <div id="toast"></div>
+
   <!-- Barra do carrinho -->
   <div id="cart-bar">
     <div>
@@ -474,6 +485,15 @@
   <script>
     const WHATSAPP_NUMBER = '5511999999999';
     let cart = {};
+    let toastTimer;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+    }
 
     function addToCart(btn, e) {
       if (e) e.stopPropagation();
@@ -484,6 +504,7 @@
       updateCartBar();
       btn.textContent = '✓ Adicionado';
       setTimeout(() => btn.textContent = '+ Adicionar', 1200);
+      showToast('✓ ' + name + ' adicionado');
     }
 
     function updateCartBar() {
@@ -549,11 +570,11 @@
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // Galeria — clique na foto abre o modal
-    document.querySelectorAll('.item-photo-wrap').forEach(wrap => {
-      wrap.addEventListener('click', function(e) {
-        e.stopPropagation();
-        openGallery(this.closest('.menu-item'));
+    // Clique no card abre a galeria (exceto no botão adicionar)
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn-add') || e.target.closest('.btn-add')) return;
+        openGallery(this);
       });
     });
 
@@ -573,6 +594,7 @@
         const price = parseFloat(item.dataset.price);
         cart[name] ? cart[name].qty++ : (cart[name] = { price, qty: 1 });
         updateCartBar();
+        showToast('✓ ' + name + ' adicionado');
         closeGallery();
       };
       document.body.style.overflow = 'hidden';
