@@ -109,16 +109,15 @@
     .prod-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.72); z-index: 9999;
-      display: none; align-items: center; justify-content: center; padding: 1.5rem;
+      display: none; align-items: center; justify-content: center;
+      padding: 1rem;
     }
     .prod-overlay.open { display: flex; }
     .prod-modal {
       background: var(--surface); width: 100%; max-width: 880px;
-      max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.25);
-      animation: modalIn 0.3s cubic-bezier(0.22,1,0.36,1);
+      max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.25);
     }
-    @keyframes modalIn { from { opacity: 0; transform: translateY(28px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
     .prod-gallery { background: var(--warm); display: flex; flex-direction: column; overflow: hidden; }
     .prod-main-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
     .prod-main-img:hover { transform: scale(1.06); }
@@ -174,7 +173,6 @@
       transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
       box-shadow: -8px 0 40px rgba(0,0,0,0.12);
     }
-    .cart-drawer.open { transform: translateX(0); }
     .cart-drawer.open { transform: translateX(0); }
     .cart-head { padding: 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     .cart-head h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 400; }
@@ -252,8 +250,8 @@
       .banner-img { min-height: 250px; }
       footer { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
       .footer-bottom { padding: 1.5rem; }
-      .prod-modal { grid-template-columns: 1fr; max-height: 95vh; }
-      .prod-gallery { max-height: 50vh; }
+      .prod-modal { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
+      .prod-gallery { max-height: 45vw; min-height: 200px; }
       .cart-drawer { max-width: 100%; }
     }
   </style>
