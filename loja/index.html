@@ -219,7 +219,25 @@
     .btn-checkout:hover { background: var(--primary); }
     .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem; }
 
-    /* Toast */
+    /* Botão flutuante sacola */
+    #fab-cart {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 7999;
+      background: var(--accent); color: #fff;
+      width: 56px; height: 56px; border-radius: 50%;
+      border: none; cursor: pointer; font-size: 1.4rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(45,90,61,0.4);
+      transition: transform 0.2s, background 0.2s;
+    }
+    #fab-cart:hover { transform: scale(1.1); background: var(--primary); }
+    #fab-cart .fab-badge {
+      position: absolute; top: -4px; right: -4px;
+      background: #c0392b; color: #fff; font-size: 0.6rem; font-weight: 700;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #fff;
+    }
+    #fab-cart.hidden-fab { display: none; }
     #toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--primary); color: #fff; padding: 0.75rem 1.5rem; font-size: 0.82rem; opacity: 0; transition: opacity 0.25s, transform 0.25s; z-index: 10000; pointer-events: none; white-space: nowrap; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
@@ -254,7 +272,6 @@
       <li><a href="#newsletter">Novidades</a></li>
     </ul>
     <div class="nav-right">
-      <button class="nav-cart-btn" onclick="openCart()">🛍 Sacola <span class="cart-badge" id="cart-badge">0</span></button>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -390,6 +407,12 @@
   </div>
 
   <div id="toast"></div>
+
+  <!-- Botão flutuante sacola -->
+  <button id="fab-cart" onclick="toggleCart()" aria-label="Abrir sacola">
+    🛍
+    <span class="fab-badge" id="fab-badge">0</span>
+  </button>
 
   <script>
     // ── Configuração ──────────────────────────────────────────
@@ -710,18 +733,26 @@
 
     function updateCartBadge() {
       const total = cart.reduce((s, i) => s + i.qty, 0);
-      document.getElementById('cart-badge').textContent = total;
+      document.getElementById('fab-badge').textContent = total;
+    }
+
+    function toggleCart() {
+      const drawer = document.getElementById('cart-drawer');
+      if (drawer.classList.contains('open')) closeCart();
+      else openCart();
     }
 
     function openCart() {
       renderCart();
       document.getElementById('cart-overlay').classList.add('open');
       document.getElementById('cart-drawer').classList.add('open');
+      document.getElementById('fab-cart').classList.add('hidden-fab');
     }
 
     function closeCart() {
       document.getElementById('cart-overlay').classList.remove('open');
       document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('fab-cart').classList.remove('hidden-fab');
     }
 
     function renderCart() {
