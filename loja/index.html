@@ -108,20 +108,17 @@
     /* MODAL PRODUTO */
     .prod-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0); z-index: 9999;
-      display: flex; align-items: center; justify-content: center; padding: 1.5rem;
-      visibility: hidden;
-      transition: background 0.3s ease, visibility 0.3s ease;
+      background: rgba(0,0,0,0.72); z-index: 9999;
+      display: none; align-items: center; justify-content: center; padding: 1.5rem;
     }
-    .prod-overlay.open { background: rgba(0,0,0,0.72); visibility: visible; }
+    .prod-overlay.open { display: flex; }
     .prod-modal {
       background: var(--surface); width: 100%; max-width: 880px;
       max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
-      opacity: 0; transform: translateY(32px) scale(0.97);
-      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
       box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+      animation: modalIn 0.3s cubic-bezier(0.22,1,0.36,1);
     }
-    .prod-overlay.open .prod-modal { opacity: 1; transform: translateY(0) scale(1); }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(28px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
     .prod-gallery { background: var(--warm); display: flex; flex-direction: column; overflow: hidden; }
     .prod-main-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
     .prod-main-img:hover { transform: scale(1.06); }
