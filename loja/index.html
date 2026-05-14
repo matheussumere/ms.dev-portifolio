@@ -2,11 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Maison Goods — Loja</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --bg: #f9f7f4; --surface: #ffffff; --primary: #1c1814;
@@ -15,7 +14,8 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Mulish', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; font-weight: 300; }
+    body { font-family: 'Mulish', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; font-weight: 300; overflow-x: hidden; }
+    body.modal-open, body.cart-open { overflow: hidden; }
 
     /* NAV */
     nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(249,247,244,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; }
@@ -24,8 +24,8 @@
     .nav-center a { font-size: 0.78rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.05em; }
     .nav-center a:hover { color: var(--primary); }
     .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-cart-btn { font-size: 0.78rem; font-weight: 600; color: var(--primary); background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; font-family: 'Mulish', sans-serif; }
-    .cart-badge { background: var(--accent); color: #fff; font-size: 0.6rem; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .back-btn { font-size: 0.78rem; font-weight: 500; color: var(--primary); text-decoration: none; border: 1px solid var(--border); padding: 0.4rem 0.9rem; border-radius: 30px; transition: all 0.2s; }
+    .back-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     /* HERO */
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 65px; }
@@ -53,7 +53,7 @@
     .cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,24,20,0.7) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 1.5rem; }
     .cat-name { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 300; color: #fff; }
 
-    /* FILTRO DE PRODUTOS */
+    /* FILTRO PRODUTOS */
     .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
     .filter-btn { padding: 0.5rem 1.2rem; background: none; border: 1px solid var(--border); font-family: 'Mulish', sans-serif; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); cursor: pointer; transition: all 0.2s; }
     .filter-btn.active, .filter-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -108,15 +108,18 @@
     /* MODAL PRODUTO */
     .prod-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.72); z-index: 9999;
+      background: rgba(0,0,0,0.75); z-index: 9999;
       display: none; align-items: center; justify-content: center;
       padding: 1rem;
+      backdrop-filter: blur(3px);
     }
     .prod-overlay.open { display: flex; }
     .prod-modal {
       background: var(--surface); width: 100%; max-width: 880px;
       max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr;
       overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+      position: relative;
+      border-radius: 4px;
     }
     .prod-gallery { background: var(--warm); display: flex; flex-direction: column; overflow: hidden; }
     .prod-main-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
@@ -126,15 +129,15 @@
     .prod-thumb { width: 56px; height: 56px; object-fit: cover; cursor: pointer; opacity: 0.45; border: 2px solid transparent; flex-shrink: 0; transition: all 0.2s; }
     .prod-thumb:hover { opacity: 0.75; }
     .prod-thumb.active { opacity: 1; border-color: var(--accent); }
-    .prod-info { padding: 2rem 2rem 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+    .prod-info { padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; position: relative; }
     .prod-close {
-      position: absolute; top: 1rem; right: 1rem;
-      background: rgba(255,255,255,0.9); border: none; color: var(--primary);
-      font-size: 1.2rem; width: 36px; height: 36px; border-radius: 50%;
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      background: var(--bg); border: 1px solid var(--border); color: var(--primary);
+      font-size: 1rem; width: 32px; height: 32px; border-radius: 50%;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      z-index: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: background 0.2s;
+      transition: background 0.2s; flex-shrink: 0; z-index: 2;
     }
-    .prod-close:hover { background: #fff; }
+    .prod-close:hover { background: var(--border); }
     .prod-badge-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .prod-badge { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; background: var(--accent); color: #fff; }
     .prod-badge.sale { background: #c0392b; }
@@ -153,7 +156,7 @@
     .variant-btn:hover:not(.active) { border-color: var(--primary); }
     .color-btn { width: 28px; height: 28px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: all 0.2s; outline: none; }
     .color-btn.active { border-color: var(--primary); box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--primary); }
-    .qty-row { display: flex; align-items: center; gap: 0.75rem; }
+    .qty-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
     .qty-ctrl { display: flex; align-items: center; border: 1px solid var(--border); }
     .qty-ctrl button { width: 36px; height: 36px; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--primary); transition: background 0.2s; }
     .qty-ctrl button:hover { background: var(--warm); }
@@ -189,23 +192,14 @@
     .cqty-btn { width: 24px; height: 24px; background: var(--bg); border: 1px solid var(--border); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
     .cart-item-remove { background: none; border: none; color: var(--muted); font-size: 0.75rem; cursor: pointer; text-decoration: underline; margin-left: auto; align-self: flex-start; }
     .cart-footer { padding: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.75rem; }
-
-    /* Cupom */
-    .coupon-row { display: flex; gap: 0.5rem; }
-    .coupon-input { flex: 1; padding: 0.65rem 0.9rem; border: 1px solid var(--border); font-family: 'Mulish', sans-serif; font-size: 0.82rem; outline: none; text-transform: uppercase; }
-    .coupon-input:focus { border-color: var(--accent); }
-    .coupon-btn { background: var(--primary); color: #fff; border: none; padding: 0.65rem 1rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'Mulish', sans-serif; }
+    .coupon-row, .frete-row { display: flex; gap: 0.5rem; }
+    .coupon-input, .frete-input { flex: 1; padding: 0.65rem 0.9rem; border: 1px solid var(--border); font-family: 'Mulish', sans-serif; font-size: 0.82rem; outline: none; }
+    .coupon-input:focus, .frete-input:focus { border-color: var(--accent); }
+    .coupon-btn, .frete-btn { background: var(--primary); color: #fff; border: none; padding: 0.65rem 1rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'Mulish', sans-serif; }
     .coupon-msg { font-size: 0.75rem; }
     .coupon-msg.ok { color: var(--accent); }
     .coupon-msg.err { color: #c0392b; }
-
-    /* Frete */
-    .frete-row { display: flex; gap: 0.5rem; }
-    .frete-input { flex: 1; padding: 0.65rem 0.9rem; border: 1px solid var(--border); font-family: 'Mulish', sans-serif; font-size: 0.82rem; outline: none; }
-    .frete-input:focus { border-color: var(--accent); }
-    .frete-btn { background: var(--primary); color: #fff; border: none; padding: 0.65rem 1rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'Mulish', sans-serif; }
     .frete-msg { font-size: 0.75rem; color: var(--muted); }
-
     .cart-totals { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem; }
     .cart-totals .row { display: flex; justify-content: space-between; }
     .cart-totals .row.total { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 400; color: var(--primary); border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.25rem; }
@@ -214,7 +208,7 @@
     .btn-checkout:hover { background: var(--primary); }
     .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9rem; }
 
-    /* Botão flutuante sacola */
+    /* BOTÃO FLUTUANTE */
     #fab-cart {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 7999;
       background: var(--accent); color: #fff;
@@ -233,7 +227,9 @@
       border: 2px solid #fff;
     }
     #fab-cart.hidden-fab { display: none; }
-    #toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--primary); color: #fff; padding: 0.75rem 1.5rem; font-size: 0.82rem; opacity: 0; transition: opacity 0.25s, transform 0.25s; z-index: 10000; pointer-events: none; white-space: nowrap; }
+
+    /* TOAST */
+    #toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--primary); color: #fff; padding: 0.75rem 1.5rem; font-size: 0.82rem; opacity: 0; transition: opacity 0.25s, transform 0.25s; z-index: 10000; pointer-events: none; white-space: nowrap; border-radius: 30px; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 768px) {
@@ -253,29 +249,26 @@
       .prod-modal { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
       .prod-gallery { max-height: 45vw; min-height: 200px; }
       .cart-drawer { max-width: 100%; }
+      #toast { white-space: normal; width: 90%; text-align: center; bottom: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .cat-grid, .products-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="../" class="back-btn">Portfólio</a>
+    <a href="../" class="back-btn">← Portfólio</a>
     <a href="#" class="nav-logo">Maison Goods</a>
-    <ul class="nav-center" id="nav-links-desktop">
+    <ul class="nav-center">
       <li><a href="#categorias">Categorias</a></li>
       <li><a href="#destaque">Produtos</a></li>
       <li><a href="#newsletter">Novidades</a></li>
     </ul>
-    <div class="nav-right">
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
+    <div class="nav-right"></div>
   </nav>
-  <div class="nav-drawer" id="nav-drawer">
-    <a href="#categorias">Categorias</a>
-    <a href="#destaque">Produtos</a>
-    <a href="#newsletter">Novidades</a>
-    <a href="../" class="drawer-back">← Portfólio</a>
-  </div>
 
   <section class="hero">
     <div class="hero-left"></div>
@@ -294,19 +287,19 @@
     <div class="section-tag">Explore</div>
     <h2 class="section-title">Categorias</h2>
     <div class="cat-grid">
-      <div class="cat-item reveal" onclick="filterProducts('sala')">
+      <div class="cat-item" onclick="filterProducts('sala')">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Casa & Sala</div></div>
       </div>
-      <div class="cat-item reveal reveal-delay-2" onclick="filterProducts('cozinha')">
+      <div class="cat-item" onclick="filterProducts('cozinha')">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Cozinha</div></div>
       </div>
-      <div class="cat-item reveal reveal-delay-3" onclick="filterProducts('quarto')">
+      <div class="cat-item" onclick="filterProducts('quarto')">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Quarto</div></div>
       </div>
-      <div class="cat-item reveal reveal-delay-4" onclick="filterProducts('jardim')">
+      <div class="cat-item" onclick="filterProducts('jardim')">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Jardim</div></div>
       </div>
@@ -339,7 +332,7 @@
   <section id="newsletter" class="newsletter">
     <h2>Fique por dentro das novidades</h2>
     <p>Receba lançamentos, promoções exclusivas e inspirações de decoração.</p>
-    <form class="newsletter-form" onsubmit="return false">
+    <form class="newsletter-form" onsubmit="alert('Obrigado! Em breve você receberá nossas novidades.'); return false;">
       <input class="newsletter-input" type="email" placeholder="Seu melhor e-mail">
       <button type="submit" class="newsletter-btn">Inscrever</button>
     </form>
@@ -367,13 +360,14 @@
 
   <!-- Modal produto -->
   <div class="prod-overlay" id="prod-overlay" onclick="closeProd(event)">
-    <button class="prod-close" onclick="closeProd()">×</button>
     <div class="prod-modal" id="prod-modal">
       <div class="prod-gallery">
         <img class="prod-main-img" id="prod-main-img" src="" alt="">
         <div class="prod-thumbs" id="prod-thumbs"></div>
       </div>
-      <div class="prod-info" id="prod-info"></div>
+      <div class="prod-info" id="prod-info">
+        <button class="prod-close" onclick="closeProd()">×</button>
+      </div>
     </div>
   </div>
 
@@ -411,147 +405,65 @@
 
   <script>
     // ── Configuração ──────────────────────────────────────────
-    const WHATSAPP = '5511999999999'; // número da loja
-
+    const WHATSAPP = '5511999999999';
     const CUPONS = {
       'BEMVINDO10': { tipo: 'pct', valor: 10, desc: '10% de desconto' },
       'FRETE20':    { tipo: 'fixo', valor: 20, desc: 'R$ 20 de desconto' },
       'MAISON15':   { tipo: 'pct', valor: 15, desc: '15% de desconto' },
     };
-
     const FRETE_TABELA = {
-      '01': 18, '02': 18, '03': 18, '04': 18, '05': 18, '06': 18, '07': 18, '08': 18, '09': 18, // SP capital
-      '10': 22, '11': 22, '12': 22, '13': 22, '14': 22, '15': 22, '16': 22, '17': 22, '18': 22, '19': 22, // SP interior
-      '20': 25, '21': 25, '22': 25, '23': 25, '24': 25, '25': 25, '26': 25, '27': 25, '28': 25, '29': 25, // RJ/ES
-      '30': 25, '31': 25, '32': 25, '33': 25, '34': 25, '35': 25, '36': 25, '37': 25, '38': 25, '39': 25, // MG
+      '01': 18, '02': 18, '03': 18, '04': 18, '05': 18, '06': 18, '07': 18, '08': 18, '09': 18,
+      '10': 22, '11': 22, '12': 22, '13': 22, '14': 22, '15': 22, '16': 22, '17': 22, '18': 22, '19': 22,
+      '20': 25, '21': 25, '22': 25, '23': 25, '24': 25, '25': 25, '26': 25, '27': 25, '28': 25, '29': 25,
+      '30': 25, '31': 25, '32': 25, '33': 25, '34': 25, '35': 25, '36': 25, '37': 25, '38': 25, '39': 25,
     };
 
     // ── Catálogo de produtos ──────────────────────────────────
     const PRODUCTS = [
-      {
-        id: 1, cat: 'sala', name: 'Vaso Cerâmica Artesanal', badge: 'Novo', badgeType: '',
-        price: 189, oldPrice: null,
-        rating: 4.8, reviews: 42,
-        desc: 'Vaso produzido artesanalmente por ceramistas brasileiros. Cada peça é única, com variações naturais de cor e textura que fazem parte do processo manual.',
-        features: ['Cerâmica de alta temperatura', 'Produção artesanal', 'Cada peça é única', 'Acompanha certificado de origem'],
-        colors: ['#c8a882', '#8b6914', '#4a4a4a'],
-        colorNames: ['Areia', 'Terracota', 'Carvão'],
-        sizes: null,
-        imgs: [
-          'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 2, cat: 'quarto', name: 'Almofada Linho Natural', badge: '-26%', badgeType: 'sale',
-        price: 89, oldPrice: 120,
-        rating: 4.6, reviews: 87,
-        desc: 'Almofada confeccionada em linho natural 100%, com enchimento de fibra siliconada de alta resiliência. Lavável à máquina.',
-        features: ['Linho 100% natural', 'Enchimento siliconado', 'Lavável à máquina', 'Zíper invisível'],
-        colors: ['#f5f0e8', '#c8a882', '#8b6914', '#4a4a4a'],
-        colorNames: ['Off-white', 'Areia', 'Caramelo', 'Grafite'],
-        sizes: ['40x40', '50x50', '60x60'],
-        imgs: [
-          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 3, cat: 'sala', name: 'Luminária Bambu', badge: '-20%', badgeType: 'sale',
-        price: 256, oldPrice: 320,
-        rating: 4.9, reviews: 31,
-        desc: 'Luminária de mesa em bambu natural tratado. Design orgânico que traz aconchego e leveza ao ambiente. Acompanha lâmpada LED inclusa.',
-        features: ['Bambu natural certificado', 'LED incluso (E27)', 'Cabo de 1,8m com interruptor', 'Bivolt automático'],
-        colors: null,
-        colorNames: null,
-        sizes: ['P — 25cm', 'M — 35cm', 'G — 45cm'],
-        imgs: [
-          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1513506003901-1e6a35f0e0b2?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 4, cat: 'cozinha', name: 'Bandeja Madeira Maciça', badge: '', badgeType: '',
-        price: 145, oldPrice: null,
-        rating: 4.7, reviews: 56,
-        desc: 'Bandeja em madeira maciça de reflorestamento, com acabamento em óleo de linhaça natural. Ideal para servir ou decorar.',
-        features: ['Madeira de reflorestamento', 'Acabamento em óleo natural', 'Alças integradas', 'Fácil de limpar'],
-        colors: null,
-        colorNames: null,
-        sizes: ['P — 30x20cm', 'M — 40x28cm', 'G — 50x35cm'],
-        imgs: [
-          'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 5, cat: 'jardim', name: 'Vaso Concreto Minimalista', badge: 'Novo', badgeType: '',
-        price: 220, oldPrice: null,
-        rating: 4.5, reviews: 19,
-        desc: 'Vaso em concreto polido com design geométrico minimalista. Perfeito para plantas suculentas e cactos.',
-        features: ['Concreto polido', 'Furo de drenagem', 'Prato incluso', 'Uso interno e externo'],
-        colors: ['#c8c8c8', '#4a4a4a', '#8b6914'],
-        colorNames: ['Cinza claro', 'Antracite', 'Terracota'],
-        sizes: ['P — 12cm', 'M — 18cm', 'G — 25cm'],
-        imgs: [
-          'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 6, cat: 'cozinha', name: 'Jogo de Bowls Cerâmica', badge: '', badgeType: '',
-        price: 178, oldPrice: null,
-        rating: 4.8, reviews: 63,
-        desc: 'Conjunto com 4 bowls em cerâmica artesanal. Vai ao micro-ondas e lava-louças. Ideal para sopas, saladas e sobremesas.',
-        features: ['Cerâmica artesanal', 'Vai ao micro-ondas', 'Lava-louças', 'Conjunto com 4 peças'],
-        colors: ['#f5f0e8', '#c8a882', '#8b6914'],
-        colorNames: ['Branco natural', 'Areia', 'Terracota'],
-        sizes: null,
-        imgs: [
-          'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 7, cat: 'quarto', name: 'Porta-Retratos Latão', badge: '', badgeType: '',
-        price: 95, oldPrice: null,
-        rating: 4.6, reviews: 28,
-        desc: 'Porta-retratos em latão escovado com acabamento fosco. Design atemporal que combina com qualquer decoração.',
-        features: ['Latão escovado', 'Acabamento fosco', 'Suporte de mesa e parede', 'Vidro temperado'],
-        colors: ['#c8a882', '#c8c8c8', '#4a4a4a'],
-        colorNames: ['Latão', 'Prata', 'Preto'],
-        sizes: ['10x15cm', '13x18cm', '20x25cm'],
-        imgs: [
-          'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop',
-        ]
-      },
-      {
-        id: 8, cat: 'sala', name: 'Tapete Algodão Trançado', badge: '-15%', badgeType: 'sale',
-        price: 340, oldPrice: 400,
-        rating: 4.9, reviews: 74,
-        desc: 'Tapete artesanal em algodão trançado, produzido por cooperativa de artesãs do Nordeste. Resistente e fácil de lavar.',
-        features: ['Algodão 100% natural', 'Produção artesanal', 'Antiderrapante', 'Lavável à máquina'],
-        colors: ['#f5f0e8', '#c8a882', '#4a4a4a'],
-        colorNames: ['Natural', 'Caramelo', 'Grafite'],
-        sizes: ['100x150cm', '140x200cm', '160x230cm'],
-        imgs: [
-          'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop',
-          'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop',
-        ]
-      },
+      { id:1, cat:'sala', name:'Vaso Cerâmica Artesanal', badge:'Novo', badgeType:'', price:189, oldPrice:null, rating:4.8, reviews:42,
+        desc:'Vaso produzido artesanalmente por ceramistas brasileiros. Cada peça é única, com variações naturais de cor e textura.',
+        features:['Cerâmica de alta temperatura','Produção artesanal','Cada peça é única','Certificado de origem'],
+        colors:['#c8a882','#8b6914','#4a4a4a'], colorNames:['Areia','Terracota','Carvão'], sizes:null,
+        imgs:['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop'] },
+      { id:2, cat:'quarto', name:'Almofada Linho Natural', badge:'-26%', badgeType:'sale', price:89, oldPrice:120, rating:4.6, reviews:87,
+        desc:'Almofada confeccionada em linho natural 100%, com enchimento de fibra siliconada de alta resiliência.',
+        features:['Linho 100% natural','Enchimento siliconado','Lavável à máquina','Zíper invisível'],
+        colors:['#f5f0e8','#c8a882','#8b6914','#4a4a4a'], colorNames:['Off-white','Areia','Caramelo','Grafite'], sizes:['40x40','50x50','60x60'],
+        imgs:['https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80&fit=crop'] },
+      { id:3, cat:'sala', name:'Luminária Bambu', badge:'-20%', badgeType:'sale', price:256, oldPrice:320, rating:4.9, reviews:31,
+        desc:'Luminária de mesa em bambu natural tratado. Design orgânico que traz aconchego e leveza.',
+        features:['Bambu natural certificado','LED incluso (E27)','Cabo de 1,8m com interruptor','Bivolt automático'],
+        colors:null, colorNames:null, sizes:['P — 25cm','M — 35cm','G — 45cm'],
+        imgs:['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1513506003901-1e6a35f0e0b2?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=600&q=80&fit=crop'] },
+      { id:4, cat:'cozinha', name:'Bandeja Madeira Maciça', badge:'', badgeType:'', price:145, oldPrice:null, rating:4.7, reviews:56,
+        desc:'Bandeja em madeira maciça de reflorestamento, com acabamento em óleo de linhaça natural.',
+        features:['Madeira de reflorestamento','Acabamento em óleo natural','Alças integradas','Fácil de limpar'],
+        colors:null, colorNames:null, sizes:['P — 30x20cm','M — 40x28cm','G — 50x35cm'],
+        imgs:['https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=600&q=80&fit=crop'] },
+      { id:5, cat:'jardim', name:'Vaso Concreto Minimalista', badge:'Novo', badgeType:'', price:220, oldPrice:null, rating:4.5, reviews:19,
+        desc:'Vaso em concreto polido com design geométrico minimalista. Perfeito para suculentas e cactos.',
+        features:['Concreto polido','Furo de drenagem','Prato incluso','Uso interno e externo'],
+        colors:['#c8c8c8','#4a4a4a','#8b6914'], colorNames:['Cinza claro','Antracite','Terracota'], sizes:['P — 12cm','M — 18cm','G — 25cm'],
+        imgs:['https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&q=80&fit=crop'] },
+      { id:6, cat:'cozinha', name:'Jogo de Bowls Cerâmica', badge:'', badgeType:'', price:178, oldPrice:null, rating:4.8, reviews:63,
+        desc:'Conjunto com 4 bowls em cerâmica artesanal. Vai ao micro-ondas e lava-louças.',
+        features:['Cerâmica artesanal','Vai ao micro-ondas','Lava-louças','Conjunto com 4 peças'],
+        colors:['#f5f0e8','#c8a882','#8b6914'], colorNames:['Branco natural','Areia','Terracota'], sizes:null,
+        imgs:['https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1565183997392-2f6f122e5912?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80&fit=crop'] },
+      { id:7, cat:'quarto', name:'Porta-Retratos Latão', badge:'', badgeType:'', price:95, oldPrice:null, rating:4.6, reviews:28,
+        desc:'Porta-retratos em latão escovado com acabamento fosco. Design atemporal.',
+        features:['Latão escovado','Acabamento fosco','Suporte de mesa e parede','Vidro temperado'],
+        colors:['#c8a882','#c8c8c8','#4a4a4a'], colorNames:['Latão','Prata','Preto'], sizes:['10x15cm','13x18cm','20x25cm'],
+        imgs:['https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop'] },
+      { id:8, cat:'sala', name:'Tapete Algodão Trançado', badge:'-15%', badgeType:'sale', price:340, oldPrice:400, rating:4.9, reviews:74,
+        desc:'Tapete artesanal em algodão trançado, produzido por cooperativa de artesãs do Nordeste.',
+        features:['Algodão 100% natural','Produção artesanal','Antiderrapante','Lavável à máquina'],
+        colors:['#f5f0e8','#c8a882','#4a4a4a'], colorNames:['Natural','Caramelo','Grafite'], sizes:['100x150cm','140x200cm','160x230cm'],
+        imgs:['https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop','https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop'] }
     ];
 
     // ── Estado ────────────────────────────────────────────────
-    let cart = []; // [{ product, qty, color, colorName, size, variantKey }]
+    let cart = [];
     let couponApplied = null;
     let freteVal = null;
     let currentProd = null;
@@ -564,7 +476,7 @@
     function renderProducts(cat = 'todos') {
       const grid = document.getElementById('products-grid');
       grid.innerHTML = PRODUCTS.map(p => {
-        const hidden = cat !== 'todos' && p.cat !== cat ? 'hidden' : '';
+        const hidden = (cat !== 'todos' && p.cat !== cat) ? 'hidden' : '';
         const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '½' : '');
         return `
         <div class="product-card ${hidden}" data-id="${p.id}" onclick="openProd(${p.id})">
@@ -606,9 +518,10 @@
       ).join('');
 
       const installment = Math.ceil(currentProd.price / 6);
-      const stars = '★'.repeat(Math.floor(currentProd.rating));
+      const stars = '★'.repeat(Math.floor(currentProd.rating)) + (currentProd.rating % 1 >= 0.5 ? '½' : '');
 
       document.getElementById('prod-info').innerHTML = `
+        <button class="prod-close" onclick="closeProd()" aria-label="Fechar">×</button>
         <div class="prod-badge-row">
           ${currentProd.badge ? `<span class="prod-badge ${currentProd.badgeType}">${currentProd.badge}</span>` : ''}
           <span class="prod-badge" style="background:var(--accent2)">Em estoque</span>
@@ -630,7 +543,7 @@
           <div class="variant-label">Cor: <span id="color-label">${currentProd.colorNames[0]}</span></div>
           <div class="variant-options" id="color-opts">
             ${currentProd.colors.map((c, i) =>
-              `<button class="color-btn ${i===0?'active':''}" style="background:${c}" title="${currentProd.colorNames[i]}" onclick="selectColor(${i})"></button>`
+              `<button class="color-btn ${i===0?'active':''}" style="background:${c}" title="${currentProd.colorNames[i]}" onclick="selectColor(${i})" aria-label="Cor ${currentProd.colorNames[i]}"></button>`
             ).join('')}
           </div>
         </div>` : ''}
@@ -648,9 +561,9 @@
         <div class="qty-row">
           <div class="variant-label" style="margin:0">Quantidade</div>
           <div class="qty-ctrl">
-            <button onclick="changeProdQty(-1)">−</button>
+            <button onclick="changeProdQty(-1)" aria-label="Reduzir quantidade">−</button>
             <span id="prod-qty">1</span>
-            <button onclick="changeProdQty(1)">+</button>
+            <button onclick="changeProdQty(1)" aria-label="Aumentar quantidade">+</button>
           </div>
           <button class="btn-add-cart" onclick="addToCart()">+ Adicionar à sacola</button>
         </div>
@@ -660,7 +573,7 @@
         </div>
       `;
 
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
       document.getElementById('prod-overlay').classList.add('open');
     }
 
@@ -687,9 +600,9 @@
     }
 
     function closeProd(e) {
-      if (!e || e.target === document.getElementById('prod-overlay')) {
+      if (!e || e.target === document.getElementById('prod-overlay') || e.target.classList?.contains('prod-close')) {
         document.getElementById('prod-overlay').classList.remove('open');
-        document.body.style.overflow = '';
+        document.body.classList.remove('modal-open');
       }
     }
 
@@ -698,19 +611,16 @@
       const p = currentProd;
       const colorName = p.colors ? p.colorNames[selectedColor] : null;
       const size = p.sizes ? p.sizes[selectedSize] : null;
-      const variantKey = `${p.id}-${colorName}-${size}`;
+      const variantKey = `${p.id}-${colorName || ''}-${size || ''}`;
 
       const existing = cart.find(i => i.variantKey === variantKey);
-      if (existing) {
-        existing.qty += prodQty;
-      } else {
-        cart.push({ product: p, qty: prodQty, colorName, size, variantKey });
-      }
+      if (existing) existing.qty += prodQty;
+      else cart.push({ product: p, qty: prodQty, colorName, size, variantKey });
 
       updateCartBadge();
       showToast(`✓ ${p.name} adicionado à sacola`);
       closeProd();
-      setTimeout(() => openCart(), 300);
+      // NÃO abrir o carrinho automaticamente
     }
 
     function removeFromCart(variantKey) {
@@ -741,12 +651,14 @@
       renderCart();
       document.getElementById('cart-overlay').classList.add('open');
       document.getElementById('cart-drawer').classList.add('open');
+      document.body.classList.add('cart-open');
       document.getElementById('fab-cart').classList.add('hidden-fab');
     }
 
     function closeCart() {
       document.getElementById('cart-overlay').classList.remove('open');
       document.getElementById('cart-drawer').classList.remove('open');
+      document.body.classList.remove('cart-open');
       document.getElementById('fab-cart').classList.remove('hidden-fab');
     }
 
@@ -765,9 +677,9 @@
             <div class="cart-item-variant">${[item.colorName, item.size].filter(Boolean).join(' · ')}</div>
             <div class="cart-item-price">R$ ${(item.product.price * item.qty).toFixed(2).replace('.', ',')}</div>
             <div class="cart-item-qty">
-              <button class="cqty-btn" onclick="changeCartQty('${item.variantKey}', -1)">−</button>
+              <button class="cqty-btn" onclick="changeCartQty('${item.variantKey}', -1)" aria-label="Reduzir quantidade">−</button>
               <span>${item.qty}</span>
-              <button class="cqty-btn" onclick="changeCartQty('${item.variantKey}', 1)">+</button>
+              <button class="cqty-btn" onclick="changeCartQty('${item.variantKey}', 1)" aria-label="Aumentar quantidade">+</button>
               <button class="cart-item-remove" onclick="removeFromCart('${item.variantKey}')">remover</button>
             </div>
           </div>
@@ -858,10 +770,10 @@
     // ── Init ──────────────────────────────────────────────────
     renderProducts();
 
+    // Fechar modais com tecla ESC
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { closeProd(); closeCart(); }
     });
   </script>
-  <script src="../shared/enhancements.js"></script>
 </body>
 </html>
