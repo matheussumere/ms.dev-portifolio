@@ -1,15 +1,14 @@
-// Agendamento + Contato (EmailJS)
+// Agendamento + Contato via EmailJS
 // Requer window.WL_CONFIG definido antes do carregamento
 
 document.addEventListener('DOMContentLoaded', () => {
   const cfg = window.WL_CONFIG || {};
 
-  // Inicializa EmailJS se a chave estiver configurada
   if (cfg.emailjs_public_key && window.emailjs) {
     emailjs.init(cfg.emailjs_public_key);
   }
 
-  // ── Modal ──────────────────────────────────
+  // Modal
   const overlay = document.getElementById('modal-overlay');
   const openBtns = document.querySelectorAll('[data-modal-open]');
   const closeBtn = document.getElementById('modal-close');
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   overlay?.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-  // ── Tabs ───────────────────────────────────
+  // Tabs
   const tabBtns = document.querySelectorAll('.tab-btn');
   tabBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
 
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === `tab-${name}`));
   }
 
-  // ── Agendamento ────────────────────────────
+  // Formulário de agendamento
   const scheduleForm = document.getElementById('form-schedule');
   scheduleForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -54,11 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (cfg.emailjs_service_id && cfg.emailjs_schedule_template && window.emailjs) {
         await emailjs.send(cfg.emailjs_service_id, cfg.emailjs_schedule_template, {
-          ...data,
-          business_name: cfg.business_name || '',
+          ...data, business_name: cfg.business_name || '',
         });
       } else {
-        // Fallback: abre WhatsApp com os dados
         const msg = `Olá! Gostaria de agendar:\n\nNome: ${data.name}\nTelefone: ${data.phone}\nServiço: ${data.service}\nData: ${data.date}\nHorário: ${data.time}`;
         window.open(`https://wa.me/${cfg.whatsapp || ''}?text=${encodeURIComponent(msg)}`, '_blank');
       }
@@ -72,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ── Contato ────────────────────────────────
+  // Formulário de contato
   const contactForm = document.getElementById('form-contact');
   contactForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -86,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (cfg.emailjs_service_id && cfg.emailjs_contact_template && window.emailjs) {
         await emailjs.send(cfg.emailjs_service_id, cfg.emailjs_contact_template, {
-          ...data,
-          business_name: cfg.business_name || '',
+          ...data, business_name: cfg.business_name || '',
         });
       } else {
         const msg = `Olá! Mensagem via site:\n\nNome: ${data.name}\nE-mail: ${data.email}\nMensagem: ${data.message}`;

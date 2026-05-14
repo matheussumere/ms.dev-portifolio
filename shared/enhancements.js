@@ -1,5 +1,3 @@
-// ── Enhancements — scroll reveal, parallax, hamburger ──
-
 (function () {
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {

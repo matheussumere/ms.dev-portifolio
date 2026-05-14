@@ -1,31 +1,4 @@
-// ── Scroll Reveal ──────────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ── Nav shadow on scroll ───────────────────────
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav?.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
-// ── Parallax hero ─────────────────────────────
-const heroBg = document.querySelector('.hero-bg');
-if (heroBg) {
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    heroBg.style.transform = `scale(1.08) translateY(${y * 0.25}px)`;
-  }, { passive: true });
-}
-
-// ── Contador animado ──────────────────────────
+// Contador animado para elementos .stat-number
 function animateCounter(el) {
   const target = parseFloat(el.textContent.replace(/[^0-9.]/g, ''));
   const suffix = el.textContent.replace(/[0-9.]/g, '');
