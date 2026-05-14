@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bistrot Maison â€” CardÃ¡pio</title>
+  <title>Bistrot Maison — Cardápio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/enhancements.css">
@@ -21,36 +21,35 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-primary); -webkit-font-smoothing: antialiased; }
 
-    /* â”€â”€ Header â”€â”€ */
-    header { background: var(--color-primary); color: #fff; text-align: center; padding: 3rem 1.5rem 2rem; }
+    header { background: var(--color-primary); color: #fff; text-align: center; padding: 3rem 1.5rem 2rem; position: relative; }
     .header-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.75rem; }
     header h1 { font-family: var(--font-heading); font-size: clamp(2rem, 6vw, 3rem); font-weight: 400; margin-bottom: 0.5rem; }
     .header-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+    .back-link { position: absolute; top: 1.2rem; left: 1.5rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .back-link:hover { color: rgba(255,255,255,0.8); }
 
-    /* â”€â”€ Categorias â”€â”€ */
     .categories { position: sticky; top: 0; z-index: 10; background: var(--color-surface); border-bottom: 1px solid var(--color-border); overflow-x: auto; scrollbar-width: none; display: flex; justify-content: center; }
     .categories::-webkit-scrollbar { display: none; }
-    .categories-inner { display: flex; gap: 0; white-space: nowrap; flex-shrink: 0; }
-    .cat-btn { padding: 1rem 1.5rem; background: none; border: none; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+    .categories-inner { display: flex; white-space: nowrap; flex-shrink: 0; }
+    .cat-btn { padding: 1rem 1.4rem; background: none; border: none; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
     .cat-btn.active { color: var(--color-primary); border-bottom-color: var(--color-accent); }
     .cat-btn:hover { color: var(--color-primary); }
 
-    /* â”€â”€ Busca â”€â”€ */
     .search-bar { padding: 1.5rem; max-width: 600px; margin: 0 auto; }
     .search-input { width: 100%; padding: 0.85rem 1.2rem; border: 1px solid var(--color-border); background: var(--color-surface); font-family: var(--font-body); font-size: 0.9rem; color: var(--color-primary); outline: none; transition: border-color 0.2s; }
     .search-input:focus { border-color: var(--color-accent); }
     .search-input::placeholder { color: #bbb; }
 
-    /* â”€â”€ Menu â”€â”€ */
     main { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 8rem; }
     .menu-section { margin-bottom: 3rem; }
     .menu-section.hidden { display: none; }
     .section-title { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 400; padding: 1.5rem 0 1rem; border-bottom: 1px solid var(--color-border); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
     .section-title::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
     .menu-grid { display: grid; gap: 1px; background: var(--color-border); }
+
     .menu-item { background: var(--color-surface); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; transition: background 0.15s; cursor: pointer; }
     .menu-item:hover { background: #fdfcf8; }
-    .item-info { flex: 1; }
+    .item-info { flex: 1; min-width: 0; }
     .item-name { font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
     .item-desc { font-size: 0.85rem; color: var(--color-muted); line-height: 1.5; }
     .item-tags { display: flex; gap: 0.4rem; margin-top: 0.6rem; flex-wrap: wrap; }
@@ -58,39 +57,32 @@
     .tag.veg { border-color: #4caf50; color: #4caf50; }
     .tag.hot { border-color: #e53935; color: #e53935; }
     .tag.new { border-color: var(--color-accent); color: var(--color-accent); }
+
     .item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem; flex-shrink: 0; }
     .item-price { font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-accent); white-space: nowrap; }
+
+    /* Foto com animação */
     .item-photo-wrap { position: relative; overflow: hidden; width: 80px; height: 80px; flex-shrink: 0; }
     .item-photo { width: 80px; height: 80px; object-fit: cover; display: block; transition: transform 0.4s ease; }
-    ..item-photo-wrap::after { content: '+'; position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #fff; font-weight: 300; opacity: 0; transition: all 0.3s; }
-    .menu-item:hover .item-photo { transform: scale(1.08); }
-    .menu-item:hover ..item-photo-wrap::after { content: '+'; position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #fff; font-weight: 300; opacity: 0; transition: all 0.3s; }
+    .item-photo-wrap::after { content: '+'; position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 200; color: #fff; opacity: 0; transition: all 0.3s; }
+    .menu-item:hover .item-photo { transform: scale(1.1); }
+    .menu-item:hover .item-photo-wrap::after { background: rgba(0,0,0,0.4); opacity: 1; }
+
     .btn-add { background: var(--color-accent); color: #fff; border: none; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.8rem; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
     .btn-add:hover { opacity: 0.85; }
 
-    /* â”€â”€ Responsividade mobile â”€â”€ */
-    @media (max-width: 600px) {
-      .menu-item { flex-direction: column; gap: 1rem; }
-      .item-right { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; }
-      .item-photo-wrap { width: 64px; height: 64px; }
-      .item-photo { width: 64px; height: 64px; }
-      .cat-btn { padding: 0.85rem 1rem; font-size: 0.7rem; }
-      .gallery-box { max-height: 95vh; }
-      .gallery-main-img { aspect-ratio: 1; }
-    }
-
-    /* â”€â”€ Carrinho flutuante â”€â”€ */
+    /* Carrinho flutuante */
     #cart-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--color-primary); color: #fff; padding: 1rem 1.5rem; display: none; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
     #cart-bar.visible { display: flex; }
     .cart-summary { font-size: 0.85rem; }
     .cart-count { font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-accent); }
-    .cart-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .cart-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
     #btn-view-cart { background: none; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6rem 1rem; cursor: pointer; transition: all 0.2s; }
     #btn-view-cart:hover { border-color: #fff; color: #fff; }
     #btn-send-order { background: #25d366; color: #fff; border: none; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.6rem 1.2rem; cursor: pointer; transition: opacity 0.2s; }
     #btn-send-order:hover { opacity: 0.9; }
 
-    /* â”€â”€ Modal carrinho â”€â”€ */
+    /* Modal carrinho */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 100; display: none; align-items: flex-end; justify-content: center; }
     .modal-overlay.open { display: flex; }
     .modal-box { background: var(--color-surface); width: 100%; max-width: 520px; max-height: 80vh; display: flex; flex-direction: column; }
@@ -114,31 +106,23 @@
     #btn-whatsapp:hover { opacity: 0.9; }
     #btn-clear { width: 100%; background: none; border: none; color: var(--color-muted); font-size: 0.75rem; cursor: pointer; margin-top: 0.5rem; text-decoration: underline; }
 
-    /* â”€â”€ Modal galeria â”€â”€ */
-    .gallery-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200;
-      display: none; align-items: center; justify-content: center; padding: 1rem;
-    }
-    .gallery-overlay.open { display: flex; animation: overlayIn 0.25s ease; }
-    @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
-    .gallery-box {
-      background: var(--color-surface); width: 100%; max-width: 580px;
-      max-height: 92vh; display: flex; flex-direction: column;
-      animation: boxIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      overflow: hidden;
-    }
-    @keyframes boxIn { from { opacity: 0; transform: scale(0.93) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    /* Modal galeria — centralizado, animado */
+    .gallery-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .gallery-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .gallery-box { background: var(--color-surface); width: 100%; max-width: 560px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; animation: slideUp 0.3s cubic-bezier(0.34,1.4,0.64,1); }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
     .gallery-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
     .gallery-header h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 400; }
     .gallery-img-wrap { position: relative; overflow: hidden; flex-shrink: 0; }
-    .gallery-main-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.4s ease; }
-    .gallery-img-wrap:hover .gallery-main-img { transform: scale(1.03); }
+    .gallery-main-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .gallery-img-wrap:hover .gallery-main-img { transform: scale(1.04); }
     .gallery-thumbs { display: flex; gap: 6px; padding: 0.75rem 1.5rem; overflow-x: auto; background: var(--color-bg); flex-shrink: 0; scrollbar-width: none; }
     .gallery-thumbs::-webkit-scrollbar { display: none; }
-    .gallery-thumb { width: 64px; height: 64px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; transition: all 0.2s; border-radius: 1px; }
+    .gallery-thumb { width: 64px; height: 64px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; transition: all 0.2s; }
     .gallery-thumb:hover { opacity: 0.8; }
     .gallery-thumb.active { opacity: 1; border-color: var(--color-accent); }
-    .gallery-info { padding: 0.75rem 1.5rem 0; overflow-y: auto; }
+    .gallery-info { padding: 0.75rem 1.5rem; flex-shrink: 0; }
     .gallery-desc { font-size: 0.85rem; color: var(--color-muted); line-height: 1.5; }
     .gallery-price-row { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem 1.25rem; flex-shrink: 0; }
     .gallery-price { font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-accent); }
@@ -149,15 +133,25 @@
     footer { background: var(--color-primary); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.8rem; letter-spacing: 0.05em; }
     footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
     footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 600px) {
+      .menu-item { flex-direction: column; gap: 1rem; }
+      .item-right { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; }
+      .item-photo-wrap, .item-photo { width: 64px; height: 64px; }
+      .cat-btn { padding: 0.85rem 1rem; font-size: 0.7rem; }
+      .gallery-box { max-height: 95vh; }
+      .gallery-main-img { aspect-ratio: 1/1; }
+      #cart-bar { flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="../" style="position:absolute;top:1.2rem;left:1.5rem;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">â† PortfÃ³lio</a>
-    <p class="header-eyebrow">CardÃ¡pio Digital</p>
+    <a href="../" class="back-link">← Portfólio</a>
+    <p class="header-eyebrow">Cardápio Digital</p>
     <h1>Bistrot Maison</h1>
-    <p class="header-sub">Cozinha francesa contemporÃ¢nea Â· Aberto todos os dias</p>
+    <p class="header-sub">Cozinha francesa contemporânea · Aberto todos os dias</p>
   </header>
 
   <nav class="categories">
@@ -172,32 +166,27 @@
   </nav>
 
   <div class="search-bar">
-    <input class="search-input" type="search" id="search" placeholder="Buscar no cardÃ¡pio...">
+    <input class="search-input" type="search" id="search" placeholder="Buscar no cardápio...">
   </div>
 
   <main id="menu">
 
-    <!-- Entradas -->
     <section class="menu-section" data-category="entradas">
       <h2 class="section-title">Entradas</h2>
       <div class="menu-grid">
-        <div class="menu-item" data-name="Sopa de Cebola Gratinada" data-price="38"
-          data-desc="Caldo de carne, cebola caramelizada, croutons e queijo gruyÃ¨re gratinado."
-          data-photos='["https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Sopa de Cebola Gratinada" data-price="38" data-desc="Caldo de carne, cebola caramelizada, croutons e queijo gruyère gratinado." data-photos='["https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Sopa de Cebola Gratinada</div>
-            <div class="item-desc">Caldo de carne, cebola caramelizada, croutons e queijo gruyÃ¨re gratinado.</div>
-            <div class="item-tags"><span class="tag">ClÃ¡ssico</span></div>
+            <div class="item-desc">Caldo de carne, cebola caramelizada, croutons e queijo gruyère gratinado.</div>
+            <div class="item-tags"><span class="tag">Clássico</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=160&q=80&fit=crop" alt="Sopa de Cebola"></div>
             <div class="item-price">R$ 38</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Terrine de Foie Gras" data-price="72"
-          data-desc="Foie gras de pato, geleia de figo, brioche tostado e flor de sal."
-          data-photos='["https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Terrine de Foie Gras" data-price="72" data-desc="Foie gras de pato, geleia de figo, brioche tostado e flor de sal." data-photos='["https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Terrine de Foie Gras</div>
             <div class="item-desc">Foie gras de pato, geleia de figo, brioche tostado e flor de sal.</div>
@@ -206,33 +195,28 @@
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=160&q=80&fit=crop" alt="Terrine"></div>
             <div class="item-price">R$ 72</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Salada NiÃ§oise" data-price="52"
-          data-desc="Atum selado, ovos, azeitonas, feijÃ£o verde, tomate e vinagrete de mostarda Dijon."
-          data-photos='["https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Salada Niçoise" data-price="52" data-desc="Atum selado, ovos, azeitonas, feijão verde, tomate e vinagrete de mostarda Dijon." data-photos='["https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80&fit=crop"]'>
           <div class="item-info">
-            <div class="item-name">Salada NiÃ§oise</div>
-            <div class="item-desc">Atum selado, ovos, azeitonas, feijÃ£o verde, tomate e vinagrete de mostarda Dijon.</div>
-            <div class="item-tags"><span class="tag veg">Sem glÃºten</span></div>
+            <div class="item-name">Salada Niçoise</div>
+            <div class="item-desc">Atum selado, ovos, azeitonas, feijão verde, tomate e vinagrete de mostarda Dijon.</div>
+            <div class="item-tags"><span class="tag veg">Sem glúten</span></div>
           </div>
           <div class="item-right">
-            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=160&q=80&fit=crop" alt="Salada NiÃ§oise"></div>
+            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=160&q=80&fit=crop" alt="Salada Niçoise"></div>
             <div class="item-price">R$ 52</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Pratos Principais -->
     <section class="menu-section" data-category="principais">
       <h2 class="section-title">Pratos Principais</h2>
       <div class="menu-grid">
-        <div class="menu-item" data-name="Confit de Canard" data-price="98"
-          data-desc="Coxa de pato confitada, lentilhas du Puy, laranja e molho de vinho tinto."
-          data-photos='["https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Confit de Canard" data-price="98" data-desc="Coxa de pato confitada, lentilhas du Puy, laranja e molho de vinho tinto." data-photos='["https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Confit de Canard</div>
             <div class="item-desc">Coxa de pato confitada, lentilhas du Puy, laranja e molho de vinho tinto.</div>
@@ -241,131 +225,112 @@
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=160&q=80&fit=crop" alt="Confit de Canard"></div>
             <div class="item-price">R$ 98</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Steak au Poivre" data-price="115"
-          data-desc="FilÃ© mignon, crosta de pimenta verde, molho de conhaque e batatas dauphine."
-          data-photos='["https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Steak au Poivre" data-price="115" data-desc="Filé mignon, crosta de pimenta verde, molho de conhaque e batatas dauphine." data-photos='["https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Steak au Poivre</div>
-            <div class="item-desc">FilÃ© mignon, crosta de pimenta verde, molho de conhaque e batatas dauphine.</div>
+            <div class="item-desc">Filé mignon, crosta de pimenta verde, molho de conhaque e batatas dauphine.</div>
             <div class="item-tags"><span class="tag hot">Apimentado</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1558030006-450675393462?w=160&q=80&fit=crop" alt="Steak au Poivre"></div>
             <div class="item-price">R$ 115</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="SalmÃ£o Ã  la Grenobloise" data-price="88"
-          data-desc="SalmÃ£o grelhado, manteiga noisette, alcaparras, limÃ£o e croutons."
-          data-photos='["https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1485704686097-ed47f7263ca4?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Salmão à la Grenobloise" data-price="88" data-desc="Salmão grelhado, manteiga noisette, alcaparras, limão e croutons." data-photos='["https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1485704686097-ed47f7263ca4?w=800&q=80&fit=crop"]'>
           <div class="item-info">
-            <div class="item-name">SalmÃ£o Ã  la Grenobloise</div>
-            <div class="item-desc">SalmÃ£o grelhado, manteiga noisette, alcaparras, limÃ£o e croutons.</div>
-            <div class="item-tags"><span class="tag veg">Sem glÃºten</span><span class="tag new">Novo</span></div>
+            <div class="item-name">Salmão à la Grenobloise</div>
+            <div class="item-desc">Salmão grelhado, manteiga noisette, alcaparras, limão e croutons.</div>
+            <div class="item-tags"><span class="tag veg">Sem glúten</span><span class="tag new">Novo</span></div>
           </div>
           <div class="item-right">
-            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=160&q=80&fit=crop" alt="SalmÃ£o"></div>
+            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=160&q=80&fit=crop" alt="Salmão"></div>
             <div class="item-price">R$ 88</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Massas -->
     <section class="menu-section" data-category="massas">
       <h2 class="section-title">Massas</h2>
       <div class="menu-grid">
-        <div class="menu-item" data-name="Tagliatelle aux Truffes" data-price="82"
-          data-desc="Massa fresca, creme de trufa negra, parmesÃ£o 24 meses e azeite trufado."
-          data-photos='["https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Tagliatelle aux Truffes" data-price="82" data-desc="Massa fresca, creme de trufa negra, parmesão 24 meses e azeite trufado." data-photos='["https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Tagliatelle aux Truffes</div>
-            <div class="item-desc">Massa fresca, creme de trufa negra, parmesÃ£o 24 meses e azeite trufado.</div>
+            <div class="item-desc">Massa fresca, creme de trufa negra, parmesão 24 meses e azeite trufado.</div>
             <div class="item-tags"><span class="tag veg">Vegetariano</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=160&q=80&fit=crop" alt="Tagliatelle"></div>
             <div class="item-price">R$ 82</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Gnocchi Ã  la Parisienne" data-price="68"
-          data-desc="Gnocchi de pÃ¢te Ã  choux, molho bÃ©chamel, queijo comtÃ© e ervas frescas."
-          data-photos='["https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1587740908075-9e245070dfaa?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Gnocchi à la Parisienne" data-price="68" data-desc="Gnocchi de pâte à choux, molho béchamel, queijo comté e ervas frescas." data-photos='["https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1587740908075-9e245070dfaa?w=800&q=80&fit=crop"]'>
           <div class="item-info">
-            <div class="item-name">Gnocchi Ã  la Parisienne</div>
-            <div class="item-desc">Gnocchi de pÃ¢te Ã  choux, molho bÃ©chamel, queijo comtÃ© e ervas frescas.</div>
+            <div class="item-name">Gnocchi à la Parisienne</div>
+            <div class="item-desc">Gnocchi de pâte à choux, molho béchamel, queijo comté e ervas frescas.</div>
             <div class="item-tags"><span class="tag veg">Vegetariano</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=160&q=80&fit=crop" alt="Gnocchi"></div>
             <div class="item-price">R$ 68</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sobremesas -->
     <section class="menu-section" data-category="sobremesas">
       <h2 class="section-title">Sobremesas</h2>
       <div class="menu-grid">
-        <div class="menu-item" data-name="CrÃ¨me BrÃ»lÃ©e" data-price="32"
-          data-desc="Creme de baunilha de Madagascar, caramelizado na hora."
-          data-photos='["https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Crème Brûlée" data-price="32" data-desc="Creme de baunilha de Madagascar, caramelizado na hora." data-photos='["https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80&fit=crop"]'>
           <div class="item-info">
-            <div class="item-name">CrÃ¨me BrÃ»lÃ©e</div>
+            <div class="item-name">Crème Brûlée</div>
             <div class="item-desc">Creme de baunilha de Madagascar, caramelizado na hora.</div>
-            <div class="item-tags"><span class="tag">ClÃ¡ssico</span></div>
+            <div class="item-tags"><span class="tag">Clássico</span></div>
           </div>
           <div class="item-right">
-            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=160&q=80&fit=crop" alt="CrÃ¨me BrÃ»lÃ©e"></div>
+            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=160&q=80&fit=crop" alt="Crème Brûlée"></div>
             <div class="item-price">R$ 32</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Tarte Tatin" data-price="38"
-          data-desc="Torta invertida de maÃ§Ã£ caramelizada, massa folhada e sorvete de creme."
-          data-photos='["https://images.unsplash.com/photo-1562440499-64c9a111f713?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Tarte Tatin" data-price="38" data-desc="Torta invertida de maçã caramelizada, massa folhada e sorvete de creme." data-photos='["https://images.unsplash.com/photo-1562440499-64c9a111f713?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Tarte Tatin</div>
-            <div class="item-desc">Torta invertida de maÃ§Ã£ caramelizada, massa folhada e sorvete de creme.</div>
+            <div class="item-desc">Torta invertida de maçã caramelizada, massa folhada e sorvete de creme.</div>
             <div class="item-tags"><span class="tag">Quente</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1562440499-64c9a111f713?w=160&q=80&fit=crop" alt="Tarte Tatin"></div>
             <div class="item-price">R$ 38</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Mousse au Chocolat" data-price="35"
-          data-desc="Chocolate Valrhona 70%, mousse aerada, flor de sal e tuile de amÃªndoas."
-          data-photos='["https://images.unsplash.com/photo-1511715282680-fbf93a50e721?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Mousse au Chocolat" data-price="35" data-desc="Chocolate Valrhona 70%, mousse aerada, flor de sal e tuile de amêndoas." data-photos='["https://images.unsplash.com/photo-1511715282680-fbf93a50e721?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Mousse au Chocolat</div>
-            <div class="item-desc">Chocolate Valrhona 70%, mousse aerada, flor de sal e tuile de amÃªndoas.</div>
+            <div class="item-desc">Chocolate Valrhona 70%, mousse aerada, flor de sal e tuile de amêndoas.</div>
             <div class="item-tags"><span class="tag veg">Vegetariano</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1511715282680-fbf93a50e721?w=160&q=80&fit=crop" alt="Mousse au Chocolat"></div>
             <div class="item-price">R$ 35</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bebidas -->
     <section class="menu-section" data-category="bebidas">
       <h2 class="section-title">Bebidas</h2>
       <div class="menu-grid">
-        <div class="menu-item" data-name="Kir Royal" data-price="42"
-          data-desc="Champagne brut e licor de cassis."
-          data-photos='["https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1543253687-c931c8e01820?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Kir Royal" data-price="42" data-desc="Champagne brut e licor de cassis." data-photos='["https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1543253687-c931c8e01820?w=800&q=80&fit=crop"]'>
           <div class="item-info">
             <div class="item-name">Kir Royal</div>
             <div class="item-desc">Champagne brut e licor de cassis.</div>
@@ -373,34 +338,30 @@
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=160&q=80&fit=crop" alt="Kir Royal"></div>
             <div class="item-price">R$ 42</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="Limonada ProvenÃ§al" data-price="22"
-          data-desc="LimÃ£o siciliano, lavanda, mel e Ã¡gua com gÃ¡s."
-          data-photos='["https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Limonada Provençal" data-price="22" data-desc="Limão siciliano, lavanda, mel e água com gás." data-photos='["https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=800&q=80&fit=crop"]'>
           <div class="item-info">
-            <div class="item-name">Limonada ProvenÃ§al</div>
-            <div class="item-desc">LimÃ£o siciliano, lavanda, mel e Ã¡gua com gÃ¡s.</div>
-            <div class="item-tags"><span class="tag veg">Sem Ã¡lcool</span></div>
+            <div class="item-name">Limonada Provençal</div>
+            <div class="item-desc">Limão siciliano, lavanda, mel e água com gás.</div>
+            <div class="item-tags"><span class="tag veg">Sem álcool</span></div>
           </div>
           <div class="item-right">
             <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=160&q=80&fit=crop" alt="Limonada"></div>
             <div class="item-price">R$ 22</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
-        <div class="menu-item" data-name="CafÃ© AllongÃ©" data-price="14"
-          data-desc="Espresso alongado, grÃ£o de origem Ãºnica, torrado artesanalmente."
-          data-photos='["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80&fit=crop"]'>
+        <div class="menu-item" data-name="Café Allongé" data-price="14" data-desc="Espresso alongado, grão de origem única, torrado artesanalmente." data-photos='["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80&fit=crop","https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80&fit=crop"]'>
           <div class="item-info">
-            <div class="item-name">CafÃ© AllongÃ©</div>
-            <div class="item-desc">Espresso alongado, grÃ£o de origem Ãºnica, torrado artesanalmente.</div>
+            <div class="item-name">Café Allongé</div>
+            <div class="item-desc">Espresso alongado, grão de origem única, torrado artesanalmente.</div>
           </div>
           <div class="item-right">
-            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=160&q=80&fit=crop" alt="CafÃ©"></div>
+            <div class="item-photo-wrap"><img class="item-photo" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=160&q=80&fit=crop" alt="Café"></div>
             <div class="item-price">R$ 14</div>
-            <button class="btn-add" onclick="addToCart(this, event)">+ Adicionar</button>
+            <button class="btn-add" onclick="addToCart(this,event)">+ Adicionar</button>
           </div>
         </div>
       </div>
@@ -412,49 +373,49 @@
   </main>
 
   <footer>
-    <p>Â© 2026 Bistrot Maison Â· <a href="tel:+5511999999999">(11) 99999-9999</a> Â· CardÃ¡pio sujeito a alteraÃ§Ãµes sem aviso prÃ©vio</p>
+    <p>© 2026 Bistrot Maison · <a href="tel:+5511999999999">(11) 99999-9999</a> · Cardápio sujeito a alterações sem aviso prévio</p>
   </footer>
 
-  <!-- â”€â”€ Barra do carrinho â”€â”€ -->
+  <!-- Barra do carrinho -->
   <div id="cart-bar">
     <div class="cart-summary">
-      <span id="cart-bar-count" class="cart-count">0</span> <span style="font-size:0.8rem;color:rgba(255,255,255,0.6)">itens Â· </span>
+      <span id="cart-bar-count" class="cart-count">0</span>
+      <span style="font-size:0.8rem;color:rgba(255,255,255,0.6)"> itens · </span>
       <span id="cart-bar-total" style="font-family:'Playfair Display',serif;color:#8b6914;font-size:1rem;">R$ 0</span>
     </div>
     <div class="cart-actions">
       <button id="btn-view-cart" onclick="openCartModal()">Ver pedido</button>
-      <button id="btn-send-order" onclick="sendWhatsApp()">ðŸ“² Enviar pelo WhatsApp</button>
+      <button id="btn-send-order" onclick="sendWhatsApp()">📲 WhatsApp</button>
     </div>
   </div>
 
-  <!-- â”€â”€ Modal carrinho â”€â”€ -->
+  <!-- Modal carrinho -->
   <div class="modal-overlay" id="cart-modal" onclick="closeCartModal(event)">
     <div class="modal-box">
       <div class="modal-header">
         <h3>Seu Pedido</h3>
-        <button class="modal-close" onclick="closeCartModal()">Ã—</button>
+        <button class="modal-close" onclick="closeCartModal()">×</button>
       </div>
       <div class="modal-body" id="cart-items-list"></div>
       <div class="modal-footer">
-        <div class="cart-total">
-          <span>Total</span>
-          <strong id="cart-total-val">R$ 0</strong>
-        </div>
-        <textarea class="cart-obs" id="cart-obs" rows="2" placeholder="ObservaÃ§Ãµes (ex: sem cebola, ponto da carne...)"></textarea>
-        <button id="btn-whatsapp" onclick="sendWhatsApp()">ðŸ“² Enviar pedido pelo WhatsApp</button>
+        <div class="cart-total"><span>Total</span><strong id="cart-total-val">R$ 0</strong></div>
+        <textarea class="cart-obs" id="cart-obs" rows="2" placeholder="Observações (ex: sem cebola, ponto da carne...)"></textarea>
+        <button id="btn-whatsapp" onclick="sendWhatsApp()">📲 Enviar pedido pelo WhatsApp</button>
         <button id="btn-clear" onclick="clearCart()">Limpar pedido</button>
       </div>
     </div>
   </div>
 
-  <!-- â”€â”€ Modal galeria â”€â”€ -->
+  <!-- Modal galeria -->
   <div class="gallery-overlay" id="gallery-modal" onclick="closeGallery(event)">
     <div class="gallery-box">
       <div class="gallery-header">
         <h3 id="gallery-title"></h3>
         <button class="modal-close" onclick="closeGallery()">×</button>
       </div>
-      <div class="gallery-img-wrap"><div class="gallery-img-wrap"><img class="gallery-main-img" id="gallery-main" src="" alt=""></div></div>
+      <div class="gallery-img-wrap">
+        <img class="gallery-main-img" id="gallery-main" src="" alt="">
+      </div>
       <div class="gallery-thumbs" id="gallery-thumbs"></div>
       <div class="gallery-info">
         <p class="gallery-desc" id="gallery-desc"></p>
@@ -467,25 +428,17 @@
   </div>
 
   <script>
-    // â”€â”€ ConfiguraÃ§Ã£o â”€â”€
-    const WHATSAPP_NUMBER = '5511999999999'; // trocar pelo nÃºmero do restaurante
-
-    // â”€â”€ Carrinho â”€â”€
-    let cart = {}; // { name: { price, qty } }
+    const WHATSAPP_NUMBER = '5511999999999';
+    let cart = {};
 
     function addToCart(btn, e) {
       if (e) e.stopPropagation();
       const item = btn.closest('.menu-item');
       const name = item.dataset.name;
       const price = parseFloat(item.dataset.price);
-      if (cart[name]) {
-        cart[name].qty++;
-      } else {
-        cart[name] = { price, qty: 1 };
-      }
+      cart[name] ? cart[name].qty++ : (cart[name] = { price, qty: 1 });
       updateCartBar();
-      // feedback visual no botÃ£o
-      btn.textContent = 'âœ“ Adicionado';
+      btn.textContent = '✓ Adicionado';
       setTimeout(() => btn.textContent = '+ Adicionar', 1200);
     }
 
@@ -493,11 +446,11 @@
       const keys = Object.keys(cart);
       const totalQty = keys.reduce((s, k) => s + cart[k].qty, 0);
       const totalVal = keys.reduce((s, k) => s + cart[k].price * cart[k].qty, 0);
-      const bar = document.getElementById('cart-bar');
-      bar.classList.toggle('visible', totalQty > 0);
+      document.getElementById('cart-bar').classList.toggle('visible', totalQty > 0);
       document.getElementById('cart-bar-count').textContent = totalQty;
-      document.getElementById('cart-bar-total').textContent = 'R$ ' + totalVal.toFixed(2).replace('.', ',');
-      document.getElementById('cart-total-val').textContent = 'R$ ' + totalVal.toFixed(2).replace('.', ',');
+      const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',');
+      document.getElementById('cart-bar-total').textContent = fmt(totalVal);
+      document.getElementById('cart-total-val').textContent = fmt(totalVal);
     }
 
     function openCartModal() {
@@ -506,9 +459,8 @@
     }
 
     function closeCartModal(e) {
-      if (!e || e.target === document.getElementById('cart-modal')) {
+      if (!e || e.target === document.getElementById('cart-modal'))
         document.getElementById('cart-modal').classList.remove('open');
-      }
     }
 
     function renderCartItems() {
@@ -519,13 +471,12 @@
         <div class="cart-item-row">
           <span class="cart-item-name">${name}</span>
           <div class="cart-qty">
-            <button class="qty-btn" onclick="changeQty('${name.replace(/'/g,"\\'")}', -1)">âˆ’</button>
+            <button class="qty-btn" onclick="changeQty('${name.replace(/'/g,"\\'")}', -1)">−</button>
             <span class="qty-num">${cart[name].qty}</span>
             <button class="qty-btn" onclick="changeQty('${name.replace(/'/g,"\\'")}', 1)">+</button>
           </div>
           <span class="cart-item-price">R$ ${(cart[name].price * cart[name].qty).toFixed(2).replace('.', ',')}</span>
-        </div>
-      `).join('');
+        </div>`).join('');
     }
 
     function changeQty(name, delta) {
@@ -547,18 +498,14 @@
       if (!keys.length) { alert('Adicione itens ao pedido primeiro.'); return; }
       const total = keys.reduce((s, k) => s + cart[k].price * cart[k].qty, 0);
       const obs = document.getElementById('cart-obs').value.trim();
-      let msg = 'ðŸ½ï¸ *Pedido â€” Bistrot Maison*\n\n';
-      keys.forEach(name => {
-        msg += `â€¢ ${cart[name].qty}x ${name} â€” R$ ${(cart[name].price * cart[name].qty).toFixed(2).replace('.', ',')}\n`;
-      });
+      let msg = '🍽️ *Pedido — Bistrot Maison*\n\n';
+      keys.forEach(n => { msg += `• ${cart[n].qty}x ${n} — R$ ${(cart[n].price * cart[n].qty).toFixed(2).replace('.', ',')}\n`; });
       msg += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
-      if (obs) msg += `\n\nðŸ“ ObservaÃ§Ãµes: ${obs}`;
+      if (obs) msg += `\n\n📝 Observações: ${obs}`;
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // â”€â”€ Galeria â”€â”€
-    let currentGalleryItem = null;
-
+    // Galeria — abre centralizada na tela
     document.querySelectorAll('.menu-item').forEach(item => {
       item.addEventListener('click', function(e) {
         if (e.target.classList.contains('btn-add')) return;
@@ -567,32 +514,22 @@
     });
 
     function openGallery(item) {
-      currentGalleryItem = item;
-      const name = item.dataset.name;
-      const desc = item.dataset.desc;
-      const price = item.dataset.price;
       const photos = JSON.parse(item.dataset.photos);
-
-      document.getElementById('gallery-title').textContent = name;
-      document.getElementById('gallery-desc').textContent = desc;
-      document.getElementById('gallery-price').textContent = 'R$ ' + parseFloat(price).toFixed(2).replace('.', ',');
-
+      document.getElementById('gallery-title').textContent = item.dataset.name;
+      document.getElementById('gallery-desc').textContent = item.dataset.desc;
+      document.getElementById('gallery-price').textContent = 'R$ ' + parseFloat(item.dataset.price).toFixed(2).replace('.', ',');
       const mainImg = document.getElementById('gallery-main');
       mainImg.src = photos[0];
-      mainImg.alt = name;
-
-      const thumbsEl = document.getElementById('gallery-thumbs');
-      thumbsEl.innerHTML = photos.map((src, i) => `
-        <img class="gallery-thumb ${i === 0 ? 'active' : ''}" src="${src}" alt="${name} ${i+1}" onclick="setGalleryPhoto(this, '${src}')">
-      `).join('');
-
+      mainImg.alt = item.dataset.name;
+      document.getElementById('gallery-thumbs').innerHTML = photos.map((src, i) =>
+        `<img class="gallery-thumb ${i===0?'active':''}" src="${src}" alt="${item.dataset.name} ${i+1}" onclick="setGalleryPhoto(this,'${src}')">`
+      ).join('');
       document.getElementById('gallery-add-btn').onclick = () => {
-        const btn = item.querySelector('.btn-add');
-        addToCart(btn, null);
+        addToCart(item.querySelector('.btn-add'), null);
         closeGallery();
       };
-
       document.getElementById('gallery-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
 
     function setGalleryPhoto(thumb, src) {
@@ -604,18 +541,11 @@
     function closeGallery(e) {
       if (!e || e.target === document.getElementById('gallery-modal')) {
         document.getElementById('gallery-modal').classList.remove('open');
+        document.body.style.overflow = '';
       }
     }
 
-    // Fechar modais com ESC
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        document.getElementById('gallery-modal').classList.remove('open');
-        document.getElementById('cart-modal').classList.remove('open');
-      }
-    });
-
-    // â”€â”€ Filtro por categoria â”€â”€
+    // Filtro por categoria
     const catBtns = document.querySelectorAll('.cat-btn');
     const sections = document.querySelectorAll('.menu-section');
     catBtns.forEach(btn => {
@@ -629,8 +559,8 @@
       });
     });
 
-    // â”€â”€ Busca â”€â”€
-    document.getElementById('search').addEventListener('input', function () {
+    // Busca
+    document.getElementById('search').addEventListener('input', function() {
       const q = this.value.toLowerCase().trim();
       if (!q) {
         const active = document.querySelector('.cat-btn.active').dataset.filter;
@@ -642,23 +572,27 @@
       let found = false;
       sections.forEach(s => {
         const items = s.querySelectorAll('.menu-item');
-        let sectionVisible = false;
+        let visible = false;
         items.forEach(item => {
           const match = item.dataset.name.toLowerCase().includes(q) || item.querySelector('.item-desc').textContent.toLowerCase().includes(q);
           item.style.display = match ? '' : 'none';
-          if (match) sectionVisible = found = true;
+          if (match) visible = found = true;
         });
-        s.classList.toggle('hidden', !sectionVisible);
+        s.classList.toggle('hidden', !visible);
       });
-      const emptyState = document.getElementById('empty-state');
-      emptyState.style.display = found ? 'none' : 'block';
+      const es = document.getElementById('empty-state');
+      es.style.display = found ? 'none' : 'block';
       document.getElementById('search-term').textContent = this.value;
+    });
+
+    // ESC fecha modais
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeGallery();
+        closeCartModal();
+      }
     });
   </script>
   <script src="../shared/enhancements.js"></script>
 </body>
 </html>
-
-
-
-
