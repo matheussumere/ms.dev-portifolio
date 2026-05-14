@@ -6,6 +6,7 @@
   <title>Igreja Nova Aliança — Comunidade de Fé</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --bg: #faf8f4;
@@ -123,14 +124,23 @@
 <body>
 
   <nav>
+    <a href="../" class="back-btn" style="color:rgba(255,255,255,0.5)">Portfólio</a>
     <a href="#" class="nav-logo">Igreja <span>Nova Aliança</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#programacao">Programação</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#ministerios">Ministérios</a></li>
       <li><a href="#visita" class="nav-visit">Visitar</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#programacao">Programação</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#ministerios">Ministérios</a>
+    <a href="#visita">Visitar</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-bg"></div>
@@ -149,19 +159,19 @@
     <div class="section-tag">Programação semanal</div>
     <h2 class="section-title">Venha nos encontrar</h2>
     <div class="schedule-grid">
-      <div class="sched-card">
+      <div class="sched-card reveal">
         <div class="sched-day">Domingo</div>
         <div class="sched-name">Culto de Celebração</div>
         <div class="sched-time">9h00 e 18h00</div>
         <p class="sched-desc">Louvor, adoração e pregação da Palavra. Toda a família é bem-vinda.</p>
       </div>
-      <div class="sched-card">
+      <div class="sched-card reveal reveal-delay-2">
         <div class="sched-day">Quarta-feira</div>
         <div class="sched-name">Culto de Ensino</div>
         <div class="sched-time">19h30</div>
         <p class="sched-desc">Estudo aprofundado da Bíblia e oração intercessória.</p>
       </div>
-      <div class="sched-card">
+      <div class="sched-card reveal reveal-delay-3">
         <div class="sched-day">Sexta-feira</div>
         <div class="sched-name">Noite de Jovens</div>
         <div class="sched-time">20h00</div>
@@ -189,22 +199,22 @@
     <div class="section-tag">Comunidade</div>
     <h2 class="section-title">Ministérios</h2>
     <div class="min-grid">
-      <div class="min-card">
+      <div class="min-card reveal">
         <div class="min-icon">🎵</div>
         <div class="min-name">Louvor</div>
         <p class="min-desc">Equipe de música e adoração que conduz os cultos semanais.</p>
       </div>
-      <div class="min-card">
+      <div class="min-card reveal reveal-delay-2">
         <div class="min-icon">👶</div>
         <div class="min-name">Infantil</div>
         <p class="min-desc">Ensino bíblico criativo para crianças de 0 a 12 anos.</p>
       </div>
-      <div class="min-card">
+      <div class="min-card reveal reveal-delay-3">
         <div class="min-icon">🤝</div>
         <div class="min-name">Social</div>
         <p class="min-desc">Ações de assistência e impacto na comunidade local.</p>
       </div>
-      <div class="min-card">
+      <div class="min-card reveal reveal-delay-4">
         <div class="min-icon">📖</div>
         <div class="min-name">Células</div>
         <p class="min-desc">Grupos pequenos de estudo e comunhão durante a semana.</p>
@@ -224,6 +234,6 @@
   </section>
 
   <footer><p>© 2026 Igreja Nova Aliança · <a href="tel:+5511999999999">(11) 99999-9999</a></p></footer>
-
+  <script src="../shared/enhancements.js"></script>
 </body>
 </html>

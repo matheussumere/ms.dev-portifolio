@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/components.css">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --color-primary: #f0ece4;
@@ -137,13 +138,21 @@
   </script>
 
   <nav>
+    <a href="../" class="back-btn" style="color:rgba(255,255,255,0.4)">Portfólio</a>
     <a href="#" class="nav-logo">Black <span>Needle</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#artistas">Artistas</a></li>
       <li><a href="#estilos">Estilos</a></li>
       <li><a href="#agendamento" class="nav-book">Agendar</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" style="color:#f0ece4"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#artistas">Artistas</a>
+    <a href="#estilos">Estilos</a>
+    <a href="#agendamento">Agendar</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-bg"></div>
@@ -255,7 +264,7 @@
     <span>© 2026 Black Needle Tattoo Studio</span>
     <span>Rua Augusta, 1200 · <a href="tel:+5511999999999">(11) 99999-9999</a></span>
   </footer>
-
+  <script src="../shared/enhancements.js"></script>
   <script>
     function sendBooking(e) {
       e.preventDefault();

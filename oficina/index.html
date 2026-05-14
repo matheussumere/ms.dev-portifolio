@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --color-primary: #1c1c1c;
@@ -174,14 +175,23 @@
   </script>
 
   <nav>
+    <a href="../" class="back-btn" style="color:rgba(255,255,255,0.4)">Portfólio</a>
     <a href="#" class="nav-logo">Müller<span>.</span>Auto</a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#depoimentos">Clientes</a></li>
       <li><a href="#" data-modal-open="schedule" class="nav-cta">Agendar</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" style="color:#fff"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#servicos">Serviços</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#depoimentos">Clientes</a>
+    <a href="#" data-modal-open="schedule">Agendar</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-bg"></div>
@@ -317,6 +327,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../shared/components.js"></script>
+  <script src="../shared/enhancements.js"></script>
   <script src="../shared/themes.js"></script>
 </body>
 </html>

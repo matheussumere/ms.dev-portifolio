@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --color-primary: #0d1f2d;
@@ -162,14 +163,23 @@
   </script>
 
   <nav>
+    <a href="../" class="back-btn" style="color:rgba(255,255,255,0.4)">Portfólio</a>
     <a href="#" class="nav-logo">Clínica <span>Sorriso</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#servicos">Tratamentos</a></li>
       <li><a href="#sobre">A Clínica</a></li>
       <li><a href="#depoimentos">Pacientes</a></li>
       <li><a href="#" data-modal-open="schedule" class="nav-cta">Consulta</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" style="color:#fff"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#servicos">Tratamentos</a>
+    <a href="#sobre">A Clínica</a>
+    <a href="#depoimentos">Pacientes</a>
+    <a href="#" data-modal-open="schedule">Consulta</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-left">
@@ -302,6 +312,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../shared/components.js"></script>
+  <script src="../shared/enhancements.js"></script>
   <script src="../shared/themes.js"></script>
 </body>
 </html>

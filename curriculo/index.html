@@ -6,6 +6,7 @@
   <title>Lucas Ferreira — Desenvolvedor Full Stack</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --bg: #f5f4f0;
@@ -116,13 +117,21 @@
 <body>
 
   <nav>
+    <a href="../" class="back-btn">Portfólio</a>
     <a href="#" class="nav-name">Lucas Ferreira</a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#experiencia">Experiência</a></li>
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#contato" class="nav-hire">Contratar</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#experiencia">Experiência</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#contato">Contratar</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-left">
@@ -204,19 +213,19 @@
     <h2 style="font-size:clamp(2rem,3vw,3rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:0.5rem;">Projetos</h2>
     <p style="color:var(--muted);font-size:0.875rem;">Seleção de trabalhos recentes</p>
     <div class="proj-grid">
-      <div class="proj-card">
+      <div class="proj-card reveal">
         <div class="proj-num">001</div>
         <div class="proj-name">SaaS de Agendamentos</div>
         <p class="proj-desc">Plataforma completa para gestão de agendamentos com painel admin, notificações e pagamentos.</p>
         <a href="#" class="proj-link">Ver projeto →</a>
       </div>
-      <div class="proj-card">
+      <div class="proj-card reveal reveal-delay-2">
         <div class="proj-num">002</div>
         <div class="proj-name">E-commerce B2B</div>
         <p class="proj-desc">Loja virtual com catálogo dinâmico, pedidos em lote e integração com ERP.</p>
         <a href="#" class="proj-link">Ver projeto →</a>
       </div>
-      <div class="proj-card">
+      <div class="proj-card reveal reveal-delay-3">
         <div class="proj-num">003</div>
         <div class="proj-name">App de Delivery</div>
         <p class="proj-desc">Aplicativo mobile com rastreamento em tempo real, pagamentos e painel para restaurantes.</p>
@@ -248,7 +257,7 @@
     <span>© 2026 Lucas Ferreira</span>
     <span>Feito com ☕ e muito código</span>
   </footer>
-
+  <script src="../shared/enhancements.js"></script>
   <script>
     function sendContact(e) {
       e.preventDefault();

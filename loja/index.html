@@ -6,6 +6,7 @@
   <title>Maison Goods — Loja</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --bg: #f9f7f4;
@@ -138,16 +139,24 @@
 <body>
 
   <nav>
+    <a href="../" class="back-btn">Portfólio</a>
     <a href="#" class="nav-logo">Maison Goods</a>
-    <ul class="nav-center">
+    <ul class="nav-center" id="nav-links-desktop">
       <li><a href="#categorias">Categorias</a></li>
       <li><a href="#destaque">Destaques</a></li>
       <li><a href="#newsletter">Novidades</a></li>
     </ul>
     <div class="nav-right">
       <a href="#" class="nav-cart">🛍 Sacola <span class="cart-count">0</span></a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#categorias">Categorias</a>
+    <a href="#destaque">Destaques</a>
+    <a href="#newsletter">Novidades</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-left"></div>
@@ -166,19 +175,19 @@
     <div class="section-tag">Explore</div>
     <h2 class="section-title">Categorias</h2>
     <div class="cat-grid">
-      <div class="cat-item">
+      <div class="cat-item reveal">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Casa & Sala</div></div>
       </div>
-      <div class="cat-item">
+      <div class="cat-item reveal reveal-delay-2">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Cozinha</div></div>
       </div>
-      <div class="cat-item">
+      <div class="cat-item reveal reveal-delay-3">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Quarto</div></div>
       </div>
-      <div class="cat-item">
+      <div class="cat-item reveal reveal-delay-4">
         <div class="cat-thumb" style="background-image:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&fit=crop')"></div>
         <div class="cat-overlay"><div class="cat-name">Jardim</div></div>
       </div>
@@ -273,6 +282,6 @@
     </div>
   </footer>
   <div class="footer-bottom">© 2026 Maison Goods · Todos os direitos reservados</div>
-
+  <script src="../shared/enhancements.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <title>Sofia Vega — Artista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/enhancements.css">
   <style>
     :root {
       --bg: #0a0a0a;
@@ -135,13 +136,21 @@
 <body>
 
   <nav>
+    <a href="../" class="back-btn" style="color:rgba(255,255,255,0.5)">Portfólio</a>
     <a href="#" class="logo">Sofia Vega</a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#trabalhos">Trabalhos</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" style="color:#fff"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#sobre">Sobre</a>
+    <a href="#trabalhos">Trabalhos</a>
+    <a href="#contato">Contato</a>
+    <a href="../" class="drawer-back">← Portfólio</a>
+  </div>
 
   <section class="hero">
     <div class="hero-bg"></div>
@@ -215,7 +224,7 @@
     <span>© 2026 Sofia Vega</span>
     <span>Assessoria: <a href="mailto:contato@sofiavega.com">contato@sofiavega.com</a></span>
   </footer>
-
+  <script src="../shared/enhancements.js"></script>
   <script>
     function sendMsg(e) {
       e.preventDefault();
