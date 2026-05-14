@@ -3,187 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Give Beauty — Giovanna Gonçalves | Unhas em Gel & Alongamento · Limeira/SP</title>
+  <title>Give Beauty — Giovanna Gonçalves | Unhas em Gel · Limeira/SP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:       #ffffff;
-      --beige:    #f5f0e8;
-      --rose:     #f2d7d9;
-      --gold:     #c9a84c;
-      --gold-lt:  #e8d5a3;
-      --black:    #1a1714;
-      --muted:    #8a7f74;
-      --border:   #ede8e0;
-      --font-h:   'Cormorant Garamond', serif;
-      --font-b:   'Jost', sans-serif;
+      --bg:      #fdfaf7;
+      --beige:   #f5efe6;
+      --rose:    #f0d8d8;
+      --rose-dk: #d4a0a0;
+      --gold:    #b8924a;
+      --gold-lt: #dfc48a;
+      --black:   #1c1714;
+      --muted:   #8a7f74;
+      --border:  #e8e0d5;
+      --fh: 'Cormorant Garamond', serif;
+      --fb: 'Jost', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-b); background: var(--bg); color: var(--black); -webkit-font-smoothing: antialiased; font-weight: 300; }
+    body { font-family: var(--fb); background: var(--bg); color: var(--black); -webkit-font-smoothing: antialiased; font-weight: 300; overflow-x: hidden; }
 
-    /* ── NAV ── */
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* NAV */
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      padding: 1.4rem 3rem;
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      padding: 1.2rem 3rem;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+      background: rgba(253,250,247,0.95); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
     }
-    .logo { font-family: var(--font-h); font-size: 1.5rem; font-weight: 400; letter-spacing: 0.08em; color: var(--black); text-decoration: none; }
-    .logo em { color: var(--gold); font-style: italic; }
+    nav.scrolled { padding: 0.8rem 3rem; }
+    .nav-logo img { height: 44px; display: block; }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
-    .nav-links a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--black); }
-    .nav-cta { font-family: var(--font-b); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.6rem 1.4rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; transition: all 0.2s; }
-    .nav-cta:hover { background: var(--gold); color: #fff; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
-    .nav-toggle span { display: block; width: 22px; height: 1px; background: var(--black); transition: all 0.3s; }
+    .nav-cta { padding: 0.55rem 1.4rem; border: 1px solid var(--gold); color: var(--gold) !important; transition: all 0.2s !important; }
+    .nav-cta:hover { background: var(--gold) !important; color: #fff !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: var(--black); transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-drawer { display: none; position: fixed; inset: 0; background: rgba(28,23,20,0.96); z-index: 199; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a { font-size: 1.3rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; font-family: var(--fh); font-weight: 300; transition: color 0.2s; }
+    .nav-drawer a:hover { color: var(--gold-lt); }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-      padding-top: 5rem;
-    }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 4rem 5rem 3rem;
-    }
-    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.8rem; display: flex; align-items: center; gap: 0.75rem; }
-    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
-    .hero h1 { font-family: var(--font-h); font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 300; line-height: 1.15; letter-spacing: 0.01em; margin-bottom: 1.5rem; }
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 68px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem 5rem 3rem; }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+    .hero h1 { font-family: var(--fh); font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.5rem; }
     .hero h1 em { font-style: italic; color: var(--gold); }
-    .hero-quote { font-family: var(--font-h); font-style: italic; font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 0.75rem; padding-left: 1rem; border-left: 2px solid var(--rose); }
-    .hero-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.03em; }
+    .hero-quote { font-family: var(--fh); font-style: italic; font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.5rem; padding-left: 1.2rem; border-left: 2px solid var(--rose-dk); }
+    .hero-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.04em; }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-gold { font-family: var(--font-b); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 2rem; background: var(--gold); color: #fff; text-decoration: none; transition: opacity 0.2s; }
+    .btn-gold { font-family: var(--fb); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 2.2rem; background: var(--gold); color: #fff; text-decoration: none; transition: opacity 0.2s; display: inline-block; }
     .btn-gold:hover { opacity: 0.85; }
-    .btn-outline { font-family: var(--font-b); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 2rem; border: 1px solid var(--border); color: var(--muted); text-decoration: none; transition: all 0.2s; }
-    .btn-outline:hover { border-color: var(--black); color: var(--black); }
-    .hero-right { position: relative; background: var(--beige); overflow: hidden; }
-    .hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-img-placeholder { width: 100%; height: 100%; min-height: 500px; background: linear-gradient(135deg, var(--beige) 0%, var(--rose) 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
-    .hero-img-placeholder::before { content: '✦'; font-size: 2rem; color: var(--gold-lt); }
+    .btn-ghost { font-family: var(--fb); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 2.2rem; border: 1px solid var(--border); color: var(--muted); text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-ghost:hover { border-color: var(--black); color: var(--black); }
+    .hero-right { position: relative; overflow: hidden; background: var(--beige); }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-ornament { position: absolute; bottom: 2rem; right: 2rem; font-family: var(--fh); font-style: italic; font-size: 0.75rem; color: rgba(184,146,74,0.6); letter-spacing: 0.1em; writing-mode: vertical-rl; }
 
-    /* ── SECTION BASE ── */
+    /* SECTION BASE */
     .section-wrap { padding: 6rem 3rem; }
     .section-wrap.bg-beige { background: var(--beige); }
-    .section-wrap.bg-rose { background: var(--rose); }
-    .section-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
-    .section-label::before { content: '✦'; font-size: 0.5rem; }
-    .section-title { font-family: var(--font-h); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; letter-spacing: 0.02em; margin-bottom: 3rem; }
+    .section-wrap.bg-rose { background: #faf3f3; }
+    .section-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+    .section-label::before { content: '✦'; font-size: 0.45rem; }
+    .section-title { font-family: var(--fh); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; letter-spacing: 0.02em; margin-bottom: 3rem; line-height: 1.2; }
     .section-title em { font-style: italic; color: var(--gold); }
     .centered { text-align: center; }
     .centered .section-label { justify-content: center; }
 
-    /* ── STORIES (bolinhas) ── */
-    .stories-track { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-    .story-bubble { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; cursor: pointer; }
-    .story-ring { width: 80px; height: 80px; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, var(--gold), var(--rose)); }
-    .story-ring img, .story-ring .story-ph { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg); display: block; background: var(--beige); }
-    .story-ph { display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-    .story-label { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center; max-width: 80px; }
+    /* STORIES */
+    .stories-track { display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap; }
+    .story-bubble { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; cursor: pointer; transition: transform 0.2s; }
+    .story-bubble:hover { transform: translateY(-3px); }
+    .story-ring { width: 84px; height: 84px; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, var(--gold), var(--rose-dk)); }
+    .story-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg); display: block; }
+    .story-ring .story-ph { width: 100%; height: 100%; border-radius: 50%; background: var(--beige); border: 3px solid var(--bg); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .story-label { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: center; max-width: 84px; }
 
-    /* ── STORY MODAL ── */
-    .story-modal { position: fixed; inset: 0; background: rgba(26,23,20,0.85); z-index: 300; display: none; align-items: center; justify-content: center; padding: 1rem; }
-    .story-modal.open { display: flex; }
-    .story-modal-box { background: var(--bg); width: 100%; max-width: 420px; max-height: 85vh; overflow-y: auto; }
-    .story-modal-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--beige); }
-    .story-modal-img-ph { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, var(--beige), var(--rose)); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--gold-lt); }
-    .story-modal-body { padding: 1.5rem; }
-    .story-modal-title { font-family: var(--font-h); font-size: 1.4rem; font-weight: 400; margin-bottom: 0.5rem; }
-    .story-modal-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-    .story-modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 1.4rem; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    /* GALERIA GRID */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+    .gallery-item { overflow: hidden; cursor: pointer; aspect-ratio: 1; background: var(--beige); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
 
-    /* ── REELS ── */
-    .reels-track { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: thin; scrollbar-color: var(--gold-lt) transparent; scroll-snap-type: x mandatory; }
-    .reels-track::-webkit-scrollbar { height: 4px; }
-    .reels-track::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 2px; }
-    .reel-item { flex-shrink: 0; width: 320px; scroll-snap-align: start; border: 1px solid var(--border); background: var(--bg); }
-    .reel-item iframe { width: 320px; border: none; display: block; }
+    /* VIDEO */
+    .video-wrap { position: relative; overflow: hidden; border-radius: 0; }
+    .video-wrap video { width: 100%; display: block; max-height: 70vh; object-fit: cover; }
 
-    /* ── SERVIÇOS ── */
+    /* SERVIÇOS */
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
     .svc-card { background: var(--bg); padding: 2.5rem 2rem; transition: background 0.2s; }
     .svc-card:hover { background: var(--beige); }
-    .svc-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .svc-name { font-family: var(--font-h); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; }
-    .svc-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
-    .svc-price { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--gold); }
+    .svc-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .svc-name { font-family: var(--fh); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .svc-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+    .svc-price { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--gold); }
 
-    /* ── NOTÍCIAS ── */
-    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .news-card { background: var(--bg); border: 1px solid var(--border); cursor: pointer; transition: box-shadow 0.2s; }
-    .news-card:hover { box-shadow: 0 4px 20px rgba(201,168,76,0.12); }
-    .news-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--beige); }
-    .news-card-img-ph { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--beige), var(--rose)); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--gold-lt); }
-    .news-card-body { padding: 1.2rem; }
-    .news-card-date { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-    .news-card-title { font-family: var(--font-h); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.4rem; line-height: 1.3; }
-    .news-card-excerpt { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    /* DEPOIMENTOS */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .testimonial { background: var(--bg); padding: 2rem; border-top: 2px solid var(--gold-lt); }
+    .testimonial-text { font-family: var(--fh); font-style: italic; font-size: 1rem; color: var(--black); line-height: 1.7; margin-bottom: 1.2rem; }
+    .testimonial-author { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 0.75rem; }
 
-    /* ── NEWS MODAL ── */
-    .news-modal { position: fixed; inset: 0; background: rgba(26,23,20,0.8); z-index: 300; display: none; align-items: center; justify-content: center; padding: 1rem; }
-    .news-modal.open { display: flex; }
-    .news-modal-box { background: var(--bg); width: 100%; max-width: 600px; max-height: 88vh; overflow-y: auto; }
-    .news-modal-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--beige); }
-    .news-modal-img-ph { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--beige), var(--rose)); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--gold-lt); }
-    .news-modal-body { padding: 2rem; }
-    .news-modal-date { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-    .news-modal-title { font-family: var(--font-h); font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem; line-height: 1.2; }
-    .news-modal-content { font-size: 0.88rem; color: var(--muted); line-height: 1.8; white-space: pre-wrap; }
-    .modal-close-btn { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 1.4rem; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-
-    /* ── AGENDAMENTO ── */
-    .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .booking-info h2 { font-family: var(--font-h); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 300; margin-bottom: 1rem; }
+    /* AGENDAMENTO */
+    .booking-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+    .booking-info h2 { font-family: var(--fh); font-size: clamp(1.8rem, 2.5vw, 2.4rem); font-weight: 300; margin-bottom: 1rem; line-height: 1.2; }
     .booking-info p { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
     .contact-line { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.85rem; }
     .contact-line a { color: var(--black); text-decoration: none; transition: color 0.2s; }
     .contact-line a:hover { color: var(--gold); }
-    .contact-icon { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--gold); width: 24px; }
+    .contact-icon { font-size: 0.68rem; letter-spacing: 0.05em; color: var(--gold); width: 24px; }
     form { display: flex; flex-direction: column; gap: 1rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    label { display: block; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
-    input, select, textarea { width: 100%; padding: 0.8rem 1rem; background: var(--beige); border: 1px solid var(--border); color: var(--black); font-family: var(--font-b); font-size: 0.85rem; font-weight: 300; outline: none; transition: border-color 0.2s; }
+    label { display: block; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    input, select, textarea { width: 100%; padding: 0.8rem 1rem; background: var(--beige); border: 1px solid var(--border); color: var(--black); font-family: var(--fb); font-size: 0.85rem; font-weight: 300; outline: none; transition: border-color 0.2s; }
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     select option { background: #fff; }
     textarea { resize: vertical; min-height: 90px; }
-    .submit-btn { font-family: var(--font-b); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 1rem; background: var(--gold); color: #fff; border: none; cursor: pointer; transition: opacity 0.2s; }
+    .submit-btn { font-family: var(--fb); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 1rem; background: var(--gold); color: #fff; border: none; cursor: pointer; transition: opacity 0.2s; }
     .submit-btn:hover { opacity: 0.85; }
 
-    /* ── ADMIN PANEL ── */
-    #admin-panel { display: none; position: fixed; inset: 0; background: rgba(26,23,20,0.9); z-index: 500; align-items: center; justify-content: center; padding: 1rem; }
+    /* INSTAGRAM EMBED */
+    .ig-embed-wrap { display: flex; justify-content: center; }
+    .ig-embed-wrap iframe { border: 1px solid var(--border); max-width: 100%; }
+
+    /* STORY MODAL */
+    .story-modal { position: fixed; inset: 0; background: rgba(28,23,20,0.88); z-index: 300; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .story-modal.open { display: flex; }
+    .story-modal-box { background: var(--bg); width: 100%; max-width: 400px; max-height: 88vh; overflow-y: auto; }
+    .story-modal-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+    .story-modal-ph { width: 100%; aspect-ratio: 4/5; background: linear-gradient(135deg, var(--beige), var(--rose)); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .story-modal-body { padding: 1.5rem; }
+    .story-modal-title { font-family: var(--fh); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .story-modal-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+    .modal-close-btn { position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 1.3rem; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    /* NEWS MODAL */
+    .news-modal { position: fixed; inset: 0; background: rgba(28,23,20,0.85); z-index: 300; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .news-modal.open { display: flex; }
+    .news-modal-box { background: var(--bg); width: 100%; max-width: 580px; max-height: 88vh; overflow-y: auto; }
+    .news-modal-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--beige); }
+    .news-modal-ph { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--beige), var(--rose)); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .news-modal-body { padding: 2rem; }
+    .news-modal-date { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .news-modal-title { font-family: var(--fh); font-size: 1.7rem; font-weight: 300; margin-bottom: 1rem; line-height: 1.2; }
+    .news-modal-content { font-size: 0.88rem; color: var(--muted); line-height: 1.8; white-space: pre-wrap; }
+
+    /* NEWS CARDS */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .news-card { background: var(--bg); border: 1px solid var(--border); cursor: pointer; transition: box-shadow 0.2s, transform 0.2s; }
+    .news-card:hover { box-shadow: 0 8px 32px rgba(184,146,74,0.12); transform: translateY(-3px); }
+    .news-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--beige); }
+    .news-card-ph { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--beige), var(--rose)); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+    .news-card-body { padding: 1.2rem; }
+    .news-card-date { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .news-card-title { font-family: var(--fh); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.4rem; line-height: 1.3; }
+    .news-card-excerpt { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ADMIN */
+    #admin-panel { display: none; position: fixed; inset: 0; background: rgba(28,23,20,0.92); z-index: 500; align-items: center; justify-content: center; padding: 1rem; }
     #admin-panel.open { display: flex; }
-    .admin-box { background: var(--bg); width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; padding: 2rem; }
-    .admin-box h3 { font-family: var(--font-h); font-size: 1.5rem; font-weight: 400; margin-bottom: 1.5rem; }
-    .admin-box input, .admin-box textarea, .admin-box select { margin-bottom: 0.75rem; }
+    .admin-box { background: var(--bg); width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 2rem; }
+    .admin-box h3 { font-family: var(--fh); font-size: 1.5rem; font-weight: 400; margin-bottom: 1.5rem; }
+    .admin-box input, .admin-box textarea { margin-bottom: 0.75rem; }
     .admin-box textarea { min-height: 120px; }
     .admin-actions { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
-    .btn-admin { font-family: var(--font-b); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; background: var(--gold); color: #fff; border: none; cursor: pointer; }
+    .btn-admin { font-family: var(--fb); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; background: var(--gold); color: #fff; border: none; cursor: pointer; }
     .btn-admin-ghost { background: none; border: 1px solid var(--border); color: var(--muted); }
     #admin-login { display: flex; flex-direction: column; gap: 0.75rem; }
     #admin-form { display: none; flex-direction: column; }
 
-    /* ── FOOTER ── */
-    footer { background: var(--black); color: rgba(255,255,255,0.35); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; letter-spacing: 0.05em; flex-wrap: wrap; gap: 1rem; }
+    /* FOOTER */
+    footer { background: var(--black); color: rgba(255,255,255,0.35); padding: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo img { height: 36px; opacity: 0.7; }
+    footer span { font-size: 0.72rem; letter-spacing: 0.05em; }
     footer a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--gold); }
-    .footer-logo { font-family: var(--font-h); font-size: 1.2rem; color: rgba(255,255,255,0.6); }
-    .footer-logo em { color: var(--gold); font-style: italic; }
+    footer a:hover { color: var(--gold-lt); }
 
-    /* ── MOBILE ── */
+    /* BOTÃO FLUTUANTE WA */
+    .fab-wa { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: #25d366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(37,211,102,0.4); text-decoration: none; font-size: 1.5rem; transition: transform 0.2s; }
+    .fab-wa:hover { transform: scale(1.1); }
+
+    /* MOBILE */
     @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
-      .nav-toggle { display: flex; }
-      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0; background: var(--bg); padding: 2rem; border-bottom: 1px solid var(--border); gap: 1.5rem; z-index: 99; }
+      .nav-hamburger { display: flex; }
       .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 4rem 1.5rem 2rem; }
-      .hero-right { min-height: 300px; }
+      .hero-left { padding: 4rem 1.5rem 2.5rem; }
+      .hero-right { min-height: 320px; }
       .section-wrap { padding: 4rem 1.5rem; }
-      .services-grid, .news-grid { grid-template-columns: 1fr; }
+      .services-grid, .testimonials-grid, .news-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.wide { grid-column: span 2; }
       .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
@@ -193,92 +223,156 @@
 <body>
 
   <!-- NAV -->
-  <nav>
-    <a href="#" class="logo">Give <em>Beauty</em></a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#stories">Destaques</a></li>
+  <nav id="main-nav">
+    <a href="#" class="nav-logo"><img src="logo+nome.png" alt="Give Beauty"></a>
+    <ul class="nav-links">
+      <li><a href="#galeria">Trabalhos</a></li>
       <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#reels">Reels</a></li>
       <li><a href="#noticias">Novidades</a></li>
       <li><a href="#agendar" class="nav-cta">Agendar</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#galeria">Trabalhos</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#noticias">Novidades</a>
+    <a href="#agendar">Agendar</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <div class="hero-eyebrow">Limeira · SP</div>
-      <h1>Unhas com<br><em>naturalidade</em><br>e durabilidade</h1>
-      <p class="hero-quote">"A vida é mais bonita quando<br>se cuida com uma rosa"</p>
-      <p class="hero-sub">Alongamento · Unhas em Gel · Nail Art · por Giovanna Gonçalves</p>
-      <div class="hero-actions">
+      <div class="hero-eyebrow reveal">Limeira · SP</div>
+      <h1 class="reveal reveal-delay-1">Unhas com<br><em>naturalidade</em><br>e durabilidade</h1>
+      <p class="hero-quote reveal reveal-delay-2">"A vida é mais bonita quando<br>se cuida com uma rosa"</p>
+      <p class="hero-sub reveal reveal-delay-2">Alongamento · Unhas em Gel · Nail Art · por Giovanna Gonçalves</p>
+      <div class="hero-actions reveal reveal-delay-3">
         <a href="#agendar" class="btn-gold">Agendar horário</a>
-        <a href="#servicos" class="btn-outline">Ver serviços</a>
+        <a href="#galeria" class="btn-ghost">Ver trabalhos</a>
       </div>
     </div>
     <div class="hero-right">
-      <!-- Substitua por: <img class="hero-img" src="img/hero.jpg" alt="Give Beauty"> -->
-      <div style="width:100%;height:100%;min-height:500px;background:linear-gradient(160deg,#f5f0e8 0%,#f2d7d9 60%,#e8d5a3 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;">
-        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=85&fit=crop" alt="Give Beauty" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.85;">
-        <div style="position:relative;z-index:1;text-align:center;color:rgba(255,255,255,0.9);font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.15em;text-transform:uppercase;">Give Beauty</div>
-      </div>
+      <img src="img/anonyviewer.com_Instagram_givebeauty.br_3220181109819649585.jpg" alt="Give Beauty — Unhas em Gel">
+      <span class="hero-ornament">Give Beauty</span>
     </div>
   </section>
 
   <!-- STORIES -->
-  <section id="stories" class="section-wrap bg-beige centered">
-    <div class="section-label">Destaques</div>
-    <h2 class="section-title">Casos & <em>Resultados</em></h2>
+  <section class="section-wrap bg-beige centered">
+    <div class="section-label reveal">Destaques</div>
+    <h2 class="section-title reveal">Casos & <em>Resultados</em></h2>
     <div class="stories-track" id="stories-track"></div>
   </section>
 
-  <!-- REELS -->
-  <section id="reels" class="section-wrap">
-    <div class="section-label">Instagram</div>
-    <h2 class="section-title">Nossos <em>Trabalhos</em></h2>
-    <div class="reels-track" id="reels-track"></div>
-    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.2rem;letter-spacing:0.05em;">
-      Siga <a href="https://www.instagram.com/givebeauty.br/" target="_blank" style="color:var(--gold);text-decoration:none;">@givebeauty.br</a> para mais conteúdo
-    </p>
+  <!-- GALERIA -->
+  <section id="galeria" class="section-wrap">
+    <div class="section-label reveal">Portfólio</div>
+    <h2 class="section-title reveal">Nossos <em>Trabalhos</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item wide reveal">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3212957795384784983.jpg" alt="Unhas em Gel">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3212957795560922278.jpg" alt="Nail Art">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3210790128997591346.jpg" alt="Alongamento">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3179598780437206091.jpg" alt="Unhas Gel">
+      </div>
+      <div class="gallery-item wide reveal reveal-delay-2">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_2986661209273330954.webp" alt="Resultado">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_2986661209558538312.webp" alt="Nail Art">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_2986661209558582189.webp" alt="Unhas">
+      </div>
+    </div>
+  </section>
+
+  <!-- VÍDEO -->
+  <section class="section-wrap bg-rose centered">
+    <div class="section-label reveal">Em movimento</div>
+    <h2 class="section-title reveal" style="margin-bottom:2rem;">O processo em <em>detalhes</em></h2>
+    <div class="video-wrap reveal" style="max-width:480px;margin:0 auto;">
+      <video src="img/anonyviewer.com_Instagram_givebeauty.br_3195527503661294573.mp4" controls playsinline poster="img/anonyviewer.com_Instagram_givebeauty.br_3220181109819649585.jpg"></video>
+    </div>
   </section>
 
   <!-- SERVIÇOS -->
   <section id="servicos" class="section-wrap bg-beige">
-    <div class="section-label">Serviços</div>
-    <h2 class="section-title">O que <em>oferecemos</em></h2>
+    <div class="section-label reveal">Serviços</div>
+    <h2 class="section-title reveal">O que <em>oferecemos</em></h2>
     <div class="services-grid" id="services-grid"></div>
   </section>
 
+  <!-- DEPOIMENTOS -->
+  <section class="section-wrap">
+    <div class="section-label reveal centered">Clientes</div>
+    <h2 class="section-title reveal centered">O que dizem <em>sobre nós</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Giovanna é incrível! Minhas unhas ficaram perfeitas, duraram mais de 4 semanas sem lascar. Super recomendo!"</p>
+        <div class="testimonial-author">Ana Paula · Cliente desde 2022</div>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Atendimento impecável, ambiente aconchegante e resultado que supera as expectativas. Não troco por nada!"</p>
+        <div class="testimonial-author">Mariana Costa · Cliente desde 2023</div>
+      </div>
+      <div class="testimonial reveal reveal-delay-3">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Fiz o baby boomer e amei! Ficou exatamente como eu queria. Giovanna tem um talento único para nail art."</p>
+        <div class="testimonial-author">Fernanda Lima · Cliente desde 2023</div>
+      </div>
+    </div>
+  </section>
+
   <!-- NOTÍCIAS -->
-  <section id="noticias" class="section-wrap">
-    <div class="section-label">Novidades</div>
-    <h2 class="section-title">Blog & <em>Resultados</em></h2>
+  <section id="noticias" class="section-wrap bg-beige">
+    <div class="section-label reveal">Blog</div>
+    <h2 class="section-title reveal">Novidades & <em>Dicas</em></h2>
     <div class="news-grid" id="news-grid"></div>
     <p style="text-align:right;margin-top:1.5rem;">
-      <button onclick="openAdmin()" style="background:none;border:none;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-decoration:underline;">+ Publicar post</button>
+      <button onclick="openAdmin()" style="background:none;border:none;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-decoration:underline;">+ Publicar post</button>
     </p>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="section-wrap centered">
+    <div class="section-label reveal">Instagram</div>
+    <h2 class="section-title reveal" style="margin-bottom:2rem;">@<em>givebeauty.br</em></h2>
+    <div class="ig-embed-wrap reveal">
+      <iframe src="https://www.instagram.com/givebeauty.br/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+    </div>
+    <a href="https://www.instagram.com/givebeauty.br/" target="_blank" class="btn-gold" style="display:inline-block;margin-top:1.5rem;">Ver perfil completo →</a>
   </section>
 
   <!-- AGENDAMENTO -->
   <section id="agendar" class="section-wrap bg-beige">
     <div class="booking-grid">
       <div class="booking-info">
-        <div class="section-label">Agendamento</div>
-        <h2>Vamos cuidar<br>das suas unhas?</h2>
-        <p>Preencha o formulário e entro em contato para confirmar o horário. Atendimento em Limeira/SP.</p>
-        <div class="contact-line">
+        <div class="section-label reveal">Agendamento</div>
+        <h2 class="reveal">Vamos cuidar<br>das suas <em>unhas?</em></h2>
+        <p class="reveal">Preencha o formulário e entro em contato para confirmar o horário. Atendimento em Limeira/SP.</p>
+        <div class="contact-line reveal">
           <span class="contact-icon">WA</span>
           <a href="https://wa.me/5519974289142" target="_blank">(19) 9 7428-9142</a>
         </div>
-        <div class="contact-line">
+        <div class="contact-line reveal">
           <span class="contact-icon">IG</span>
           <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a>
         </div>
+        <div style="margin-top:2rem;" class="reveal">
+          <img src="logo-emblema.png" alt="Give Beauty" style="height:80px;opacity:0.5;">
+        </div>
       </div>
-      <form id="form-agendar">
+      <form id="form-agendar" class="reveal">
         <div class="form-row">
           <div><label>Nome</label><input name="name" type="text" placeholder="Seu nome" required></div>
           <div><label>WhatsApp</label><input name="phone" type="tel" placeholder="(19) 9 9999-9999" required></div>
@@ -291,39 +385,26 @@
             <option>Unhas em Gel</option>
             <option>Manutenção</option>
             <option>Nail Art</option>
+            <option>Baby Boomer</option>
+            <option>Encapsulado</option>
             <option>Outro</option>
           </select>
         </div>
         <div><label>Data preferida</label><input name="date" type="date" required></div>
-        <div><label>Observações</label><textarea name="obs" placeholder="Referências, preferências de cor..."></textarea></div>
+        <div><label>Referências ou observações</label><textarea name="obs" placeholder="Cores, estilos, referências de fotos..."></textarea></div>
         <button type="submit" class="submit-btn">→ Enviar pelo WhatsApp</button>
       </form>
     </div>
   </section>
 
-  <!-- INSTAGRAM PROFILE EMBED -->
-  <section class="section-wrap bg-beige centered">
-    <div class="section-label">Siga no Instagram</div>
-    <h2 class="section-title" style="margin-bottom:2rem;">@<em>givebeauty.br</em></h2>
-    <div style="display:flex;justify-content:center;">
-      <iframe src="https://www.instagram.com/givebeauty.br/embed" width="400" height="480"
-        frameborder="0" scrolling="no" allowtransparency="true" style="border:1px solid var(--border);max-width:100%;"></iframe>
-    </div>
-    <a href="https://www.instagram.com/givebeauty.br/" target="_blank" class="btn-gold" style="display:inline-block;margin-top:1.5rem;">Ver perfil completo →</a>
-  </section>
-
   <footer>
-    <span class="footer-logo">Give <em>Beauty</em></span>
+    <a href="#"><img src="logo+nome.png" alt="Give Beauty" class="footer-logo" style="height:36px;opacity:0.6;"></a>
     <span>Giovanna Gonçalves · Limeira/SP</span>
-    <span><a href="https://wa.me/5519974289142">(19) 9 7428-9142</a> · <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a></span>
+    <span>
+      <a href="https://wa.me/5519974289142">(19) 9 7428-9142</a> ·
+      <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a>
+    </span>
   </footer>
-
-  <!-- BOTÃO FLUTUANTE WHATSAPP -->
-  <a href="https://wa.me/5519974289142?text=Ol%C3%A1%20Giovanna!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
-    target="_blank"
-    style="position:fixed;bottom:2rem;right:2rem;z-index:200;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);text-decoration:none;font-size:1.6rem;transition:transform 0.2s;"
-    onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
-    aria-label="Agendar pelo WhatsApp">💬</a>
 
   <!-- STORY MODAL -->
   <div class="story-modal" id="story-modal" onclick="closeStoryModal(event)">
@@ -350,7 +431,7 @@
     </div>
   </div>
 
-  <!-- ADMIN PANEL -->
+  <!-- ADMIN -->
   <div id="admin-panel" onclick="closeAdminOutside(event)">
     <div class="admin-box">
       <h3>Publicar Post</h3>
@@ -364,14 +445,10 @@
         <p id="admin-pwd-err" style="font-size:0.75rem;color:#c0392b;display:none;">Senha incorreta.</p>
       </div>
       <div id="admin-form">
-        <label>Título</label>
-        <input type="text" id="post-title" placeholder="Título do post">
-        <label>Resumo</label>
-        <input type="text" id="post-excerpt" placeholder="Breve descrição (aparece no card)">
-        <label>Conteúdo completo</label>
-        <textarea id="post-content" placeholder="Texto completo do post..."></textarea>
-        <label>URL da imagem (opcional)</label>
-        <input type="text" id="post-img" placeholder="https://... ou deixe vazio">
+        <label>Título</label><input type="text" id="post-title" placeholder="Título do post">
+        <label>Resumo</label><input type="text" id="post-excerpt" placeholder="Breve descrição">
+        <label>Conteúdo</label><textarea id="post-content" placeholder="Texto completo..."></textarea>
+        <label>URL da imagem (opcional)</label><input type="text" id="post-img" placeholder="https://...">
         <div class="admin-actions">
           <button class="btn-admin" onclick="publishPost()">Publicar</button>
           <button class="btn-admin btn-admin-ghost" onclick="closeAdmin()">Cancelar</button>
@@ -380,52 +457,280 @@
     </div>
   </div>
 
+  <!-- FAB WhatsApp -->
+  <a href="https://wa.me/5519974289142?text=Ol%C3%A1%20Giovanna!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
+    target="_blank" class="fab-wa" aria-label="Agendar pelo WhatsApp">💬</a>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <img src="logo+nome.png" alt="Give Beauty">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#galeria">Trabalhos</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#noticias">Novidades</a></li>
+      <li><a href="#agendar" class="nav-cta">Agendar</a></li>
+    </ul>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#galeria" onclick="closeDrawer()">Trabalhos</a>
+    <a href="#servicos" onclick="closeDrawer()">Serviços</a>
+    <a href="#noticias" onclick="closeDrawer()">Novidades</a>
+    <a href="#agendar" onclick="closeDrawer()">Agendar</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">Limeira · SP</div>
+      <h1 class="reveal reveal-delay-1">Unhas com<br><em>naturalidade</em><br>e durabilidade</h1>
+      <p class="hero-quote reveal reveal-delay-2">"A vida é mais bonita quando<br>se cuida com uma rosa"</p>
+      <p class="hero-sub reveal reveal-delay-3">Alongamento · Unhas em Gel · Nail Art · por Giovanna Gonçalves</p>
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="#agendar" class="btn-gold">Agendar horário</a>
+        <a href="#galeria" class="btn-ghost">Ver trabalhos</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="img/anonyviewer.com_Instagram_givebeauty.br_3220181109819649585.jpg" alt="Give Beauty — Unhas em Gel">
+      <span class="hero-ornament">Give Beauty</span>
+    </div>
+  </section>
+
+  <!-- EMBLEMA / DIVISOR -->
+  <div style="background:var(--beige);padding:3rem;display:flex;align-items:center;justify-content:center;gap:2rem;">
+    <div style="flex:1;height:1px;background:var(--border);max-width:200px;"></div>
+    <img src="logo-emblema.png" alt="Give Beauty" style="height:64px;opacity:0.75;">
+    <div style="flex:1;height:1px;background:var(--border);max-width:200px;"></div>
+  </div>
+
+  <!-- STORIES -->
+  <section id="stories" class="section-wrap bg-beige centered">
+    <div class="section-label reveal">Destaques</div>
+    <h2 class="section-title reveal">Casos & <em>Resultados</em></h2>
+    <div class="stories-track" id="stories-track"></div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" class="section-wrap">
+    <div class="section-label reveal">Portfólio</div>
+    <h2 class="section-title reveal">Nossos <em>Trabalhos</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item wide reveal">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3212957795384784983.jpg" alt="Unhas em Gel">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3212957795560922278.jpg" alt="Nail Art">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3210790128997591346.jpg" alt="Alongamento">
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_3179598780437206091.jpg" alt="Gel Natural">
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_2986661209273330954.webp" alt="Unhas">
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_2986661209558538312.webp" alt="Resultado">
+      </div>
+      <div class="gallery-item wide reveal reveal-delay-3">
+        <img src="img/anonyviewer.com_Instagram_givebeauty.br_2986661209558582189.webp" alt="Give Beauty">
+      </div>
+    </div>
+  </section>
+
+  <!-- VÍDEO -->
+  <section class="section-wrap bg-beige centered">
+    <div class="section-label reveal">Em movimento</div>
+    <h2 class="section-title reveal" style="margin-bottom:2rem;">Veja o <em>processo</em></h2>
+    <div class="video-wrap reveal" style="max-width:480px;margin:0 auto;">
+      <video src="img/anonyviewer.com_Instagram_givebeauty.br_3195527503661294573.mp4"
+        controls playsinline muted loop
+        poster="img/anonyviewer.com_Instagram_givebeauty.br_3220181109819649585.jpg"
+        style="width:100%;display:block;"></video>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="section-wrap">
+    <div class="section-label reveal">Serviços</div>
+    <h2 class="section-title reveal">O que <em>oferecemos</em></h2>
+    <div class="services-grid" id="services-grid"></div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section-wrap bg-rose">
+    <div class="section-label centered reveal">Clientes</div>
+    <h2 class="section-title centered reveal">O que dizem <em>sobre nós</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Giovanna é incrível! Minhas unhas ficaram perfeitas, duraram mais de 4 semanas sem lascar. Super recomendo!"</p>
+        <div class="testimonial-author">Ana Paula · Cliente desde 2022</div>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Atendimento impecável, ambiente aconchegante e resultado que supera as expectativas. Não troco por nada!"</p>
+        <div class="testimonial-author">Fernanda Lima · Cliente fiel</div>
+      </div>
+      <div class="testimonial reveal reveal-delay-3">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Fiz o baby boomer e amei! Ficou tão natural e elegante. Já marquei a manutenção para o próximo mês."</p>
+        <div class="testimonial-author">Juliana Costa · Limeira/SP</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTÍCIAS -->
+  <section id="noticias" class="section-wrap bg-beige">
+    <div class="section-label reveal">Blog</div>
+    <h2 class="section-title reveal">Novidades & <em>Dicas</em></h2>
+    <div class="news-grid" id="news-grid"></div>
+    <p style="text-align:right;margin-top:1.5rem;">
+      <button onclick="openAdmin()" style="background:none;border:none;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-decoration:underline;">+ Publicar post</button>
+    </p>
+  </section>
+
+  <!-- INSTAGRAM EMBED -->
+  <section class="section-wrap centered">
+    <div class="section-label reveal">Instagram</div>
+    <h2 class="section-title reveal" style="margin-bottom:2rem;">@<em>givebeauty.br</em></h2>
+    <div class="ig-embed-wrap reveal">
+      <iframe src="https://www.instagram.com/givebeauty.br/embed" width="400" height="480"
+        frameborder="0" scrolling="no" allowtransparency="true"
+        style="border:1px solid var(--border);max-width:100%;"></iframe>
+    </div>
+    <a href="https://www.instagram.com/givebeauty.br/" target="_blank" class="btn-gold" style="display:inline-block;margin-top:1.5rem;">Ver perfil completo →</a>
+  </section>
+
+  <!-- AGENDAMENTO -->
+  <section id="agendar" class="section-wrap bg-beige">
+    <div class="booking-grid">
+      <div class="booking-info">
+        <div class="section-label reveal">Agendamento</div>
+        <h2 class="reveal">Vamos cuidar<br>das suas <em>unhas?</em></h2>
+        <p class="reveal">Preencha o formulário e entro em contato para confirmar o horário. Atendimento em Limeira/SP.</p>
+        <div class="contact-line reveal">
+          <span class="contact-icon">WA</span>
+          <a href="https://wa.me/5519974289142" target="_blank">(19) 9 7428-9142</a>
+        </div>
+        <div class="contact-line reveal">
+          <span class="contact-icon">IG</span>
+          <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a>
+        </div>
+        <div style="margin-top:2rem;" class="reveal">
+          <img src="logo-emblema.png" alt="Give Beauty" style="height:80px;opacity:0.5;">
+        </div>
+      </div>
+      <form id="form-agendar" class="reveal">
+        <div class="form-row">
+          <div><label>Nome</label><input name="name" type="text" placeholder="Seu nome" required></div>
+          <div><label>WhatsApp</label><input name="phone" type="tel" placeholder="(19) 9 9999-9999" required></div>
+        </div>
+        <div>
+          <label>Serviço</label>
+          <select name="service" required>
+            <option value="">Selecione</option>
+            <option>Alongamento em Gel</option>
+            <option>Unhas em Gel</option>
+            <option>Manutenção</option>
+            <option>Nail Art</option>
+            <option>Baby Boomer</option>
+            <option>Encapsulado</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div><label>Data preferida</label><input name="date" type="date" required></div>
+        <div><label>Observações</label><textarea name="obs" placeholder="Referências, preferências de cor, comprimento..."></textarea></div>
+        <button type="submit" class="submit-btn">→ Enviar pelo WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <a href="#"><img src="logo+nome.png" alt="Give Beauty" class="footer-logo" style="height:36px;opacity:0.6;"></a>
+    <span>Giovanna Gonçalves · Limeira/SP</span>
+    <span>
+      <a href="https://wa.me/5519974289142">(19) 9 7428-9142</a> ·
+      <a href="https://www.instagram.com/givebeauty.br/" target="_blank">@givebeauty.br</a>
+    </span>
+  </footer>
+
+  <!-- STORY MODAL -->
+  <div class="story-modal" id="story-modal" onclick="closeStoryModal(event)">
+    <button class="modal-close-btn" onclick="closeStoryModal()">×</button>
+    <div class="story-modal-box">
+      <div id="story-modal-img-wrap"></div>
+      <div class="story-modal-body">
+        <div class="story-modal-title" id="story-modal-title"></div>
+        <div class="story-modal-text" id="story-modal-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWS MODAL -->
+  <div class="news-modal" id="news-modal" onclick="closeNewsModal(event)">
+    <button class="modal-close-btn" onclick="closeNewsModal()">×</button>
+    <div class="news-modal-box">
+      <div id="news-modal-img-wrap"></div>
+      <div class="news-modal-body">
+        <div class="news-modal-date" id="news-modal-date"></div>
+        <div class="news-modal-title" id="news-modal-title"></div>
+        <div class="news-modal-content" id="news-modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN -->
+  <div id="admin-panel" onclick="closeAdminOutside(event)">
+    <div class="admin-box">
+      <h3>Publicar Post</h3>
+      <div id="admin-login">
+        <label>Senha</label>
+        <input type="password" id="admin-pwd" placeholder="••••••">
+        <div class="admin-actions">
+          <button class="btn-admin" onclick="checkAdminPwd()">Entrar</button>
+          <button class="btn-admin btn-admin-ghost" onclick="closeAdmin()">Cancelar</button>
+        </div>
+        <p id="admin-pwd-err" style="font-size:0.75rem;color:#c0392b;display:none;margin-top:0.5rem;">Senha incorreta.</p>
+      </div>
+      <div id="admin-form">
+        <label>Título</label><input type="text" id="post-title" placeholder="Título do post">
+        <label>Resumo</label><input type="text" id="post-excerpt" placeholder="Breve descrição">
+        <label>Conteúdo</label><textarea id="post-content" placeholder="Texto completo..."></textarea>
+        <label>URL da imagem (opcional)</label><input type="text" id="post-img" placeholder="https://...">
+        <div class="admin-actions">
+          <button class="btn-admin" onclick="publishPost()">Publicar</button>
+          <button class="btn-admin btn-admin-ghost" onclick="closeAdmin()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÃO WA FLUTUANTE -->
+  <a href="https://wa.me/5519974289142?text=Ol%C3%A1%20Giovanna!%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio."
+    target="_blank" class="fab-wa" aria-label="WhatsApp">💬</a>
+
   <script>
-    // ════════════════════════════════════════════
-    // CONFIGURAÇÃO — edite aqui
-    // ════════════════════════════════════════════
     const CONFIG = {
-      whatsapp: '5519974289142', // número da Giovanna
-      instagram: 'givebeauty.br',
-      admin_password: 'givebeauty2026' // troque para uma senha segura
+      whatsapp: '5519974289142',
+      admin_password: 'givebeauty2026'
     };
 
-    // ── Stories (bolinhas) ──
-    // Substitua img por 'img/nome.jpg' quando tiver as fotos reais
     const STORIES = [
-      { label: 'Gel Natural', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop', emoji: '🌸', title: 'Unhas em Gel Natural', text: 'Resultado impecável com aspecto natural. Acabamento brilhoso e duração de até 4 semanas sem lascar.' },
-      { label: 'Alongamento', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=right', emoji: '✨', title: 'Alongamento em Gel', text: 'Comprimento e formato personalizados. Ideal para quem quer unhas longas, resistentes e com visual impecável.' },
-      { label: 'Nail Art', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=top', emoji: '🌹', title: 'Nail Art Exclusiva', text: 'Designs únicos criados especialmente para você. Do minimalista ao elaborado, cada detalhe feito à mão com muito carinho.' },
-      { label: 'Baby Boomer', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=bottom', emoji: '🤍', title: 'Baby Boomer', text: 'A técnica francesa moderna com degradê suave e sofisticado. Clássico, atemporal e elegante para qualquer ocasião.' },
-      { label: 'Antes & Depois', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80&fit=crop&crop=left', emoji: '💅', title: 'Transformação', text: 'Veja a diferença que um bom trabalho faz. Resultados reais de clientes reais — porque beleza de verdade não precisa de filtro.' },
+      { label: 'Gel Natural', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3220181109819649585.jpg', title: 'Unhas em Gel Natural', text: 'Resultado impecável com aspecto natural. Duração de até 4 semanas sem lascar.' },
+      { label: 'Nail Art', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3212957795384784983.jpg', title: 'Nail Art Exclusiva', text: 'Designs únicos criados especialmente para você. Do minimalista ao elaborado, cada detalhe feito à mão.' },
+      { label: 'Alongamento', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3210790128997591346.jpg', title: 'Alongamento em Gel', text: 'Comprimento e formato personalizados. Ideal para quem quer unhas longas, resistentes e com visual impecável.' },
+      { label: 'Baby Boomer', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3179598780437206091.jpg', title: 'Baby Boomer', text: 'A técnica francesa moderna com degradê suave e sofisticado. Clássico, atemporal e elegante.' },
+      { label: 'Resultado', img: 'img/anonyviewer.com_Instagram_givebeauty.br_2986661209273330954.webp', title: 'Antes & Depois', text: 'Veja a diferença que um bom trabalho faz. Resultados reais de clientes reais.' },
     ];
 
-    // ── Posts do Instagram (embed) ──
-    const REELS = [
-      { src: 'https://www.instagram.com/p/ClywIzSrTQJ/embed/' },
-      { src: 'https://www.instagram.com/p/CywYah7OS4x/embed/' },
-      { src: 'https://www.instagram.com/p/CyWuBhaOMPT/embed/' },
-      { src: 'https://www.instagram.com/p/CyPBJxfO2ky/embed/' },
-      { src: 'https://www.instagram.com/p/CyHT8JouE6k/embed/' },
-      { src: 'https://www.instagram.com/p/CyEvOKyuPwS/embed/' },
-      { src: 'https://www.instagram.com/p/CxYy1V9uOPt/embed/' },
-      { src: 'https://www.instagram.com/p/CxVfNILORL_/embed/' },
-      { src: 'https://www.instagram.com/p/CxSuyJkOeTE/embed/' },
-      { src: 'https://www.instagram.com/p/CwgND6cOZRL/embed/' },
-      { src: 'https://www.instagram.com/p/CvaokTCgkN9/embed/' },
-      { src: 'https://www.instagram.com/p/CvCcdSqOQQb/embed/' },
-      { src: 'https://www.instagram.com/p/Cu95mfXOtOi/embed/' },
-      { src: 'https://www.instagram.com/p/CuvGSnbuz1H/embed/' },
-      { src: 'https://www.instagram.com/p/CusXueEu_Kx/embed/' },
-      { src: 'https://www.instagram.com/p/Ctug1LVudkp/embed/' },
-      { src: 'https://www.instagram.com/p/Ctrw2VzOV5W/embed/' },
-      { src: 'https://www.instagram.com/p/Cte9R9-AqOQ/embed/' },
-      { src: 'https://www.instagram.com/p/Cp3P-tmOhMO/embed/' },
-      { src: 'https://www.instagram.com/p/CpiiIwaOE45/embed/' },
-      { src: 'https://www.instagram.com/p/CpXqIlmODCH/embed/' },
-    ];
-
-    // ── Serviços ──
     const SERVICES = [
       { icon: '💅', name: 'Unhas em Gel', desc: 'Acabamento impecável com brilho duradouro. Ideal para o dia a dia com naturalidade e elegância.', price: 'Consulte o valor' },
       { icon: '✨', name: 'Alongamento em Gel', desc: 'Comprimento e formato personalizados. Resistência e beleza que duram semanas.', price: 'Consulte o valor' },
@@ -435,39 +740,21 @@
       { icon: '🪷', name: 'Encapsulado', desc: 'Flores, glitter e elementos encapsulados em gel. Arte que dura junto com suas unhas.', price: 'Consulte o valor' },
     ];
 
-    // ════════════════════════════════════════════
-    // RENDER
-    // ════════════════════════════════════════════
-
-    // Stories
+    // Render stories
     const storiesTrack = document.getElementById('stories-track');
     STORIES.forEach((s, i) => {
       storiesTrack.innerHTML += `
-        <div class="story-bubble" onclick="openStory(${i})">
-          <div class="story-ring">
-            ${s.img ? `<img src="${s.img}" alt="${s.label}">` : `<div class="story-ph">${s.emoji}</div>`}
-          </div>
+        <div class="story-bubble reveal reveal-delay-${i+1}" onclick="openStory(${i})">
+          <div class="story-ring"><img src="${s.img}" alt="${s.label}"></div>
           <span class="story-label">${s.label}</span>
         </div>`;
     });
 
-    // Reels
-    const reelsTrack = document.getElementById('reels-track');
-    REELS.forEach(r => {
-      reelsTrack.innerHTML += `
-        <div class="reel-item">
-          <iframe src="${r.src}" height="480" scrolling="no"
-            allowtransparency="true" allowfullscreen="true"
-            frameborder="0">
-          </iframe>
-        </div>`;
-    });
-
-    // Serviços
+    // Render services
     const servicesGrid = document.getElementById('services-grid');
-    SERVICES.forEach(s => {
+    SERVICES.forEach((s, i) => {
       servicesGrid.innerHTML += `
-        <div class="svc-card">
+        <div class="svc-card reveal reveal-delay-${(i%3)+1}">
           <div class="svc-icon">${s.icon}</div>
           <div class="svc-name">${s.name}</div>
           <div class="svc-desc">${s.desc}</div>
@@ -475,72 +762,70 @@
         </div>`;
     });
 
-    // Notícias — carrega do localStorage
-    function loadPosts() {
-      return JSON.parse(localStorage.getItem('gb_posts') || '[]');
-    }
-    function savePosts(posts) {
-      localStorage.setItem('gb_posts', JSON.stringify(posts));
-    }
+    // News
+    function loadPosts() { return JSON.parse(localStorage.getItem('gb_posts') || '[]'); }
+    function savePosts(p) { localStorage.setItem('gb_posts', JSON.stringify(p)); }
+
     function renderNews() {
       const saved = loadPosts();
-      // posts de exemplo enquanto não há posts reais
       const defaults = [
-        { title: 'Unhas em gel: quanto tempo dura?', excerpt: 'Tire suas dúvidas sobre durabilidade, manutenção e cuidados.', content: 'As unhas em gel duram em média 3 a 4 semanas com os cuidados certos. Evite contato prolongado com água quente, use luvas ao lavar louça e hidrate as cutículas diariamente. A manutenção regular garante que suas unhas fiquem sempre impecáveis.', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop', date: '10 de outubro de 2023' },
-        { title: 'Baby Boomer: a francesa moderna', excerpt: 'Entenda por que essa técnica conquistou todas as mulheres.', content: 'O Baby Boomer é uma evolução da francesa clássica. O degradê suave entre o branco e o rosa cria um efeito sofisticado e natural que combina com qualquer ocasião — do trabalho à festa. É uma das técnicas mais pedidas no estúdio.', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop&crop=right', date: '5 de setembro de 2023' },
-        { title: 'Como cuidar das unhas em casa', excerpt: 'Dicas simples para prolongar a vida das suas unhas.', content: 'Hidrate as cutículas toda noite com óleo de amêndoas ou vitamina E. Evite usar as unhas como ferramenta. Use luvas ao lavar louça. Aplique base fortalecedora se suas unhas forem naturais. Pequenos cuidados fazem toda a diferença no resultado final.', img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop&crop=bottom', date: '20 de agosto de 2023' },
+        { title: 'Unhas em gel: quanto tempo dura?', excerpt: 'Tire suas dúvidas sobre durabilidade e cuidados.', content: 'As unhas em gel duram em média 3 a 4 semanas com os cuidados certos. Evite contato prolongado com água quente, use luvas ao lavar louça e hidrate as cutículas diariamente.', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3212957795560922278.jpg', date: '10 de outubro de 2023' },
+        { title: 'Baby Boomer: a francesa moderna', excerpt: 'Entenda por que essa técnica conquistou todas.', content: 'O Baby Boomer é uma evolução da francesa clássica. O degradê suave entre o branco e o rosa cria um efeito sofisticado e natural que combina com qualquer ocasião.', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3179598780437206091.jpg', date: '5 de setembro de 2023' },
+        { title: 'Como cuidar das unhas em casa', excerpt: 'Dicas simples para prolongar a vida das suas unhas.', content: 'Hidrate as cutículas toda noite com óleo de amêndoas. Evite usar as unhas como ferramenta. Use luvas ao lavar louça. Pequenos cuidados fazem toda a diferença.', img: 'img/anonyviewer.com_Instagram_givebeauty.br_2986661209273330954.webp', date: '20 de agosto de 2023' },
       ];
       const posts = saved.length ? saved : defaults;
+      window._currentPosts = posts;
       const grid = document.getElementById('news-grid');
       grid.innerHTML = posts.slice().reverse().map((p, i) => `
-        <div class="news-card" onclick="openNews(${i}, ${JSON.stringify(saved.length ? true : false)})">
-          ${p.img ? `<img class="news-card-img" src="${p.img}" alt="${p.title}">` : `<div class="news-card-img-ph">🌸</div>`}
+        <div class="news-card reveal reveal-delay-${(i%3)+1}" onclick="openNews(${posts.length-1-i})">
+          ${p.img ? `<img class="news-card-img" src="${p.img}" alt="${p.title}">` : `<div class="news-card-ph">🌸</div>`}
           <div class="news-card-body">
             <div class="news-card-date">${p.date}</div>
             <div class="news-card-title">${p.title}</div>
             <div class="news-card-excerpt">${p.excerpt}</div>
           </div>
         </div>`).join('');
-      // guarda referência para o modal
-      window._currentPosts = posts;
+      // re-observe new elements
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
     }
     renderNews();
 
-    // ── Story modal ──
+    // Story modal
     function openStory(i) {
       const s = STORIES[i];
-      document.getElementById('story-modal-img-wrap').innerHTML = s.img
-        ? `<img class="story-modal-img" src="${s.img}" alt="${s.title}">`
-        : `<div class="story-modal-img-ph">${s.emoji}</div>`;
+      document.getElementById('story-modal-img-wrap').innerHTML = `<img class="story-modal-img" src="${s.img}" alt="${s.title}">`;
       document.getElementById('story-modal-title').textContent = s.title;
       document.getElementById('story-modal-text').textContent = s.text;
       document.getElementById('story-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
     function closeStoryModal(e) {
       if (!e || e.target === document.getElementById('story-modal')) {
         document.getElementById('story-modal').classList.remove('open');
+        document.body.style.overflow = '';
       }
     }
 
-    // ── News modal ──
+    // News modal
     function openNews(i) {
-      const posts = window._currentPosts || loadPosts();
-      const p = posts[i];
+      const p = window._currentPosts[i];
       document.getElementById('news-modal-img-wrap').innerHTML = p.img
         ? `<img class="news-modal-img" src="${p.img}" alt="${p.title}">`
-        : `<div class="news-modal-img-ph">🌸</div>`;
+        : `<div class="news-modal-ph">🌸</div>`;
       document.getElementById('news-modal-date').textContent = p.date;
       document.getElementById('news-modal-title').textContent = p.title;
       document.getElementById('news-modal-content').textContent = p.content;
       document.getElementById('news-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
     function closeNewsModal(e) {
       if (!e || e.target === document.getElementById('news-modal')) {
         document.getElementById('news-modal').classList.remove('open');
+        document.body.style.overflow = '';
       }
     }
 
-    // ── Admin ──
+    // Admin
     function openAdmin() { document.getElementById('admin-panel').classList.add('open'); }
     function closeAdmin() {
       document.getElementById('admin-panel').classList.remove('open');
@@ -569,13 +854,10 @@
       savePosts(posts);
       renderNews();
       closeAdmin();
-      document.getElementById('post-title').value = '';
-      document.getElementById('post-excerpt').value = '';
-      document.getElementById('post-content').value = '';
-      document.getElementById('post-img').value = '';
+      ['post-title','post-excerpt','post-content','post-img'].forEach(id => document.getElementById(id).value = '');
     }
 
-    // ── Formulário agendamento ──
+    // Formulário agendamento
     document.getElementById('form-agendar').addEventListener('submit', function(e) {
       e.preventDefault();
       const d = Object.fromEntries(new FormData(this));
@@ -583,18 +865,34 @@
       window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 
-    // ── Nav mobile ──
-    document.getElementById('nav-toggle').addEventListener('click', () => {
-      document.getElementById('nav-links').classList.toggle('open');
+    // Nav hamburger
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('nav-drawer');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      drawer.classList.toggle('open');
+      document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
     });
+    function closeDrawer() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-    // ── ESC fecha modais ──
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ESC
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        document.getElementById('story-modal').classList.remove('open');
-        document.getElementById('news-modal').classList.remove('open');
-        closeAdmin();
-      }
+      if (e.key === 'Escape') { closeStoryModal(); closeNewsModal(); closeAdmin(); }
     });
   </script>
 </body>
