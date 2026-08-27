@@ -1,0 +1,74 @@
+{
+  "menu": [
+    {"id": 1, "name": "Café Expresso", "category": "Bebidas", "price": "5", "description": "Café puro e encorpado", "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b3f7?w=600&q=80"},
+    {"id": 2, "name": "Cappuccino", "category": "Bebidas", "price": "8", "description": "Café com leite vaporizado", "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b3f7?w=600&q=80"},
+    {"id": 3, "name": "Bolo de Chocolate", "category": "Sobremesa", "price": "12", "description": "Bolo caseiro de chocolate", "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80"},
+    {"id": 4, "name": "Sanduíche Vegano", "category": "Entrada", "price": "15", "description": "Pão integral com vegetais frescos", "image": "https://images.unsplash.com/photo-1553909764-5a295f8a0c7e?w=600&q=80"},
+    {"id": 5, "name": "Salada César", "category": "Entrada", "price": "18", "description": "Salada com croutons caseiros", "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80"},
+    {"id": 6, "name": "Frango Grelhado", "category": "Prato", "price": "28", "description": "Frango marinado com acompanhamentos", "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=600&q=80"},
+    {"id": 7, "name": "Pasta à Carbonara", "category": "Prato", "price": "32", "description": "Receita italiana autêntica", "image": "https://images.unsplash.com/photo-1612874742237-6526221fcf0f?w=600&q=80"},
+    {"id": 8, "name": "Salmão Assado", "category": "Prato", "price": "38", "description": "Salmão fresco do dia com limão", "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80"},
+    {"id": 9, "name": "Tiramisu", "category": "Sobremesa", "price": "14", "description": "Sobremesa italiana clássica", "image": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&q=80"},
+    {"id": 10, "name": "Cheesecake", "category": "Sobremesa", "price": "13", "description": "Cheesecake com calda de morango", "image": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&q=80"},
+    {"id": 11, "name": "Suco Natural", "category": "Bebidas", "price": "7", "description": "Suco de frutas frescas", "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&q=80"},
+    {"id": 12, "name": "Chopp Artesanal", "category": "Bebidas", "price": "12", "description": "Cerveja artesanal local", "image": "https://images.unsplash.com/photo-1608270861620-7dfc29c0f179?w=600&q=80"}
+  ],
+  "hours": [
+    {"day": "Segunda", "open": "10:00", "close": "22:00"},
+    {"day": "Terça", "open": "10:00", "close": "22:00"},
+    {"day": "Quarta", "open": "10:00", "close": "22:00"},
+    {"day": "Quinta", "open": "10:00", "close": "23:00"},
+    {"day": "Sexta", "open": "10:00", "close": "23:00"},
+    {"day": "Sábado", "open": "11:00", "close": "23:00"},
+    {"day": "Domingo", "open": "11:00", "close": "22:00"}
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Comida excelente, atendimento atencioso e ambiente aconchegante. Voltamos toda semana!",
+      "author": "Monica C.",
+      "dish": "Salmão Assado",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "O melhor café da região. Os doces são feitos no dia. Recomendo demais!",
+      "author": "Ricardo P.",
+      "dish": "Cappuccino + Bolo",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Pasta deliciosa, saborosa e bem apresentada. Preço justo. Adoramos!",
+      "author": "Lucia M.",
+      "dish": "Pasta à Carbonara",
+      "rating": 5
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "Como Preparar um Café Perfeito em Casa",
+      "excerpt": "Dicas e truques para fazer um expresso profissional no conforto do seu lar",
+      "date": "2026-08-20",
+      "readTime": "5 min",
+      "image": "https://images.unsplash.com/photo-1559056199-641a0ac8b3f7?w=400&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Receita: Pasta à Carbonara Autêntica",
+      "excerpt": "Aprenda a receita original italiana diretamente de nosso chef",
+      "date": "2026-08-15",
+      "readTime": "10 min",
+      "image": "https://images.unsplash.com/photo-1612874742237-6526221fcf0f?w=400&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Sobremesas que Fazem Sucesso",
+      "excerpt": "Conheça as sobremesas mais pedidas e os segredos da confeitaria",
+      "date": "2026-08-10",
+      "readTime": "7 min",
+      "image": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&q=80"
+    }
+  ]
+}

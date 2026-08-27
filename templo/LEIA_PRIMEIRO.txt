@@ -1,0 +1,23 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║            🙏 COMUNIDADE RELIGIOSA/ESPIRITUAL - BEM-VINDO! 🙏            ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👋 COMECE AQUI:
+- Abrir: index.html
+- Testar responsividade
+- Personalizar informações
+
+📁 ARQUIVOS:
+- index.html (site comunidade)
+- data.json (eventos, horários)
+- QUICK_START.md (guia)
+
+🎨 CORES:
+- Azul Profundo: #1a365d
+- Dourado: #d4af37
+- Creme: #fffaf0
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR

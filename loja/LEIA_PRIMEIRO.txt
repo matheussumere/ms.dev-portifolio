@@ -1,0 +1,23 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                 🛍️  E-COMMERCE/LOJA - BEM-VINDO! 🛍️                     ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👋 COMECE AQUI:
+- Abrir: index.html
+- F12 para testar responsividade
+- Personalizar dados
+
+📁 ARQUIVOS:
+- index.html (site + loja)
+- data.json (produtos, categorias, preços)
+- QUICK_START.md (guia)
+
+🎨 CORES:
+- Azul: #1e3a8a
+- Cyan: #06b6d4
+- Branco: #ffffff
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR

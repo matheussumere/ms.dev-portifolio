@@ -1,0 +1,178 @@
+{
+  "portfolio": [
+    {
+      "id": 1,
+      "title": "Honda CB 500",
+      "description": "Revisão completa de corrente, pinhão e coroa",
+      "brand": "Honda",
+      "model": "CB 500F",
+      "service": "Corrente & Pinhão",
+      "before": "Corrente desgastada, pinhão e coroa com folga",
+      "after": "Substituição completa, alinhamento perfeito",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop",
+      "duration": "4 horas",
+      "satisfaction": 5
+    },
+    {
+      "id": 2,
+      "title": "Yamaha Tenere 700",
+      "description": "Diagnóstico eletrônico e ajuste do motor",
+      "brand": "Yamaha",
+      "model": "Tenere 700",
+      "service": "Motor & Câmbio",
+      "before": "Luz de verificação acesa, motor com falha",
+      "after": "Sensor limpo, motor rodando perfeitamente",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop",
+      "duration": "2 horas",
+      "satisfaction": 5
+    },
+    {
+      "id": 3,
+      "title": "Harley-Davidson",
+      "description": "Revisão de manutenção preventiva completa",
+      "brand": "Harley-Davidson",
+      "model": "Street 500",
+      "service": "Revisão Completa",
+      "before": "50.000 km sem revisão completa",
+      "after": "Filtros novos, óleo trocado, tudo checado",
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80&fit=crop",
+      "duration": "3 horas",
+      "satisfaction": 5
+    },
+    {
+      "id": 4,
+      "title": "Suzuki V-Strom",
+      "description": "Sistema de freios substituído e balanceado",
+      "brand": "Suzuki",
+      "model": "V-Strom 650",
+      "service": "Suspensão & Freios",
+      "before": "Pastilhas desgastadas, disco com risco",
+      "after": "Novo sistema de freios, frenagem potente",
+      "image": "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80&fit=crop",
+      "duration": "5 horas",
+      "satisfaction": 5
+    },
+    {
+      "id": 5,
+      "title": "Kawasaki Ninja",
+      "description": "Revisão de suspensão e alinhamento completo",
+      "brand": "Kawasaki",
+      "model": "Ninja 400",
+      "service": "Suspensão & Freios",
+      "before": "Suspensão muito mole, pneu desgastado",
+      "after": "Suspensão regulada, alinhamento perfeito",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop",
+      "duration": "3 horas",
+      "satisfaction": 5
+    },
+    {
+      "id": 6,
+      "title": "Custom Restoration",
+      "description": "Restauração completa de moto custom",
+      "brand": "Custom",
+      "model": "Vintage 1980",
+      "service": "Restauração Completa",
+      "before": "Moto abandonada, partes enferrujadas",
+      "after": "Moto impecável, como nova",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop",
+      "duration": "40 horas",
+      "satisfaction": 5
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "5 Sinais que Sua Corrente Precisa de Revisão",
+      "category": "Manutenção",
+      "excerpt": "Aprenda a identificar os principais indicadores de desgaste da corrente e pinhão. Cuidado preventivo economiza dinheiro e acidentes.",
+      "content": "A corrente é uma das partes mais críticas da moto. Aqui estão 5 sinais que você não deve ignorar:\n\n1. Ruído de corrente - Se ouve um barulho estranho ou clique, pode ser folga.\n2. Folga excessiva - Mais de 2cm de folga vertical é perigoso.\n3. Corrente ressecada - Sem óleo, a corrente se desgasta rapidamente.\n4. Pinhão com dentes lascados - Precisa ser substituído.\n5. Vibração durante aceleração - Corrente muito desgastada.\n\nTrocar a corrente preventivamente custa menos que reparo de emergência.",
+      "readTime": "10 min",
+      "date": "2026-08-20",
+      "author": "Müller Auto",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Guia Completo: Como Trocar Óleo da Moto",
+      "category": "Rotina",
+      "excerpt": "Passo a passo detalhado sobre a manutenção básica que você pode fazer em casa. Economia e segurança garantidas.",
+      "content": "Trocar o óleo da sua moto é uma tarefa simples que economiza muito:\n\nMATERIAIS NECESSÁRIOS:\n- Óleo de moto (verificar viscosidade correta)\n- Chave de fenda\n- Recipiente para óleo usado\n- Pano limpo\n\nPASSOS:\n1. Aqueça o motor por 2 minutos\n2. Coloque a moto no cavalete central\n3. Retire o parafuso de drenagem\n4. Deixe drenar completamente (5-10 min)\n5. Limpe o filtro de óleo\n6. Adicione óleo novo até a marca\n7. Verifique no dia seguinte\n\nFREQUÊNCIA: A cada 6 mil km ou 6 meses.",
+      "readTime": "8 min",
+      "date": "2026-08-18",
+      "author": "Müller Auto",
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Luz da Bateria Acendeu? Saiba o que Pode Ser",
+      "category": "Diagnóstico",
+      "excerpt": "Entenda os problemas mais comuns que acionam a luz de aviso. Quando ir à oficina e quando pode esperar.",
+      "content": "A luz de bateria acesa é um alerta importante. Pode significar:\n\nCAUSAS COMUNS:\n1. BATERIA FRACA - Teste a voltagem (12V normal)\n2. ALTERNADOR DEFEITUOSO - Não está carregando\n3. FIAÇÃO SOLTA - Verifique conexões\n4. FUSÍVEL QUEIMADO - Fácil de verificar\n5. REGULADOR DE VOLTAGEM - Precisa de substituição\n\nCOMO VERIFICAR:\n- Ligue a moto\n- Se a luz apagar = problema resolvido (possível falso contato)\n- Se continuar = levem à oficina\n\nNÃO dirija longas distâncias com esta luz acesa.",
+      "readTime": "6 min",
+      "date": "2026-08-15",
+      "author": "Müller Auto",
+      "image": "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=400&q=80"
+    }
+  ],
+  "brands": [
+    {
+      "name": "Honda",
+      "icon": "🏍️",
+      "models": ["CB 500F", "CB 500X", "CRF 250", "XRE 300", "CB 250", "Hornet"],
+      "specialty": "Bikes de rua e trails confiáveis"
+    },
+    {
+      "name": "Yamaha",
+      "icon": "🏎️",
+      "models": ["Tenere 700", "MT-07", "XJ6", "Fazer", "YZF-R3", "MT-03"],
+      "specialty": "Motos esportivas e adventure"
+    },
+    {
+      "name": "Harley-Davidson",
+      "icon": "⚡",
+      "models": ["Street 500", "Street 750", "Softail", "Touring", "Sportster"],
+      "specialty": "Cruisers clássicas e potentes"
+    },
+    {
+      "name": "Suzuki",
+      "icon": "🚀",
+      "models": ["GSX-R", "V-Strom", "Bandit", "SV", "DL250"],
+      "specialty": "Bikes versáteis e confiáveis"
+    },
+    {
+      "name": "Kawasaki",
+      "icon": "🔥",
+      "models": ["Ninja", "Z", "Versys", "Ninja 400", "Z125"],
+      "specialty": "Naked bikes e esportivas"
+    },
+    {
+      "name": "Custom & Importadas",
+      "icon": "💪",
+      "models": ["Royal Enfield", "Royal Enfield 650", "BMW G 310", "KTM 390"],
+      "specialty": "Todas as marcas e cilindradas"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Levei minha moto com um problema que outras oficinas não conseguiram resolver. Em 2 horas diagnosticaram e resolveram. Transparência total!",
+      "author": "Ricardo M.",
+      "model": "Honda CB 500F",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Orçamento honesto, prazo cumprido e moto lavada na entrega. Não levo minha moto em outro lugar há 8 anos.",
+      "author": "Fernanda L.",
+      "model": "Yamaha Tenere",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Profissionalismo de outro nível. Recebi fotos de cada etapa do serviço pelo WhatsApp. Confiança total.",
+      "author": "Carlos A.",
+      "model": "Harley-Davidson Street 500",
+      "rating": 5
+    }
+  ]
+}

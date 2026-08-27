@@ -1,0 +1,23 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║               📄 CURRÍCULO PROFISSIONAL - BEM-VINDO! 📄                  ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👋 COMECE AQUI:
+- Abrir: index.html
+- Testar responsividade: F12
+- Adicionar seus dados
+
+📁 ARQUIVOS:
+- index.html (currículo web)
+- data.json (experiência, habilidades)
+- QUICK_START.md (guia)
+
+🎨 CORES:
+- Azul: #1f2937
+- Cyan: #0891b2
+- Branco: #ffffff
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR

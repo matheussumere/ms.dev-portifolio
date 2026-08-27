@@ -1,0 +1,36 @@
+{
+  "products": [
+    {"id": 1, "name": "Produto Premium 1", "category": "Categoria A", "price": "89.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Produto de alta qualidade"},
+    {"id": 2, "name": "Produto Standard 1", "category": "Categoria B", "price": "49.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Bom custo-benefício"},
+    {"id": 3, "name": "Produto Economy", "category": "Categoria C", "price": "29.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Preço acessível"},
+    {"id": 4, "name": "Bundle Premium", "category": "Categoria A", "price": "159.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Combo com desconto"},
+    {"id": 5, "name": "Edição Limitada", "category": "Categoria D", "price": "199.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Apenas 10 em estoque"},
+    {"id": 6, "name": "Bestseller", "category": "Categoria B", "price": "79.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Mais vendido"},
+    {"id": 7, "name": "Novidade 2026", "category": "Categoria A", "price": "119.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Lançamento exclusivo"},
+    {"id": 8, "name": "Promoção Imperdível", "category": "Categoria C", "price": "39.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "50% OFF esta semana"},
+    {"id": 9, "name": "Produto Premium 2", "category": "Categoria D", "price": "149.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Qualidade superior"},
+    {"id": 10, "name": "Starter Pack", "category": "Categoria B", "price": "59.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Perfeito para começar"},
+    {"id": 11, "name": "Deluxe Edition", "category": "Categoria A", "price": "189.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Versão premium exclusiva"},
+    {"id": 12, "name": "Teste Gratuito", "category": "Categoria C", "price": "19.90", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80", "description": "Experimentar antes"}
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Excelente qualidade e chegou rápido. O atendimento foi muito bom. Super recomendo!",
+      "author": "João P.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Melhor preço que encontrei. Produto embalado com cuidado. Muito satisfeito!",
+      "author": "Maria S.",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Voltaria a comprar com certeza. Entrega pontual e produto perfeito. Parabéns!",
+      "author": "Carlos M.",
+      "rating": 5
+    }
+  ]
+}

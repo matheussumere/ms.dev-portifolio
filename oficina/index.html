@@ -3,12 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Müller Auto — Oficina Mecânica</title>
+  <meta name="description" content="Müller Auto - Oficina mecânica especializada em motos. Diagnóstico computadorizado, serviços para Honda, Yamaha, Harley-Davidson. 25 anos de excelência.">
+  <meta name="keywords" content="oficina motos, mecânica motos, serviço Honda, Yamaha, Harley-Davidson, revisão motos, reparo motos">
+  <meta name="author" content="Müller Auto">
+  <meta property="og:title" content="Müller Auto — Oficina Especializada em Motos">
+  <meta property="og:description" content="Seu parceiro confiável em manutenção e reparo de motos com 25 anos de experiência.">
+  <meta property="og:type" content="business.business">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80">
+  <title>Müller Auto — Oficina Mecânica Especializada em Motos</title>
+  
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Müller Auto",
+    "description": "Oficina mecânica especializada em motos com 25 anos de experiência",
+    "url": "https://white-label-portifolio.com/oficina",
+    "telephone": "+5511999999999",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua das Indústrias, 142",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "00000-000",
+      "addressCountry": "BR"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "14:00"
+      }
+    ],
+    "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80",
+    "priceRange": "R$",
+    "ratingValue": "4.8",
+    "reviewCount": "1200",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1200"
+    },
+    "serviceArea": {
+      "@type": "City",
+      "name": "São Paulo"
+    },
+    "sameAs": [
+      "https://www.facebook.com/mullerauto",
+      "https://www.instagram.com/mullerauto"
+    ]
+  }
+  </script>
+  
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Müller Auto",
+    "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80",
+    "description": "Oficina especializada em manutenção e reparo de motos",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua das Indústrias, 142",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "telephone": "(11) 99999-9999",
+    "url": "https://white-label-portifolio.com/oficina",
+    "foundingDate": "1998",
+    "areaServed": "São Paulo",
+    "knowsAbout": ["Motorcycles", "Auto Repair", "Mechanics", "Diagnostics"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <link rel="stylesheet" href="../shared/enhancements.css">
+  <link rel="stylesheet" href="./images-optimization.css">
   <style>
     :root {
       --color-primary: #1c1c1c;
@@ -118,6 +201,456 @@
     .svc-card h3 { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
     .svc-card p { color: var(--color-muted); font-size: 0.9rem; line-height: 1.6; }
 
+    /* ESPECIALIZAÇÃO - Marcas de Motos */
+    .specialization {
+      background: var(--color-surface);
+      padding: 5rem 3rem;
+    }
+    .spec-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .spec-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .spec-header h2 span { color: var(--color-accent); }
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .brand-card {
+      background: var(--color-bg);
+      border: 2px solid var(--color-border);
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      border-radius: 4px;
+    }
+    .brand-card:hover {
+      border-color: var(--color-accent);
+      background: var(--color-surface);
+      transform: translateY(-5px);
+    }
+    .brand-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .brand-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary);
+    }
+    .brand-models {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    /* GALERIA ANTES & DEPOIS */
+    .gallery {
+      background: var(--color-primary);
+      padding: 5rem 3rem;
+      color: #fff;
+    }
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .gallery-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .gallery-header h2 span { color: var(--color-accent); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(192, 57, 43, 0.8) 0%, rgba(28, 28, 28, 0.8) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      flex-direction: column;
+      text-align: center;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-overlay h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .gallery-overlay p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      max-width: 250px;
+    }
+
+    /* PROGRAMA FIDELIDADE */
+    .loyalty {
+      background: linear-gradient(135deg, var(--color-accent) 0%, #a93226 100%);
+      color: #fff;
+      padding: 4rem 3rem;
+      text-align: center;
+      border-radius: 4px;
+      margin: 3rem;
+    }
+    .loyalty h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .loyalty p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .loyalty-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .loyalty-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: 4px;
+    }
+    .loyalty-item strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .loyalty-item span {
+      font-size: 0.9rem;
+    }
+
+    /* GARANTIAS */
+    .guarantees {
+      background: var(--color-bg);
+      padding: 5rem 3rem;
+    }
+    .guarantees-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .guarantees-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .guarantees-header h2 span { color: var(--color-accent); }
+    .guarantees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .guarantee-card {
+      background: var(--color-surface);
+      padding: 2.5rem;
+      border-left: 4px solid var(--color-accent);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .guarantee-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .guarantee-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+    }
+    .guarantee-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--color-primary);
+    }
+    .guarantee-card p {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* BLOG PREVIEW */
+    .blog {
+      padding: 5rem 3rem;
+      background: var(--color-surface);
+    }
+    .blog-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .blog-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .blog-header h2 span { color: var(--color-accent); }
+    .blog-view-all {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-accent);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .blog-view-all:hover {
+      gap: 1rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .blog-card {
+      background: var(--color-bg);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    .blog-image {
+      width: 100%;
+      height: 200px;
+      background: var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      overflow: hidden;
+    }
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .blog-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-category {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+    .blog-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--color-primary);
+      line-height: 1.4;
+    }
+    .blog-excerpt {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      border-top: 1px solid var(--color-border);
+      padding-top: 1rem;
+    }
+    .blog-read-more {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .blog-read-more:hover {
+      gap: 0.5rem;
+    }
+
+    /* LOCALIZAÇÃO & MAPA */
+    .location {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 5rem 3rem;
+    }
+    .location-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .location-info h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+    .location-info h2 span { color: var(--color-accent); }
+    .location-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .detail-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .detail-icon {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      min-width: 30px;
+      margin-top: 0.2rem;
+    }
+    .detail-text h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+      color: #fff;
+    }
+    .detail-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+    }
+    .detail-text a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .detail-text a:hover {
+      text-decoration: underline;
+    }
+    .map-container {
+      width: 100%;
+      height: 400px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* BADGES & CERTIFICADOS */
+    .badges {
+      background: var(--color-bg);
+      padding: 3rem;
+      text-align: center;
+    }
+    .badges-title {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 2rem;
+    }
+    .badges-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .badge-icon {
+      font-size: 2.5rem;
+      color: var(--color-accent);
+    }
+    .badge-label {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
     /* SOBRE */
     .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
     .about-img {
@@ -158,6 +691,31 @@
     footer { background: var(--color-primary); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.8rem; }
     footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
+    /* WhatsApp Button com Contexto */
+    .fab-whatsapp {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s;
+      text-decoration: none;
+      color: #fff;
+    }
+    .fab-whatsapp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
+    }
+
     @media (max-width: 768px) {
       nav { padding: 0 1rem; }
       .nav-links { display: none; }
@@ -165,6 +723,12 @@
       .about-img { min-height: 300px; }
       .stats-row { grid-template-columns: 1fr 1fr; }
       .testimonials, .cta { padding: 3rem 1.5rem; }
+      .brands-grid { grid-template-columns: repeat(2, 1fr); }
+      .location-content { grid-template-columns: 1fr; }
+      .map-container { height: 300px; }
+      .specialization, .gallery, .guarantees, .blog, .location { padding: 3rem 1.5rem; }
+      .loyalty-items { grid-template-columns: 1fr; }
+      .fab-whatsapp { bottom: 1rem; right: 1rem; width: 50px; height: 50px; font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -179,28 +743,32 @@
     <a href="#" class="nav-logo">Müller<span>.</span>Auto</a>
     <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#depoimentos">Clientes</a></li>
-      <li><a href="#" data-modal-open="schedule" class="nav-cta">Agendar</a></li>
+      <li><a href="#especialidade">Marcas</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#localizacao">Localização</a></li>
+      <li><a href="#" data-modal-open="quote" class="nav-cta">Orçamento</a></li>
     </ul>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" style="color:#fff"><span></span><span></span><span></span></button>
   </nav>
   <div class="nav-drawer" id="nav-drawer">
     <a href="#servicos">Serviços</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#depoimentos">Clientes</a>
-    <a href="#" data-modal-open="schedule">Agendar</a>
+    <a href="#especialidade">Marcas</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#blog">Blog</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#" data-modal-open="quote">Orçamento</a>
     <a href="../" class="drawer-back">← Portfólio</a>
   </div>
 
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="hero-badge">Oficina Mecânica · Desde 1998</div>
+      <div class="hero-badge">Oficina Mecânica · Especializada em Motos</div>
       <h1>Precisão<em>que confia</em></h1>
-      <p class="hero-sub">Diagnóstico computadorizado, mão de obra especializada e transparência total. Seu veículo em boas mãos.</p>
+      <p class="hero-sub">Diagnóstico computadorizado, mão de obra especializada e transparência total. Sua moto em boas mãos.</p>
       <div class="hero-actions">
-        <a href="#" data-modal-open="schedule" class="btn-hero btn-hero-fill">Agendar revisão</a>
+        <a href="#" data-modal-open="quote" class="btn-hero btn-hero-fill">Solicitar orçamento</a>
         <a href="#servicos" class="btn-hero btn-hero-outline">Ver serviços</a>
       </div>
     </div>
@@ -232,9 +800,277 @@
       </div>
       <div class="svc-card">
         <div class="svc-num">04</div>
-        <div class="svc-icon">❄️</div>
-        <h3>Ar-Condicionado</h3>
-        <p>Recarga, higienização e reparo do sistema de climatização.</p>
+        <div class="svc-icon">⚡</div>
+        <h3>Corrente & Pinhão</h3>
+        <p>Revisão, limpeza, lubrificação e substituição de corrente e pinhão.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIALIZAÇÃO EM MARCAS -->
+  <section id="especialidade" class="specialization">
+    <div class="spec-header">
+      <h2>Especialistas em <span>Motos</span></h2>
+      <p style="color: var(--color-muted); font-size: 1.05rem;">Marcas que confiamos e dominamos</p>
+    </div>
+    <div class="brands-grid">
+      <div class="brand-card">
+        <div class="brand-icon">🏍️</div>
+        <h3>Honda</h3>
+        <p class="brand-models">CB 500F, CB 500X, CRF 250, XRE 300</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-icon">🏎️</div>
+        <h3>Yamaha</h3>
+        <p class="brand-models">Tenere 700, MT-07, XJ6, Fazer</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-icon">⚡</div>
+        <h3>Harley-Davidson</h3>
+        <p class="brand-models">Street 500, Softail, Touring</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-icon">🚀</div>
+        <h3>Suzuki</h3>
+        <p class="brand-models">GSX-R, V-Strom, Bandit</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-icon">🔥</div>
+        <h3>Kawasaki</h3>
+        <p class="brand-models">Ninja, Z, Versys</p>
+      </div>
+      <div class="brand-card">
+        <div class="brand-icon">💪</div>
+        <h3>Custom & Importadas</h3>
+        <p class="brand-models">Todas as marcas e cilindradas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA ANTES & DEPOIS -->
+  <section id="portfolio" class="gallery">
+    <div class="gallery-header">
+      <h2>Nosso <span>Portfolio</span></h2>
+      <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-top: 1rem;">Transformações e restaurações realizadas</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-before="Honda CB 500 - Corrente e Pinhão" data-after="Revisão completa realizada">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop" alt="Serviço Honda CB 500" loading="lazy">
+        <div class="gallery-overlay">
+          <h3>Honda CB 500</h3>
+          <p>Revisão corrente, pinhão e coroa</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-before="Yamaha Tenere - Motor problemas" data-after="Diagnóstico e reparo motor">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop" alt="Serviço Yamaha Tenere" loading="lazy">
+        <div class="gallery-overlay">
+          <h3>Yamaha Tenere 700</h3>
+          <p>Diagnóstico eletrônico e ajuste motor</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-before="Harley-Davidson - Manutenção" data-after="Serviço completo realizado">
+        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500&q=80&fit=crop" alt="Serviço Harley-Davidson" loading="lazy">
+        <div class="gallery-overlay">
+          <h3>Harley-Davidson</h3>
+          <p>Revisão de manutenção preventiva</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-before="Suzuki V-Strom - Freios" data-after="Novo sistema de frenagem">
+        <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=500&q=80&fit=crop" alt="Serviço Suzuki V-Strom" loading="lazy">
+        <div class="gallery-overlay">
+          <h3>Suzuki V-Strom</h3>
+          <p>Sistema de freios substituído</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-before="Kawasaki Ninja - Suspensão" data-after="Alinhamento perfeito">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop" alt="Serviço Kawasaki Ninja" loading="lazy">
+        <div class="gallery-overlay">
+          <h3>Kawasaki Ninja 400</h3>
+          <p>Revisão suspensão e alinhamento</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-before="Custom - Restauração" data-after="Moto impecável">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop" alt="Restauração Custom" loading="lazy">
+        <div class="gallery-overlay">
+          <h3>Custom - Restauração</h3>
+          <p>Trabalho completo de restauração</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMA DE FIDELIDADE -->
+  <div class="loyalty">
+    <h3>🎁 Programa de Fidelidade</h3>
+    <p>Quanto mais você volta, mais economiza com nosso programa exclusivo</p>
+    <div class="loyalty-items">
+      <div class="loyalty-item">
+        <strong>1ª Visita</strong>
+        <span>5% de desconto</span>
+      </div>
+      <div class="loyalty-item">
+        <strong>5 Visitas</strong>
+        <span>10% de desconto</span>
+      </div>
+      <div class="loyalty-item">
+        <strong>10 Visitas</strong>
+        <span>15% de desconto</span>
+      </div>
+      <div class="loyalty-item">
+        <strong>Manutenção Anual</strong>
+        <span>20% de desconto</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GARANTIAS -->
+  <section id="garantias" class="guarantees">
+    <div class="guarantees-header">
+      <h2>Garantia & <span>Transparência</span></h2>
+    </div>
+    <div class="guarantees-grid">
+      <div class="guarantee-card">
+        <div class="guarantee-icon">✓</div>
+        <h3>Garantia de 3 Meses</h3>
+        <p>Todas as peças substituídas têm garantia de 3 meses contra defeitos de fabricação.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">📸</div>
+        <h3>Transparência Total</h3>
+        <p>Receba fotos de cada etapa do serviço via WhatsApp. Nenhum segredo.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">💯</div>
+        <h3>Orçamento Sem Surpresas</h3>
+        <p>Aprovação prévia de todas as despesas. O que orçamos é o que você paga.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">🔧</div>
+        <h3>Peças Originais</h3>
+        <p>Utilizamos peças originais ou de primeira linha, nunca sucata ou remanufaturadas.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">⏱️</div>
+        <h3>Prazos Cumpridos</h3>
+        <p>Se dissermos que fica pronto terça, fica. Sua confiança é nossa prioridade.</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">🎯</div>
+        <h3>Diagnóstico Grátis</h3>
+        <p>Trazemos sua moto, diagnóstico eletrônico sem compromisso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BADGES & CERTIFICADOS -->
+  <section class="badges">
+    <div class="badges-title">Certificações & Parcerias</div>
+    <div class="badges-grid">
+      <div class="badge-item">
+        <div class="badge-icon">🏆</div>
+        <div class="badge-label">Distribuidor Autorizado Honda</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">⭐</div>
+        <div class="badge-label">Certificado 4.8/5 (1.200+ avaliações)</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">✔️</div>
+        <div class="badge-label">Diagnóstico Eletrônico OBD</div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">📜</div>
+        <div class="badge-label">Registro Técnico Especializado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG / DICAS -->
+  <section id="blog" class="blog">
+    <div class="blog-header">
+      <div>
+        <h2>Dicas & <span>Artigos</span></h2>
+      </div>
+      <a href="#" class="blog-view-all">Ver todos →</a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-image">📚</div>
+        <div class="blog-content">
+          <span class="blog-category">Manutenção</span>
+          <h3>5 Sinais que Sua Corrente Precisa de Revisão</h3>
+          <p class="blog-excerpt">Aprenda a identificar os principais indicadores de desgaste da corrente e pinhão. Cuidado preventivo economiza dinheiro.</p>
+          <div class="blog-meta">
+            <span>10 min leitura</span>
+            <a href="#" class="blog-read-more">Ler mais →</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-image">🛢️</div>
+        <div class="blog-content">
+          <span class="blog-category">Rotina</span>
+          <h3>Guia Completo: Como Trocar Óleo da Moto</h3>
+          <p class="blog-excerpt">Passo a passo detalhado sobre a manutenção básica que você pode fazer em casa. Economia e segurança garantidas.</p>
+          <div class="blog-meta">
+            <span>8 min leitura</span>
+            <a href="#" class="blog-read-more">Ler mais →</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-image">⚡</div>
+        <div class="blog-content">
+          <span class="blog-category">Diagnóstico</span>
+          <h3>Luz da Bateria Acendeu? Saiba o que Pode Ser</h3>
+          <p class="blog-excerpt">Entenda os problemas mais comuns que acionam a luz de aviso. Quando ir à oficina e quando pode esperar.</p>
+          <div class="blog-meta">
+            <span>6 min leitura</span>
+            <a href="#" class="blog-read-more">Ler mais →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO & MAPA -->
+  <section id="localizacao" class="location">
+    <div class="location-content">
+      <div class="location-info">
+        <h2>Nos <span>encontre</span></h2>
+        <div class="location-details">
+          <div class="detail-row">
+            <div class="detail-icon">📍</div>
+            <div class="detail-text">
+              <h3>Endereço</h3>
+              <p>Rua das Indústrias, 142 · Zona Industrial · São Paulo, SP</p>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-icon">📞</div>
+            <div class="detail-text">
+              <h3>Telefone</h3>
+              <p><a href="tel:+5511999999999">(11) 99999-9999</a></p>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-icon">⏰</div>
+            <div class="detail-text">
+              <h3>Horário</h3>
+              <p>Segunda a Sexta: 8h - 18h<br>Sábado: 8h - 14h<br>Domingo: Fechado</p>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-icon">💬</div>
+            <div class="detail-text">
+              <h3>WhatsApp</h3>
+              <p><a href="https://wa.me/5511999999999" target="_blank">Enviar mensagem</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.0574077384256!2d-46.497745!3d-23.530693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5bf0e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sRua%20das%20Ind%C3%BAstrias%2C%20142!5e0!3m2!1spt-BR!2sbr!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -287,6 +1123,11 @@
 
   <button class="fab" data-modal-open="schedule">📅 Agendar</button>
 
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/5511999999999?text=Olá%20Müller%20Auto!%20Gostaria%20de%20agendar%20um%20serviço%20ou%20solicitar%20um%20orçamento." target="_blank" class="fab-whatsapp" title="Enviar mensagem via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal">
       <button id="modal-close" class="modal-close">✕</button>
@@ -294,6 +1135,7 @@
       <p class="modal-subtitle">Preencha os dados e confirmamos em breve.</p>
       <div class="modal-tabs">
         <button class="tab-btn active" data-tab="schedule">Agendamento</button>
+        <button class="tab-btn" data-tab="quote">Orçamento</button>
         <button class="tab-btn" data-tab="contact">Contato</button>
       </div>
       <div id="tab-schedule" class="tab-panel active">
@@ -302,13 +1144,33 @@
             <div class="form-group"><label for="s-name">Nome</label><input id="s-name" name="name" type="text" placeholder="Seu nome" required></div>
             <div class="form-group"><label for="s-phone">Telefone</label><input id="s-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required></div>
           </div>
-          <div class="form-group"><label for="s-service">Serviço</label><select id="s-service" name="service" required><option value="">Selecione</option><option>Revisão Completa</option><option>Motor & Câmbio</option><option>Suspensão & Freios</option><option>Ar-Condicionado</option><option>Outro</option></select></div>
+          <div class="form-row">
+            <div class="form-group"><label for="s-brand">Marca da Moto</label><select id="s-brand" name="brand" required><option value="">Selecione</option><option>Honda</option><option>Yamaha</option><option>Harley-Davidson</option><option>Suzuki</option><option>Kawasaki</option><option>Outra marca</option></select></div>
+            <div class="form-group"><label for="s-model">Modelo</label><input id="s-model" name="model" type="text" placeholder="ex: CB 500F" required></div>
+          </div>
+          <div class="form-group"><label for="s-service">Serviço</label><select id="s-service" name="service" required><option value="">Selecione</option><option>Revisão Completa</option><option>Motor & Câmbio</option><option>Suspensão & Freios</option><option>Ar-Condicionado</option><option>Corrente e Pinhão</option><option>Outro</option></select></div>
           <div class="form-row">
             <div class="form-group"><label for="s-date">Data</label><input id="s-date" name="date" type="date" required></div>
             <div class="form-group"><label for="s-time">Horário</label><select id="s-time" name="time" required><option value="">Selecione</option><option>08:00</option><option>09:00</option><option>10:00</option><option>11:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></div>
           </div>
           <button type="submit" class="btn-submit">Confirmar agendamento</button>
           <div id="feedback-schedule" class="form-feedback"></div>
+        </form>
+      </div>
+      <div id="tab-quote" class="tab-panel">
+        <form id="form-quote">
+          <div class="form-row">
+            <div class="form-group"><label for="q-name">Nome</label><input id="q-name" name="name" type="text" placeholder="Seu nome" required></div>
+            <div class="form-group"><label for="q-phone">Telefone</label><input id="q-phone" name="phone" type="tel" placeholder="(11) 99999-9999" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="q-brand">Marca da Moto</label><select id="q-brand" name="brand" required><option value="">Selecione</option><option>Honda</option><option>Yamaha</option><option>Harley-Davidson</option><option>Suzuki</option><option>Kawasaki</option><option>Outra marca</option></select></div>
+            <div class="form-group"><label for="q-model">Modelo</label><input id="q-model" name="model" type="text" placeholder="ex: CB 500F" required></div>
+          </div>
+          <div class="form-group"><label for="q-problem">Qual é o problema?</label><textarea id="q-problem" name="problem" placeholder="Descreva o problema ou serviço desejado" required></textarea></div>
+          <div class="form-group"><label for="q-urgency">Urgência</label><select id="q-urgency" name="urgency" required><option value="">Selecione</option><option>Não é urgente</option><option>Moderadamente urgente</option><option>Urgente</option></select></div>
+          <button type="submit" class="btn-submit">Solicitar orçamento</button>
+          <div id="feedback-quote" class="form-feedback"></div>
         </form>
       </div>
       <div id="tab-contact" class="tab-panel">
@@ -329,5 +1191,8 @@
   <script src="../shared/components.js"></script>
   <script src="../shared/enhancements.js"></script>
   <script src="../shared/themes.js"></script>
+  <script src="./quote-handler.js"></script>
+  <script src="./dynamic-content.js"></script>
+  <script src="./lazy-loading.js"></script>
 </body>
 </html>

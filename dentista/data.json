@@ -1,0 +1,119 @@
+{
+  "beforeAfter": [
+    {
+      "id": 1,
+      "title": "Correção Dental Completa",
+      "type": "Facetas + Clareamento",
+      "description": "Antes e depois de tratamento estético completo",
+      "image": "https://images.unsplash.com/photo-1606811841689-23def268849b?w=600&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Implante Dental",
+      "type": "Implantodontia",
+      "description": "Substituição de dente com implante de titânio",
+      "image": "https://images.unsplash.com/photo-1576091160399-0ff8e5a639a1?w=600&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Clareamento Profissional",
+      "type": "Estética",
+      "description": "Dentes 8 tons mais brancos em 1 hora",
+      "image": "https://images.unsplash.com/photo-1606811841689-23def268849b?w=600&q=80"
+    },
+    {
+      "id": 4,
+      "title": "Aparelho Invisível",
+      "type": "Ortodontia",
+      "description": "Alinhamento discreto com Invisalign",
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80"
+    },
+    {
+      "id": 5,
+      "title": "Reabilitação Oral",
+      "type": "Reabilitação",
+      "description": "Restauração completa com coroas e implantes",
+      "image": "https://images.unsplash.com/photo-1606811841689-23def268849b?w=600&q=80"
+    },
+    {
+      "id": 6,
+      "title": "Tratamento de Gengivite",
+      "type": "Periodontia",
+      "description": "Recuperação da saúde gengival",
+      "image": "https://images.unsplash.com/photo-1576091160399-0ff8e5a639a1?w=600&q=80"
+    }
+  ],
+  "pricing": [
+    {
+      "id": 1,
+      "name": "Consulta Inicial",
+      "price": "150",
+      "period": "Por consulta",
+      "featured": false,
+      "features": ["Avaliação completa", "Radiografia", "Plano de tratamento", "Sem compromisso"]
+    },
+    {
+      "id": 2,
+      "name": "Limpeza Profissional",
+      "price": "200",
+      "period": "Por sessão",
+      "featured": false,
+      "features": ["Remoção de tártaro", "Polimento", "Flúor", "Orientação de higiene"]
+    },
+    {
+      "id": 3,
+      "name": "Clareamento",
+      "price": "600",
+      "period": "Sessão única",
+      "featured": true,
+      "features": ["Até 8 tons mais branco", "Sem sensibilidade", "Duração 1 ano", "Manutenção gratuita"]
+    },
+    {
+      "id": 4,
+      "name": "Faceta de Resina",
+      "price": "400",
+      "period": "Por dente",
+      "featured": false,
+      "features": ["Estética natural", "Duração 5 anos", "Sem anestesia", "Sem preparação"]
+    },
+    {
+      "id": 5,
+      "name": "Implante Completo",
+      "price": "2500",
+      "period": "Dente inteiro",
+      "featured": false,
+      "features": ["Parafuso de titânio", "Coroa cerâmica", "Garantia 10 anos", "Parcelado"]
+    },
+    {
+      "id": 6,
+      "name": "Aparelho Invisível",
+      "price": "5000",
+      "period": "Tratamento 18 meses",
+      "featured": false,
+      "features": ["Invisível", "Removível", "Mais confortável", "Parcelado 18x"]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Fiz clareamento e as pessoas perceberam a diferença no mesmo dia. Consultório limpo, profissional competente e atencioso. Recomendo!",
+      "author": "Ana P.",
+      "treatment": "Clareamento",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Coloquei implante e não senti nada. O dentista explicou cada passo. Agora tenho um dente novo como se fosse meu mesmo!",
+      "author": "Roberto M.",
+      "treatment": "Implante",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Estou usando o aparelho invisível e ninguém percebe. Já melhorou muito meu sorriso. Atendimento excelente, muito pontual!",
+      "author": "Carolina S.",
+      "treatment": "Invisalign",
+      "rating": 5
+    }
+  ]
+}

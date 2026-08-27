@@ -1,0 +1,131 @@
+{
+  "styles": [
+    {"id": 1, "name": "Realismo", "description": "Tatuagens fotorrealistas com detalhes precisos"},
+    {"id": 2, "name": "Tatuagem Geométrica", "description": "Formas geométricas e abstratas"},
+    {"id": 3, "name": "Old School", "description": "Estilo clássico tradicional"},
+    {"id": 4, "name": "New School", "description": "Moderna e colorida"},
+    {"id": 5, "name": "Aquarela", "description": "Efeito de aquarela e pintura"},
+    {"id": 6, "name": "Minimalista", "description": "Linhas simples e limpas"},
+    {"id": 7, "name": "Tribal", "description": "Padrões tribais e ancestrais"},
+    {"id": 8, "name": "Blackwork", "description": "Toda em preto intenso"},
+    {"id": 9, "name": "Neotradicional", "description": "Mistura de técnicas modernas com clássicas"},
+    {"id": 10, "name": "Dotwork", "description": "Feita apenas com pontinhos"}
+  ],
+  "portfolio": [
+    {
+      "id": 1,
+      "title": "Mandala Realista",
+      "style": "Realismo",
+      "artist": "João Silva",
+      "image": "https://images.unsplash.com/photo-1598808503070-ca97ae457b18?w=600&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Geometria Sagrada",
+      "style": "Geométrica",
+      "artist": "Maria Santos",
+      "image": "https://images.unsplash.com/photo-1605247867752-ce71eaf67e17?w=600&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Dragão Old School",
+      "style": "Old School",
+      "artist": "Pedro Costa",
+      "image": "https://images.unsplash.com/photo-1598808503070-ca97ae457b18?w=600&q=80"
+    },
+    {
+      "id": 4,
+      "title": "Aquarela Mística",
+      "style": "Aquarela",
+      "artist": "Ana Oliveira",
+      "image": "https://images.unsplash.com/photo-1605247867752-ce71eaf67e17?w=600&q=80"
+    },
+    {
+      "id": 5,
+      "title": "Minimalismo Puro",
+      "style": "Minimalista",
+      "artist": "Carlos Mendes",
+      "image": "https://images.unsplash.com/photo-1598808503070-ca97ae457b18?w=600&q=80"
+    },
+    {
+      "id": 6,
+      "title": "Phoenix Blackwork",
+      "style": "Blackwork",
+      "artist": "João Silva",
+      "image": "https://images.unsplash.com/photo-1605247867752-ce71eaf67e17?w=600&q=80"
+    },
+    {
+      "id": 7,
+      "title": "Borboleta Colorida",
+      "style": "New School",
+      "artist": "Maria Santos",
+      "image": "https://images.unsplash.com/photo-1598808503070-ca97ae457b18?w=600&q=80"
+    },
+    {
+      "id": 8,
+      "title": "Tribal Fusion",
+      "style": "Tribal",
+      "artist": "Pedro Costa",
+      "image": "https://images.unsplash.com/photo-1605247867752-ce71eaf67e17?w=600&q=80"
+    },
+    {
+      "id": 9,
+      "title": "Rosa Neotradicional",
+      "style": "Neotradicional",
+      "artist": "Ana Oliveira",
+      "image": "https://images.unsplash.com/photo-1598808503070-ca97ae457b18?w=600&q=80"
+    },
+    {
+      "id": 10,
+      "title": "Dotwork Celeste",
+      "style": "Dotwork",
+      "artist": "Carlos Mendes",
+      "image": "https://images.unsplash.com/photo-1605247867752-ce71eaf67e17?w=600&q=80"
+    },
+    {
+      "id": 11,
+      "title": "Caveira Realista",
+      "style": "Realismo",
+      "artist": "João Silva",
+      "image": "https://images.unsplash.com/photo-1598808503070-ca97ae457b18?w=600&q=80"
+    },
+    {
+      "id": 12,
+      "title": "Lobo Geométrico",
+      "style": "Geométrica",
+      "artist": "Maria Santos",
+      "image": "https://images.unsplash.com/photo-1605247867752-ce71eaf67e17?w=600&q=80"
+    }
+  ],
+  "pricing": [
+    {"id": 1, "size": "Pequeno (3x3 cm)", "price": "150", "description": "Tatuagens simples e pequenas"},
+    {"id": 2, "size": "Médio (5x5 cm)", "price": "300", "description": "Tatuagens de médio porte"},
+    {"id": 3, "size": "Grande (10x10 cm)", "price": "600", "description": "Tatuagens grandes com detalhes"},
+    {"id": 4, "size": "Muito Grande (15x15 cm)", "price": "1000", "description": "Obras de arte maiores"},
+    {"id": 5, "size": "Sleeve Completa", "price": "2500", "description": "Braço inteiro com temática"},
+    {"id": 6, "size": "Back Piece", "price": "3000", "description": "Costas inteiras"}
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Meu tatoo ficou perfeita! O artista entendeu exatamente a visão que eu tinha. Super recomendo!",
+      "author": "Felipe M.",
+      "tattoo": "Mandala Realista",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Ambiente limpo, profissional e muito acolhedor. Volto com certeza para fazer meu sleeve!",
+      "author": "Beatriz L.",
+      "tattoo": "Geometria Sagrada",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Melhor tatuador que já conheci. Técnica impecável, higiene garantida. Muito bom mesmo!",
+      "author": "Gabriel S.",
+      "tattoo": "Phoenix Blackwork",
+      "rating": 5
+    }
+  ]
+}

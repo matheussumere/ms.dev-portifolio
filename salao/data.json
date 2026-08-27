@@ -1,0 +1,78 @@
+{
+  "services": [
+    {"id": 1, "name": "Corte + Hidratação", "price": "80", "duration": "1h", "icon": "✂️"},
+    {"id": 2, "name": "Progressiva", "price": "250", "duration": "2h30m", "icon": "🧴"},
+    {"id": 3, "name": "Coloração", "price": "150", "duration": "1h30m", "icon": "🎨"},
+    {"id": 4, "name": "Manicure", "price": "35", "duration": "30m", "icon": "💅"},
+    {"id": 5, "name": "Pedicure", "price": "40", "duration": "30m", "icon": "👣"},
+    {"id": 6, "name": "Design de Sobrancelha", "price": "45", "duration": "30m", "icon": "👁️"},
+    {"id": 7, "name": "Limpeza de Pele", "price": "120", "duration": "1h", "icon": "✨"},
+    {"id": 8, "name": "Massagem Relaxante", "price": "100", "duration": "1h", "icon": "🧘"}
+  ],
+  "gallery": [
+    {"id": 1, "title": "Corte Moderno", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 2, "title": "Coloração Premium", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 3, "title": "Styling Profissional", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 4, "title": "Manicure Artistico", "image": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80"},
+    {"id": 5, "title": "Progressiva", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 6, "title": "Depilação", "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"},
+    {"id": 7, "title": "Limpeza de Pele", "image": "https://images.unsplash.com/photo-1556920591-08b6f3e9e7e0?w=600&q=80"},
+    {"id": 8, "title": "Spa Completo", "image": "https://images.unsplash.com/photo-1544161515-81205f8abecc?w=600&q=80"},
+    {"id": 9, "title": "Cabelo Liso", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 10, "title": "Penteado", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 11, "title": "Volume e Brilho", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"},
+    {"id": 12, "title": "Transformação Completa", "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=600&q=80"}
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Meu cabelo ficou perfeito! As meninas são muito atenciosas e o ambiente é lindo. Volto com certeza!",
+      "author": "Marina L.",
+      "service": "Coloração + Corte",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Progressiva de excelente qualidade. Saí de lá com o cabelo liso, brilhoso e saudável.",
+      "author": "Juliana P.",
+      "service": "Progressiva",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Manicure impecável e muita gentileza no atendimento. Preço justo. Recomendo!",
+      "author": "Carolina M.",
+      "service": "Manicure",
+      "rating": 5
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "5 Dicas para Cuidar do Cabelo Colorido",
+      "category": "Cabelo",
+      "excerpt": "Seu cabelo colorido durará mais se você seguir essas dicas de ouro",
+      "date": "2026-08-20",
+      "readTime": "6 min",
+      "image": "https://images.unsplash.com/photo-1562869300-f3b39eb5f584?w=400&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Tendências de Unhas 2026",
+      "category": "Manicure",
+      "excerpt": "Conheça as tendências mais buscadas em nail art para este ano",
+      "date": "2026-08-15",
+      "readTime": "7 min",
+      "image": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Como Fazer uma Limpeza de Pele em Casa",
+      "category": "Skincare",
+      "excerpt": "Passo a passo para uma pele limpa e saudável sem sair de casa",
+      "date": "2026-08-10",
+      "readTime": "8 min",
+      "image": "https://images.unsplash.com/photo-1556920591-08b6f3e9e7e0?w=400&q=80"
+    }
+  ]
+}

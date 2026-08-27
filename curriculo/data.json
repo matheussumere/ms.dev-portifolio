@@ -1,0 +1,89 @@
+{
+  "profile": {
+    "name": "Seu Nome",
+    "title": "Desenvolvedor Full Stack",
+    "summary": "Profissional com 8 anos de experiência em desenvolvimento web e mobile",
+    "phone": "(11) 99999-9999",
+    "email": "seu.email@exemplo.com",
+    "location": "São Paulo, SP",
+    "linkedin": "https://linkedin.com/in/seu-perfil",
+    "github": "https://github.com/seu-usuario",
+    "portfolio": "https://seu-portfolio.com"
+  },
+  "experience": [
+    {
+      "id": 1,
+      "company": "Tech Company 1",
+      "position": "Senior Developer",
+      "period": "2023 - Presente",
+      "description": "Liderança de projetos de grande escala",
+      "achievements": ["Aumento de 40% em performance", "Mentoria de 5 desenvolvedores", "Arquitetura de microserviços"]
+    },
+    {
+      "id": 2,
+      "company": "Tech Company 2",
+      "position": "Full Stack Developer",
+      "period": "2021 - 2023",
+      "description": "Desenvolvimento de aplicações web",
+      "achievements": ["Criação de 12 aplicações", "Integração com APIs", "Otimização de banco de dados"]
+    },
+    {
+      "id": 3,
+      "company": "Tech Company 3",
+      "position": "Junior Developer",
+      "period": "2018 - 2021",
+      "description": "Suporte e desenvolvimento em equipe",
+      "achievements": ["Resolução de 500+ tickets", "Desenvolvimento de features", "Testes e QA"]
+    }
+  ],
+  "skills": [
+    {"name": "JavaScript", "level": "Avançado", "category": "Frontend"},
+    {"name": "React", "level": "Avançado", "category": "Frontend"},
+    {"name": "Node.js", "level": "Avançado", "category": "Backend"},
+    {"name": "SQL", "level": "Avançado", "category": "Database"},
+    {"name": "HTML/CSS", "level": "Avançado", "category": "Frontend"},
+    {"name": "Git", "level": "Avançado", "category": "Tools"}
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Universidade Federal",
+      "course": "Bacharelado em Ciência da Computação",
+      "year": "2016 - 2018"
+    },
+    {
+      "id": 2,
+      "institution": "Bootcamp Tech",
+      "course": "Full Stack Web Development",
+      "year": "2018"
+    }
+  ],
+  "certifications": [
+    {"id": 1, "name": "AWS Certified Developer", "issuer": "Amazon Web Services", "year": "2023"},
+    {"id": 2, "name": "React Advanced", "issuer": "Udemy", "year": "2022"},
+    {"id": 3, "name": "Scrum Master", "issuer": "Scrum Alliance", "year": "2021"}
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "E-Commerce Platform",
+      "description": "Plataforma de vendas online com 10k+ usuários",
+      "tech": ["React", "Node.js", "MongoDB"],
+      "link": "https://projeto1.com"
+    },
+    {
+      "id": 2,
+      "name": "Analytics Dashboard",
+      "description": "Dashboard com dados em tempo real",
+      "tech": ["React", "GraphQL", "PostgreSQL"],
+      "link": "https://projeto2.com"
+    },
+    {
+      "id": 3,
+      "name": "Mobile App",
+      "description": "Aplicativo mobile com 50k+ downloads",
+      "tech": ["React Native", "Firebase"],
+      "link": "https://projeto3.com"
+    }
+  ]
+}

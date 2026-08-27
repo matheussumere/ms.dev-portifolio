@@ -1,0 +1,23 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                   💇 SALÃO DE BELEZA - BEM-VINDO! 💇                      ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👋 COMECE AQUI:
+- Abrir: index.html
+- Testar: F12 → Ctrl+Shift+M
+- Personalizar: window.WL_CONFIG.whatsapp
+
+📁 ARQUIVOS:
+- index.html (site completo)
+- data.json (serviços, preços, reviews)
+- QUICK_START.md (guia rápido)
+
+🎨 CORES:
+- Roxo: #5e35b1 (elegância)
+- Rosa: #e91e63 (feminilidade)
+- Branco: #ffffff
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR

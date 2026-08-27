@@ -3,235 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sofia Vega — Artista</title>
+  <meta name="description" content="Estúdio de Artes Plásticas - Pintura, escultura e artes decorativas. Portfólio de obras únicas e personalizadas. Encomendas e consultoria artística.">
+  <meta name="keywords" content="artista plástico, pintura, escultura, artes decorativas, galeria, obras de arte, encomendas">
+  <meta name="author" content="Estúdio de Artes">
+  <meta property="og:title" content="Estúdio de Artes — Pintura e Escultura">
+  <meta property="og:description" content="Descubra obras de arte únicas. Portfólio de pinturas, esculturas e artes decorativas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&q=80">
+  <title>Estúdio de Artes — Pintura e Escultura</title>
+  
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Estúdio de Artes",
+    "description": "Estúdio de artes plásticas especializado em pintura, escultura e artes decorativas",
+    "image": "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&q=80",
+    "telephone": "+5511999999999",
+    "url": "https://white-label-portifolio.com/artista",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua das Artes, 256",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "00000-000",
+      "addressCountry": "BR"
+    },
+    "areaServed": "São Paulo",
+    "knowsAbout": ["Pintura", "Escultura", "Artes Decorativas", "Curadoria"],
+    "sameAs": [
+      "https://www.instagram.com/estudioartes",
+      "https://www.facebook.com/estudioartes"
+    ]
+  }
+  </script>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Estúdio de Artes",
+    "image": "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1200&q=80",
+    "description": "Estúdio especializado em artes plásticas",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua das Artes, 256",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "telephone": "(11) 99999-9999",
+    "url": "https://white-label-portifolio.com/artista"
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../shared/enhancements.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #111;
-      --accent: #e8c547;
-      --text: #f0ece4;
-      --muted: #666;
-      --border: #1e1e1e;
+      --color-primary: #2c1810;
+      --color-accent: #d4715d;
+      --color-bg: #faf8f5;
+      --color-surface: #ffffff;
+      --color-border: #e8e3dd;
+      --color-muted: #8b7966;
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
     }
+    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
     /* NAV */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
+      background: var(--color-primary);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 3rem; mix-blend-mode: difference;
+      padding: 0 3rem; height: 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.1em; color: #fff; text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-logo { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 0.05em; }
+    .nav-logo span { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 0; list-style: none; height: 100%; }
+    .nav-links a {
+      display: flex; align-items: center; padding: 0 1.5rem;
+      font-family: var(--font-heading); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7);
+      text-decoration: none; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav-links .nav-cta { background: var(--color-accent); color: #fff !important; }
+    .nav-links .nav-cta:hover { background: #c15a47; }
 
-    /* HERO — magazine editorial */
+    /* HERO */
     .hero {
-      min-height: 100vh; display: grid; grid-template-rows: 1fr auto;
-      padding: 0; position: relative; overflow: hidden;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      padding-bottom: 5rem; padding-top: 60px;
+      position: relative; overflow: hidden; text-align: center;
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1600&q=80&fit=crop&crop=center');
+      background-image: url('https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=1600&q=80');
       background-size: cover; background-position: center;
     }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%); }
-    .hero-content {
-      position: relative; z-index: 1;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 3rem 4rem;
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(44,24,16,0.85) 0%, rgba(44,24,16,0.3) 60%, rgba(44,24,16,0.1) 100%);
     }
-    .hero-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 14vw, 14rem);
-      line-height: 0.85; letter-spacing: 0.02em; color: #fff;
-      margin-bottom: 2rem;
+    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 2rem; }
+    .hero-badge {
+      display: inline-block; background: var(--color-accent); color: #fff;
+      font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 1rem;
+      margin-bottom: 1.5rem; border-radius: 30px;
     }
-    .hero-bottom {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 3rem; border-top: 1px solid rgba(255,255,255,0.15);
+    .hero-title {
+      font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800;
+      color: #fff; margin-bottom: 1rem; line-height: 1.1;
+      letter-spacing: -0.02em; text-transform: uppercase;
     }
-    .hero-desc { color: rgba(255,255,255,0.6); font-size: 0.875rem; max-width: 400px; line-height: 1.6; }
+    .hero-subtitle {
+      font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 2.5rem;
+      font-weight: 400; letter-spacing: 0.03em;
+    }
     .hero-cta {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.15em;
-      color: var(--bg); background: var(--accent); padding: 0.8rem 2.5rem;
-      text-decoration: none; transition: opacity 0.2s; white-space: nowrap;
+      display: inline-block; background: var(--color-accent); color: #fff;
+      font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.5rem;
+      text-decoration: none; transition: all 0.3s; cursor: pointer;
+      border: none; border-radius: 0;
     }
-    .hero-cta:hover { opacity: 0.85; }
+    .hero-cta:hover { background: #c15a47; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(212,113,93,0.3); }
 
-    /* SOBRE */
-    .about { display: grid; grid-template-columns: 1fr 1fr; }
-    .about-img {
-      background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80&fit=crop');
-      background-size: cover; background-position: center; min-height: 600px;
+    /* SECTIONS */
+    section {
+      padding: 4rem 3rem; max-width: 1400px; margin: 0 auto;
     }
-    .about-text { padding: 6rem 5rem; background: var(--surface); display: flex; flex-direction: column; justify-content: center; }
-    .about-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
-    .about-text h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 3vw, 3rem); font-style: italic; line-height: 1.2; margin-bottom: 1.5rem; }
-    .about-text p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; }
-    .about-links { display: flex; gap: 1.5rem; margin-top: 2rem; }
-    .social-link { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--muted); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s; }
-    .social-link:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* TRABALHOS */
-    .works { padding: 5rem 3rem; }
-    .works-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; }
-    .works-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 6rem); letter-spacing: 0.05em; }
-    .works-header span { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-    .works-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 4px; }
-    .work-item { overflow: hidden; position: relative; cursor: pointer; }
-    .work-item:first-child { grid-row: span 2; }
-    .work-thumb {
-      width: 100%; aspect-ratio: 1; background: var(--surface);
-      background-size: cover; background-position: center;
-      transition: transform 0.5s ease;
+    section h2 {
+      font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 0.5rem;
     }
-    .work-item:first-child .work-thumb { aspect-ratio: 3/4; }
-    .work-item:hover .work-thumb { transform: scale(1.04); }
-    .work-overlay {
-      position: absolute; inset: 0; background: rgba(0,0,0,0);
-      display: flex; align-items: flex-end; padding: 1.5rem;
-      transition: background 0.3s;
+    .section-subtitle { font-size: 1.1rem; color: var(--color-muted); margin-bottom: 2rem; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 2rem; }
+    .about-image { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; }
+    .about-text h3 { font-family: var(--font-heading); font-size: 1.5rem; margin: 1.5rem 0 1rem; }
+    .about-text ul { list-style: none; margin: 1rem 0; }
+    .about-text li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+    .about-text li::before { content: '▪'; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; }
+
+    /* PORTFOLIO */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .portfolio-item {
+      background: var(--color-surface); border-radius: 4px; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.3s;
     }
-    .work-item:hover .work-overlay { background: rgba(0,0,0,0.5); }
-    .work-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.08em; color: #fff; opacity: 0; transform: translateY(8px); transition: all 0.3s; }
-    .work-item:hover .work-title { opacity: 1; transform: translateY(0); }
+    .portfolio-item:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+    .portfolio-image { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .portfolio-content { padding: 1.5rem; }
+    .portfolio-title { font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .portfolio-category { font-size: 0.85rem; color: var(--color-accent); font-weight: 600; margin-bottom: 0.5rem; }
+    .portfolio-description { color: var(--color-muted); font-size: 0.95rem; }
 
-    /* CONTATO */
-    .contact { background: var(--accent); padding: 6rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .contact h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 6rem); color: var(--bg); line-height: 0.9; letter-spacing: 0.02em; }
-    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-    .finput { width: 100%; padding: 0.9rem 0; background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.3); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--bg); outline: none; transition: border-color 0.2s; }
-    .finput::placeholder { color: rgba(0,0,0,0.4); }
-    .finput:focus { border-bottom-color: var(--bg); }
-    .submit-btn { background: var(--bg); color: var(--accent); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.15em; padding: 1rem 2.5rem; border: none; cursor: pointer; align-self: flex-start; transition: opacity 0.2s; margin-top: 0.5rem; }
-    .submit-btn:hover { opacity: 0.85; }
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .service-card {
+      background: var(--color-surface); padding: 2rem; border-radius: 4px;
+      border-top: 3px solid var(--color-accent); transition: all 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(212,113,93,0.15); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--color-accent); }
+    .service-title { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .service-description { color: var(--color-muted); font-size: 0.95rem; line-height: 1.6; }
 
-    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); }
-    footer a { color: var(--muted); text-decoration: none; }
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .gallery-image { width: 100%; height: 250px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: all 0.3s; }
+    .gallery-image:hover { transform: scale(1.05); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
 
+    /* BLOG */
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .blog-card {
+      background: var(--color-surface); border-radius: 4px; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: all 0.3s;
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+    .blog-image { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .blog-content { padding: 1.5rem; }
+    .blog-category { font-size: 0.8rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .blog-title { font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.8rem; }
+    .blog-excerpt { color: var(--color-muted); font-size: 0.9rem; }
+    .blog-meta { font-size: 0.8rem; color: var(--color-muted); margin-top: 1rem; }
+
+    /* TESTIMONIALS */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .testimonial-card {
+      background: var(--color-surface); padding: 2rem; border-radius: 4px;
+      border-left: 4px solid var(--color-accent);
+    }
+    .testimonial-text { font-size: 1rem; color: var(--color-primary); margin-bottom: 1.5rem; font-style: italic; }
+    .testimonial-author { font-weight: 600; color: var(--color-primary); }
+    .testimonial-meta { font-size: 0.85rem; color: var(--color-muted); }
+    .stars { color: var(--color-accent); font-size: 0.9rem; }
+
+    /* LOCATION & CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+    .map { width: 100%; height: 400px; border-radius: 4px; overflow: hidden; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+    .form-group { display: flex; flex-direction: column; }
+    label { font-weight: 600; margin-bottom: 0.5rem; }
+    input, textarea { padding: 0.8rem; border: 1px solid var(--color-border); border-radius: 4px; font-family: var(--font-body); }
+    textarea { resize: vertical; min-height: 120px; }
+    .submit-btn { background: var(--color-accent); color: #fff; padding: 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; transition: all 0.3s; }
+    .submit-btn:hover { background: #c15a47; }
+
+    /* FOOTER */
+    footer {
+      background: var(--color-primary); color: #fff; padding: 2rem 3rem;
+      text-align: center; font-size: 0.9rem; margin-top: 3rem;
+    }
+    .footer-content { max-width: 1400px; margin: 0 auto; }
+    .footer-links { margin: 1rem 0; }
+    .footer-links a { color: var(--color-accent); text-decoration: none; margin: 0 1rem; }
+    .footer-links a:hover { text-decoration: underline; }
+
+    /* WHATSAPP BUTTON */
+    .whatsapp-btn {
+      position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px;
+      background: #25d366; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; color: #fff; font-size: 1.5rem; text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s; z-index: 50;
+    }
+    .whatsapp-btn:hover { background: #20ba5f; transform: scale(1.1); }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero-content { padding: 0 1.5rem 3rem; }
-      .hero-bottom { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
-      .about, .contact { grid-template-columns: 1fr; }
-      .about-img { min-height: 300px; }
-      .about-text { padding: 3rem 1.5rem; }
-      .works { padding: 3rem 1.5rem; }
-      .works-grid { grid-template-columns: 1fr 1fr; }
-      .work-item:first-child { grid-column: span 2; grid-row: span 1; }
-      .contact { padding: 4rem 1.5rem; gap: 3rem; }
+      nav { padding: 0 1.5rem; }
+      .nav-links a { padding: 0 1rem; font-size: 0.7rem; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      section { padding: 2.5rem 1.5rem; }
+      section h2 { font-size: 2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
+  <!-- NAV -->
   <nav>
-    <a href="../" class="back-btn" style="color:rgba(255,255,255,0.5)">Portfólio</a>
-    <a href="#" class="logo">Sofia Vega</a>
-    <ul class="nav-links" id="nav-links-desktop">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#trabalhos">Trabalhos</a></li>
-      <li><a href="#contato">Contato</a></li>
+    <a href="#" class="nav-logo">ESTÚDIO <span>ARTES</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#services">Serviços</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact" class="nav-cta">Contato</a></li>
     </ul>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" style="color:#fff"><span></span><span></span><span></span></button>
   </nav>
-  <div class="nav-drawer" id="nav-drawer">
-    <a href="#sobre">Sobre</a>
-    <a href="#trabalhos">Trabalhos</a>
-    <a href="#contato">Contato</a>
-    <a href="../" class="drawer-back">← Portfólio</a>
-  </div>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="hero-tag">Cantora · Compositora · São Paulo</div>
-      <h1>Sofia<br>Vega</h1>
-    </div>
-    <div class="hero-bottom">
-      <p class="hero-desc">Voz que atravessa gêneros. Artista independente com mais de 10 anos de carreira, shows pelo Brasil e lançamentos internacionais.</p>
-      <a href="#contato" class="hero-cta">Contratar</a>
+      <div class="hero-badge">🎨 Artes Plásticas</div>
+      <h1 class="hero-title">Criando Obras de Arte Únnicas</h1>
+      <p class="hero-subtitle">Pintura, escultura e artes decorativas personalizadas para seus espaços</p>
+      <a href="#contact" class="hero-cta">Solicitar Orçamento</a>
     </div>
   </section>
 
-  <section id="sobre" class="about">
-    <div class="about-img"></div>
-    <div class="about-text">
-      <div class="about-label">Sobre a artista</div>
-      <h2>"A música é o único idioma que todo mundo fala."</h2>
-      <p>Sofia Vega é cantora, compositora e produtora musical. Nascida em São Paulo, começou sua carreira aos 16 anos e desde então acumulou mais de 50 milhões de streams, participações em festivais nacionais e internacionais.</p>
-      <p>Seu som mistura MPB, soul e pop contemporâneo, criando uma identidade única que conquista públicos de todas as idades.</p>
-      <div class="about-links">
-        <a href="https://instagram.com/" target="_blank" class="social-link">Instagram</a>
-        <a href="https://open.spotify.com/" target="_blank" class="social-link">Spotify</a>
-        <a href="https://youtube.com/" target="_blank" class="social-link">YouTube</a>
-        <a href="#contato" class="social-link">Press Kit</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="trabalhos" class="works">
-    <div class="works-header">
-      <h2>Trabalhos</h2>
-      <span>Seleção 2024–2025</span>
-    </div>
-    <div class="works-grid">
-      <div class="work-item">
-        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&q=80&fit=crop')"></div>
-        <div class="work-overlay"><div class="work-title">Tour Nacional 2024</div></div>
-      </div>
-      <div class="work-item">
-        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80&fit=crop')"></div>
-        <div class="work-overlay"><div class="work-title">Álbum Raízes</div></div>
-      </div>
-      <div class="work-item">
-        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80&fit=crop')"></div>
-        <div class="work-overlay"><div class="work-title">Festival Verão</div></div>
-      </div>
-      <div class="work-item">
-        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=600&q=80&fit=crop')"></div>
-        <div class="work-overlay"><div class="work-title">Sessão Acústica</div></div>
-      </div>
-      <div class="work-item">
-        <div class="work-thumb" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80&fit=crop')"></div>
-        <div class="work-overlay"><div class="work-title">Ensaio Editorial</div></div>
+  <!-- ABOUT -->
+  <section id="about" style="background: var(--color-surface);">
+    <h2>Sobre o Artista</h2>
+    <p class="section-subtitle">15 anos criando arte que transforma espaços e inspira pessoas</p>
+    <div class="about-grid">
+      <img src="https://images.unsplash.com/photo-1522869635100-ce8f96b73ae1?w=600&q=80" alt="Artista trabalhando" class="about-image">
+      <div class="about-text">
+        <h3>Especialidades</h3>
+        <ul>
+          <li><strong>Pintura Acrílica</strong> — Técnicas modernas e contemporâneas</li>
+          <li><strong>Escultura</strong> — Em barro, madeira e metal</li>
+          <li><strong>Artes Decorativas</strong> — Painéis, murais e instalações</li>
+          <li><strong>Restauração</strong> — Recuperação de obras antigas</li>
+          <li><strong>Consultoria Artística</strong> — Assessoria para colecionadores</li>
+        </ul>
+        <p style="margin-top: 2rem; color: var(--color-muted); line-height: 1.8;">
+          Com formação em Belas Artes e experiência internacional, transformo visões em realidade artística. Cada obra é única, criada com paixão e técnica refinada.
+        </p>
       </div>
     </div>
   </section>
 
-  <section id="contato" class="contact">
-    <h2>Vamos trabalhar juntos</h2>
-    <form class="contact-form" onsubmit="sendMsg(event)">
-      <input class="finput" name="name" type="text" placeholder="Seu nome" required>
-      <input class="finput" name="email" type="email" placeholder="E-mail" required>
-      <input class="finput" name="subject" type="text" placeholder="Assunto (show, entrevista, parceria...)" required>
-      <textarea class="finput" name="message" rows="3" placeholder="Mensagem" style="resize:vertical"></textarea>
-      <button type="submit" class="submit-btn">Enviar →</button>
-    </form>
+  <!-- PORTFOLIO/GALERIA -->
+  <section id="portfolio">
+    <h2>Portfólio</h2>
+    <p class="section-subtitle">Explore uma seleção de obras recentes</p>
+    <div class="portfolio-grid" id="portfolioGrid"></div>
   </section>
 
+  <!-- SERVICES -->
+  <section id="services" style="background: var(--color-surface);">
+    <h2>Serviços</h2>
+    <p class="section-subtitle">Soluções artísticas completas para seu projeto</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3 class="service-title">Pintura Personalizada</h3>
+        <p class="service-description">Obras originais sob encomenda, com temas, cores e dimensões de sua escolha.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗿</div>
+        <h3 class="service-title">Escultura</h3>
+        <p class="service-description">Esculturas em diversos materiais para ambientes interno e externo.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🖼️</div>
+        <h3 class="service-title">Murais & Painéis</h3>
+        <p class="service-description">Transformação de paredes com arte mural de grande impacto visual.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3 class="service-title">Artes Decorativas</h3>
+        <p class="service-description">Peças decorativas únicas que agregam valor e beleza aos ambientes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3 class="service-title">Restauração</h3>
+        <p class="service-description">Recuperação profissional de obras danificadas ou antigas.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <h3 class="service-title">Consultoria Artística</h3>
+        <p class="service-description">Orientação especializada para colecionadores e investidores em arte.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section>
+    <h2>Galeria</h2>
+    <p class="section-subtitle">Fotografia de alta resolução do acervo</p>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=500&q=80" alt="Obra 1" class="gallery-image">
+      <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=500&q=80" alt="Obra 2" class="gallery-image">
+      <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=500&q=80" alt="Obra 3" class="gallery-image">
+      <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=500&q=80" alt="Obra 4" class="gallery-image">
+      <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=500&q=80" alt="Obra 5" class="gallery-image">
+      <img src="https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=500&q=80" alt="Obra 6" class="gallery-image">
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" style="background: var(--color-surface);">
+    <h2>Blog & Insights</h2>
+    <p class="section-subtitle">Artigos sobre arte, técnicas e inspiração</p>
+    <div class="blog-grid" id="blogGrid"></div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <h2>Clientes Satisfeitos</h2>
+    <p class="section-subtitle">Histórias de sucesso e transformação através da arte</p>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </section>
+
+  <!-- LOCATION & CONTACT -->
+  <section id="contact" style="background: var(--color-surface);">
+    <h2>Localização & Contato</h2>
+    <p class="section-subtitle">Visite o estúdio ou fale conosco</p>
+    <div class="contact-grid">
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1234567890!2d-46.6500!3d-23.5505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzAxLjgiUyA0NsKwMzknMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="seu.email@exemplo.com" required>
+        </div>
+        <div class="form-group">
+          <label>Tipo de Projeto</label>
+          <input type="text" placeholder="Ex: Pintura, Escultura, Mural" required>
+        </div>
+        <div class="form-group">
+          <label>Mensagem</label>
+          <textarea placeholder="Descreva seu projeto..." required></textarea>
+        </div>
+        <button class="submit-btn">Solicitar Orçamento via WhatsApp</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <span>© 2026 Sofia Vega</span>
-    <span>Assessoria: <a href="mailto:contato@sofiavega.com">contato@sofiavega.com</a></span>
+    <div class="footer-content">
+      <p>&copy; 2026 Estúdio de Artes. Todos os direitos reservados.</p>
+      <div class="footer-links">
+        <a href="https://instagram.com">Instagram</a>
+        <a href="https://facebook.com">Facebook</a>
+        <a href="mailto:contato@estudioartes.com">Email</a>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem;">Rua das Artes, 256 | São Paulo, SP | (11) 99999-9999</p>
+    </div>
   </footer>
-  <script src="../shared/enhancements.js"></script>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar um orçamento para um projeto de arte." class="whatsapp-btn" title="WhatsApp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
   <script>
-    function sendMsg(e) {
-      e.preventDefault();
-      const d = Object.fromEntries(new FormData(e.target));
-      const msg = `Olá Sofia!\n\nNome: ${d.name}\nE-mail: ${d.email}\nAssunto: ${d.subject}\n\n${d.message}`;
-      window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
-    }
+    window.WL_CONFIG = {
+      whatsapp: '5511999999999',
+      name: 'Estúdio de Artes',
+      phone: '(11) 99999-9999',
+      email: 'contato@estudioartes.com',
+      address: 'Rua das Artes, 256, São Paulo, SP'
+    };
+
+    // Load dynamic content
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        // Portfolio
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        data.portfolio.forEach(item => {
+          const html = `
+            <div class="portfolio-item">
+              <img src="${item.image}" alt="${item.title}" class="portfolio-image">
+              <div class="portfolio-content">
+                <div class="portfolio-category">${item.category}</div>
+                <h3 class="portfolio-title">${item.title}</h3>
+                <p class="portfolio-description">${item.description}</p>
+              </div>
+            </div>
+          `;
+          portfolioGrid.innerHTML += html;
+        });
+
+        // Blog
+        const blogGrid = document.getElementById('blogGrid');
+        data.blog.forEach(item => {
+          const html = `
+            <div class="blog-card">
+              <img src="${item.image}" alt="${item.title}" class="blog-image">
+              <div class="blog-content">
+                <div class="blog-category">${item.category}</div>
+                <h3 class="blog-title">${item.title}</h3>
+                <p class="blog-excerpt">${item.excerpt}</p>
+                <div class="blog-meta">${item.date} • ${item.readTime}</div>
+              </div>
+            </div>
+          `;
+          blogGrid.innerHTML += html;
+        });
+
+        // Testimonials
+        const testimonialsGrid = document.getElementById('testimonialsGrid');
+        data.testimonials.forEach(item => {
+          const stars = '⭐'.repeat(item.rating);
+          const html = `
+            <div class="testimonial-card">
+              <p class="testimonial-text">"${item.text}"</p>
+              <div class="testimonial-author">${item.author}</div>
+              <div class="testimonial-meta">${item.work} • <span class="stars">${stars}</span></div>
+            </div>
+          `;
+          testimonialsGrid.innerHTML += html;
+        });
+      });
   </script>
 </body>
 </html>

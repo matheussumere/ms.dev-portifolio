@@ -1,0 +1,23 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║            🍽️  RESTAURANTE/CAFETERIA - BEM-VINDO! 🍽️                    ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👋 COMECE AQUI:
+- Abrir: index.html
+- Testar: F12 → Ctrl+Shift+M
+- Personalizar: numero WhatsApp
+
+📁 ARQUIVOS:
+- index.html (site completo)
+- data.json (cardápio, preços, reviews)
+- QUICK_START.md (guia)
+
+🎨 CORES:
+- Marrom: #6f4e37 (warm)
+- Laranja: #ff8c00 (appetite)
+- Creme: #fff8dc
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR

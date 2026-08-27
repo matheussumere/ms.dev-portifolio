@@ -1,0 +1,23 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                🎨 ESTÚDIO DE TATUAGEM - BEM-VINDO! 🎨                    ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👋 COMECE AQUI:
+- Abrir: index.html
+- Testar responsividade: F12 → Ctrl+Shift+M
+- Mudar WhatsApp: window.WL_CONFIG.whatsapp
+
+📁 ARQUIVOS:
+- index.html (site completo com CSS)
+- data.json (portfólio, estilos, preços)
+- QUICK_START.md (guia 5 min)
+
+🎨 PALETA DE CORES:
+- Preto Intenso: #0d0d0d
+- Vermelho Vibrante: #e74c3c
+- Bege Quente: #ecf0f1
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR

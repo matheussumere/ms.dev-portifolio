@@ -1,0 +1,123 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║              🦷 PROJETO DENTISTA - CONSULTÓRIO ODONTOLÓGICO 🦷            ║
+║                          Bem-vindo ao seu site!                           ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+👋 COMECE AQUI:
+═══════════════════════════════════════════════════════════════════════════
+
+  1️⃣  ABRIR O SITE
+      Duplo clique em: index.html
+
+  2️⃣  TESTAR RESPONSIVIDADE
+      F12 → Ctrl+Shift+M → Teste em iPhone/iPad
+
+  3️⃣  PERSONALIZAR NÚMERO WHATSAPP
+      index.html → Procure: window.WL_CONFIG
+      Substitua: whatsapp: '5511999999999'
+
+  4️⃣  ADICIONAR DADOS REAIS
+      - Endereço do consultório
+      - Telefone
+      - Email
+      - Links de redes sociais
+
+  5️⃣  CONFIGURAR PREÇOS
+      data.json → Edite seção "pricing"
+
+
+📁 ESTRUTURA DO PROJETO:
+═══════════════════════════════════════════════════════════════════════════
+
+  📄 index.html          - Site completo (HTML + CSS)
+  📊 data.json           - Dados (tabela de preços, testimoniais)
+  📖 LEIA_PRIMEIRO.txt   - Este arquivo
+  📖 QUICK_START.md      - Guia rápido (5 min)
+
+
+✨ CARACTERÍSTICAS PRINCIPAIS:
+═══════════════════════════════════════════════════════════════════════════
+
+  ✅ 6 especialidades odontológicas
+  ✅ Galeria antes/depois (6 casos)
+  ✅ Tabela de preços com 6 tratamentos
+  ✅ Formulário de agendamento
+  ✅ WhatsApp integrado
+  ✅ Mapa Google
+  ✅ 3 depoimentos de clientes
+  ✅ Seção "Sobre o Consultório"
+  ✅ 100% responsivo
+  ✅ Otimizado para Google
+
+
+🎨 PALETA DE CORES (Dentista):
+═════════════════════════════════════════════════════════════════════════════
+
+  Azul Profissional:      #0a3a5c (Confiança)
+  Cyan Accent:            #00bcd4 (Modernidade)
+  Background Suave:       #f0f8fb (Conforto)
+  Branco Surface:         #ffffff
+
+
+🚀 PERSONALIZAÇÃO RÁPIDA:
+═══════════════════════════════════════════════════════════════════════════
+
+  PASSO 1: WhatsApp
+  ─────────────────
+  Arquivo: index.html
+  Procure: window.WL_CONFIG = {
+  Substitua: whatsapp: '5511999999999'
+
+
+  PASSO 2: Dados de Contato
+  ─────────────────────────
+  Arquivo: index.html
+  Procure:
+  - "Avenida Paulista, 1000" → Seu endereço
+  - "(11) 99999-9999" → Seu telefone
+  - "contato@consultorioodonto.com" → Seu email
+
+
+  PASSO 3: Tabela de Preços
+  ────────────────────────
+  Arquivo: data.json
+  Procure: "pricing": [
+  
+  Edite os preços dos 6 procedimentos:
+  - Consulta Inicial
+  - Limpeza Profissional
+  - Clareamento
+  - Faceta de Resina
+  - Implante Completo
+  - Aparelho Invisível
+
+
+🎯 O QUE FAZER:
+═══════════════════════════════════════════════════════════════════════════
+
+  HOJE:
+  ├─ [  ] Abrir index.html
+  ├─ [  ] Testar em mobile
+  ├─ [  ] Mudar número WhatsApp
+  └─ [  ] Testar agendamento
+
+  ESTA SEMANA:
+  ├─ [  ] Adicionar dados reais
+  ├─ [  ] Configurar tabela de preços
+  ├─ [  ] Adicionar sua foto no "Sobre"
+  └─ [  ] Adicionar links sociais
+
+  ESTE MÊS:
+  ├─ [  ] Upload para servidor
+  ├─ [  ] Submeter ao Google
+  └─ [  ] Configurar Analytics
+
+
+═════════════════════════════════════════════════════════════════════════════
+Status: ✅ PRONTO PARA USAR
+Versão: 1.0
+Tipo: Consultório Odontológico
+═════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,182 @@
+{
+  "portfolio": [
+    {
+      "id": 1,
+      "title": "Abstração em Azul",
+      "category": "Pintura Acrílica",
+      "description": "Série de pintura abstrata exploando tonalidades de azul e formas geométricas",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=600&q=80",
+      "year": 2024,
+      "medium": "Acrílica sobre tela",
+      "dimensions": "120 x 150 cm"
+    },
+    {
+      "id": 2,
+      "title": "Retratos da Cidade",
+      "category": "Pintura Óleo",
+      "description": "Série de retratos urbanos capturando a essência da vida na metrópole",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=600&q=80",
+      "year": 2024,
+      "medium": "Óleo sobre tela",
+      "dimensions": "80 x 100 cm"
+    },
+    {
+      "id": 3,
+      "title": "Escultura Movimento",
+      "category": "Escultura Contemporânea",
+      "description": "Escultura em bronze que representa o movimento e a transformação",
+      "image": "https://images.unsplash.com/photo-1578926078328-123c71649b44?w=600&q=80",
+      "year": 2024,
+      "medium": "Bronze",
+      "dimensions": "45 x 60 x 30 cm"
+    },
+    {
+      "id": 4,
+      "title": "Mural Coletivo",
+      "category": "Arte Mural",
+      "description": "Mural colaborativo em parede externa - 8m x 4m",
+      "image": "https://images.unsplash.com/photo-1460661419402-7bae6d26492e?w=600&q=80",
+      "year": 2023,
+      "medium": "Tinta acrílica",
+      "dimensions": "800 x 400 cm"
+    },
+    {
+      "id": 5,
+      "title": "Instalação Interativa",
+      "category": "Arte Contemporânea",
+      "description": "Instalação com luz e formas tridimensionais que muda conforme observador",
+      "image": "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=600&q=80",
+      "year": 2023,
+      "medium": "Múltiplos materiais",
+      "dimensions": "Instalação 500 x 300 cm"
+    },
+    {
+      "id": 6,
+      "title": "Série Natureza",
+      "category": "Aquarela",
+      "description": "Série de 12 aquarelas documentando a flora local",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=600&q=80",
+      "year": 2023,
+      "medium": "Aquarela sobre papel",
+      "dimensions": "30 x 40 cm (cada)"
+    },
+    {
+      "id": 7,
+      "title": "Retrato em Claroscuro",
+      "category": "Desenho",
+      "description": "Retrato realista com técnica de claroscuro em carvão",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=600&q=80",
+      "year": 2023,
+      "medium": "Carvão sobre papel",
+      "dimensions": "50 x 60 cm"
+    },
+    {
+      "id": 8,
+      "title": "Escultura em Madeira",
+      "category": "Escultura",
+      "description": "Escultura em madeira nativa explorando texturas e formas orgânicas",
+      "image": "https://images.unsplash.com/photo-1578926078328-123c71649b44?w=600&q=80",
+      "year": 2023,
+      "medium": "Madeira de lei",
+      "dimensions": "60 x 40 x 35 cm"
+    },
+    {
+      "id": 9,
+      "title": "Vitral Contemporâneo",
+      "category": "Artes Decorativas",
+      "description": "Vitral moderno combinando vidro e metal para ambiente residencial",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=600&q=80",
+      "year": 2023,
+      "medium": "Vidro e metal",
+      "dimensions": "200 x 300 cm"
+    },
+    {
+      "id": 10,
+      "title": "Painéis Decorativos",
+      "category": "Artes Decorativas",
+      "description": "Painel decorativo em laminado com desenho geométrico customizado",
+      "image": "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=600&q=80",
+      "year": 2023,
+      "medium": "Diversos materiais",
+      "dimensions": "150 x 200 cm"
+    },
+    {
+      "id": 11,
+      "title": "Pintura Acrílica - Expressionismo",
+      "category": "Pintura Acrílica",
+      "description": "Expressionismo abstrato com cores vibrantes e movimentos dinâmicos",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=600&q=80",
+      "year": 2023,
+      "medium": "Acrílica sobre tela",
+      "dimensions": "100 x 140 cm"
+    },
+    {
+      "id": 12,
+      "title": "Restauração Pintura Barroca",
+      "category": "Restauração",
+      "description": "Restauração completa de pintura do século XVIII - antes e depois",
+      "image": "https://images.unsplash.com/photo-1578926078328-123c71649b44?w=600&q=80",
+      "year": 2023,
+      "medium": "Restauração",
+      "dimensions": "80 x 100 cm"
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "Técnicas de Pintura Acrílica Moderna",
+      "category": "Técnicas",
+      "excerpt": "Explore as principais técnicas de pintura acrílica e como combiná-las para criar obras impressionantes.",
+      "content": "A pintura acrílica é um meio versátil que permite diversas técnicas e abordagens. Aprenda desde as bases até técnicas avançadas.",
+      "readTime": "8 min",
+      "date": "2026-08-20",
+      "author": "Estúdio Artes",
+      "image": "https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?w=400&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Como Escolher a Obra de Arte Certa",
+      "category": "Inspiração",
+      "excerpt": "Dicas para colecionadores iniciantes sobre como selecionar obras de arte que agregam valor e beleza.",
+      "content": "Investir em arte é tanto sobre beleza quanto sobre valor. Aprenda como escolher obras que você realmente ama.",
+      "readTime": "10 min",
+      "date": "2026-08-15",
+      "author": "Estúdio Artes",
+      "image": "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=400&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Arte e Bem-estar: O Poder da Transformação",
+      "category": "Filosofia",
+      "excerpt": "Descubra como a arte pode transformar espaços, melhorar a saúde mental e criar ambientes mais significativos.",
+      "content": "A arte não é apenas para ver, é para sentir. Entenda como as cores, formas e composições afetam nosso bem-estar.",
+      "readTime": "7 min",
+      "date": "2026-08-10",
+      "author": "Estúdio Artes",
+      "image": "https://images.unsplash.com/photo-1460661419402-7bae6d26492e?w=400&q=80"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "As obras transformaram completamente meu espaço. O artista entendeu perfeitamente minha visão e criou algo que superou as expectativas.",
+      "author": "Marina S.",
+      "work": "Pintura Personalizada",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Profissionalismo impecável. Desde o primeiro encontro até a entrega final, tudo foi excepcional. Recomendo fortemente!",
+      "author": "Roberto C.",
+      "work": "Mural Corporativo",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "Trabalhei com o artista em um projeto de escultura. Sua criatividade, técnica e dedicação foram notáveis. Resultado perfeito!",
+      "author": "Juliana M.",
+      "work": "Escultura",
+      "rating": 5
+    }
+  ]
+}

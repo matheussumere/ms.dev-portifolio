@@ -1,0 +1,95 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Culto Dominical",
+      "day": "Domingo",
+      "time": "09:00",
+      "description": "Culto principal da comunidade",
+      "location": "Templo Principal"
+    },
+    {
+      "id": 2,
+      "name": "Estudo Bíblico",
+      "day": "Quarta",
+      "time": "19:30",
+      "description": "Estudo de livros da Bíblia",
+      "location": "Sala de Estudo"
+    },
+    {
+      "id": 3,
+      "name": "Grupo de Oração",
+      "day": "Terça",
+      "time": "20:00",
+      "description": "Encontro de oração comunitária",
+      "location": "Sala de Meditação"
+    },
+    {
+      "id": 4,
+      "name": "Yoga e Meditação",
+      "day": "Sábado",
+      "time": "10:00",
+      "description": "Prática de yoga e meditação",
+      "location": "Sala de Yoga"
+    },
+    {
+      "id": 5,
+      "name": "Confraternização",
+      "day": "Sábado",
+      "time": "17:00",
+      "description": "Encontro social da comunidade",
+      "location": "Pátio"
+    },
+    {
+      "id": 6,
+      "name": "Voluntariado Social",
+      "day": "Sábado",
+      "time": "08:00",
+      "description": "Atividades de caridade e ajuda comunitária",
+      "location": "Comunidade"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "title": "Encontrando a Paz Interior",
+      "date": "2026-08-20",
+      "speaker": "Mestre João",
+      "readTime": "8 min"
+    },
+    {
+      "id": 2,
+      "title": "Caminho da Compaixão",
+      "date": "2026-08-15",
+      "speaker": "Mestre Maria",
+      "readTime": "10 min"
+    },
+    {
+      "id": 3,
+      "title": "Espiritualidade no Dia a Dia",
+      "date": "2026-08-10",
+      "speaker": "Mestre Carlos",
+      "readTime": "7 min"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Comunidade acolhedora que mudou minha vida. Encontrei paz e propósito aqui.",
+      "author": "Ana C.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "text": "Ambiente de amor e aceitação. Recomendo para quem busca espiritualidade.",
+      "author": "João M.",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "text": "As práticas meditativas transformaram meu ser. Muito grato pela comunidade.",
+      "author": "Maria L.",
+      "rating": 5
+    }
+  ]
+}

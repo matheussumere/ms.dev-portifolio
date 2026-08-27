@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Responsividade - Müller Auto</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 2rem; }
+    .test-container { max-width: 1200px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h1 { color: #333; margin-bottom: 1rem; }
+    .test-section { margin: 2rem 0; padding: 1.5rem; border-left: 4px solid #c0392b; background: #f9f9f9; }
+    .test-section h2 { color: #c0392b; font-size: 1.3rem; margin-bottom: 0.75rem; }
+    .test-item { margin: 0.75rem 0; padding: 0.75rem; background: white; border-radius: 4px; }
+    .test-item strong { color: #333; }
+    .status { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 3px; font-size: 0.85rem; font-weight: bold; }
+    .status.pass { background: #4caf50; color: white; }
+    .status.fail { background: #f44336; color: white; }
+    .status.warn { background: #ff9800; color: white; }
+    .status.info { background: #2196f3; color: white; }
+    .viewport-test { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .viewport-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 4px; text-align: center; }
+    .viewport-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .viewport-card p { font-size: 0.9rem; opacity: 0.9; }
+    code { background: #f0f0f0; padding: 0.2rem 0.5rem; border-radius: 3px; font-family: monospace; }
+    a { color: #c0392b; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #c0392b; color: white; }
+    tr:hover { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>🧪 Teste de Responsividade - Müller Auto</h1>
+    <p style="color: #666; margin-bottom: 2rem;">Guia de teste para validar funcionalidades do site em diferentes dispositivos.</p>
+
+    <div class="test-section">
+      <h2>📱 Testes por Dispositivo</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Dispositivo</th>
+            <th>Resolução</th>
+            <th>O que Testar</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mobile</strong></td>
+            <td>375×667 (iPhone)</td>
+            <td>Navegação hamburger, galeria em 1 coluna, forms responsivos</td>
+            <td><span class="status info">Testar</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tablet</strong></td>
+            <td>768×1024 (iPad)</td>
+            <td>Navegação visível, galeria em 2 colunas, mapa em full-width</td>
+            <td><span class="status info">Testar</span></td>
+          </tr>
+          <tr>
+            <td><strong>Desktop</strong></td>
+            <td>1920×1080</td>
+            <td>Layout completo, galeria em 3 colunas, navegação desktop</td>
+            <td><span class="status info">Testar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="test-section">
+      <h2>✅ Checklist de Funcionalidades</h2>
+      <div class="test-item">
+        <strong>🏠 Hero Section</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • Background image com overlay<br>
+          • Badges de especialização<br>
+          • CTA buttons (Orçamento & Serviços)<br>
+          • Responsivo (texto clamp)
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>🏍️ Seção de Especialização (Marcas)</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • 6 marcas com ícones<br>
+          • Hover effects com animação<br>
+          • Modelos listados por marca<br>
+          • Grid responsivo (6 → 3 → 1 coluna)
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>📸 Galeria Portfolio</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • 6 projetos com imagens<br>
+          • Overlay com hover (informações do serviço)<br>
+          • Lazy loading com loading="lazy"<br>
+          • Carregado dinamicamente do data.json
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>🎁 Programa de Fidelidade</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • 4 níveis de desconto<br>
+          • Gradient background<br>
+          • Grid responsivo<br>
+          • Destaque visual com cores
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>✓ Garantias & Transparência</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • 6 cards com garantias<br>
+          • Ícones em emoji<br>
+          • Hover effects (translateX)<br>
+          • Descrições claras
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>🏆 Badges & Certificados</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • 4 badges com ícones<br>
+          • Alinhamento horizontal centralizado<br>
+          • Wrap em mobile<br>
+          • Labels descritivos
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>📚 Blog Preview</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • 3 artigos com categorias<br>
+          • Imagens com lazy loading<br>
+          • Botão "Ver todos"<br>
+          • Carregado dinamicamente do data.json
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>🗺️ Localização & Mapa</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • Google Maps embarcado<br>
+          • Informações de contato<br>
+          • Horário de funcionamento<br>
+          • Links de WhatsApp e telefone
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>📋 Formulário de Orçamento</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • Marca, modelo, serviço<br>
+          • Descrição do problema<br>
+          • Urgência (3 opções)<br>
+          • Integração WhatsApp com mensagem formatada
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>💬 WhatsApp Button</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • Botão flutuante verde (#25d366)<br>
+          • Posição fixa no canto inferior direito<br>
+          • Hover effects com scale<br>
+          • Funcionário em mobile
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>🔍 SEO & Schema Markup</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • Meta tags (description, keywords, OG)<br>
+          • Schema JSON-LD (AutoRepair + LocalBusiness)<br>
+          • Estrutura semântica HTML<br>
+          • Alt text em imagens
+        </p>
+      </div>
+
+      <div class="test-item">
+        <strong>⚡ Performance & Lazy Loading</strong>
+        <span class="status pass">✓ Implementado</span>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+          • Intersection Observer para lazy loading<br>
+          • Blur placeholder effect<br>
+          • Preload de imagens críticas<br>
+          • Responsive images com srcset
+        </p>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>🎯 Testes Manual - Checklist</h2>
+      <div class="test-item">
+        <input type="checkbox"> Abrir index.html em browser
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Testar em mobile (F12 → Device Toolbar)
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Verificar navegação hamburger em mobile
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Clicar em "Especialistas em Motos" → Deve scroll para brands
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Hover na galeria → Overlay com informações apareça
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Clicar em "Solicitar Orçamento" → Modal deve abrir na aba "Orçamento"
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Preencher form de orçamento e submeter → WhatsApp deve abrir com mensagem
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Clicar WhatsApp button flutuante → WhatsApp deve abrir
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Scroll até "Dicas & Artigos" → Blog cards devem carregar dinamicamente
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Verificar mapa em "Nos encontre" → Deve estar visível e responsivo
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Testar em 3+ resoluções (mobile, tablet, desktop)
+      </div>
+      <div class="test-item">
+        <input type="checkbox"> Verificar console (F12) → Sem erros críticos
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>📊 Viewport Test Cards</h2>
+      <div class="viewport-test">
+        <div class="viewport-card">
+          <h3>📱 Mobile</h3>
+          <p>375px × 667px<br>(iPhone SE)</p>
+          <code>1 coluna</code>
+        </div>
+        <div class="viewport-card">
+          <h3>📱 Mobile XL</h3>
+          <p>414px × 896px<br>(iPhone 11)</p>
+          <code>1 coluna</code>
+        </div>
+        <div class="viewport-card">
+          <h3>📱 Tablet</h3>
+          <p>768px × 1024px<br>(iPad)</p>
+          <code>2 colunas</code>
+        </div>
+        <div class="viewport-card">
+          <h3>🖥️ Desktop</h3>
+          <p>1920px × 1080px<br>(Full HD)</p>
+          <code>3+ colunas</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>🔗 Links Úteis</h2>
+      <ul style="margin-left: 1rem;">
+        <li><a href="index.html" target="_blank">Abrir Site</a></li>
+        <li><a href="data.json" target="_blank">Ver dados.json</a></li>
+        <li><a href="https://google.com/maps" target="_blank">Google Maps</a></li>
+        <li><a href="https://wa.me/5511999999999" target="_blank">Testar WhatsApp</a></li>
+      </ul>
+    </div>
+
+    <div class="test-section" style="background: #e8f5e9; border-left-color: #4caf50;">
+      <h2 style="color: #2e7d32;">✨ Resumo de Implementação</h2>
+      <p style="margin-bottom: 1rem;">Todas as 10 melhorias estratégicas foram implementadas com sucesso:</p>
+      <ul style="margin-left: 1rem; line-height: 1.8;">
+        <li>✓ Seção "Especializações" com 6 marcas de motos</li>
+        <li>✓ "Antes & Depois" galeria visual com 6 projetos</li>
+        <li>✓ Programa de Fidelidade com 4 níveis de desconto</li>
+        <li>✓ Orçamento Rápido Online com integração WhatsApp</li>
+        <li>✓ Garantias e Transparência destacadas (6 pontos)</li>
+        <li>✓ Blog/Dicas com 3 artigos iniciais</li>
+        <li>✓ Mapa Google integrado com localização</li>
+        <li>✓ Badges de Certificações e Parcerias</li>
+        <li>✓ WhatsApp button flutuante contextualizado</li>
+        <li>✓ SEO com Schema Markup JSON-LD completo</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
