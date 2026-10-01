@@ -52,6 +52,12 @@ Para editar conteúdo pelo Decap, inicie `npm run cms:local` em outro terminal e
 
 A ativação do login do CMS e das métricas em produção exige configurar os serviços externos. Veja [CMS.md](CMS.md) e [ROADMAP.md](ROADMAP.md).
 
+## Publicação no GitHub Pages
+
+Em **Settings → Pages → Build and deployment → Source**, selecione **GitHub Actions**. O workflow [Publish GitHub Pages](.github/workflows/pages.yml) gera `dist/`, instala o bundle local do CMS e publica o site a cada push na `main`. Também pode ser iniciado em **Actions → Publish GitHub Pages → Run workflow**.
+
+Confira o resultado do job `deploy` em Actions. O arquivo `/ms.dev-portifolio/deployment.json` identifica o commit publicado. O build adiciona versões aos URLs de CSS e JavaScript para atualizar o cache quando os arquivos mudarem.
+
 ## Como customizar para um cliente
 
 1. Escolha um modelo e atualize seus contatos em `content/templates.json` ou no CMS.

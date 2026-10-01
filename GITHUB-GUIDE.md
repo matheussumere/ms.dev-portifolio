@@ -100,7 +100,8 @@ Interessado? Entre em contato: seu@email.com
 
 ```bash
 # No repositório, vá em:
-# Settings → Pages → Source: Deploy from branch → main → / (root)
+# Settings → Pages → Source: GitHub Actions
+# Actions → Publish GitHub Pages: conferir build e deploy
 
 # Suas demos ficam disponíveis em:
 # https://seu-usuario.github.io/white-label-landing-page/oficina/
