@@ -314,7 +314,8 @@ class BrowserTests(unittest.TestCase):
         self.page.locator('.btn-add-cart').click()
         self.page.locator('#fab-cart').click()
         expect(self.page.locator('#cart-drawer')).to_have_class('cart-drawer open')
-        self.assertLessEqual(self.page.locator('#cart-drawer').bounding_box()['width'], 375)
+        # Chromium can return subpixel rounding while the drawer animates.
+        self.assertLessEqual(self.page.locator('#cart-drawer').bounding_box()['width'], 375.5)
         self.page.evaluate('() => { window.opened=[]; window.open=url=>window.opened.push(url); }')
         self.page.locator('.btn-checkout').click()
         message = parse_qs(urlparse(self.page.evaluate('window.opened[0]')).query)['text'][0]
@@ -322,6 +323,35 @@ class BrowserTests(unittest.TestCase):
         self.assertIn('2x', message)
         self.page.keyboard.press('Escape')
         expect(self.page.locator('#cart-drawer')).not_to_have_class('cart-drawer open')
+
+    def test_secondary_sections_open_from_navigation_and_direct_links(self):
+        self.goto('/oficina/')
+        expect(self.page.locator('#blog')).not_to_be_visible()
+        self.page.get_by_role('link', name='Blog', exact=True).click()
+        expect(self.page.locator('#blog')).to_be_visible()
+        self.page.get_by_text('Dicas e artigos', exact=True).click()
+        expect(self.page.locator('#blog')).not_to_be_visible()
+        self.goto('/artista/#blog')
+        expect(self.page.locator('#blog')).to_be_visible()
+        self.goto('/give-beauty/')
+        expect(self.page.locator('#reels')).not_to_be_visible()
+        self.page.get_by_role('link', name='Reels', exact=True).click()
+        expect(self.page.locator('#reels')).to_be_visible()
+
+    def test_shop_bag_and_appearance_controls_do_not_cover_content(self):
+        self.page.set_viewport_size({'width':375, 'height':812})
+        self.goto('/loja/')
+        expect(self.page.locator('nav #fab-cart')).to_be_visible()
+        self.page.locator('#fab-cart').click()
+        expect(self.page.locator('#cart-drawer')).to_have_class('cart-drawer open')
+        self.page.keyboard.press('Escape')
+        self.goto('/salao/')
+        expect(self.page.locator('.floating-contact')).not_to_be_visible()
+        self.page.locator('#theme-toggle').scroll_into_view_if_needed()
+        expect(self.page.locator('.floating-contact')).not_to_be_visible()
+        self.page.locator('#theme-toggle').click()
+        self.page.locator('.theme-btn[data-theme="dark"]').click()
+        expect(self.page.locator('html')).to_have_attribute('data-theme', 'dark')
 
     def test_decap_editor_publishes_shared_content(self):
         path = self.repo / 'content/site.json'

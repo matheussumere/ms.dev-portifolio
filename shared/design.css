@@ -400,3 +400,109 @@ html[data-site="tatuagem"][data-theme] .hero h1, html[data-site="tatuagem"][data
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal, .reveal.reveal-pending { opacity: 1; transform: none; }
 }
+
+/* Refinement: less competition, lighter framing and a calmer reading rhythm. */
+:root { --demo-bar-height:32px; }
+.demo-contact { background:var(--ui-bg); color:var(--ui-muted); border-color:var(--ui-border); font-size:10px; letter-spacing:.03em; }
+.demo-contact a { color:var(--ui-text); font-weight:400; }
+body > nav .back-btn { display:none; }
+.nav-links a,.nav-center a { font-weight:400; text-transform:none; border-right:0; }
+:is(.hero-badge,.hero-eyebrow,.hero-tag,.hero-season) { border:0; border-radius:0; background:none; padding:0; letter-spacing:.1em; }
+:is(.btn-primary,.btn-fill,.hero-cta,.btn-gold,.btn-cta,.btn-submit,.submit-btn,.btn-hero-fill,.hero-btn) { border-radius:2px; box-shadow:none; font-weight:500; text-transform:none; letter-spacing:.02em; }
+:is(.btn-outline,.btn-line,.btn-hero-line) { border:0; background:none; text-decoration:underline; text-underline-offset:6px; }
+:is(.svc-icon,.specialty-icon,.treatment-icon,.service-icon,.min-icon,.brand-icon,.guarantee-icon,.badge-icon,.services-count,.svc-num) { display:none; }
+:is(.services-grid,.specialties-grid,.treatments-grid,.min-grid,.styles-grid,.proj-grid,.brands-grid,.guarantees-grid,.schedule-grid) { gap:2rem; background:none; }
+:is(.service-card,.specialty-card,.treatment-card,.svc-card,.min-card,.sched-card,.style-item,.proj-card,.brand-card,.guarantee-card) { border:0; border-top:1px solid var(--ui-border); border-radius:0; padding:2rem 0; box-shadow:none; background:var(--ui-surface); }
+:is(.service-card,.specialty-card,.treatment-card,.svc-card,.min-card,.sched-card,.style-item,.proj-card,.brand-card,.guarantee-card):hover { transform:none; box-shadow:none; background:var(--ui-surface); }
+.service-card:hover :is(h3,p) { color:var(--ui-text); }
+:is(.brand-card,.min-card,.guarantee-card) { text-align:left; }
+:is(.specialty-card,.treatment-card,.service-card) h3 { font-weight:500; }
+:is(.stats-2x2,.stats-row) { gap:1.5rem; }
+:is(.stat-el .n,.stat-item .n) { font-size:1.5rem; }
+:is(.svc-card::before,.status-dot) { animation:none; }
+.supplementary-section { margin:0 var(--gutter); border-top:1px solid var(--ui-border); }
+.supplementary-section:last-of-type { border-bottom:1px solid var(--ui-border); }
+.supplementary-section > summary { display:flex; justify-content:space-between; align-items:center; gap:1rem; list-style:none; padding:1.7rem 0; font-size:1rem; color:var(--ui-text); cursor:pointer; }
+.supplementary-section > summary::-webkit-details-marker { display:none; }
+.supplementary-section > summary::after { content:'+'; font-weight:400; font-size:1.5rem; }
+.supplementary-section[open] > summary::after { content:'−'; }
+.supplementary-section > :not(summary) { margin:0; padding:2rem 0 4rem !important; max-width:none; }
+.supplementary-section[open] > .loyalty { padding:2rem !important; margin-bottom:2rem; }
+.theme-switcher { position:relative; inset:auto; z-index:110; display:flex; flex-direction:row; justify-content:flex-end; padding:1rem var(--gutter); gap:0; background:var(--ui-bg); }
+.theme-switcher-toggle { background:var(--ui-bg); border:0; border-bottom:1px solid var(--ui-border); border-radius:0; padding:.5rem 0; color:var(--ui-muted); box-shadow:none; }
+.theme-options { position:absolute; bottom:calc(100% - .5rem); right:var(--gutter); border-radius:2px; box-shadow:0 6px 20px #0002; }
+.floating-contact { visibility:hidden; opacity:0; pointer-events:none; box-shadow:none; }
+.floating-contact.contact-visible { visibility:visible; opacity:1; pointer-events:auto; }
+[data-site="loja"] #fab-cart { position:static; display:flex; gap:.6rem; width:auto; height:44px; padding:0; border:0; border-radius:0; background:none; color:var(--ui-text); box-shadow:none; font-size:.76rem; transform:none; }
+[data-site="loja"] #fab-cart.hidden-fab { display:none; }
+[data-site="loja"] #fab-cart .fab-badge { position:static; min-width:16px; height:auto; background:none; color:var(--ui-muted); font-size:.7rem; }
+[data-site="loja"] #fab-cart .line-icon { width:20px; height:20px; }
+[data-site="loja"] .product-card { border:0; border-radius:0; background:none; }
+[data-site="loja"] .product-card:hover { transform:none; box-shadow:none; }
+[data-site="loja"] .product-card :is(.product-name,.product-price,.product-rating) { margin-left:0; margin-right:0; }
+[data-site="loja"] :is(.cat-item,.banner) { border-radius:0; }
+[data-site="loja"] .filter-btn { border-radius:0; border:0; border-bottom:1px solid transparent; padding:.7rem 0; margin-right:1.5rem; }
+[data-site="loja"] .filter-btn.active,[data-site="loja"] .filter-btn:hover { background:none; color:var(--ui-text); border-color:var(--ui-text); }
+[data-site="oficina"] { --font-heading:'DM Sans',sans-serif; }
+[data-site="oficina"] .hero h1 { font-family:'DM Sans',sans-serif; font-size:clamp(3.3rem,5.4vw,5.4rem); line-height:1.12; font-weight:400; text-transform:none; letter-spacing:-.05em; }
+[data-site="oficina"] .hero h1 em { color:#f1efea; font-weight:400; }
+[data-site="oficina"] .hero-badge { color:#d1d5db; background:none; border:0; padding:0; font:400 .7rem 'DM Sans',sans-serif; }
+[data-site="oficina"] .hero h1 ~ p { max-width:460px; font-size:.93rem; }
+[data-site="oficina"] .hero-actions { gap:1.8rem; align-items:center; }
+[data-site="oficina"] .btn-hero-line { padding:.9rem 0; }
+[data-site="oficina"] h2 { text-transform:none; font-weight:500; letter-spacing:-.025em; }
+[data-site="oficina"] .svc-card { border-top-width:1px; }
+[data-site="oficina"] :is(.svc-card,.guarantee-card,.brand-card) { padding:2rem 0; }
+[data-site="oficina"] .gallery-header h2 { color:#fff; }
+[data-site="salao"] .hero h1 { font-size:clamp(3.3rem,4.8vw,5.1rem); }
+[data-site="salao"] .hero h1 strong { font-weight:400; color:#f4e9dd; font-style:italic; }
+[data-site="salao"] .hero-cta { background:#f0e8dc; color:#201b18; border-radius:0; }
+[data-site="salao"] .stat-el .n { color:var(--ui-text); }
+[data-site="salao"] .services-top h2 { font-weight:400; }
+[data-site="dentista"] .hero-title { font-size:clamp(3rem,4.1vw,4.3rem); font-weight:400; }
+[data-site="dentista"] :is(.hero-cta,.nav-cta) { border-radius:2px; }
+[data-site="dentista"] .hero-badge { background:none; padding:0; letter-spacing:.1em; }
+[data-site="dentista"] :is(.specialty-card,.treatment-card) { border-radius:0; border:0; border-top:1px solid var(--ui-border); }
+[data-site="artista"] .hero-title { font-size:clamp(3.4rem,5.2vw,5.4rem); }
+[data-site="artista"] .portfolio-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:3rem 2rem; }
+[data-site="artista"] :is(.portfolio-item,.blog-card) { border:0; border-radius:0; }
+[data-site="tatuagem"] .hero h1 { font-size:clamp(4.5rem,8vw,8rem); font-weight:700; }
+[data-site="tatuagem"] .hero-eyebrow { letter-spacing:.15em; }
+[data-site="tatuagem"] .hero-bar { gap:2rem; }
+[data-site="tatuagem"] .artists-grid { gap:2rem; }
+[data-site="templo"] .hero h1 { font-size:clamp(3.3rem,5vw,5rem); }
+[data-site="templo"] .sched-card,[data-site="templo"] .min-card { border-radius:0; border-top:1px solid var(--ui-border); }
+[data-site="curriculo"] .hero h1 { font-size:clamp(3.8rem,6vw,6rem); font-weight:500; }
+[data-site="curriculo"] .hero-right { background:none; border:0; border-radius:0; padding:0; }
+[data-site="curriculo"] .skill-row { border-radius:0; border-bottom:1px solid var(--ui-border); background:none; padding:1.2rem 0; }
+[data-site="curriculo"] .hero-status { text-transform:none; letter-spacing:.03em; }
+[data-site="give-beauty"] .hero h1 { font-size:clamp(3.3rem,4.8vw,5.1rem); }
+[data-site="give-beauty"] .hero-right { border-radius:2px; margin-right:var(--gutter); }
+[data-site="give-beauty"] .hero-quote { display:none; }
+[data-site="give-beauty"] nav .logo img { filter:none !important; }
+[data-site="give-beauty"] :is(.svc-card,.news-card) { border-radius:0; box-shadow:none; }
+[data-site="give-beauty"] .services-grid { gap:2rem; background:none; }
+[data-site="give-beauty"] .svc-card { border:0; border-top:1px solid #3a3228; padding:2rem 0; }
+[data-site="cardapio"] .menu-item { border:0; border-bottom:1px solid var(--ui-border); border-radius:0; padding:1.6rem 0; }
+[data-site="cardapio"] .menu-item:hover { border-color:var(--ui-border); }
+[data-site="cardapio"] .item-tags .tag { border:0; padding:.2rem 0; margin-right:.6rem; }
+[data-site="cardapio"] .item-name { font-weight:400; }
+[data-site="cardapio"] .search-input { border-radius:2px; }
+@media(max-width:768px) {
+ .hero-actions { gap:1.2rem; }
+ .demo-contact { font-size:10px; }
+ :is(.services-grid,.specialties-grid,.treatments-grid,.min-grid,.styles-grid,.proj-grid,.brands-grid,.guarantees-grid,.schedule-grid) { gap:1rem; }
+ [data-site="loja"] #fab-cart { gap:.3rem; }
+ [data-site="loja"] #fab-cart .cart-label { display:none; }
+ [data-site="oficina"] .hero h1 { font-size:3.5rem; }
+ [data-site="salao"] .hero h1,[data-site="give-beauty"] .hero h1 { font-size:3.45rem; }
+ [data-site="curriculo"] .hero h1 { font-size:4.5rem; }
+ [data-site="artista"] .portfolio-grid { grid-template-columns:1fr; }
+ [data-site="give-beauty"] .hero-right { border-radius:0; }
+ input,select,textarea { font-size:1rem; }
+}
+html[data-site="oficina"] { --font-heading:'DM Sans',sans-serif; }
+[data-site="oficina"] .btn-hero { font-family:'DM Sans',sans-serif; font-weight:500; text-transform:none; letter-spacing:.02em; }
+[data-site="oficina"] .btn-hero-outline { border:0; background:none; padding:.9rem 0; text-decoration:underline; text-underline-offset:6px; }
+:is(.btn-outline,.btn-line) { font-family:'DM Sans',sans-serif; font-weight:500; text-transform:none; letter-spacing:.02em; padding:.9rem 0; }
+.svc-card h3 { font-weight:500; text-transform:none; }

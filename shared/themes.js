@@ -11,7 +11,7 @@
     switcher.className = 'theme-switcher';
     switcher.innerHTML = `<div class="theme-options" id="theme-options" aria-label="Temas disponíveis">
       ${themes.map(theme => `<button type="button" class="theme-btn" data-theme="${theme.id}" aria-pressed="false"><span class="theme-dot" style="background:${theme.dot}"></span>${theme.label}</button>`).join('')}
-      </div><button type="button" class="theme-switcher-toggle" id="theme-toggle" aria-expanded="false" aria-controls="theme-options">◐ Aparência</button>`;
+      </div><button type="button" class="theme-switcher-toggle" id="theme-toggle" aria-expanded="false" aria-controls="theme-options">Aparência do modelo</button>`;
     document.body.append(switcher);
     const toggle = switcher.querySelector('#theme-toggle');
     const options = switcher.querySelector('#theme-options');

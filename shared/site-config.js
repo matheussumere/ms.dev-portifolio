@@ -41,10 +41,10 @@
       bar.className = 'demo-contact';
       bar.setAttribute('aria-label', 'Solicitar este modelo de site');
       const label = document.createElement('span');
-      label.textContent = (template?.business_name || 'Site') + ' · Demonstração';
+      label.textContent = 'Demonstração';
       const link = document.createElement('a');
       link.href = new URL('?template=' + encodeURIComponent(relative) + '#cotacao', base);
-      link.textContent = 'Quero um site assim →';
+      link.textContent = 'Solicitar este modelo';
       link.addEventListener('click', () => window.trackContactEvent?.('quote_intent', { template: relative, source: 'demo' }));
       bar.append(label, link);
       document.body.prepend(bar);

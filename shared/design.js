@@ -20,6 +20,67 @@
     document.getElementById('nav-links').dataset.mobileMenu = '';
   }
 
+  // Keep secondary information available without filling the first reading.
+  const slug = document.documentElement.dataset.site;
+  const secondary = {
+    oficina: [['.loyalty', 'Programa de fidelidade'], ['.badges', 'Certificações e parcerias'], ['#blog', 'Dicas e artigos']],
+    artista: [['#blog', 'Artigos do estúdio']],
+    dentista: [['#pricing', 'Tratamentos e investimento']],
+    'give-beauty': [['#reels', 'Trabalhos no Instagram']],
+  };
+  (secondary[slug] || []).forEach(([selector, title]) => {
+    const section = document.querySelector(selector);
+    if (!section) return;
+    const details = document.createElement('details');
+    details.className = 'supplementary-section';
+    const summary = document.createElement('summary');
+    summary.textContent = title;
+    section.before(details); details.append(summary, section);
+  });
+  const revealSection = hash => {
+    if (!hash?.startsWith('#') || hash.length < 2) return;
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    const details = target?.closest('details.supplementary-section');
+    if (details) details.open = true;
+  };
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link) revealSection(link.getAttribute('href'));
+  });
+  window.addEventListener('hashchange', () => revealSection(location.hash));
+  revealSection(location.hash);
+
+  const signature = document.querySelector('img[src="logo+nome.png"]')?.closest('section');
+  if (signature) signature.hidden = true;
+
+  // The shop bag is a navigation action, rather than another floating badge.
+  const bag = document.getElementById('fab-cart');
+  if (bag && nav) {
+    const count = bag.querySelector('#fab-badge');
+    bag.innerHTML = '<svg class="line-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Zm3 0V5a4 4 0 0 1 8 0v2"/></svg><span class="cart-label">Sacola</span>';
+    bag.append(count); nav.querySelector('.nav-right')?.append(bag);
+  }
+
+  // A contact shortcut appears after the introductory call to action.
+  const floating = [...document.querySelectorAll('.fab-whatsapp,.whatsapp-btn,[aria-label="Agendar pelo WhatsApp"],.fab')].filter(node => node.matches('a,button'));
+  const hasWhatsApp = floating.some(node => node.matches('a'));
+  floating.forEach(node => {
+    if (hasWhatsApp && node.matches('button.fab')) node.hidden = true;
+    else node.classList.add('floating-contact');
+  });
+  const updateFloating = () => {
+    const hero = document.querySelector('.hero');
+    const threshold = hero ? hero.offsetTop + hero.offsetHeight - 160 : 320;
+    const footer = document.querySelector('footer');
+    const footerVisible = footer && footer.getBoundingClientRect().top < window.innerHeight;
+    floating.forEach(node => node.classList.toggle('contact-visible', window.scrollY > threshold && !footerVisible));
+  };
+  updateFloating();
+  window.addEventListener('scroll', updateFloating, { passive: true });
+  window.addEventListener('resize', updateFloating, { passive: true });
+
   // Local SVGs replace decorative emoji and the remote icon font.
   const icons = [
     '<path d="m14 6 4-4 4 4-4 4-4-4Zm-2 2-8 8a3 3 0 0 0 4 4l8-8M5 17l2 2"/>',
