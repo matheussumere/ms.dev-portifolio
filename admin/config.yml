@@ -1,0 +1,774 @@
+{
+  "backend": {
+    "name": "github",
+    "repo": "matheussumere/ms.dev-portifolio",
+    "branch": "main"
+  },
+  "locale": "pt",
+  "media_folder": "uploads",
+  "public_folder": "/uploads",
+  "collections": [
+    {
+      "name": "content",
+      "label": "Conteúdo do site",
+      "format": "json",
+      "files": [
+        {
+          "name": "site",
+          "label": "Empresa e vitrine",
+          "file": "content/site.json",
+          "fields": [
+            {
+              "name": "company",
+              "label": "Empresa",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "name",
+                  "label": "Nome",
+                  "widget": "string"
+                },
+                {
+                  "name": "whatsapp",
+                  "label": "WhatsApp (país + DDD + número)",
+                  "widget": "string",
+                  "pattern": [
+                    "^[0-9]{10,15}$",
+                    "Use apenas números, com país e DDD."
+                  ]
+                },
+                {
+                  "name": "phone",
+                  "label": "Telefone para exibição",
+                  "widget": "string"
+                },
+                {
+                  "name": "email",
+                  "label": "E-mail",
+                  "widget": "string"
+                },
+                {
+                  "name": "description",
+                  "label": "Apresentação",
+                  "widget": "text"
+                }
+              ]
+            },
+            {
+              "name": "analytics",
+              "label": "Métricas Plausible",
+              "widget": "object",
+              "fields": [
+                {
+                  "name": "enabled",
+                  "label": "Ativar envio de eventos",
+                  "widget": "boolean",
+                  "default": false
+                },
+                {
+                  "name": "domain",
+                  "label": "Domínio cadastrado no Plausible",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "endpoint",
+                  "label": "Endpoint",
+                  "widget": "string",
+                  "default": "https://plausible.io/api/event"
+                }
+              ]
+            },
+            {
+              "name": "demos",
+              "label": "Modelos da vitrine",
+              "widget": "list",
+              "allow_add": false,
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "hidden"
+                },
+                {
+                  "name": "name",
+                  "label": "Nome",
+                  "widget": "string"
+                },
+                {
+                  "name": "category",
+                  "label": "Categoria",
+                  "widget": "select",
+                  "options": [
+                    {
+                      "label": "Serviços locais",
+                      "value": "servicos"
+                    },
+                    {
+                      "label": "Beleza",
+                      "value": "beleza"
+                    },
+                    {
+                      "label": "Comércio",
+                      "value": "comercio"
+                    },
+                    {
+                      "label": "Profissionais",
+                      "value": "criativos"
+                    },
+                    {
+                      "label": "Comunidades",
+                      "value": "comunidade"
+                    }
+                  ]
+                },
+                {
+                  "name": "category_label",
+                  "label": "Categoria para exibição",
+                  "widget": "string"
+                },
+                {
+                  "name": "description",
+                  "label": "Descrição",
+                  "widget": "text"
+                },
+                {
+                  "name": "preview",
+                  "label": "Imagem de prévia",
+                  "widget": "image"
+                }
+              ],
+              "min": 10,
+              "max": 10
+            }
+          ]
+        },
+        {
+          "name": "templates",
+          "label": "Contatos dos modelos",
+          "file": "content/templates.json",
+          "fields": [
+            {
+              "name": "templates",
+              "label": "Configurações dos modelos",
+              "widget": "list",
+              "allow_add": false,
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "hidden"
+                },
+                {
+                  "name": "business_name",
+                  "label": "Nome do negócio",
+                  "widget": "string"
+                },
+                {
+                  "name": "whatsapp",
+                  "label": "WhatsApp",
+                  "widget": "string",
+                  "pattern": [
+                    "^[0-9]{10,15}$",
+                    "Use país, DDD e número."
+                  ]
+                },
+                {
+                  "name": "phone",
+                  "label": "Telefone para exibição",
+                  "widget": "string"
+                },
+                {
+                  "name": "email",
+                  "label": "E-mail",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "address",
+                  "label": "Endereço",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "accent",
+                  "label": "Cor de destaque (#RRGGBB)",
+                  "widget": "string",
+                  "required": false,
+                  "pattern": [
+                    "^(#[0-9a-fA-F]{6})?$",
+                    "Use uma cor como #3366CC ou deixe em branco."
+                  ]
+                },
+                {
+                  "name": "emailjs_public_key",
+                  "label": "EmailJS public key",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "emailjs_service_id",
+                  "label": "EmailJS serviço",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "emailjs_schedule_template",
+                  "label": "EmailJS template de agendamento",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "emailjs_contact_template",
+                  "label": "EmailJS template de contato",
+                  "widget": "string",
+                  "required": false
+                }
+              ],
+              "min": 10,
+              "max": 10
+            }
+          ]
+        },
+        {
+          "name": "oficina",
+          "label": "Oficina — galeria, blog, marcas e depoimentos",
+          "file": "oficina/data.json",
+          "fields": [
+            {
+              "name": "portfolio",
+              "label": "Portfolio",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "description",
+                  "label": "Description",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "brand",
+                  "label": "Brand",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "model",
+                  "label": "Model",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "service",
+                  "label": "Service",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "before",
+                  "label": "Before",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "after",
+                  "label": "After",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "image",
+                  "label": "Image",
+                  "widget": "image",
+                  "required": false
+                },
+                {
+                  "name": "duration",
+                  "label": "Duration",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "satisfaction",
+                  "label": "Satisfaction",
+                  "widget": "number",
+                  "value_type": "int"
+                }
+              ]
+            },
+            {
+              "name": "blog",
+              "label": "Blog",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "category",
+                  "label": "Category",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "excerpt",
+                  "label": "Excerpt",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "content",
+                  "label": "Content",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "readTime",
+                  "label": "Readtime",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "date",
+                  "label": "Date",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "author",
+                  "label": "Author",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "image",
+                  "label": "Image",
+                  "widget": "image",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "name": "brands",
+              "label": "Brands",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "name",
+                  "label": "Name",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "icon",
+                  "label": "Icon",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "models",
+                  "label": "Models",
+                  "widget": "list"
+                },
+                {
+                  "name": "specialty",
+                  "label": "Specialty",
+                  "widget": "string",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "name": "testimonials",
+              "label": "Testimonials",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "text",
+                  "label": "Text",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "author",
+                  "label": "Author",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "model",
+                  "label": "Model",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "rating",
+                  "label": "Rating",
+                  "widget": "number",
+                  "value_type": "int"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "artista",
+          "label": "Artista — portfólio, blog e depoimentos",
+          "file": "artista/data.json",
+          "fields": [
+            {
+              "name": "portfolio",
+              "label": "Portfolio",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "category",
+                  "label": "Category",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "description",
+                  "label": "Description",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "image",
+                  "label": "Image",
+                  "widget": "image",
+                  "required": false
+                },
+                {
+                  "name": "year",
+                  "label": "Year",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "medium",
+                  "label": "Medium",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "dimensions",
+                  "label": "Dimensions",
+                  "widget": "string",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "name": "blog",
+              "label": "Blog",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "category",
+                  "label": "Category",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "excerpt",
+                  "label": "Excerpt",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "content",
+                  "label": "Content",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "readTime",
+                  "label": "Readtime",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "date",
+                  "label": "Date",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "author",
+                  "label": "Author",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "image",
+                  "label": "Image",
+                  "widget": "image",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "name": "testimonials",
+              "label": "Testimonials",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "text",
+                  "label": "Text",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "author",
+                  "label": "Author",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "work",
+                  "label": "Work",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "rating",
+                  "label": "Rating",
+                  "widget": "number",
+                  "value_type": "int"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "dentista",
+          "label": "Dentista — casos, preços e depoimentos",
+          "file": "dentista/data.json",
+          "fields": [
+            {
+              "name": "beforeAfter",
+              "label": "Beforeafter",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "type",
+                  "label": "Type",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "description",
+                  "label": "Description",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "image",
+                  "label": "Image",
+                  "widget": "image",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "name": "pricing",
+              "label": "Pricing",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "name",
+                  "label": "Name",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "price",
+                  "label": "Price",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "period",
+                  "label": "Period",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "featured",
+                  "label": "Featured",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "features",
+                  "label": "Features",
+                  "widget": "list"
+                }
+              ]
+            },
+            {
+              "name": "testimonials",
+              "label": "Testimonials",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "id",
+                  "label": "Id",
+                  "widget": "number",
+                  "value_type": "int"
+                },
+                {
+                  "name": "text",
+                  "label": "Text",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "author",
+                  "label": "Author",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "treatment",
+                  "label": "Treatment",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "rating",
+                  "label": "Rating",
+                  "widget": "number",
+                  "value_type": "int"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "give-beauty",
+          "label": "Give Beauty — notícias",
+          "file": "give-beauty/posts.json",
+          "fields": [
+            {
+              "name": "posts",
+              "label": "Posts",
+              "widget": "list",
+              "fields": [
+                {
+                  "name": "title",
+                  "label": "Title",
+                  "widget": "string",
+                  "required": false
+                },
+                {
+                  "name": "excerpt",
+                  "label": "Excerpt",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "content",
+                  "label": "Content",
+                  "widget": "text",
+                  "required": false
+                },
+                {
+                  "name": "img",
+                  "label": "Img",
+                  "widget": "image",
+                  "required": false
+                },
+                {
+                  "name": "date",
+                  "label": "Date",
+                  "widget": "string",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "editor": {
+        "preview": false
+      }
+    }
+  ]
+}

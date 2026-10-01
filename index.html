@@ -1,9 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matheus Sumere — Desenvolvimento Web</title>
+  <title>ms.dev — Sites para negócios locais</title>
+  <meta name="description" content="Sites para negócios locais, cardápios digitais e catálogos com WhatsApp. Conheça os modelos da ms.dev e solicite uma cotação.">
+  <meta property="og:title" content="ms.dev — Sites para negócios locais">
+  <meta property="og:description" content="Escolha um modelo para seu negócio e converse sobre seu projeto.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/portfolio.css">
+  <script src="shared/analytics.js" defer></script>
+  <script src="assets/portfolio.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -14,7 +21,7 @@
       --accent: #4f8ef7;
       --accent2: #7c3aed;
       --text: #e8edf5;
-      --muted: #6b7a99;
+      --muted: #a3aec0;
       --border: #1e2a3a;
       --font: 'Space Grotesk', sans-serif;
       --mono: 'Space Mono', monospace;
@@ -182,18 +189,20 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
   <nav>
-    <a href="#" class="logo">ms<em>.</em>dev</a>
+    <a href="#" class="logo" data-company-name>ms<em>.</em>dev</a>
     <a href="#cotacao" class="nav-btn">→ cotação</a>
   </nav>
 
+  <main id="conteudo">
   <!-- HERO SPLIT -->
   <section class="hero">
     <div class="hero-left">
       <div class="hero-tag">Desenvolvimento Web</div>
       <h1>Sites que<br><span class="highlight">trabalham</span><br>por você</h1>
-      <p class="hero-desc">Crio sites modernos para negócios locais. Design exclusivo, entrega em 7 dias, suporte contínuo.</p>
+      <p class="hero-desc" data-company-description>Sites para negócios locais, com uma apresentação clara e contato fácil pelo WhatsApp.</p>
       <div class="hero-actions">
         <a href="#cotacao" class="btn-fill">Solicitar cotação</a>
         <a href="#demos" class="btn-ghost">Ver demos →</a>
@@ -202,7 +211,7 @@
     <div class="hero-right">
       <div class="stat-block">
         <div class="stat-num">07</div>
-        <div class="stat-desc">Dias para entrega do site completo</div>
+        <div class="stat-desc">Prazo estimado após receber conteúdo e aprovar o escopo</div>
       </div>
       <div class="stat-block">
         <div class="stat-num">R$800</div>
@@ -213,8 +222,8 @@
         <div class="stat-desc">Responsivo — funciona em qualquer tela</div>
       </div>
       <div class="stat-block">
-        <div class="stat-num">∞</div>
-        <div class="stat-desc">Suporte via WhatsApp após a entrega</div>
+        <div class="stat-num">Suporte</div>
+        <div class="stat-desc">Planos de manutenção com suporte via WhatsApp</div>
       </div>
     </div>
   </section>
@@ -228,7 +237,7 @@
         <div class="svc-num">01</div>
         <div>
           <div class="svc-title">Landing Page</div>
-          <div class="svc-desc">Site completo com hero, serviços, sobre, depoimentos, agendamento online e integração com WhatsApp.</div>
+          <div class="svc-desc">Site completo com hero, serviços, sobre, depoimentos, solicitação de agendamento e integração com WhatsApp.</div>
           <div class="svc-price">a partir de R$ 800</div>
         </div>
       </div>
@@ -259,102 +268,121 @@
     </div>
   </section>
 
-  <!-- DEMOS -->
-  <section id="demos" class="demos">
-    <div class="section-label">Portfólio</div>
-    <h2 class="section-title">9 templates prontos</h2>
-    <div class="demos-grid">
-      <a href="./oficina/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#c0392b;"></div>
-            <div class="demo-name">🏍️ Oficina Mecânica</div>
-          </div>
-          <div class="demo-type">landing page · agendamento · whatsapp</div>
+  <section id="demos" class="demos" aria-labelledby="demos-title">
+    <div class="section-label">Escolha seu ponto de partida</div>
+    <h2 class="section-title" id="demos-title">Um modelo para cada negócio</h2>
+    <p class="section-intro">Explore as demonstrações. Depois, adaptamos a identidade e o conteúdo ao seu negócio.</p>
+    <div class="demo-filters" aria-label="Filtrar modelos" hidden>
+      <button type="button" data-category="all" aria-pressed="true">Todos</button>
+      <button type="button" data-category="servicos" aria-pressed="false">Serviços locais</button>
+      <button type="button" data-category="beleza" aria-pressed="false">Beleza</button>
+      <button type="button" data-category="comercio" aria-pressed="false">Comércio</button>
+      <button type="button" data-category="criativos" aria-pressed="false">Profissionais</button>
+      <button type="button" data-category="comunidade" aria-pressed="false">Comunidades</button>
+    </div>
+    <p id="demo-count" class="demo-count" role="status">10 modelos disponíveis</p>
+    <div class="demos-grid" id="demo-grid">
+      <article class="demo-card" data-template="oficina" data-category="servicos">
+        <a class="demo-preview" href="./oficina/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Oficina Mecânica"><img src="assets/previews/oficina.jpg" alt="Prévia do modelo Oficina Mecânica" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Serviços locais</span><h3>Oficina Mecânica</h3><p>Orçamentos e apresentação dos serviços</p>
+          <div class="demo-actions"><a href="./oficina/" target="_blank" rel="noopener noreferrer" data-demo-open="oficina">Ver demo ↗</a><a href="?template=oficina#cotacao" data-quote-template="oficina">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./salao/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#e91e63;"></div>
-            <div class="demo-name">💇 Salão de Beleza</div>
-          </div>
-          <div class="demo-type">landing page · agendamento · especialidades</div>
+      </article>
+      <article class="demo-card" data-template="salao" data-category="beleza">
+        <a class="demo-preview" href="./salao/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Salão de Beleza"><img src="assets/previews/salao.jpg" alt="Prévia do modelo Salão de Beleza" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Beleza e bem-estar</span><h3>Salão de Beleza</h3><p>Serviços, galeria e solicitação de agendamento</p>
+          <div class="demo-actions"><a href="./salao/" target="_blank" rel="noopener noreferrer" data-demo-open="salao">Ver demo ↗</a><a href="?template=salao#cotacao" data-quote-template="salao">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./dentista/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#00bcd4;"></div>
-            <div class="demo-name">🦷 Clínica Odontológica</div>
-          </div>
-          <div class="demo-type">landing page · agendamento · telemedicina</div>
+      </article>
+      <article class="demo-card" data-template="dentista" data-category="servicos">
+        <a class="demo-preview" href="./dentista/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Clínica Odontológica"><img src="assets/previews/dentista.jpg" alt="Prévia do modelo Clínica Odontológica" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Serviços locais</span><h3>Clínica Odontológica</h3><p>Tratamentos, casos e contato</p>
+          <div class="demo-actions"><a href="./dentista/" target="_blank" rel="noopener noreferrer" data-demo-open="dentista">Ver demo ↗</a><a href="?template=dentista#cotacao" data-quote-template="dentista">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./cardapio/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#d4715d;"></div>
-            <div class="demo-name">🍽️ Cardápio Digital</div>
-          </div>
-          <div class="demo-type">cardápio · busca · pedidos</div>
+      </article>
+      <article class="demo-card" data-template="cardapio" data-category="comercio">
+        <a class="demo-preview" href="./cardapio/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Cardápio Digital"><img src="assets/previews/cardapio.jpg" alt="Prévia do modelo Cardápio Digital" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Comércio e alimentação</span><h3>Cardápio Digital</h3><p>Categorias, busca e pedidos pelo WhatsApp</p>
+          <div class="demo-actions"><a href="./cardapio/" target="_blank" rel="noopener noreferrer" data-demo-open="cardapio">Ver demo ↗</a><a href="?template=cardapio#cotacao" data-quote-template="cardapio">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./artista/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#ff8c00;"></div>
-            <div class="demo-name">🎨 Artista / Personalidade</div>
-          </div>
-          <div class="demo-type">portfólio · blog · contato</div>
+      </article>
+      <article class="demo-card" data-template="artista" data-category="criativos">
+        <a class="demo-preview" href="./artista/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Artista / Personalidade"><img src="assets/previews/artista.jpg" alt="Prévia do modelo Artista / Personalidade" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Criativos e profissionais</span><h3>Artista / Personalidade</h3><p>Portfólio, artigos e apresentação</p>
+          <div class="demo-actions"><a href="./artista/" target="_blank" rel="noopener noreferrer" data-demo-open="artista">Ver demo ↗</a><a href="?template=artista#cotacao" data-quote-template="artista">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./tatuagem/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#e74c3c;"></div>
-            <div class="demo-name">🎭 Estúdio de Tatuagem</div>
-          </div>
-          <div class="demo-type">galeria · agendamento · artistas</div>
+      </article>
+      <article class="demo-card" data-template="tatuagem" data-category="beleza">
+        <a class="demo-preview" href="./tatuagem/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Estúdio de Tatuagem"><img src="assets/previews/tatuagem.jpg" alt="Prévia do modelo Estúdio de Tatuagem" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Beleza e bem-estar</span><h3>Estúdio de Tatuagem</h3><p>Galeria, estilos e contato</p>
+          <div class="demo-actions"><a href="./tatuagem/" target="_blank" rel="noopener noreferrer" data-demo-open="tatuagem">Ver demo ↗</a><a href="?template=tatuagem#cotacao" data-quote-template="tatuagem">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./templo/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#d4af37;"></div>
-            <div class="demo-name">🕉️ Templo Religioso</div>
-          </div>
-          <div class="demo-type">programação · serviços · ministérios</div>
+      </article>
+      <article class="demo-card" data-template="templo" data-category="comunidade">
+        <a class="demo-preview" href="./templo/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Comunidade Religiosa"><img src="assets/previews/templo.jpg" alt="Prévia do modelo Comunidade Religiosa" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Comunidades</span><h3>Comunidade Religiosa</h3><p>Programação, mensagens e informações</p>
+          <div class="demo-actions"><a href="./templo/" target="_blank" rel="noopener noreferrer" data-demo-open="templo">Ver demo ↗</a><a href="?template=templo#cotacao" data-quote-template="templo">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./curriculo/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#0891b2;"></div>
-            <div class="demo-name">📄 Currículo Pessoal</div>
-          </div>
-          <div class="demo-type">tech · projetos · experiência</div>
+      </article>
+      <article class="demo-card" data-template="curriculo" data-category="criativos">
+        <a class="demo-preview" href="./curriculo/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Currículo Pessoal"><img src="assets/previews/curriculo.jpg" alt="Prévia do modelo Currículo Pessoal" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Criativos e profissionais</span><h3>Currículo Pessoal</h3><p>Experiência, habilidades e projetos</p>
+          <div class="demo-actions"><a href="./curriculo/" target="_blank" rel="noopener noreferrer" data-demo-open="curriculo">Ver demo ↗</a><a href="?template=curriculo#cotacao" data-quote-template="curriculo">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
-      <a href="./loja/" target="_blank" class="demo-item">
-        <div>
-          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-            <div class="demo-dot" style="background:#06b6d4;"></div>
-            <div class="demo-name">🛍️ Loja em Geral</div>
-          </div>
-          <div class="demo-type">e-commerce · produtos · categorias</div>
+      </article>
+      <article class="demo-card" data-template="loja" data-category="comercio">
+        <a class="demo-preview" href="./loja/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Loja em Geral"><img src="assets/previews/loja.jpg" alt="Prévia do modelo Loja em Geral" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Comércio e alimentação</span><h3>Loja em Geral</h3><p>Catálogo, variantes e pedidos pelo WhatsApp</p>
+          <div class="demo-actions"><a href="./loja/" target="_blank" rel="noopener noreferrer" data-demo-open="loja">Ver demo ↗</a><a href="?template=loja#cotacao" data-quote-template="loja">Quero este modelo →</a></div>
         </div>
-        <div class="demo-arrow">→</div>
-      </a>
+      </article>
+      <article class="demo-card" data-template="give-beauty" data-category="beleza">
+        <a class="demo-preview" href="./give-beauty/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração: Estúdio de Unhas — Give Beauty"><img src="assets/previews/give-beauty.jpg" alt="Prévia do modelo Give Beauty" width="1200" height="800" loading="lazy"></a>
+        <div class="demo-body"><span class="demo-category">Beleza e bem-estar</span><h3>Estúdio de Unhas — Give Beauty</h3><p>Serviços, galeria, notícias e contato pelo WhatsApp</p><div class="demo-actions"><a href="./give-beauty/" target="_blank" rel="noopener noreferrer" data-demo-open="give-beauty">Ver demo ↗</a><a href="?template=give-beauty#cotacao" data-quote-template="give-beauty">Quero este modelo →</a></div></div>
+      </article>
     </div>
   </section>
-
-  
+  <section class="process" aria-labelledby="process-title">
+    <div class="section-label">Do primeiro contato à entrega</div>
+    <h2 class="section-title" id="process-title">Como seu projeto ganha forma</h2>
+    <ol class="process-grid">
+      <li><span>01</span><h3>Entendemos seu negócio</h3><p>Você conta o que precisa. Definimos o escopo, o prazo e o investimento antes de começar.</p></li>
+      <li><span>02</span><h3>Personalizamos seu site</h3><p>Aplicamos sua identidade e seu conteúdo. Você revisa a proposta e os ajustes combinados.</p></li>
+      <li><span>03</span><h3>Publicamos e acompanhamos</h3><p>Testamos o site no celular e no computador. Domínio, hospedagem e manutenção são definidos na proposta.</p></li>
+    </ol>
+  </section>
+  <section id="cotacao" class="quote" aria-labelledby="quote-title">
+    <div class="quote-grid">
+      <div class="quote-info">
+        <div class="section-label">Vamos conversar</div><h2 id="quote-title">Conte o que seu negócio precisa</h2>
+        <p>Preencha um breve resumo e continue no WhatsApp. A cotação considera as páginas, funcionalidades e conteúdo do seu projeto.</p>
+        <div class="contact-line"><span class="contact-icon">WA</span><a href="https://wa.me/5519978075689" data-company-whatsapp>(19) 97807-5689</a></div>
+        <div class="contact-line"><span class="contact-icon">@</span><a href="mailto:matheussumere@gmail.com" data-company-email>matheussumere@gmail.com</a></div>
+        <p class="quote-note">Você confirma o envio da mensagem no WhatsApp. Os dados preenchidos não são armazenados neste site.</p>
+      </div>
+      <form id="quote-form">
+        <div class="form-row"><div><label for="quote-name">Seu nome</label><input id="quote-name" name="name" autocomplete="name" maxlength="100" required></div><div><label for="quote-business">Nome do negócio</label><input id="quote-business" name="business" autocomplete="organization" maxlength="150" required></div></div>
+        <div class="form-row"><div><label for="quote-segment">Seu segmento</label><input id="quote-segment" name="segment" placeholder="Ex.: restaurante, salão, consultório" maxlength="100" required></div><div><label for="quote-service">O que você precisa?</label><select id="quote-service" name="service" required><option value="">Selecione</option><option value="landing">Site / landing page</option><option value="menu">Cardápio digital</option><option value="catalog">Catálogo de produtos</option><option value="maintenance">Manutenção de site</option><option value="other">Quero orientação</option></select></div></div>
+        <div class="form-row"><div><label for="quote-template">Modelo de referência</label><select id="quote-template" name="template"><option value="">Ainda não escolhi</option>
+<option value="oficina">Oficina Mecânica</option>
+<option value="salao">Salão de Beleza</option>
+<option value="dentista">Clínica Odontológica</option>
+<option value="cardapio">Cardápio Digital</option>
+<option value="artista">Artista / Personalidade</option>
+<option value="tatuagem">Estúdio de Tatuagem</option>
+<option value="templo">Comunidade Religiosa</option>
+<option value="curriculo">Currículo Pessoal</option>
+<option value="loja">Loja em Geral</option>
+<option value="give-beauty">Estúdio de Unhas — Give Beauty</option>
+        </select></div><div><label for="quote-deadline">Quando pretende começar?</label><select id="quote-deadline" name="deadline"><option>Estou pesquisando</option><option>O quanto antes</option><option>Nas próximas semanas</option><option>No próximo mês</option></select></div></div>
+        <div><label for="quote-details">O que deseja incluir? (opcional)</label><textarea id="quote-details" name="details" maxlength="1500" placeholder="Conte um pouco sobre o projeto, as páginas e os recursos que imagina."></textarea></div>
+        <button class="submit-btn" type="submit">Preparar cotação no WhatsApp →</button>
+        <p id="quote-feedback" role="status" hidden></p><a id="quote-continue" class="quote-continue" target="_blank" rel="noopener noreferrer" hidden>Continuar no WhatsApp →</a>
+        <noscript><p>Para conversar sobre seu projeto, <a href="https://wa.me/5519978075689">abra o WhatsApp</a>.</p></noscript>
+      </form>
+    </div>
+  </section>
+  </main>
+  <footer><span>© <span id="footer-year">2026</span> <span data-company-name>ms.dev</span></span><a href="#cotacao">Vamos tirar seu projeto do papel →</a></footer>
+</body>
+</html>

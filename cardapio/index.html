@@ -193,13 +193,16 @@
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <link rel="stylesheet" href="../shared/enhancements.css">
+  <link rel="stylesheet" href="../shared/demo-contact.css">
+  <script src="../shared/analytics.js" defer></script>
+  <script src="../shared/site-config.js" defer></script>
 </head>
 <body>
 
   <header>
     <a href="../" style="position:absolute;top:1rem;left:1.5rem;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">← Portfólio</a>
     <p class="header-eyebrow">Cardápio Digital</p>
-    <h1>Bistrot Maison</h1>
+    <h1 data-site-name data-default-business="Bistrot Maison">Bistrot Maison</h1>
     <p class="header-sub">Cozinha francesa contemporânea · Aberto todos os dias</p>
   </header>
 
@@ -486,7 +489,6 @@
   </div>
 
   <script>
-    const WHATSAPP_NUMBER = '5511999999999';
     let cart = {};
     let toastTimer;
 
@@ -561,7 +563,9 @@
       document.getElementById('cart-modal').classList.remove('open');
     }
 
-    function sendWhatsApp() {
+    async function sendWhatsApp() {
+      await window.WL_READY;
+      if (!window.WL_CONFIG?.whatsapp) { showToast("Contato indisponível. Recarregue a página."); return; }
       const keys = Object.keys(cart);
       if (!keys.length) { alert('Adicione itens ao pedido primeiro.'); return; }
       const total = keys.reduce((s, k) => s + cart[k].price * cart[k].qty, 0);
@@ -570,7 +574,7 @@
       keys.forEach(n => { msg += `• ${cart[n].qty}x ${n} — R$ ${(cart[n].price * cart[n].qty).toFixed(2).replace('.', ',')}\n`; });
       msg += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
       if (obs) msg += `\n\n📝 Observações: ${obs}`;
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${window.WL_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     // Clique no card abre a galeria (exceto no botão adicionar)
@@ -620,40 +624,36 @@
     // Filtro por categoria
     const catBtns = document.querySelectorAll('.cat-btn');
     const sections = document.querySelectorAll('.menu-section');
+    let activeCategory = 'all';
+
+    function applyMenuFilter(query = '') {
+      let found = false;
+      sections.forEach(section => {
+        const categoryMatches = activeCategory === 'all' || section.dataset.category === activeCategory;
+        let visible = false;
+        section.querySelectorAll('.menu-item').forEach(item => {
+          const matches = categoryMatches && (!query || item.dataset.name.toLowerCase().includes(query) || item.querySelector('.item-desc').textContent.toLowerCase().includes(query));
+          item.style.display = matches ? '' : 'none';
+          if (matches) visible = found = true;
+        });
+        section.classList.toggle('hidden', !visible);
+      });
+      document.getElementById('empty-state').style.display = found ? 'none' : 'block';
+      document.getElementById('search-term').textContent = document.getElementById('search').value;
+    }
     catBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         catBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        sections.forEach(s => s.classList.toggle('hidden', filter !== 'all' && s.dataset.category !== filter));
+        activeCategory = btn.dataset.filter;
         document.getElementById('search').value = '';
-        document.getElementById('empty-state').style.display = 'none';
+        applyMenuFilter();
       });
     });
 
     // Busca
     document.getElementById('search').addEventListener('input', function() {
-      const q = this.value.toLowerCase().trim();
-      if (!q) {
-        const active = document.querySelector('.cat-btn.active').dataset.filter;
-        sections.forEach(s => s.classList.toggle('hidden', active !== 'all' && s.dataset.category !== active));
-        document.getElementById('empty-state').style.display = 'none';
-        return;
-      }
-      catBtns.forEach(b => b.classList.remove('active'));
-      let found = false;
-      sections.forEach(s => {
-        const items = s.querySelectorAll('.menu-item');
-        let visible = false;
-        items.forEach(item => {
-          const match = item.dataset.name.toLowerCase().includes(q) || item.querySelector('.item-desc').textContent.toLowerCase().includes(q);
-          item.style.display = match ? '' : 'none';
-          if (match) visible = found = true;
-        });
-        s.classList.toggle('hidden', !visible);
-      });
-      document.getElementById('empty-state').style.display = found ? 'none' : 'block';
-      document.getElementById('search-term').textContent = this.value;
+      applyMenuFilter(this.value.toLowerCase().trim());
     });
 
     document.addEventListener('keydown', e => {

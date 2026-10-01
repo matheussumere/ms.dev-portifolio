@@ -1,8 +1,8 @@
 // Quote Form Handler com WhatsApp Integration
 // Extensão aprimorada do components.js
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cfg = window.WL_CONFIG || {};
+document.addEventListener('DOMContentLoaded', async () => {
+  const cfg = await (window.WL_READY || Promise.resolve(window.WL_CONFIG || {}));
 
   // Formulário de orçamento aprimorado
   const quoteForm = document.getElementById('form-quote');
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = Object.fromEntries(formData);
 
     try {
+      if (!/^\d{10,15}$/.test(cfg.whatsapp || '')) throw new Error('Contato indisponível');
       // Construir mensagem contextualizada
       const message = buildQuoteMessage(data);
       
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sendViaWhatsApp(message, cfg.whatsapp);
       
       // Feedback de sucesso
-      showFeedback(feedback, 'success', '✓ Orçamento enviado! Responderemos em breve pelo WhatsApp.');
+      showFeedback(feedback, 'success', 'Confirme o envio do pedido de orçamento no WhatsApp.');
       quoteForm.reset();
       
       // Fechar modal após 2 segundos
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const timestamp = new Date().toLocaleDateString('pt-BR');
     const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     
-    const message = `*SOLICITAÇÃO DE ORÇAMENTO - MÜLLER AUTO*
+    const message = `*SOLICITAÇÃO DE ORÇAMENTO - ${cfg.business_name || 'Oficina'}*
 
 📋 *Dados do Cliente*
 Nome: ${data.name}

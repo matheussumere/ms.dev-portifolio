@@ -1,0 +1,17 @@
+{
+  "name": "ms-dev-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfólio estático com conteúdo editável pelo Decap CMS",
+  "scripts": {
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "cms:local": "BIND_HOST=127.0.0.1 decap-server",
+    "cms:setup": "python3 scripts/install_cms.py",
+    "build": "npm run cms:setup && python3 scripts/build.py",
+    "previews": "python3 scripts/update_previews.py",
+    "test": "python3 -m unittest discover -s tests -v"
+  },
+  "devDependencies": {
+    "decap-server": "3.11.3"
+  }
+}

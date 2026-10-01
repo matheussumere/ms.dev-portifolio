@@ -1,0 +1,3 @@
+.demo-contact { position: relative; z-index: 110; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.2rem; padding: .85rem 1rem; background: #0e1420; color: #c5cedd; font: 13px/1.5 system-ui, sans-serif; }
+.demo-contact a { color: #a3c5ff; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.demo-contact a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }

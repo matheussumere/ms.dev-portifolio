@@ -1,0 +1,9 @@
+node_modules/
+admin/vendor/
+.env
+.env.*
+!.env.example
+__pycache__/
+test-results/
+dist/
+.venv/

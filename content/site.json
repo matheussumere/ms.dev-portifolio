@@ -1,0 +1,96 @@
+{
+  "company": {
+    "name": "ms.dev",
+    "whatsapp": "5519978075689",
+    "phone": "(19) 97807-5689",
+    "email": "matheussumere@gmail.com",
+    "description": "Sites para negócios locais, com uma apresentação clara e contato fácil pelo WhatsApp."
+  },
+  "analytics": {
+    "enabled": false,
+    "domain": "",
+    "endpoint": "https://plausible.io/api/event"
+  },
+  "demos": [
+    {
+      "id": "oficina",
+      "name": "Oficina Mecânica",
+      "category": "servicos",
+      "category_label": "Serviços locais",
+      "description": "Orçamentos e apresentação dos serviços",
+      "preview": "assets/previews/oficina.jpg"
+    },
+    {
+      "id": "salao",
+      "name": "Salão de Beleza",
+      "category": "beleza",
+      "category_label": "Beleza e bem-estar",
+      "description": "Serviços, galeria e solicitação de agendamento",
+      "preview": "assets/previews/salao.jpg"
+    },
+    {
+      "id": "dentista",
+      "name": "Clínica Odontológica",
+      "category": "servicos",
+      "category_label": "Serviços locais",
+      "description": "Tratamentos, casos e contato",
+      "preview": "assets/previews/dentista.jpg"
+    },
+    {
+      "id": "cardapio",
+      "name": "Cardápio Digital",
+      "category": "comercio",
+      "category_label": "Comércio e alimentação",
+      "description": "Categorias, busca e pedidos pelo WhatsApp",
+      "preview": "assets/previews/cardapio.jpg"
+    },
+    {
+      "id": "artista",
+      "name": "Artista / Personalidade",
+      "category": "criativos",
+      "category_label": "Criativos e profissionais",
+      "description": "Portfólio, artigos e apresentação",
+      "preview": "assets/previews/artista.jpg"
+    },
+    {
+      "id": "tatuagem",
+      "name": "Estúdio de Tatuagem",
+      "category": "beleza",
+      "category_label": "Beleza e bem-estar",
+      "description": "Galeria, estilos e contato",
+      "preview": "assets/previews/tatuagem.jpg"
+    },
+    {
+      "id": "templo",
+      "name": "Comunidade Religiosa",
+      "category": "comunidade",
+      "category_label": "Comunidades",
+      "description": "Programação, mensagens e informações",
+      "preview": "assets/previews/templo.jpg"
+    },
+    {
+      "id": "curriculo",
+      "name": "Currículo Pessoal",
+      "category": "criativos",
+      "category_label": "Criativos e profissionais",
+      "description": "Experiência, habilidades e projetos",
+      "preview": "assets/previews/curriculo.jpg"
+    },
+    {
+      "id": "loja",
+      "name": "Loja em Geral",
+      "category": "comercio",
+      "category_label": "Comércio e alimentação",
+      "description": "Catálogo, variantes e pedidos pelo WhatsApp",
+      "preview": "assets/previews/loja.jpg"
+    },
+    {
+      "id": "give-beauty",
+      "name": "Estúdio de Unhas — Give Beauty",
+      "category": "beleza",
+      "category_label": "Beleza e bem-estar",
+      "description": "Serviços, galeria, notícias e contato pelo WhatsApp",
+      "preview": "assets/previews/give-beauty.jpg"
+    }
+  ]
+}

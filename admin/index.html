@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Conteúdo — ms.dev</title>
+  <style>body { font: 16px/1.7 system-ui, sans-serif; color: #19263d; } #cms-error { max-width: 650px; margin: 10vh auto; padding: 2rem; } a { color: #204cc5; }</style>
+</head>
+<body>
+  <div id="cms-error" hidden role="alert">Não foi possível carregar o painel. Consulte as instruções de instalação e acesso em <a href="../CMS.md">CMS.md</a>, ou <a href="../">volte ao site</a>.</div>
+  <script>
+    // Production config never enables the unauthenticated local editing proxy.
+    // The local override is only available on an actual loopback hostname.
+    window.CMS_MANUAL_INIT = true;
+    const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+    const bundle = document.createElement('script');
+    bundle.src = 'vendor/decap-cms.js';
+    bundle.onload = () => {
+      try {
+        CMS.init(isLocal ? { config: { local_backend: { url: 'http://127.0.0.1:8081/api/v1' } } } : {});
+      } catch {
+        document.getElementById('cms-error').hidden = false;
+      }
+    };
+    bundle.onerror = () => { document.getElementById('cms-error').hidden = false; };
+    document.head.append(bundle);
+  </script>
+</body>
+</html>

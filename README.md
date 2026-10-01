@@ -14,11 +14,12 @@ Customização rápida via variáveis CSS — troca logo, cores e textos em minu
 | Templo Religioso | [Igreja Nova Aliança](./templo/) | Igrejas & comunidades |
 | Currículo Pessoal | [Lucas Ferreira](./curriculo/) | Profissionais & devs |
 | Loja em Geral | [Maison Goods](./loja/) | E-commerce local |
+| Estúdio de Unhas | [Give Beauty](./give-beauty/) | Beleza & serviços |
 
 ## Funcionalidades
 
 **Landing Page**
-- Agendamento online com modal (tabs: agendar / contato)
+- Solicitação de agendamento com modal (tabs: agendar / contato)
 - Formulário de contato via [EmailJS](https://emailjs.com) — sem backend
 - Fallback automático para WhatsApp quando EmailJS não está configurado
 - Design responsivo, estética europeia/minimalista
@@ -31,38 +32,42 @@ Customização rápida via variáveis CSS — troca logo, cores e textos em minu
 - Envio do pedido formatado direto pelo WhatsApp — sem backend
 - 100% estático, sem dependências externas
 
+## Desenvolvimento e conteúdo
+
+O site é estático. Para iniciar na raiz:
+
+```bash
+npm ci
+npm run cms:setup
+npm run dev
+```
+
+Para editar conteúdo pelo Decap, inicie `npm run cms:local` em outro terminal e acesse o caminho `/admin/` no navegador local. O modo local escreve no checkout e deve permanecer restrito à máquina de desenvolvimento.
+
+- `content/site.json`: empresa, vitrine e configuração Plausible.
+- `content/templates.json`: contatos e configuração comum dos modelos.
+- `give-beauty/posts.json`: notícias públicas, compartilhadas entre visitantes.
+- `npm run build`: gera o site publicável em `dist/`.
+- `npm test`: regressões no Chromium, com conteúdo e serviços temporários.
+
+A ativação do login do CMS e das métricas em produção exige configurar os serviços externos. Veja [CMS.md](CMS.md) e [ROADMAP.md](ROADMAP.md).
+
 ## Como customizar para um cliente
 
-1. Copie a pasta do produto (`oficina/`, `salao/`, `cardapio/`, etc.)
-2. Edite as variáveis de cor no `<style>` do HTML:
-```css
---color-primary: #1c1c1c;
---color-accent:  #c0392b;
---color-bg:      #f8f7f5;
-```
-3. Para landing pages, atualize o `WL_CONFIG` com os dados do cliente:
-```js
-window.WL_CONFIG = {
-  emailjs_public_key: 'CHAVE_DO_CLIENTE',
-  emailjs_service_id: 'service_xxx',
-  emailjs_schedule_template: 'template_agendamento',
-  emailjs_contact_template: 'template_contato',
-  business_name: 'Nome do Negócio',
-  whatsapp: '5511999999999',
-};
-```
-4. Para o cardápio, troque o número no topo do script:
-```js
-const WHATSAPP_NUMBER = '5511999999999';
-```
-5. Substitua textos, endereço e telefone no HTML
+1. Escolha um modelo e atualize seus contatos em `content/templates.json` ou no CMS.
+2. Atualize a cor de destaque no mesmo arquivo; ajustes de design específicos continuam no HTML/CSS do modelo.
+3. Edite os conteúdos oferecidos no CMS. Os demais textos e produtos ainda são personalizados nos arquivos do modelo.
+4. Substitua imagens de demonstração, endereço, horários e metadados do cliente.
+5. Valide o site no celular, os links e o fluxo de contato antes da publicação.
+
+Os templates usam configuração e estilos compartilhados. Ao copiar um produto para outro repositório, leve também os diretórios compartilhados e ajuste o catálogo para esse cliente.
 
 ## Configurar EmailJS (gratuito até 200 emails/mês)
 
 1. Crie conta em [emailjs.com](https://emailjs.com)
 2. Adicione um serviço de e-mail (Gmail, Outlook, etc.)
 3. Crie dois templates: `template_agendamento` e `template_contato`
-4. Copie a Public Key e o Service ID para o `WL_CONFIG`
+4. Informe a Public Key, o Service ID e os templates nos campos EmailJS do modelo em `content/templates.json` ou no CMS
 
 ## Estrutura
 

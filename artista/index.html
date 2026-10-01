@@ -73,7 +73,7 @@
       --font-heading: 'Barlow Condensed', sans-serif;
       --font-body: 'Barlow', sans-serif;
     }
-    
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -258,11 +258,14 @@
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <link rel="stylesheet" href="../shared/enhancements.css">
+  <link rel="stylesheet" href="../shared/demo-contact.css">
+  <script src="../shared/analytics.js" defer></script>
+  <script src="../shared/site-config.js" defer></script>
 </head>
 <body>
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">ESTÚDIO <span>ARTES</span></a>
+    <a href="#" class="nav-logo" data-site-name data-default-business="Estúdio de Artes">ESTÚDIO <span>ARTES</span></a>
     <ul class="nav-links">
       <li><a href="#about">Sobre</a></li>
       <li><a href="#portfolio">Portfólio</a></li>
@@ -427,13 +430,7 @@
   </a>
 
   <script>
-    window.WL_CONFIG = {
-      whatsapp: '5511999999999',
-      name: 'Estúdio de Artes',
-      phone: '(11) 99999-9999',
-      email: 'contato@estudioartes.com',
-      address: 'Rua das Artes, 256, São Paulo, SP'
-    };
+
 
     // Load dynamic content
     fetch('data.json')

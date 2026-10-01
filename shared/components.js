@@ -1,8 +1,8 @@
 // Agendamento + Contato via EmailJS
 // Requer window.WL_CONFIG definido antes do carregamento
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cfg = window.WL_CONFIG || {};
+document.addEventListener('DOMContentLoaded', async () => {
+  const cfg = await (window.WL_READY || Promise.resolve(window.WL_CONFIG || {}));
 
   if (cfg.emailjs_public_key && window.emailjs) {
     emailjs.init(cfg.emailjs_public_key);
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtn = document.getElementById('modal-close');
 
   openBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    if (!overlay) return;
     e.preventDefault();
     const tab = btn.dataset.modalOpen || 'schedule';
     switchTab(tab);
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
 
   function closeModal() {
+    if (!overlay?.classList.contains('open')) return;
     overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
@@ -51,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = Object.fromEntries(new FormData(scheduleForm));
 
     try {
+      if (!/^\d{10,15}$/.test(cfg.whatsapp || '')) throw new Error('Contato indisponível');
       if (cfg.emailjs_service_id && cfg.emailjs_schedule_template && window.emailjs) {
         await emailjs.send(cfg.emailjs_service_id, cfg.emailjs_schedule_template, {
           ...data, business_name: cfg.business_name || '',
@@ -59,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const msg = `Olá! Gostaria de agendar:\n\nNome: ${data.name}\nTelefone: ${data.phone}\nServiço: ${data.service}\nData: ${data.date}\nHorário: ${data.time}`;
         window.open(`https://wa.me/${cfg.whatsapp || ''}?text=${encodeURIComponent(msg)}`, '_blank');
       }
-      showFeedback(feedback, 'success', '✓ Agendamento enviado! Entraremos em contato para confirmar.');
+      showFeedback(feedback, 'success', window.emailjs && cfg.emailjs_service_id && cfg.emailjs_schedule_template ? '✓ Solicitação enviada. Aguarde a confirmação do horário.' : 'Confirme o envio da solicitação no WhatsApp.');
       scheduleForm.reset();
     } catch {
       showFeedback(feedback, 'error', 'Erro ao enviar. Tente pelo WhatsApp.');
@@ -81,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = Object.fromEntries(new FormData(contactForm));
 
     try {
+      if (!/^\d{10,15}$/.test(cfg.whatsapp || '')) throw new Error('Contato indisponível');
       if (cfg.emailjs_service_id && cfg.emailjs_contact_template && window.emailjs) {
         await emailjs.send(cfg.emailjs_service_id, cfg.emailjs_contact_template, {
           ...data, business_name: cfg.business_name || '',
@@ -89,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const msg = `Olá! Mensagem via site:\n\nNome: ${data.name}\nE-mail: ${data.email}\nMensagem: ${data.message}`;
         window.open(`https://wa.me/${cfg.whatsapp || ''}?text=${encodeURIComponent(msg)}`, '_blank');
       }
-      showFeedback(feedback, 'success', '✓ Mensagem enviada! Responderemos em breve.');
+      showFeedback(feedback, 'success', window.emailjs && cfg.emailjs_service_id && cfg.emailjs_contact_template ? '✓ Mensagem enviada. Responderemos em breve.' : 'Confirme o envio da mensagem no WhatsApp.');
       contactForm.reset();
     } catch {
       showFeedback(feedback, 'error', 'Erro ao enviar. Tente pelo WhatsApp.');

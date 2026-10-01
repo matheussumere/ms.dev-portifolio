@@ -259,12 +259,15 @@
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <link rel="stylesheet" href="../shared/enhancements.css">
+  <link rel="stylesheet" href="../shared/demo-contact.css">
+  <script src="../shared/analytics.js" defer></script>
+  <script src="../shared/site-config.js" defer></script>
 </head>
 <body>
 
   <nav>
     <a href="../" class="back-btn">← Portfólio</a>
-    <a href="#" class="nav-logo">Maison Goods</a>
+    <a href="#" class="nav-logo" data-site-name data-default-business="Maison Goods">Maison Goods</a>
     <ul class="nav-center">
       <li><a href="#categorias">Categorias</a></li>
       <li><a href="#destaque">Produtos</a></li>
@@ -408,7 +411,6 @@
 
   <script>
     // ── Configuração ──────────────────────────────────────────
-    const WHATSAPP = '5511999999999';
     const CUPONS = {
       'BEMVINDO10': { tipo: 'pct', valor: 10, desc: '10% de desconto' },
       'FRETE20':    { tipo: 'fixo', valor: 20, desc: 'R$ 20 de desconto' },
@@ -739,7 +741,9 @@
     }
 
     // ── WhatsApp ──────────────────────────────────────────────
-    function sendWhatsApp() {
+    async function sendWhatsApp() {
+      await window.WL_READY;
+      if (!window.WL_CONFIG?.whatsapp) { showToast("Contato indisponível. Recarregue a página."); return; }
       if (!cart.length) { showToast('Adicione produtos à sacola primeiro'); return; }
       const subtotal = cart.reduce((s, i) => s + i.product.price * i.qty, 0);
       let discount = 0;
@@ -758,7 +762,7 @@
       if (discount > 0) msg += `\nDesconto: −${fmt(discount)}`;
       if (freteVal !== null) msg += `\nFrete (CEP ${document.getElementById('cep-input').value}): ${fmt(freteVal)}`;
       msg += `\n*Total: ${fmt(total)}*`;
-      window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${window.WL_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     // ── Toast ─────────────────────────────────────────────────

@@ -209,6 +209,9 @@
       footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
     }
   </style>
+  <link rel="stylesheet" href="../shared/demo-contact.css">
+  <script src="../shared/analytics.js" defer></script>
+  <script src="../shared/site-config.js" defer></script>
 </head>
 <body>
 
@@ -274,7 +277,7 @@
     <h2 class="section-title">Blog & <em>Resultados</em></h2>
     <div class="news-grid" id="news-grid"></div>
     <p style="text-align:right;margin-top:1.5rem;">
-      <button onclick="openAdmin()" style="background:none;border:none;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;text-decoration:underline;">+ Publicar post</button>
+      <a href="../admin/">Gerenciar conteúdo</a>
     </p>
   </section>
 
@@ -371,45 +374,10 @@
     </div>
   </div>
 
-  <!-- ADMIN PANEL -->
-  <div id="admin-panel" onclick="closeAdminOutside(event)">
-    <div class="admin-box">
-      <h3>Publicar Post</h3>
-      <div id="admin-login">
-        <label>Senha</label>
-        <input type="password" id="admin-pwd" placeholder="••••••">
-        <div class="admin-actions">
-          <button class="btn-admin" onclick="checkAdminPwd()">Entrar</button>
-          <button class="btn-admin btn-admin-ghost" onclick="closeAdmin()">Cancelar</button>
-        </div>
-        <p id="admin-pwd-err" style="font-size:0.75rem;color:#c0392b;display:none;">Senha incorreta.</p>
-      </div>
-      <div id="admin-form">
-        <label>Título</label>
-        <input type="text" id="post-title" placeholder="Título do post">
-        <label>Resumo</label>
-        <input type="text" id="post-excerpt" placeholder="Breve descrição (aparece no card)">
-        <label>Conteúdo completo</label>
-        <textarea id="post-content" placeholder="Texto completo do post..."></textarea>
-        <label>URL da imagem (opcional)</label>
-        <input type="text" id="post-img" placeholder="https://... ou deixe vazio">
-        <div class="admin-actions">
-          <button class="btn-admin" onclick="publishPost()">Publicar</button>
-          <button class="btn-admin btn-admin-ghost" onclick="closeAdmin()">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     // ════════════════════════════════════════════
     // CONFIGURAÇÃO — edite aqui
     // ════════════════════════════════════════════
-    const CONFIG = {
-      whatsapp: '5519974289142', // número da Giovanna
-      instagram: 'givebeauty.br',
-      admin_password: 'givebeauty2026' // troque para uma senha segura
-    };
 
     // ── Stories (bolinhas) ──
     const STORIES = [
@@ -495,36 +463,49 @@
         </div>`;
     });
 
-    // Notícias — carrega do localStorage
-    function loadPosts() {
-      return JSON.parse(localStorage.getItem('gb_posts') || '[]');
+    // Public content is versioned and edited through Decap CMS.
+    window._currentPosts = [];
+    function postImage(post) {
+      const wrap = document.createElement('div');
+      if (post.img && !post.img.includes('..') && /^(img\/|\/uploads\/|https:\/\/)/.test(post.img)) {
+        const image = document.createElement('img');
+        image.src = post.img;
+        image.alt = post.title;
+        image.className = 'news-card-img';
+        image.loading = 'lazy';
+        wrap.append(image);
+      }
+      return wrap;
     }
-    function savePosts(posts) {
-      localStorage.setItem('gb_posts', JSON.stringify(posts));
-    }
-    function renderNews() {
-      const saved = loadPosts();
-      // posts de exemplo enquanto não há posts reais
-      const defaults = [
-        { title: 'Unhas em gel: quanto tempo dura?', excerpt: 'Tire suas dúvidas sobre durabilidade, manutenção e cuidados.', content: 'As unhas em gel duram em média 3 a 4 semanas com os cuidados certos. Evite contato prolongado com água quente, use luvas ao lavar louça e hidrate as cutículas diariamente. A manutenção regular garante que suas unhas fiquem sempre impecáveis.', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3212957795560922278.jpg', date: '10 de outubro de 2023' },
-        { title: 'Baby Boomer: a francesa moderna', excerpt: 'Entenda por que essa técnica conquistou todas as mulheres.', content: 'O Baby Boomer é uma evolução da francesa clássica. O degradê suave entre o branco e o rosa cria um efeito sofisticado e natural que combina com qualquer ocasião — do trabalho à festa. É uma das técnicas mais pedidas no estúdio.', img: 'img/anonyviewer.com_Instagram_givebeauty.br_3179598780437206091.jpg', date: '5 de setembro de 2023' },
-        { title: 'Como cuidar das unhas em casa', excerpt: 'Dicas simples para prolongar a vida das suas unhas.', content: 'Hidrate as cutículas toda noite com óleo de amêndoas ou vitamina E. Evite usar as unhas como ferramenta. Use luvas ao lavar louça. Aplique base fortalecedora se suas unhas forem naturais. Pequenos cuidados fazem toda a diferença no resultado final.', img: 'img/anonyviewer.com_Instagram_givebeauty.br_2986661209273330954.webp', date: '20 de agosto de 2023' },
-      ];
-      const posts = saved.length ? saved : defaults;
+    function renderNews(posts) {
+      window._currentPosts = posts.slice().reverse();
       const grid = document.getElementById('news-grid');
-      grid.innerHTML = posts.slice().reverse().map((p, i) => `
-        <div class="news-card" onclick="openNews(${i}, ${JSON.stringify(saved.length ? true : false)})">
-          ${p.img ? `<img class="news-card-img" src="${p.img}" alt="${p.title}">` : `<div class="news-card-img-ph">🌸</div>`}
-          <div class="news-card-body">
-            <div class="news-card-date">${p.date}</div>
-            <div class="news-card-title">${p.title}</div>
-            <div class="news-card-excerpt">${p.excerpt}</div>
-          </div>
-        </div>`).join('');
-      // guarda referência para o modal
-      window._currentPosts = posts;
+      grid.replaceChildren();
+      window._currentPosts.forEach((post, index) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'news-card';
+        card.style.cssText = 'text-align:left;font:inherit;color:inherit;cursor:pointer;';
+        card.append(postImage(post));
+        const body = document.createElement('div');
+        body.className = 'news-card-body';
+        for (const [field, className] of [['date','news-card-date'],['title','news-card-title'],['excerpt','news-card-excerpt']]) {
+          const node = document.createElement('div');
+          node.className = className;
+          node.textContent = post[field];
+          body.append(node);
+        }
+        card.append(body);
+        card.addEventListener('click', () => openNews(index));
+        grid.append(card);
+      });
     }
-    renderNews();
+    fetch('posts.json').then(response => {
+      if (!response.ok) throw new Error('Notícias indisponíveis');
+      return response.json();
+    }).then(data => renderNews(data.posts)).catch(() => {
+      document.getElementById('news-grid').textContent = 'Não foi possível carregar as notícias. Tente novamente mais tarde.';
+    });
 
     // ── Story modal ──
     function openStory(i) {
@@ -544,11 +525,11 @@
 
     // ── News modal ──
     function openNews(i) {
-      const posts = window._currentPosts || loadPosts();
+      const posts = window._currentPosts;
       const p = posts[i];
-      document.getElementById('news-modal-img-wrap').innerHTML = p.img
-        ? `<img class="news-modal-img" src="${p.img}" alt="${p.title}">`
-        : `<div class="news-modal-img-ph">🌸</div>`;
+      const image = postImage(p);
+      image.querySelector('img')?.classList.replace('news-card-img', 'news-modal-img');
+      document.getElementById('news-modal-img-wrap').replaceChildren(image);
       document.getElementById('news-modal-date').textContent = p.date;
       document.getElementById('news-modal-title').textContent = p.title;
       document.getElementById('news-modal-content').textContent = p.content;
@@ -561,46 +542,14 @@
     }
 
     // ── Admin ──
-    function openAdmin() { document.getElementById('admin-panel').classList.add('open'); }
-    function closeAdmin() {
-      document.getElementById('admin-panel').classList.remove('open');
-      document.getElementById('admin-login').style.display = 'flex';
-      document.getElementById('admin-form').style.display = 'none';
-      document.getElementById('admin-pwd').value = '';
-      document.getElementById('admin-pwd-err').style.display = 'none';
-    }
-    function closeAdminOutside(e) { if (e.target === document.getElementById('admin-panel')) closeAdmin(); }
-    function checkAdminPwd() {
-      if (document.getElementById('admin-pwd').value === CONFIG.admin_password) {
-        document.getElementById('admin-login').style.display = 'none';
-        document.getElementById('admin-form').style.display = 'flex';
-      } else {
-        document.getElementById('admin-pwd-err').style.display = 'block';
-      }
-    }
-    function publishPost() {
-      const title = document.getElementById('post-title').value.trim();
-      const excerpt = document.getElementById('post-excerpt').value.trim();
-      const content = document.getElementById('post-content').value.trim();
-      const img = document.getElementById('post-img').value.trim();
-      if (!title || !content) { alert('Título e conteúdo são obrigatórios.'); return; }
-      const posts = loadPosts();
-      posts.push({ title, excerpt, content, img, date: new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' }) });
-      savePosts(posts);
-      renderNews();
-      closeAdmin();
-      document.getElementById('post-title').value = '';
-      document.getElementById('post-excerpt').value = '';
-      document.getElementById('post-content').value = '';
-      document.getElementById('post-img').value = '';
-    }
-
     // ── Formulário agendamento ──
-    document.getElementById('form-agendar').addEventListener('submit', function(e) {
+    document.getElementById('form-agendar').addEventListener('submit', async function(e) {
       e.preventDefault();
+      await window.WL_READY;
+      if (!window.WL_CONFIG?.whatsapp) { alert('Contato indisponível. Recarregue a página.'); return; }
       const d = Object.fromEntries(new FormData(this));
       const msg = `Olá Giovanna! Gostaria de agendar um horário.\n\nNome: ${d.name}\nWhatsApp: ${d.phone}\nServiço: ${d.service}\nData preferida: ${d.date}${d.obs ? '\n\nObservações: ' + d.obs : ''}`;
-      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open(`https://wa.me/${window.WL_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 
     // ── Nav mobile ──
@@ -613,7 +562,6 @@
       if (e.key === 'Escape') {
         document.getElementById('story-modal').classList.remove('open');
         document.getElementById('news-modal').classList.remove('open');
-        closeAdmin();
       }
     });
   </script>
