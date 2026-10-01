@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-site="curriculo">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lucas Ferreira — Desenvolvedor Full Stack</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/enhancements.css">
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
@@ -21,7 +19,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; }
 
     /* NAV */
     nav {
@@ -59,16 +57,16 @@
     .skill-name { font-size: 0.85rem; font-weight: 600; }
     .skill-bar-wrap { flex: 1; margin: 0 2rem; height: 3px; background: var(--border); }
     .skill-bar { height: 100%; background: var(--accent); }
-    .skill-pct { font-family: 'Syne Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+    .skill-pct { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.75rem; color: var(--muted); }
 
     /* EXPERIÊNCIA */
     .experience { padding: 6rem 4rem; background: var(--surface); }
     .exp-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
     .exp-header h2 { font-size: clamp(2rem, 3vw, 3rem); font-weight: 800; letter-spacing: -0.02em; }
-    .exp-header span { font-family: 'Syne Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+    .exp-header span { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.75rem; color: var(--muted); }
     .exp-list { display: flex; flex-direction: column; }
     .exp-item { display: grid; grid-template-columns: 160px 1fr auto; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; }
-    .exp-period { font-family: 'Syne Mono', monospace; font-size: 0.75rem; color: var(--muted); padding-top: 0.2rem; }
+    .exp-period { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.75rem; color: var(--muted); padding-top: 0.2rem; }
     .exp-company { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
     .exp-role { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; }
     .exp-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
@@ -79,7 +77,7 @@
     .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
     .proj-card { background: var(--surface); padding: 2rem; border-top: 3px solid var(--border); transition: border-color 0.2s; }
     .proj-card:hover { border-top-color: var(--accent); }
-    .proj-num { font-family: 'Syne Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-bottom: 1rem; }
+    .proj-num { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.7rem; color: var(--muted); margin-bottom: 1rem; }
     .proj-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .proj-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
     .proj-link { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
@@ -90,15 +88,15 @@
     .contact-left h2 span { color: var(--accent); }
     .contact-info { display: flex; flex-direction: column; gap: 1rem; }
     .c-item { display: flex; gap: 1rem; align-items: center; }
-    .c-label { font-family: 'Syne Mono', monospace; font-size: 0.65rem; color: #555; width: 60px; flex-shrink: 0; }
+    .c-label { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.65rem; color: #555; width: 60px; flex-shrink: 0; }
     .c-value { font-size: 0.875rem; color: #ccc; }
     .c-value a { color: #ccc; text-decoration: none; }
     .c-value a:hover { color: var(--accent); }
     .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-    .finput { width: 100%; padding: 0.85rem 1rem; background: #222; border: 1px solid #333; color: #fff; font-family: 'Syne', sans-serif; font-size: 0.875rem; outline: none; transition: border-color 0.2s; }
+    .finput { width: 100%; padding: 0.85rem 1rem; background: #222; border: 1px solid #333; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none; transition: border-color 0.2s; }
     .finput:focus { border-color: var(--accent); }
     .finput::placeholder { color: #555; }
-    .submit-btn { background: var(--accent); color: #fff; font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; padding: 1rem; border: none; cursor: pointer; transition: opacity 0.2s; }
+    .submit-btn { background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; padding: 1rem; border: none; cursor: pointer; transition: opacity 0.2s; }
     .submit-btn:hover { opacity: 0.85; }
 
     footer { background: var(--dark); border-top: 1px solid #222; padding: 1.5rem 4rem; display: flex; justify-content: space-between; font-size: 0.75rem; color: #444; }
@@ -118,6 +116,10 @@
   <link rel="stylesheet" href="../shared/demo-contact.css">
   <script src="../shared/analytics.js" defer></script>
   <script src="../shared/site-config.js" defer></script>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="preload" href="../assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../shared/design.css">
+  <script src="../shared/design.js" defer></script>
 </head>
 <body>
 

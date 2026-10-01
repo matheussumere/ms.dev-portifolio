@@ -1,0 +1,402 @@
+/* Visual foundation. Each model retains its own palette and layout below. */
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-b: 'DM Sans', sans-serif;
+  --font-h: 'Cormorant Garamond', serif;
+  --gutter: max(1.5rem, calc((100vw - 1200px) / 2));
+  --demo-bar-height: 38px;
+  --nav-height: 76px;
+  --ui-bg: var(--color-bg, var(--bg, #faf8f5));
+  --ui-surface: var(--color-surface, var(--surface, #fff));
+  --ui-text: var(--color-primary, var(--primary, var(--black, #202020)));
+  --ui-muted: var(--color-muted, var(--muted, #68635c));
+  --ui-border: var(--color-border, var(--border, #e3dfd7));
+  --ui-accent: var(--color-accent, var(--accent, #80653b));
+}
+body { font-family: 'DM Sans', sans-serif; font-weight: 400; line-height: 1.65; animation: none; }
+html { scroll-padding-top: calc(var(--demo-bar-height) + var(--nav-height) + 20px); }
+section[id] { scroll-margin-top: calc(var(--demo-bar-height) + var(--nav-height) + 20px); }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+img { max-width: 100%; }
+button, input, select, textarea { font-family: 'DM Sans', sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--ui-accent); outline-offset: 5px; }
+[hidden] { display: none !important; }
+.demo-contact { position: fixed; inset: 0 0 auto; height: var(--demo-bar-height); z-index: 130; flex-wrap: nowrap; align-items: center; justify-content: space-between; padding: 0 var(--gutter); gap: 1rem; background: #111b28; font: 12px/1.4 'DM Sans', sans-serif; color: #cbd5e1; border-bottom: 1px solid #2a3749; }
+.demo-contact span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo-contact a { white-space: nowrap; color: #c5daff; text-decoration: none; min-height: 32px; display: flex; align-items: center; }
+body > nav:not(.categories), body > nav.scrolled { top: var(--demo-bar-height); height: var(--nav-height); padding: 0 var(--gutter); gap: 1.5rem; z-index: 120; box-shadow: none; }
+body > .hero { margin-top: var(--demo-bar-height); min-height: min(850px, calc(100svh - var(--demo-bar-height))); padding-top: var(--nav-height); }
+.hero-bg { transform: none !important; transition: none; background-color: #25332e; }
+.hero-desc, .hero-sub, .hero-subtitle { line-height: 1.8; }
+.back-btn { opacity: 1; font-size: .7rem; letter-spacing: .04em; }
+.nav-links, .nav-center { align-items: center; gap: 1.7rem; }
+.nav-links a, .nav-center a { font-family: 'DM Sans', sans-serif; letter-spacing: .03em; font-size: .78rem; min-height: 44px; display: flex; align-items: center; }
+.nav-logo { flex-shrink: 0; }
+.nav-hamburger, .nav-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; color: inherit; }
+.nav-drawer { inset: calc(var(--demo-bar-height) + var(--nav-height)) 0 0; z-index: 115; justify-content: flex-start; align-items: stretch; padding: 2rem var(--gutter); gap: .4rem; background: #111b28; overflow-y: auto; }
+.nav-drawer a { min-height: 48px; font-size: 1.05rem; letter-spacing: .03em; padding: .6rem 0; opacity: 1; border-bottom: 1px solid #ffffff1a; }
+.nav-drawer .drawer-back { opacity: .8; }
+.nav-drawer .nav-cta { background: none; color: #fff !important; }
+.hero-actions { flex-wrap: wrap; }
+:is(.btn-fill,.btn-ghost,.btn-line,.btn-primary,.btn-outline,.btn-cta,.hero-cta,.hero-btn,.btn-gold,.nav-btn,.nav-cta,.btn-submit,.submit-btn,.btn-add,.filter-btn,.cat-btn,.qty-btn,.fab) { min-height: 44px; font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 600; letter-spacing: .01em; transition: background .2s, color .2s, border-color .2s, box-shadow .2s; }
+:is(.btn-fill,.btn-ghost,.btn-line,.btn-primary,.btn-outline,.btn-cta,.hero-cta,.hero-btn,.btn-gold,.nav-btn,.nav-cta) { display: inline-flex; align-items: center; justify-content: center; }
+:is(input,select,textarea) { min-height: 48px; border-radius: 6px; background: var(--ui-surface); border-color: var(--ui-border); color: var(--ui-text); font-size: .94rem; }
+:is(input,select,textarea):focus { outline: 2px solid var(--ui-accent); outline-offset: 2px; background: var(--ui-surface); }
+input::placeholder, textarea::placeholder { color: var(--ui-muted); opacity: 1; }
+label { color: var(--ui-muted); letter-spacing: .04em; font-size: .74rem; }
+  .form-row { min-width: 0; }
+.form-row > * { min-width: 0; }
+.modal, .modal-box, .gallery-box { background: var(--ui-surface); color: var(--ui-text); border-radius: 14px; box-shadow: 0 24px 80px #0004; }
+.modal { padding: 2.5rem; }
+.modal h3 { font-family: var(--font-heading); font-size: 1.8rem; }
+.modal-subtitle { color: var(--ui-muted); }
+.modal-overlay { z-index: 1000; }
+.modal-close { min-width: 44px; min-height: 44px; color: var(--ui-muted); }
+.btn-submit { background: var(--ui-text); color: var(--ui-bg); border-radius: 6px; }
+.btn-submit:hover { background: var(--ui-text); color: var(--ui-bg); opacity: .9; }
+.fab { bottom: 1.25rem; right: 1.25rem; border-radius: 50px; background: #172333; color: #fff; box-shadow: 0 5px 22px #0003; }
+.theme-switcher { bottom: 1.25rem; left: 1.25rem; }
+.theme-switcher-toggle { min-height: 44px; padding: .6rem 1rem; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: .74rem; color: var(--ui-text); background: var(--ui-surface); border-color: var(--ui-border); letter-spacing: 0; text-transform: none; }
+.theme-options { background: var(--ui-surface); border-color: var(--ui-border); border-radius: 12px; min-width: 150px; }
+.theme-btn { min-height: 44px; font-family: 'DM Sans', sans-serif; color: var(--ui-text); border-radius: 6px; letter-spacing: 0; text-transform: none; }
+.theme-btn.active { background: var(--ui-bg); font-weight: 700; }
+.line-icon { width: 28px; height: 28px; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.fa-whatsapp .line-icon { width: 20px; height: 20px; }
+.svc-icon, .specialty-icon, .treatment-icon, .service-icon, .min-icon { color: var(--ui-accent); }
+.svc-icon .line-icon, .specialty-icon .line-icon, .treatment-icon .line-icon, .service-icon .line-icon, .min-icon .line-icon { width: 36px; height: 36px; }
+
+/* Industrial: strong condensed typography, sharp red details. */
+html[data-site="oficina"] { --font-heading: 'Barlow Condensed', sans-serif; --color-muted: #625c55; }
+[data-site="oficina"] .hero { justify-content: center; text-align: left; align-items: flex-start; padding: calc(var(--nav-height) + 4rem) var(--gutter) 5rem; background: #171d21; }
+[data-site="oficina"] .hero-content { padding: 0; max-width: 850px; }
+[data-site="oficina"] .hero-bg { background-color: #242a30; }
+[data-site="oficina"] .hero-bg::after { background: linear-gradient(90deg,#101419f5 0%,#101419c4 48%,#10141933 100%); }
+[data-site="oficina"] .hero h1 { font-size: clamp(4.6rem, 8vw, 7.8rem); line-height: .98; letter-spacing: -.025em; }
+[data-site="oficina"] .hero h1 em { color: #f17666; }
+[data-site="oficina"] .hero-badge { color: #ffafa1; background: #c0392b20; border: 1px solid #d968584d; letter-spacing: .12em; }
+[data-site="oficina"] .hero-sub { color: #d1d5db; max-width: 540px; font-size: 1rem; margin-left: 0; text-align: left; }
+[data-site="oficina"] .hero-actions { justify-content: flex-start; }
+[data-site="oficina"] .back-btn { color: #c8cfdb !important; }
+[data-site="oficina"] button.fab { bottom: 5.8rem; }
+[data-site="oficina"] .fab-whatsapp { bottom: 1.25rem; right: 1.25rem; }
+[data-site="oficina"] .hero-btn { background: #c0392b; color: #fff; border-radius: 3px; }
+[data-site="oficina"] :is(.services-inner,.specialization,.portfolio,.guarantees,.badges,.blog,.about,.loyalty,.location) { padding-left: var(--gutter); padding-right: var(--gutter); }
+[data-site="oficina"] .svc-card { padding: 2.5rem; border-top: 3px solid var(--color-accent); }
+[data-site="oficina"] :is(.guarantee-card,.brand-card,.badge-card) { border: 1px solid var(--ui-border); }
+[data-site="oficina"] .services-count { color: #a39a90; }
+[data-site="oficina"] .svc-num { color: #867b6c; }
+[data-site="oficina"] :is(.about-label,.detail-text a) { color: #f59787 !important; }
+[data-site="oficina"] .stat-item .lbl { color: #b8ada0; }
+[data-site="oficina"] #contato > p { color: #fff !important; }
+
+/* Salon: editorial serif headings and warm, restrained surfaces. */
+html[data-site="salao"] { --font-heading: 'Cormorant Garamond', serif; --color-muted: #716457; }
+[data-site="salao"] body > nav, [data-site="salao"] body > nav.scrolled { background: #1e1a17f5; border-bottom: 1px solid #ffffff18; }
+[data-site="salao"] nav :is(.nav-logo,.nav-links a,.back-btn) { color: #f4e9dd !important; }
+[data-site="salao"] .nav-logo { font-size: 1.7rem; }
+[data-site="salao"] .hero-left { padding: 5rem var(--gutter); justify-content: center; background: #201b18; }
+[data-site="salao"] .hero h1 { font-size: clamp(3.8rem,5.7vw,6rem); line-height: 1.04; }
+[data-site="salao"] .hero h1 strong { color: #d3b58e; }
+[data-site="salao"] .hero-season { color: #d3b58e; font-size: 1rem; }
+[data-site="salao"] .hero-desc { color: #d2c5ba; font-size: .98rem; }
+[data-site="salao"] .hero-right, [data-site="salao"] .about-img { background-color: #c8b9a8; }
+[data-site="salao"] .hero-cta { align-self: flex-start; background: #d3b58e; color: #201b18; padding: 1rem 1.6rem; border: none; border-radius: 3px; }
+[data-site="salao"] .services-inner { max-width: 1120px; }
+[data-site="salao"] .svc-name { font-size: 1.9rem; }
+[data-site="salao"] .about-text { padding: 5rem clamp(2rem,5vw,5rem); }
+[data-site="salao"] .testimonials { background: #201b18; padding-left: var(--gutter); padding-right: var(--gutter); }
+[data-site="salao"] .test-author, [data-site="salao"] .test-label { color: #d3b58e; }
+[data-site="salao"] .about-label { color: #89613e; }
+
+/* Healthcare: airy blue layout with an obvious consultation action. */
+html[data-site="dentista"] { --font-heading: 'DM Sans', sans-serif; }
+[data-site="dentista"] body > nav { background: #fff; border-bottom: 1px solid var(--ui-border); }
+[data-site="dentista"] nav .nav-logo { color: #0a3a5c; font-size: 1.05rem; }
+[data-site="dentista"] nav .nav-logo span { color: #087b88; }
+[data-site="dentista"] .nav-links a { color: #34556b; padding: 0 .8rem; border: none; text-transform: none; }
+[data-site="dentista"] .nav-links .nav-cta { background: #087b88; color: #fff !important; padding: .6rem 1.2rem; border-radius: 50px; }
+[data-site="dentista"] .hero { max-width: none; text-align: left; align-items: flex-start; justify-content: center; padding: calc(var(--nav-height) + 4rem) var(--gutter) 5rem; background: #edf7f9; }
+[data-site="dentista"] .hero-bg { left: 53%; background-color: #c5e0e4; border-radius: 120px 0 0 0; }
+[data-site="dentista"] .hero-bg::after { background: linear-gradient(90deg,#edf7f930,#0a3a5c20); }
+[data-site="dentista"] .hero-content { width: 47%; max-width: 590px; padding: 0 2rem 0 0; }
+[data-site="dentista"] .hero-badge { background: #d6edf0; color: #0a5964; font: 600 .73rem 'DM Sans',sans-serif; padding: .65rem 1rem; letter-spacing: .06em; }
+[data-site="dentista"] .hero-title { font-size: clamp(3rem,4.5vw,4.9rem); color: #0a3a5c; font-weight: 600; line-height: 1.07; text-transform: none; letter-spacing: -.045em; }
+[data-site="dentista"] .hero-subtitle { color: #426577; font-size: 1rem; letter-spacing: 0; max-width: 450px; }
+[data-site="dentista"] .hero-cta { background: #087b88; color: #fff; border-radius: 50px; text-transform: none; }
+[data-site="dentista"] section:not(.hero) { max-width: none; padding: 5rem var(--gutter); }
+[data-site="dentista"] section h2 { text-transform: none; font-size: clamp(2rem,3vw,3rem); font-weight: 600; letter-spacing: -.035em; }
+[data-site="dentista"] :is(.specialty-card,.treatment-card,.testimonial-card,.pricing-card) { border-radius: 16px; border: 1px solid var(--ui-border); box-shadow: none; padding: 2rem; }
+[data-site="dentista"] .about-image { border-radius: 24px; background: #d6e7e8; }
+[data-site="dentista"] .specialty-icon { color: #087b88; }
+[data-site="dentista"] :is(.ba-category,.pricing-value) { color: #087b88; }
+
+/* Artist: a gallery introduction, serif type and terracotta accents. */
+html[data-site="artista"] { --font-heading: 'Cormorant Garamond', serif; --color-muted: #756457; }
+[data-site="artista"] body > nav { background: #faf8f5; border-bottom: 1px solid var(--ui-border); }
+[data-site="artista"] .nav-logo { font-size: 1.5rem; color: #2c1810; }
+[data-site="artista"] .nav-logo span { color: #a14d3c; }
+[data-site="artista"] .nav-links a { color: #756457; padding: 0 .8rem; border: none; text-transform: none; }
+[data-site="artista"] .nav-links .nav-cta { background: #a14d3c; border-radius: 3px; color: #fff !important; padding: .6rem 1.2rem; }
+[data-site="artista"] .hero { max-width: none; text-align: left; align-items: flex-start; justify-content: center; background: #f5efe7; padding: calc(var(--nav-height) + 4rem) var(--gutter) 5rem; }
+[data-site="artista"] .hero-bg { left: 55%; top: calc(var(--nav-height) + 2rem); right: 2rem; bottom: 2rem; background-color: #c5a48e; border: 12px solid #fff; box-shadow: 0 15px 50px #2c181018; }
+[data-site="artista"] .hero-bg::after { background: linear-gradient(140deg,#a16b4f15,#36231a30); }
+[data-site="artista"] .hero-content { width: 49%; padding: 0 2rem 0 0; max-width: 650px; }
+[data-site="artista"] .hero-badge { background: transparent; color: #934d3e; padding: 0; font: 600 .73rem 'DM Sans',sans-serif; letter-spacing: .15em; }
+[data-site="artista"] .hero-title { font-size: clamp(3.7rem,5.8vw,6.2rem); text-transform: none; color: #2c1810; font-weight: 400; line-height: .99; letter-spacing: -.03em; }
+[data-site="artista"] .hero-subtitle { color: #756457; font-size: 1rem; letter-spacing: 0; }
+[data-site="artista"] .hero-cta { background: #a14d3c; color: #fff; border-radius: 3px; text-transform: none; }
+[data-site="artista"] section:not(.hero) { max-width: none; padding: 5rem var(--gutter); }
+[data-site="artista"] section h2 { text-transform: none; font-weight: 400; font-size: clamp(2.8rem,4vw,4.3rem); line-height: 1.1; }
+[data-site="artista"] :is(.service-card,.blog-card,.portfolio-item,.testimonial-card) { border: 1px solid var(--ui-border); box-shadow: none; border-radius: 4px; }
+[data-site="artista"] .portfolio-title { font-size: 1.5rem; }
+[data-site="artista"] :is(.portfolio-category,.blog-category) { color: #a14d3c; }
+[data-site="artista"] .submit-btn { background: #a14d3c; color: #fff; }
+
+/* Tattoo: dark, condensed headings and finely drawn golden rules. */
+html[data-site="tatuagem"] { --font-heading: 'Barlow Condensed',sans-serif; --color-muted: #aba297; }
+[data-site="tatuagem"] body > nav { background: #11100efa; }
+[data-site="tatuagem"] .hero { padding: calc(var(--nav-height) + 3rem) var(--gutter) 3rem; min-height: min(950px,calc(100svh - var(--demo-bar-height))); }
+[data-site="tatuagem"] .hero-bg { background-color: #24211d; }
+[data-site="tatuagem"] .hero h1 { color: #f4eee3; font-weight: 700; font-size: clamp(5rem,11vw,10rem); }
+[data-site="tatuagem"] .hero h1 em, [data-site="tatuagem"] .booking-info h2 em { font-family: 'Cormorant Garamond',serif; font-weight: 400; }
+[data-site="tatuagem"] .hero-desc { color: #c1b7a9; }
+[data-site="tatuagem"] :is(.artists,.styles,.booking) { padding: 6rem var(--gutter); }
+[data-site="tatuagem"] .artists-grid { gap: 1.5rem; background: none; }
+[data-site="tatuagem"] .artist-photo { background-color: #29251f; }
+[data-site="tatuagem"] .style-num { color: #8c774a; }
+[data-site="tatuagem"] .style-item:hover { background: var(--ui-surface); }
+
+/* Community: warmer type, clear weekly schedule and comfortable reading. */
+html[data-site="templo"] { --font-heading: 'Cormorant Garamond',serif; --muted: #726353; }
+[data-site="templo"] .back-btn { color: var(--ui-muted) !important; }
+[data-site="templo"] :is(h1,h2,.nav-logo,.section-title,.sched-name,.min-name,.visit-item .value,.stat-item .n) { font-family: var(--font-heading); }
+[data-site="templo"] .hero-bg { background-color: #4b473a; }
+[data-site="templo"] .hero h1 { font-size: clamp(3.5rem,6vw,6rem); line-height: 1.03; }
+[data-site="templo"] .hero-verse { font-family: var(--font-heading); font-size: 1.25rem; color: #e7dfd3; }
+[data-site="templo"] :is(.schedule,.ministries,.visit) { padding: 5rem var(--gutter); }
+[data-site="templo"] .sched-card { border-radius: 10px; padding: 2.2rem; border-top-width: 2px; }
+[data-site="templo"] .sched-name { font-size: 1.6rem; }
+[data-site="templo"] .about-img { background-color: #b6ad99; }
+[data-site="templo"] .about-content { background: #302b23; }
+[data-site="templo"] .min-grid { gap: 1rem; background: none; }
+[data-site="templo"] .min-card { border: 1px solid var(--ui-border); border-radius: 10px; }
+[data-site="templo"] .stat-item .l { color: #c2b9aa; }
+[data-site="templo"] .sched-day { color: #73540c; }
+[data-site="templo"] .visit p, [data-site="templo"] .visit-item .label { color: #fff; }
+
+/* Personal profile: precise orange accents and a framed skills panel. */
+html[data-site="curriculo"] { --muted: #625f58; --accent: #c43c00; }
+[data-site="curriculo"] .hero h1 { font-size: clamp(4.5rem,7.3vw,7.5rem); line-height: .97; font-weight: 650; letter-spacing: -.065em; }
+[data-site="curriculo"] .hero-left { padding: 4rem var(--gutter); }
+[data-site="curriculo"] .hero-right { margin: 2.5rem var(--gutter) 2.5rem 1rem; padding: 1rem; border-radius: 14px; gap: .5rem; background: #e8e5de; border: 1px solid var(--ui-border); }
+[data-site="curriculo"] .skill-row { border-radius: 8px; padding: 1.4rem; gap: .7rem; }
+[data-site="curriculo"] .skill-bar-wrap { margin: 0 .5rem; height: 5px; border-radius: 10px; overflow: hidden; }
+[data-site="curriculo"] :is(.experience,.projects,.contact) { padding: 5rem var(--gutter); }
+[data-site="curriculo"] .proj-grid { gap: 1.2rem; background: none; }
+[data-site="curriculo"] .proj-card { border: 1px solid var(--ui-border); border-radius: 12px; }
+[data-site="curriculo"] .contact { background: #171b22; }
+[data-site="curriculo"] .contact-left, [data-site="curriculo"] .contact-form { min-width: 0; }
+[data-site="curriculo"] .contact-left h2 span { display: block; }
+[data-site="curriculo"] .c-value { min-width: 0; overflow-wrap: anywhere; }
+[data-site="curriculo"] .c-label { color: #b6c0cd; }
+[data-site="curriculo"] .finput { color: #f4f6fa; background: #222b38; border-color: #475568; }
+[data-site="curriculo"] .finput::placeholder { color: #b6c0cd; }
+[data-site="curriculo"] footer, [data-site="curriculo"] footer a { color: #b6c0cd; }
+
+/* Retail: generous serif titles and a calmer catalog. */
+html[data-site="loja"] { --font-heading: 'Cormorant Garamond',serif; --muted: #6d655b; }
+[data-site="loja"] :is(h1,h2,.section-title,.nav-logo,.cat-name,.product-name,.footer-brand) { font-family: var(--font-heading); }
+[data-site="loja"] .nav-logo { font-size: 1.6rem; }
+[data-site="loja"] .hero-left { background-color: #bcb8a6; }
+[data-site="loja"] .hero-right { padding: 4rem clamp(2rem,5vw,5rem); }
+[data-site="loja"] .hero h1 { font-size: clamp(3.4rem,5.3vw,5.5rem); line-height: 1.03; }
+[data-site="loja"] :is(.categories,.featured,.newsletter) { padding: 5rem var(--gutter); }
+[data-site="loja"] .cat-thumb { background-color: #b3b7a5; aspect-ratio: 4/5; }
+[data-site="loja"] .cat-item { border-radius: 8px; }
+[data-site="loja"] .cat-name { font-size: 1.55rem; }
+[data-site="loja"] .product-card { border: 1px solid var(--ui-border); border-radius: 10px; overflow: hidden; padding-bottom: 1.3rem; background: var(--ui-surface); }
+[data-site="loja"] .product-card :is(.product-name,.product-price,.product-rating) { margin-left: 1rem; margin-right: 1rem; }
+[data-site="loja"] .product-name { font-size: 1.3rem; }
+[data-site="loja"] .product-card:hover { transform: translateY(-3px); }
+[data-site="loja"] .banner { margin: 0 var(--gutter) 4rem; border-radius: 12px; }
+[data-site="loja"] .banner-img { background-color: #1d422e; }
+[data-site="loja"] .filter-btn { border-radius: 50px; }
+[data-site="loja"] :is(.prod-close,.cart-close,.cqty-btn,.qty-ctrl button) { min-width: 44px; min-height: 44px; }
+[data-site="loja"] .cart-drawer { width: min(420px,100%); max-width: 100%; }
+[data-site="loja"] :is(.coupon-input,.frete-input,.newsletter-input) { min-width: 0; width: 0; }
+[data-site="loja"] .prod-info { color: var(--ui-text); }
+[data-site="loja"] .variant-btn { min-height: 44px; color: var(--ui-text); }
+[data-site="loja"] .qty-row { flex-wrap: wrap; }
+[data-site="loja"] #fab-cart { bottom: 1.25rem; right: 1.25rem; }
+[data-site="loja"] .product-rating span { color: #8a650c !important; }
+[data-site="loja"] .banner-tag { color: #e0ebe3; }
+[data-site="loja"] .footer-bottom { background: #171b22; color: #bbc5d0; }
+
+/* Restaurant: an editorial menu, readable prices and usable cart controls. */
+html[data-site="cardapio"] { --font-heading: 'Cormorant Garamond',serif; --color-muted: #666055; }
+[data-site="cardapio"] header { margin-top: var(--demo-bar-height); padding: 5rem 1.5rem 3.5rem; background: #20271f; position: relative; }
+[data-site="cardapio"] header h1 { font-size: clamp(3rem,6vw,5rem); line-height: 1.1; }
+[data-site="cardapio"] .header-eyebrow { color: #d4b779; }
+[data-site="cardapio"] .header-sub { color: #d3d5ce; }
+[data-site="cardapio"] header > a { color: #d3d5ce !important; }
+[data-site="cardapio"] nav.categories { top: var(--demo-bar-height); z-index: 110; background: var(--ui-surface); border-bottom: 1px solid var(--ui-border); }
+[data-site="cardapio"] .cat-btn { text-transform: none; letter-spacing: 0; font-size: .85rem; }
+[data-site="cardapio"] .cat-btn.active { color: var(--ui-accent); }
+[data-site="cardapio"] .search-bar { padding: 2rem 1.5rem .3rem; }
+[data-site="cardapio"] .search-input { border-radius: 50px; padding: 1rem 1.4rem; }
+[data-site="cardapio"] main { max-width: 1000px; padding: 1rem 1.5rem 7rem; }
+[data-site="cardapio"] .section-title { font-size: 2.4rem; border: none; margin-bottom: 1rem; }
+[data-site="cardapio"] .menu-grid { gap: 1rem; background: none; }
+[data-site="cardapio"] .menu-item { border: 1px solid var(--ui-border); border-radius: 12px; padding: 1.5rem; }
+[data-site="cardapio"] .menu-item:hover { background: var(--ui-surface); border-color: var(--ui-accent); }
+[data-site="cardapio"] .item-name { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 600; }
+[data-site="cardapio"] .item-desc { max-width: 530px; font-size: .9rem; }
+[data-site="cardapio"] .item-price { font-size: 1.55rem; font-weight: 600; }
+[data-site="cardapio"] :is(.item-photo-wrap,.item-photo) { width: 110px; height: 90px; border-radius: 6px; background: #eee6d7; }
+[data-site="cardapio"] .btn-add { border-radius: 6px; }
+[data-site="cardapio"] .theme-switcher { bottom: 6.5rem; }
+[data-site="cardapio"] .qty-btn { min-width: 38px; min-height: 44px; }
+[data-site="cardapio"] #cart-bar { z-index: 500; background: #20271f; padding: .85rem 1.5rem; }
+[data-site="cardapio"] #btn-view-cart { min-height: 44px; border-radius: 6px; color: #fff; }
+[data-site="cardapio"] #btn-whatsapp { background: #137443; }
+[data-site="cardapio"] .cart-count { color: #e7cc91; }
+[data-site="cardapio"] .tag.veg { color: #28692c; border-color: #a0c4a2; }
+[data-site="cardapio"] .tag.hot { color: #b42a28; border-color: #e0a09f; }
+
+/* Give Beauty: local photography, champagne accents and clearer booking. */
+html[data-site="give-beauty"] { --ui-surface: #191715; --ui-text: #f6eee4; --ui-accent: #d4b574; --ui-muted: #b9b0a6; }
+[data-site="give-beauty"] body { background: #100f0e; }
+[data-site="give-beauty"] body > nav { background: #161412f5; background-image: none; }
+[data-site="give-beauty"] nav .logo img { height: 48px !important; }
+[data-site="give-beauty"] .hero-left { padding: 4rem var(--gutter); }
+[data-site="give-beauty"] .hero h1 { font-size: clamp(3.4rem,5.4vw,5.8rem); line-height: 1.04; font-weight: 400; }
+[data-site="give-beauty"] .hero-right { margin: 2rem 2rem 2rem 0; border-radius: 160px 160px 12px 12px; }
+[data-site="give-beauty"] .hero-img { object-position: center; }
+[data-site="give-beauty"] .btn-gold { background: #d4b574; color: #241d12; border-radius: 4px; }
+[data-site="give-beauty"] .btn-outline { color: #d6cdc0; border-color: #645644; border-radius: 4px; }
+[data-site="give-beauty"] .section-wrap { padding: 5rem var(--gutter); }
+[data-site="give-beauty"] :is(.svc-card,.news-card) { border-radius: 10px; border: 1px solid #3a3228; background: #191715; overflow: hidden; }
+[data-site="give-beauty"] .booking-grid { gap: 4rem; }
+[data-site="give-beauty"] .btn-submit { background: #d4b574; color: #241d12; }
+[data-site="give-beauty"] .submit-btn { background: #d4b574; color: #241d12; border-radius: 6px; }
+[data-site="give-beauty"] .reels-track iframe { border-radius: 10px; }
+[data-site="give-beauty"] a[href$="admin/"] { color: #c8b696; font-size: .8rem; text-underline-offset: 4px; }
+
+/* All variants map the legacy tokens to the shared palette. */
+html[data-theme] { --bg: var(--color-bg); --surface: var(--color-surface); --primary: var(--color-primary); --accent: var(--color-accent); --muted: var(--color-muted); --border: var(--color-border); --warm: var(--color-surface); --light: var(--color-surface); }
+html[data-theme="dark"] { --color-primary: #e8e6e0; --color-bg: #111110; --color-surface: #1a1a18; --color-border: #363630; --color-muted: #b2b2a8; --color-accent: #c8a96e !important; --on-accent: #161b26; }
+html[data-theme="summer"] { --color-primary: #241e17; --color-bg: #fffaf4; --color-surface: #fff; --color-border: #e7d5c6; --color-accent: #b74316 !important; --color-muted: #716152; --on-accent: #fff; }
+html[data-theme="winter"] { --color-primary: #2d3a4a; --color-bg: #f0f4f8; --color-surface: #fff; --color-border: #d8e6f0; --color-accent: #34677e !important; --color-muted: #526778; --on-accent: #fff; }
+html[data-theme] { --accent: var(--color-accent) !important; }
+html[data-theme] body { background: var(--ui-bg); color: var(--ui-text); }
+html[data-theme] body > nav:not(.categories), html[data-theme] body > nav.scrolled { background: var(--ui-surface); border-bottom: 1px solid var(--ui-border); }
+html[data-theme] nav :is(.nav-logo,.nav-links a,.nav-name,.back-btn) { color: var(--ui-text) !important; }
+html[data-theme] .nav-links :is(.nav-cta,.nav-visit,.nav-hire) { background: var(--ui-text); color: var(--ui-bg) !important; }
+html[data-theme] :is(.specialty-card,.treatment-card,.service-card,.svc-card,.testimonial-card,.pricing-card,.style-item) { background: var(--ui-surface); color: var(--ui-text); }
+html[data-theme] .nav-hamburger { color: var(--ui-text) !important; }
+html[data-theme] :is(.btn-primary,.btn-fill,.btn-add,.submit-btn,.btn-cta,.btn-checkout,.newsletter-btn,.gallery-add,.hero-btn) { background: var(--ui-accent); color: var(--on-accent); }
+html[data-theme] :is(.btn-hero-fill,.pricing-btn,.filter-btn.active,.product-badge:not(.sale)) { background: var(--ui-accent); color: var(--on-accent); }
+html[data-theme] :is(.coupon-btn,.frete-btn,.btn-banner,.btn-visit) { background: var(--ui-text); color: var(--ui-bg); }
+html[data-theme] :is(.banner h2,.banner-tag,.visit h2,.visit p,.visit-item .label,.visit-item .value) { color: var(--on-accent); }
+html[data-theme] .nav-logo span, html[data-theme] .hero-badge { color: var(--ui-accent); }
+html[data-site="dentista"][data-theme] .hero-badge { background: var(--ui-surface); }
+html[data-site="oficina"][data-theme] :is(.services-header,.location,.about-content) { background: #1c1c1c; color: #f5eee5; }
+html[data-site="oficina"][data-theme] .loyalty { background: linear-gradient(135deg,#672d25,#2a1714); }
+html[data-site="oficina"][data-theme] #contato :is(h2,p) { color: var(--on-accent) !important; }
+html[data-site="oficina"][data-theme] .gallery { background: #1c1c1c; }
+html[data-site="oficina"][data-theme] .testimonials { background: var(--ui-bg); }
+html[data-site="oficina"][data-theme] :is(.services-header,.gallery,.location,.about-content) h2 span,
+html[data-site="oficina"][data-theme] .stat-item .num { color: #eecba1; }
+html[data-site="curriculo"][data-theme] .contact-left h2 span { color: #d0dfff; }
+#toast { background: #172333; color: #fff; }
+html[data-theme] .btn-submit { background: var(--ui-text); color: var(--ui-bg); }
+html[data-theme] :is(.ba-category,.pricing-value,.portfolio-category,.blog-category,.about-label,.sched-day) { color: var(--ui-accent); }
+html[data-theme="dark"] .tag.veg { color: #a5d5a5; }
+html[data-theme="dark"] .tag.hot { color: #ffb4ab; }
+html[data-theme="dark"] .product-rating span { color: #e1bd67 !important; }
+html[data-theme="dark"] .svc-num { color: #b0a38f; }
+html[data-theme] .service-card:hover :is(h3,p) { color: var(--ui-text); }
+[data-site]:not([data-site="portfolio"]) footer { background: #171b22; color: #bbc5d0; }
+[data-site]:not([data-site="portfolio"]) footer a { color: #bbc5d0; }
+[data-site="loja"] footer :is(.footer-brand,.footer-col h4) { color: #e1e7ee; }
+[data-site="salao"] footer, [data-site="tatuagem"] footer { padding-bottom: 5rem; }
+html[data-theme] .hero-bg::after { background: linear-gradient(90deg,#121922df,#12192255); }
+html[data-site="dentista"][data-theme] .hero-bg::after, html[data-site="artista"][data-theme] .hero-bg::after { background: #00000015; }
+html[data-site="dentista"][data-theme] .hero, html[data-site="artista"][data-theme] .hero { background: var(--ui-bg); }
+html[data-site="dentista"][data-theme] .hero-title, html[data-site="artista"][data-theme] .hero-title { color: var(--ui-text); }
+html[data-site="dentista"][data-theme] .hero-subtitle, html[data-site="artista"][data-theme] .hero-subtitle { color: var(--ui-muted); }
+html[data-site="tatuagem"][data-theme] .hero h1, html[data-site="tatuagem"][data-theme] .hero-desc { color: #f4eee3; }
+
+@media (max-width: 1100px) {
+  body > nav:not(.categories) { gap: .8rem; }
+  .nav-links, .nav-center { gap: .9rem; }
+  .nav-links a { font-size: .72rem; }
+}
+@media (max-width: 1024px) {
+  body > nav .nav-links, body > nav .nav-center { display: none; }
+  .nav-hamburger, .nav-toggle { display: flex; }
+  body > nav .nav-right:empty { display: none; }
+  .nav-drawer:not(.open) { display: none; }
+  [data-site="give-beauty"] .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: var(--nav-height) 0 auto; background: #161412; align-items: stretch; padding: 1.5rem; gap: .5rem; }
+  [data-site="give-beauty"] .nav-links.open a { min-height: 48px; }
+}
+@media (max-width: 768px) {
+  :root { --gutter: 1.25rem; --nav-height: 68px; }
+  .demo-contact { padding: 0 .8rem; font-size: 10px; gap: .5rem; }
+  .demo-contact span { max-width: 45%; }
+  body > nav:not(.categories) { padding: 0 var(--gutter); gap: .6rem; }
+  .back-btn { font-size: .62rem; }
+  .nav-logo { font-size: 1.15rem; }
+  body > .hero { min-height: auto; }
+  :is(.hero-left,.hero-right,.hero-content) { min-width: 0; }
+  .hero-actions { gap: .7rem; }
+  .modal { padding: 2rem 1.3rem; }
+  .modal .form-row { grid-template-columns: 1fr; }
+  .fab { right: .75rem; bottom: .75rem; padding: .85rem 1rem; font-size: .7rem; }
+  .theme-switcher { left: .75rem; bottom: .75rem; }
+  [data-site="oficina"] .hero { padding: calc(var(--nav-height) + 3rem) var(--gutter) 4rem; min-height: 740px; }
+  [data-site="oficina"] .hero h1 { font-size: clamp(4rem,15vw,6rem); }
+  [data-site="oficina"] .hero-content { width: 100%; }
+  [data-site="oficina"] .svc-card { padding: 1.6rem; }
+  [data-site="salao"] .hero-left { padding: 3.5rem var(--gutter); }
+  [data-site="salao"] .hero h1 { font-size: 3.7rem; }
+  [data-site="salao"] .hero-right { min-height: 330px; }
+  [data-site="salao"] .svc-name { font-size: 1.5rem; }
+  [data-site="dentista"] .hero, [data-site="artista"] .hero { padding: calc(var(--nav-height) + 3rem) var(--gutter) 3rem; display: block; }
+  [data-site="dentista"] .hero-content, [data-site="artista"] .hero-content { width: 100%; padding: 0; }
+  [data-site="dentista"] .hero-title { font-size: 3.35rem; }
+  [data-site="artista"] .hero-title { font-size: 4.1rem; }
+  [data-site="dentista"] .hero-bg, [data-site="artista"] .hero-bg { position: relative; inset: auto; height: 300px; width: 100%; margin-bottom: 2.5rem; border-radius: 12px; }
+  [data-site="dentista"] section:not(.hero), [data-site="artista"] section:not(.hero) { padding: 3.5rem var(--gutter); }
+  [data-site="tatuagem"] .hero { min-height: 760px; padding-bottom: 3rem; }
+  [data-site="tatuagem"] .hero h1 { font-size: clamp(4.4rem,20vw,8rem); }
+  [data-site="tatuagem"] :is(.artists,.styles,.booking) { padding: 4rem var(--gutter); }
+  [data-site="templo"] .hero { min-height: 730px; padding-bottom: 3rem; }
+  [data-site="templo"] .hero h1 { font-size: 3.7rem; }
+  [data-site="curriculo"] .hero-left { padding: 3.5rem var(--gutter); }
+  [data-site="curriculo"] .hero h1 { font-size: 5.2rem; }
+  [data-site="curriculo"] .hero-right { margin: 0 var(--gutter) 3rem; }
+  [data-site="curriculo"] .exp-item { grid-template-columns: 1fr; gap: .7rem; }
+  [data-site="curriculo"] .contact-left h2 { font-size: 3rem; line-height: 1.08; }
+  [data-site="curriculo"] footer { flex-direction: column; gap: .5rem; padding: 2rem var(--gutter) 5rem; }
+  [data-site="loja"] .hero-right { padding: 3rem var(--gutter); }
+  [data-site="loja"] .hero h1 { font-size: 3.6rem; }
+  [data-site="loja"] .banner-content { padding: 2.5rem 1.5rem; }
+  [data-site="cardapio"] .categories-inner { justify-content: flex-start; }
+  [data-site="cardapio"] .item-right { gap: .7rem; }
+  [data-site="cardapio"] :is(.item-photo-wrap,.item-photo) { width: 76px; height: 70px; }
+  [data-site="cardapio"] .menu-item { padding: 1.2rem; }
+  [data-site="cardapio"] .cart-item-row { gap: .6rem; flex-wrap: wrap; }
+  [data-site="give-beauty"] .hero-left { padding: 3.5rem var(--gutter); }
+  [data-site="give-beauty"] .hero h1 { font-size: 3.6rem; }
+  [data-site="give-beauty"] .hero-right { margin: 0 var(--gutter) 3rem; height: 400px; border-radius: 140px 140px 10px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal, .reveal.reveal-pending { opacity: 1; transform: none; }
+}

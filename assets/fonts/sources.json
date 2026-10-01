@@ -1,0 +1,32 @@
+[
+  {
+    "package": "@fontsource-variable/dm-sans",
+    "version": "5.3.0",
+    "tarball": "https://registry.npmjs.org/@fontsource-variable/dm-sans/-/dm-sans-5.3.0.tgz",
+    "integrity": "sha512-BpUG5bqePiDFMBM4ZtLSlPdAIOM990uB1dlXzIf4aw21yQR7BmykedLXXXMqGWsR18aMLOsbWccwJNh3ztTQaA==",
+    "files": [
+      "dm-sans-latin-wght-normal.woff2"
+    ]
+  },
+  {
+    "package": "@fontsource/cormorant-garamond",
+    "version": "5.3.0",
+    "tarball": "https://registry.npmjs.org/@fontsource/cormorant-garamond/-/cormorant-garamond-5.3.0.tgz",
+    "integrity": "sha512-weuGsCirGVWBWqpt6YUp0yLThTe4G8YO45noq8wxeJCRvEpq5lFrxNMFSTxcyOyV5k5otzJ8guDzYegdYlcLMQ==",
+    "files": [
+      "cormorant-garamond-latin-400-normal.woff2",
+      "cormorant-garamond-latin-600-normal.woff2",
+      "cormorant-garamond-latin-400-italic.woff2"
+    ]
+  },
+  {
+    "package": "@fontsource/barlow-condensed",
+    "version": "5.3.0",
+    "tarball": "https://registry.npmjs.org/@fontsource/barlow-condensed/-/barlow-condensed-5.3.0.tgz",
+    "integrity": "sha512-RA7MmIx0v3eQ6Gcf74qLVLOwLB0GpPOzx+eU9iG/AmCnSJGcIWYeU8y6CEMGZ210MGwGg5CZhzLkkvyZdTTk1g==",
+    "files": [
+      "barlow-condensed-latin-700-normal.woff2",
+      "barlow-condensed-latin-800-normal.woff2"
+    ]
+  }
+]

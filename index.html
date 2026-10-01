@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-site="portfolio">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="assets/portfolio.css">
   <script src="shared/analytics.js" defer></script>
   <script src="assets/portfolio.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #080c10;
@@ -187,13 +185,16 @@
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="preload" href="assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/visual.css">
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
   <nav>
     <a href="#" class="logo" data-company-name>ms<em>.</em>dev</a>
-    <a href="#cotacao" class="nav-btn">→ cotação</a>
+    <div class="nav-links"><a href="#demos">Modelos</a><a href="#como-funciona">Como funciona</a><a href="#cotacao" class="nav-btn">Vamos conversar</a></div>
   </nav>
 
   <main id="conteudo">
@@ -205,12 +206,20 @@
       <p class="hero-desc" data-company-description>Sites para negócios locais, com uma apresentação clara e contato fácil pelo WhatsApp.</p>
       <div class="hero-actions">
         <a href="#cotacao" class="btn-fill">Solicitar cotação</a>
-        <a href="#demos" class="btn-ghost">Ver demos →</a>
+        <a href="#demos" class="btn-ghost">Explorar modelos</a>
       </div>
     </div>
     <div class="hero-right">
+      <div class="hero-showcase">
+        <div class="showcase-toolbar" aria-hidden="true"><i></i><i></i><i></i><span>Seu próximo site começa aqui</span></div>
+        <div class="showcase-images">
+          <a href="give-beauty/" aria-label="Ver o site Give Beauty"><img src="assets/previews/give-beauty.jpg" alt="Prévia do site Give Beauty" width="1200" height="800"><span>Beleza & bem-estar</span></a>
+          <a href="loja/" aria-label="Ver o modelo de loja"><img src="assets/previews/loja.jpg" alt="Prévia do modelo de loja" width="1200" height="800"><span>Comércio & catálogo</span></a>
+        </div>
+      </div>
+      <div class="hero-stats">
       <div class="stat-block">
-        <div class="stat-num">07</div>
+        <div class="stat-num">7 dias</div>
         <div class="stat-desc">Prazo estimado após receber conteúdo e aprovar o escopo</div>
       </div>
       <div class="stat-block">
@@ -218,12 +227,13 @@
         <div class="stat-desc">Preço inicial — sem taxas ocultas</div>
       </div>
       <div class="stat-block">
-        <div class="stat-num">100%</div>
-        <div class="stat-desc">Responsivo — funciona em qualquer tela</div>
+        <div class="stat-num">Todas as telas</div>
+        <div class="stat-desc">Layout adaptado para celular, tablet e computador</div>
       </div>
       <div class="stat-block">
         <div class="stat-num">Suporte</div>
         <div class="stat-desc">Planos de manutenção com suporte via WhatsApp</div>
+      </div>
       </div>
     </div>
   </section>
@@ -342,7 +352,7 @@
       </article>
     </div>
   </section>
-  <section class="process" aria-labelledby="process-title">
+  <section id="como-funciona" class="process" aria-labelledby="process-title">
     <div class="section-label">Do primeiro contato à entrega</div>
     <h2 class="section-title" id="process-title">Como seu projeto ganha forma</h2>
     <ol class="process-grid">

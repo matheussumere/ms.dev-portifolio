@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-site="dentista">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,9 +57,6 @@
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --color-primary: #0a3a5c;
@@ -69,7 +66,7 @@
       --color-border: #d0e8f2;
       --color-muted: #4a7089;
       --font-heading: 'Barlow Condensed', sans-serif;
-      --font-body: 'Barlow', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -268,6 +265,10 @@
   <link rel="stylesheet" href="../shared/demo-contact.css">
   <script src="../shared/analytics.js" defer></script>
   <script src="../shared/site-config.js" defer></script>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="preload" href="../assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../shared/design.css">
+  <script src="../shared/design.js" defer></script>
 </head>
 <body>
   <!-- NAV -->
@@ -286,7 +287,7 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="hero-badge">🦷 Saúde & Estética</div>
+      <div class="hero-badge">Saúde & Estética</div>
       <h1 class="hero-title">Seu Sorriso Perfeito</h1>
       <p class="hero-subtitle">Tratamentos odontológicos com tecnologia de ponta e atendimento humanizado</p>
       <a href="#contact" class="hero-cta">Agendar Consulta</a>
@@ -470,7 +471,7 @@
 
   <!-- WHATSAPP BUTTON -->
   <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma consulta." class="whatsapp-btn" title="WhatsApp" target="_blank">
-    <i class="fab fa-whatsapp"></i>
+    <i class="fa-whatsapp"></i>
   </a>
 
   <script>

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-site="templo">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Igreja Nova Aliança — Comunidade de Fé</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <link rel="stylesheet" href="../shared/enhancements.css">
@@ -22,7 +20,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; font-weight: 400; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--primary); -webkit-font-smoothing: antialiased; font-weight: 400; }
 
     /* NAV */
     nav {
@@ -32,7 +30,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 4rem;
     }
-    .nav-logo { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--primary); text-decoration: none; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--primary); text-decoration: none; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -54,9 +52,9 @@
     .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(45,36,22,0.55) 0%, rgba(45,36,22,0.75) 100%); }
     .hero-content { position: relative; z-index: 1; max-width: 700px; padding: 0 2rem; }
     .hero-cross { font-size: 2rem; color: var(--accent2); margin-bottom: 1.5rem; display: block; }
-    .hero h1 { font-family: 'Lora', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; line-height: 1.2; margin-bottom: 1.5rem; font-weight: 400; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff; line-height: 1.2; margin-bottom: 1.5rem; font-weight: 400; }
     .hero h1 em { font-style: italic; color: var(--accent2); }
-    .hero-verse { font-family: 'Lora', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; line-height: 1.6; }
+    .hero-verse { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; line-height: 1.6; }
     .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-primary { background: var(--accent); color: #fff; padding: 0.9rem 2.5rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s; display: inline-block; }
     .btn-primary:hover { background: var(--primary); }
@@ -66,11 +64,11 @@
     /* PROGRAMAÇÃO */
     .schedule { padding: 6rem 4rem; background: var(--surface); }
     .section-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .section-title { font-family: 'Lora', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 400; margin-bottom: 3rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 400; margin-bottom: 3rem; }
     .schedule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .sched-card { background: var(--light); padding: 2rem; border-top: 3px solid var(--accent2); }
     .sched-day { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-    .sched-name { font-family: 'Lora', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .sched-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
     .sched-time { font-size: 0.85rem; color: var(--muted); }
     .sched-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.5; }
 
@@ -82,10 +80,10 @@
     }
     .about-content { padding: 6rem 5rem; background: var(--primary); color: #fff; display: flex; flex-direction: column; justify-content: center; }
     .about-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent2); margin-bottom: 1.5rem; }
-    .about-content h2 { font-family: 'Lora', serif; font-size: clamp(1.8rem, 2.5vw, 2.8rem); font-weight: 400; line-height: 1.3; margin-bottom: 1.5rem; }
+    .about-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 2.5vw, 2.8rem); font-weight: 400; line-height: 1.3; margin-bottom: 1.5rem; }
     .about-content p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem; }
     .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    .stat-item .n { font-family: 'Lora', serif; font-size: 2.2rem; color: var(--accent2); }
+    .stat-item .n { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--accent2); }
     .stat-item .l { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
 
     /* MINISTÉRIOS */
@@ -94,17 +92,17 @@
     .min-card { background: var(--surface); padding: 2.5rem 2rem; text-align: center; transition: background 0.2s; }
     .min-card:hover { background: var(--light); }
     .min-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .min-name { font-family: 'Lora', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .min-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
     .min-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
 
     /* VISITA */
     .visit { background: var(--accent); padding: 5rem 4rem; text-align: center; }
-    .visit h2 { font-family: 'Lora', serif; font-size: clamp(2rem, 3vw, 3rem); color: #fff; margin-bottom: 1rem; font-weight: 400; }
+    .visit h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3rem); color: #fff; margin-bottom: 1rem; font-weight: 400; }
     .visit p { color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; font-size: 0.95rem; }
     .visit-info { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .visit-item { text-align: center; }
     .visit-item .label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem; }
-    .visit-item .value { font-family: 'Lora', serif; font-size: 1.1rem; color: #fff; }
+    .visit-item .value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; }
     .btn-visit { background: #fff; color: var(--accent); padding: 1rem 2.5rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.2s; }
     .btn-visit:hover { background: var(--primary); color: #fff; }
 
@@ -125,6 +123,10 @@
   <link rel="stylesheet" href="../shared/demo-contact.css">
   <script src="../shared/analytics.js" defer></script>
   <script src="../shared/site-config.js" defer></script>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="preload" href="../assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../shared/design.css">
+  <script src="../shared/design.js" defer></script>
 </head>
 <body>
 
@@ -150,7 +152,7 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <span class="hero-cross">✝</span>
+      <span class="hero-cross" aria-hidden="true"><svg class="line-icon" viewBox="0 0 24 24"><path d="M12 2v20M5 8h14"/></svg></span>
       <h1>Bem-vindo à<br><em>Nova Aliança</em></h1>
       <p class="hero-verse">"Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito."<br>— João 3:16</p>
       <div class="hero-actions">

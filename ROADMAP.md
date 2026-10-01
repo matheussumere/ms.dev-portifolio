@@ -10,6 +10,7 @@
 - Configuração compartilhada de contatos e destaque visual das demos. Conteúdo da vitrine centralizado em JSON.
 - Decap CMS local, edição de conteúdos já consumidos por JSON e notícias do Give Beauty compartilhadas entre navegadores.
 - Build estática, configuração Netlify e testes de regressão no navegador.
+- Renovação visual das 11 páginas, fontes locais, menus móveis, temas independentes e controles de toque maiores. Consulte `DESIGN.md`.
 
 ## Ativação em produção
 
@@ -17,7 +18,7 @@
 - Configurar OAuth do GitHub para o Decap e verificar permissão de edição.
 - Configurar o domínio Plausible, objetivos de eventos e confirmar recepção de métricas.
 - Revisar contatos, preços, imagens e conteúdo de demonstração antes de entregar sites a clientes.
-- Conferir aparência completa com fontes e imagens externas disponíveis.
+- Conferir a disponibilidade das fotos externas na hospedagem; as fontes já são locais.
 
 Esses passos exigem contas e configurações externas e não estão concluídos apenas porque o código foi preparado. Consulte `CMS.md` para os comandos e a ativação.
 

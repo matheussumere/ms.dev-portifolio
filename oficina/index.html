@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-site="oficina">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,9 +85,6 @@
     "knowsAbout": ["Motorcycles", "Auto Repair", "Mechanics", "Diagnostics"]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../shared/components.css">
   <link rel="stylesheet" href="../shared/themes.css">
   <link rel="stylesheet" href="../shared/enhancements.css">
@@ -101,7 +98,7 @@
       --color-border: #ddd9d3;
       --color-muted: #6b6560;
       --font-heading: 'Barlow Condensed', sans-serif;
-      --font-body: 'Barlow', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -734,6 +731,10 @@
   <link rel="stylesheet" href="../shared/demo-contact.css">
   <script src="../shared/analytics.js" defer></script>
   <script src="../shared/site-config.js" defer></script>
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="preload" href="../assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../shared/design.css">
+  <script src="../shared/design.js" defer></script>
 </head>
 <body>
 
@@ -765,7 +766,7 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="hero-badge">Oficina Mecânica · Especializada em Motos</div>
-      <h1>Precisão<em>que confia</em></h1>
+      <h1>Precisão<em>em cada detalhe</em></h1>
       <p class="hero-sub">Diagnóstico computadorizado, mão de obra especializada e transparência total. Sua moto em boas mãos.</p>
       <div class="hero-actions">
         <a href="#" data-modal-open="quote" class="btn-hero btn-hero-fill">Solicitar orçamento</a>
@@ -1121,11 +1122,11 @@
 
   <footer><p>© 2026 Müller Auto · Rua das Indústrias, 142 · <a href="tel:+5511999999999">(11) 99999-9999</a></p></footer>
 
-  <button class="fab" data-modal-open="schedule">📅 Agendar</button>
+  <button class="fab" data-modal-open="schedule">Agendar horário</button>
 
   <!-- WhatsApp Button -->
   <a href="https://wa.me/5511999999999?text=Olá%20Müller%20Auto!%20Gostaria%20de%20agendar%20um%20serviço%20ou%20solicitar%20um%20orçamento." target="_blank" class="fab-whatsapp" title="Enviar mensagem via WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+    <i class="fa-whatsapp"></i>
   </a>
 
   <div id="modal-overlay" class="modal-overlay">

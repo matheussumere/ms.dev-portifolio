@@ -231,6 +231,98 @@ class BrowserTests(unittest.TestCase):
         finally:
             path.write_bytes(original)
 
+    def test_layouts_fonts_and_headers_at_phone_tablet_and_desktop_sizes(self):
+        slugs = ['', 'oficina','salao','dentista','cardapio','artista','tatuagem','templo','curriculo','loja','give-beauty']
+        for width in [375, 768, 1440]:
+            self.page.set_viewport_size({'width':width, 'height':900})
+            for slug in slugs:
+                with self.subTest(width=width, site=slug or 'portfolio'):
+                    self.goto('/' + slug + '/')
+                    self.page.evaluate('document.fonts.ready')
+                    self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), width)
+                    self.assertTrue(self.page.evaluate('document.fonts.check(\'16px "DM Sans"\')'))
+                    self.assertIn('DM Sans', self.page.evaluate('getComputedStyle(document.body).fontFamily'))
+                    if slug and slug != 'cardapio':
+                        bar = self.page.locator('.demo-contact').bounding_box()
+                        nav = self.page.locator('body > nav').bounding_box()
+                        title = self.page.locator('.hero h1').bounding_box()
+                        self.assertGreaterEqual(nav['y'], bar['y'] + bar['height'])
+                        self.assertGreaterEqual(title['y'], nav['y'] + nav['height'])
+
+    def test_mobile_navigation_opens_closes_and_restores_keyboard_focus(self):
+        self.page.set_viewport_size({'width':375, 'height':812})
+        for slug in ['oficina','salao','dentista','artista','tatuagem','templo','curriculo','loja','give-beauty']:
+            with self.subTest(site=slug):
+                self.goto('/' + slug + '/')
+                toggle = self.page.locator('#nav-hamburger, #nav-toggle')
+                expect(toggle).to_be_visible()
+                toggle.click()
+                expect(toggle).to_have_attribute('aria-expanded', 'true')
+                drawer = self.page.locator('#nav-drawer, [data-mobile-menu]')
+                expect(drawer).to_be_visible()
+                first = drawer.locator('a').first
+                expect(first).to_be_focused()
+                self.page.keyboard.press('Escape')
+                expect(toggle).to_have_attribute('aria-expanded', 'false')
+                expect(drawer).not_to_be_visible()
+                expect(toggle).to_be_focused()
+                toggle.click()
+                first.click()
+                expect(toggle).to_have_attribute('aria-expanded', 'false')
+                self.assertEqual(self.page.evaluate('document.body.style.overflow'), '')
+
+    def test_theme_readability_and_persistence_are_independent_per_model(self):
+        self.page.emulate_media(reduced_motion='reduce')
+        def contrast(selector):
+            return self.page.locator(selector).first.evaluate(r'''element => {
+              const color = value => value.match(/[\d.]+/g).slice(0,3).map(Number);
+              const luminance = rgb => rgb.map(n => {n/=255; return n<=.04045?n/12.92:((n+.055)/1.055)**2.4}).reduce((sum,n,i)=>sum+n*[.2126,.7152,.0722][i],0);
+              const style = getComputedStyle(element);
+              let background = element;
+              while (background.parentElement && getComputedStyle(background).backgroundColor === 'rgba(0, 0, 0, 0)') background = background.parentElement;
+              const a = luminance(color(style.color));
+              const b = luminance(color(getComputedStyle(background).backgroundColor));
+              return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+            }''')
+        for slug in ['oficina','salao','dentista','cardapio','artista','tatuagem','templo','curriculo','loja']:
+            self.goto('/' + slug + '/')
+            for theme in ['dark','summer','winter','original']:
+                with self.subTest(site=slug, theme=theme):
+                    self.page.locator('#theme-toggle').click()
+                    self.page.locator('.theme-btn[data-theme="' + theme + '"]').click()
+                    expect(self.page.locator('#theme-toggle')).to_have_attribute('aria-expanded', 'false')
+                    self.assertGreaterEqual(contrast('#theme-toggle'), 4.5)
+                    if theme != 'original':
+                        brightness = self.page.evaluate("Math.max(...getComputedStyle(document.body).backgroundColor.match(/[0-9]+/g).slice(0,3).map(Number))")
+                        self.assertLess(brightness, 100) if theme == 'dark' else self.assertGreater(brightness, 200)
+                    if slug != 'cardapio':
+                        self.assertGreaterEqual(contrast('.nav-logo, .nav-name'), 4.5)
+        self.goto('/salao/')
+        self.page.locator('#theme-toggle').click()
+        self.page.locator('.theme-btn[data-theme="dark"]').click()
+        self.goto('/tatuagem/')
+        self.assertIsNone(self.page.locator('html').get_attribute('data-theme'))
+        self.goto('/salao/')
+        expect(self.page.locator('html')).to_have_attribute('data-theme', 'dark')
+
+    def test_shop_variant_quantity_and_checkout_message(self):
+        self.page.set_viewport_size({'width':375, 'height':812})
+        self.goto('/loja/')
+        self.page.locator('.product-card').first.click()
+        self.page.get_by_role('button', name='Aumentar quantidade', exact=True).click()
+        name = self.page.locator('.prod-name').inner_text()
+        self.page.locator('.btn-add-cart').click()
+        self.page.locator('#fab-cart').click()
+        expect(self.page.locator('#cart-drawer')).to_have_class('cart-drawer open')
+        self.assertLessEqual(self.page.locator('#cart-drawer').bounding_box()['width'], 375)
+        self.page.evaluate('() => { window.opened=[]; window.open=url=>window.opened.push(url); }')
+        self.page.locator('.btn-checkout').click()
+        message = parse_qs(urlparse(self.page.evaluate('window.opened[0]')).query)['text'][0]
+        self.assertIn(name, message)
+        self.assertIn('2x', message)
+        self.page.keyboard.press('Escape')
+        expect(self.page.locator('#cart-drawer')).not_to_have_class('cart-drawer open')
+
     def test_decap_editor_publishes_shared_content(self):
         path = self.repo / 'content/site.json'
         original = path.read_bytes()
